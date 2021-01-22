@@ -1,0 +1,4 @@
+# Ignore .next
+.next
+.git
+node_modules

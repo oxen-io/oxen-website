@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "oxen-io",
+    "staging": "oxen-io",
+    "production": "oxen-io"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "env": {
+    "development": {
+      "plugins": [
+        ["tailwind", { "ssr": true, "displayName": true, "preprocess": false }]
+      ],
+      "presets": ["next/babel"]
+    },
+    "production": {
+      "plugins": [
+        ["tailwind", { "ssr": true, "displayName": true, "preprocess": false }]
+      ],
+      "presets": ["next/babel"]
+    }
+  },
+  "plugins": [
+    ["tailwind", { "ssr": true, "displayName": true, "preprocess": false }]
+  ]
+}

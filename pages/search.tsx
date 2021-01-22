@@ -1,16 +1,12 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-// import SearchBackdropDesktopSVG from '../assets/svgs/page/search_desktop.svg';
-// import SearchBackdropMobileSVG from '../assets/svgs/page/search_mobile.svg';
-import client from '../client';
 import { ArticleCardRow } from '../components/cards/ArticleCardRow';
 import { Contained } from '../components/Contained';
 import { SectionTitle } from '../components/SectionTitle';
 import { Title } from '../components/Title';
 import { METADATA, SEARCH } from '../constants';
 import { ScreenContext } from '../contexts/screen';
-import { sanityPostQuery } from '../hooks/search';
 import { ISanityArticle } from '../types/article';
 import { buildArticleInfo } from '../utils/article';
 import { getTopPosts } from '../utils/posts';
@@ -159,46 +155,46 @@ function Search(props: Props) {
   );
 }
 
-Search.getInitialProps = async ({ query }): Promise<Props> => {
-  const page = query.page ?? 1;
-  const { s: encodedSearchQuery } = query;
-  const searchQuery = decodeURI(encodedSearchQuery);
+// Search.getInitialProps = async ({ query }): Promise<Props> => {
+//   const page = query.page ?? 1;
+//   const { s: encodedSearchQuery } = query;
+//   const searchQuery = decodeURI(encodedSearchQuery);
 
-  let posts: ISanityArticle[] = [];
-  let totalCount = 0;
+//   let posts: ISanityArticle[] = [];
+//   let totalCount = 0;
 
-  const resultsStart = SEARCH.SEARCH_ITEMS_PER_PAGE * (page - 1);
-  const resultsEnd = resultsStart + SEARCH.SEARCH_ITEMS_PER_PAGE;
+//   const resultsStart = SEARCH.SEARCH_ITEMS_PER_PAGE * (page - 1);
+//   const resultsEnd = resultsStart + SEARCH.SEARCH_ITEMS_PER_PAGE;
 
-  const specifier = `*[_type == "post" && (title match "*${searchQuery}*" || description match "${searchQuery}*" || "${searchQuery}*" || category match "${searchQuery}*")]`;
-  const sanityQuery = `
-    *[][0]{
-      "posts": ${specifier}[${resultsStart}..${resultsEnd}]{
-        ${sanityPostQuery}
-      },
-      "count": count(${specifier})
-    }
-  `;
+//   const specifier = `*[_type == "post" && (title match "*${searchQuery}*" || description match "${searchQuery}*" || "${searchQuery}*" || category match "${searchQuery}*")]`;
+//   const sanityQuery = `
+//     *[][0]{
+//       "posts": ${specifier}[${resultsStart}..${resultsEnd}]{
+//         ${sanityPostQuery}
+//       },
+//       "count": count(${specifier})
+//     }
+//   `;
 
-  if (searchQuery) {
-    try {
-      const results: ISanityPageResults = await client.fetch(sanityQuery);
+//   if (searchQuery) {
+//     try {
+//       const results: ISanityPageResults = await client.fetch(sanityQuery);
 
-      if (results?.posts?.length) {
-        posts = results.posts;
-        totalCount = results.count;
-      }
-    } catch (error) {
-      console.warn('Error: ', error);
-    }
-  }
+//       if (results?.posts?.length) {
+//         posts = results.posts;
+//         totalCount = results.count;
+//       }
+//     } catch (error) {
+//       console.warn('Error: ', error);
+//     }
+//   }
 
-  return {
-    posts,
-    sanityQuery,
-    totalCount,
-    currentPage: page,
-  };
-};
+//   return {
+//     posts,
+//     sanityQuery,
+//     totalCount,
+//     currentPage: page,
+//   };
+// };
 
 export default Search;

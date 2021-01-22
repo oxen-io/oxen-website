@@ -42,7 +42,6 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <StoreProvider store={store}>
-      {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
       <ScreenProvider>
         <Head>
           <title>{METADATA.TITLE_SUFFIX}</title>
@@ -52,7 +51,6 @@ function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </ScreenProvider>
-      {/* </ReactReduxFirebaseProvider> */}
     </StoreProvider>
   );
 }

@@ -74,7 +74,7 @@ function SearchOverlayInnerDefault() {
             onClick={() => router.push(category.href)}
             className="flex items-center text-lg cursor-pointer text-primary font-roboto font-medium rounded-lg hover:bg-primary hover:bg-opacity-10"
           >
-            <category.svg className="h-8 mr-2" />
+            {/* <category.svg className="h-8 mr-2" /> */}
             {category.name}
           </div>
         ))}

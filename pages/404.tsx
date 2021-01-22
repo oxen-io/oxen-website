@@ -66,13 +66,13 @@ function oxen404() {
             <div style={_404SectionStyles} className="absolute left-0 z-50">
               <h1
                 style={_404TitleStyles}
-                className="font-roboto text-primary text-sevenxl text-opacity-25 -mb-4"
+                className="font-roboto text-primary text-7xl text-opacity-25 -mb-4"
               >
                 404
               </h1>
               <p
                 style={_404TextStyles}
-                className="font-roboto text-primary text-fourxl tracking-tight"
+                className="font-roboto text-primary text-4xl tracking-tight"
               >
                 Nothing found here.
               </p>
@@ -97,7 +97,7 @@ function oxen404() {
                     isMobile ? 'text-lg' : 'text-sm',
                   )}
                 >
-                  Discover food
+                  OXEN
                 </div>
               </Link>
             </div>
@@ -112,7 +112,7 @@ function oxen404() {
             <div className="flex-col flex-grow z-50 my-4">
               <h2
                 className={classNames(
-                  'text-primary font-roboto font-semibold ml-1 font-roboto mt-6 text-twoxl whitespace-no-wrap',
+                  'text-primary font-roboto font-semibold ml-1 mt-6 text-twoxl whitespace-no-wrap',
                 )}
               >
                 Something went wrong?

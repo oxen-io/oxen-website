@@ -17,7 +17,7 @@ export function LoginModal(props: Props) {
         <div className="flex flex-col items-center space-y-6 mb-32">
           {/* <OxenLogo className="fill-current h-6" /> */}
 
-          <h1 className="font-roboto text-threexl mb-2">Hello!</h1>
+          <h1 className="font-roboto text-3xl mb-2">Hello!</h1>
 
           <Button
             type="outline"

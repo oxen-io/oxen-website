@@ -9,13 +9,13 @@ export function ColorPalette() {
       </div>
       <div className="flex pb-10 space-x-4">
         <div className="flex flex-col space-y-3 font-roboto">
-          <div className="flex justify-center items-center w-8 h-8 text-threexl">
+          <div className="flex justify-center items-center w-8 h-8 text-3xl">
             0
           </div>
-          <div className="flex justify-center items-center w-8 h-8 text-threexl">
+          <div className="flex justify-center items-center w-8 h-8 text-3xl">
             1
           </div>
-          <div className="flex justify-center items-center w-8 h-8 text-threexl">
+          <div className="flex justify-center items-center w-8 h-8 text-3xl">
             2
           </div>
         </div>

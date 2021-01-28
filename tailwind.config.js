@@ -10,6 +10,7 @@ module.exports = {
       desktop: '1100px',
     },
     fontFamily: {
+      prompt: ['Prompt'],
       roboto: ['Roboto'],
       robotoslab: ['RobotoSlab'],
     },

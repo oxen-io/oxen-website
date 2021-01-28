@@ -138,6 +138,80 @@ $breakpoint-huge: 1280px;
   font-weight: 700;
 }
 
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Thin.ttf) format('truetype');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-ThinItalic.ttf) format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-MediumItalic.ttf) format('truetype');
+  font-style: italic;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Medium.ttf) format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-LightItalic.ttf) format('truetype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Italic.ttf) format('truetype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-BoldItalic.ttf) format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Bold.ttf) format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-BlackItalic.ttf) format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Prompt;
+  src: url(/fonts/Prompt/Prompt-Black.ttf) format('truetype');
+  font-weight: 900;
+}
+
 body {
   min-width: 350px;
 }

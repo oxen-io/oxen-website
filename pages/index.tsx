@@ -1,4 +1,7 @@
+import Head from 'next/head';
 import React from 'react';
+import { HomeLanding } from '../components/pages/home/HomeLanding';
+import { METADATA } from '../constants';
 // import { ISanityArticle } from '../types/article';
 
 // interface Props {
@@ -16,7 +19,7 @@ const Index = () => {
 
   return (
     <div>
-      {/* <Head>
+      <Head>
         <title>{METADATA.TITLE_SUFFIX}</title>
         <meta
           property="og:title"
@@ -27,28 +30,11 @@ const Index = () => {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         ></meta>
-      </Head> */}
+      </Head>
+
+      <HomeLanding />
     </div>
   );
 };
 
-// Index.getInitialProps = async () => {
-//   const query = groq`
-//     *[_type == "post"]|order(publishedAt desc) {
-//       ${sanityPostQuery}
-//     }
-//   `;
-
-//   let posts: Array<ISanityArticle>;
-//   try {
-//     posts = await client.fetch(query);
-//     console.log('Posts', posts);
-//   } catch (error) {
-//     console.warn('Error:', error);
-//   }
-
-//   return { posts };
-// };
-
-// export default withAuthUser(withAuthUserInfo(Index));
 export default Index;

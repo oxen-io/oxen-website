@@ -11,7 +11,7 @@ export function MenuBar() {
       style={{
         height: `${UI.MENUBAR_HEIGHT_PX}px`,
       }}
-      className="flex items-center justify-end w-full space-x-4 bg-red-200 px-6"
+      className="flex items-center justify-end w-full space-x-4 px-6"
     >
       <a
         href="#"

@@ -13,23 +13,7 @@ import ScreenProvider from '../contexts/screen';
 import { collapseSearchOverlay } from '../state/navigation';
 import { rootReducer } from '../state/reducers';
 
-// if (!firebase.apps.length) {
-//   // Initialize firebase instance
-//   firebase.initializeApp(FIREBASE.CLIENT_CONFIG);
-
-//   // Initialize other services on firebase instance
-//   firebase.firestore();
-//   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-// }
-
 const store = createStore(rootReducer);
-
-// const rrfProps = {
-//   firebase,
-//   config: FIREBASE.RRF_CONFIG,
-//   dispatch: store.dispatch,
-//   createFirestoreInstance,
-// };
 
 function App({ Component, pageProps }: AppProps) {
   // Close search overlay on page changed
@@ -38,20 +22,24 @@ function App({ Component, pageProps }: AppProps) {
     store.dispatch(collapseSearchOverlay());
   }, [location.pathname, location.search]);
 
-  // const { info } = useGetInfo();
-
   return (
-    <StoreProvider store={store}>
-      <ScreenProvider>
-        <Head>
-          <title>{METADATA.TITLE_SUFFIX}</title>
-        </Head>
+    <>
+      <StoreProvider store={store}>
+        <ScreenProvider>
+          <Head>
+            <title>{METADATA.TITLE_SUFFIX}</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1"
+            ></meta>
+          </Head>
 
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ScreenProvider>
-    </StoreProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ScreenProvider>
+      </StoreProvider>
+    </>
   );
 }
 

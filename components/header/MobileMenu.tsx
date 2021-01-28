@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { UI } from '../../constants';
 import { menuItems } from '../../constants/navigation';
@@ -26,13 +28,11 @@ export function MobileMenu({ sticky }: Props) {
         className="flex flex-col bg-gray-100 duration-300"
       >
         {menuItems.map(item => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="w-full py-4 focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white text-lg text-center uppercase"
-          >
-            {item.label}
-          </a>
+          <Link key={item.label} href={item.href} as={item.href}>
+            <a className="w-full py-4 focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white text-lg text-center uppercase">
+              {item.label}
+            </a>
+          </Link>
         ))}
       </div>
     </div>

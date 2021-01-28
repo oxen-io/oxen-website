@@ -70,9 +70,9 @@ export function DesktopHeader({ sticky }: Props) {
 
           <div className="flex space-x-4">
             {menuItems.map(item => (
-              <a key={item.label} href={item.href} className="uppercase">
-                {item.label}
-              </a>
+              <Link key={item.label} href={item.href} as={item.href}>
+                <a className="uppercase hover:underline">{item.label}</a>
+              </Link>
             ))}
           </div>
         </div>

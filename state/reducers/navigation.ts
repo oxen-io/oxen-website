@@ -14,6 +14,15 @@ export const navigationReducer = (
   action: NavigationAction,
 ) => {
   switch (action.type) {
+    case NavigationActions.EXPAND_MOBILE_MENU: {
+      return { ...state, mobileMenuExpanded: true };
+    }
+    case NavigationActions.COLLAPSE_MOBILE_MENU: {
+      return { ...state, mobileMenuExpanded: false };
+    }
+    case NavigationActions.TOGGLE_MOBILE_MENU: {
+      return { ...state, mobileMenuExpanded: !state.mobileMenuExpanded };
+    }
     case NavigationActions.EXPAND_SEARCH_OVERLAY: {
       return { ...state, searchOverlayExpanded: true };
     }

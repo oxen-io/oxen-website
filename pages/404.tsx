@@ -14,8 +14,8 @@ function oxen404() {
     width: '100%',
     maxWidth: '760px',
     margin: isDesktop ? '50px auto 100px' : '-10px auto',
-    paddingLeft: isHuge ? '0' : '5vw',
-    paddingRight: isHuge ? '0' : '5vw',
+    paddingLeft: isHuge ? '0' : `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
+    paddingRight: isHuge ? '0' : `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
     paddingBottom: !isDesktop ? '33px' : '0px',
   };
 

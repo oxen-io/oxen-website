@@ -28,7 +28,6 @@ const Index = () => {
           content="width=device-width, initial-scale=1, maximum-scale=1"
         ></meta>
       </Head> */}
-      dsasadfkds
     </div>
   );
 };

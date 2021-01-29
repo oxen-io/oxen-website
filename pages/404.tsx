@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import Head from 'next/head';
-import Link from 'next/link';
 import React, { useContext } from 'react';
 // import _404 from '../assets/svgs/404.svg';
 import { UI } from '../constants';
@@ -49,12 +48,12 @@ function oxen404() {
   };
 
   return (
-    <div>
+    <div className="flex flex-grow h-full items-center justify-center">
       <Head>
         <title>{generateTitle('404')}</title>
       </Head>
 
-      <div style={wrapperStyles} className="flex items-center">
+      <div style={wrapperStyles} className="flex flex-grow items-center">
         <div
           className={classNames(
             'flex w-full justify-between',
@@ -66,7 +65,7 @@ function oxen404() {
             <div style={_404SectionStyles} className="absolute left-0 z-50">
               <h1
                 style={_404TitleStyles}
-                className="font-roboto text-primary text-7xl text-opacity-25 -mb-4"
+                className="font-roboto text-primary text-8xl text-opacity-25 -mb-4"
               >
                 404
               </h1>
@@ -76,30 +75,6 @@ function oxen404() {
               >
                 Nothing found here.
               </p>
-
-              <Link href="/">
-                <div
-                  role="button"
-                  style={goBackHomeStyles}
-                  className={classNames(
-                    'bg-secondary',
-                    'cursor-pointer',
-                    'mt-3',
-                    'text-white',
-                    'font-roboto',
-                    'px-3',
-                    'py-1',
-                    'w-32',
-                    'select-none',
-                    'rounded-lg',
-                    'text-center',
-                    'tracking-tight',
-                    isMobile ? 'text-lg' : 'text-sm',
-                  )}
-                >
-                  OXEN
-                </div>
-              </Link>
             </div>
           </div>
 

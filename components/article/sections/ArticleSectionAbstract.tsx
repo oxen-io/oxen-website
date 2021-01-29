@@ -1,15 +1,13 @@
 import React, { ReactNode } from 'react';
-import { ILocation } from '../../../types/article';
 import { Contained } from '../../Contained';
 
 interface Props {
   city: string;
-  location: ILocation;
   children?: ReactNode;
 }
 
 export function ArticleSectionAbstract(props: Props) {
-  const { city, location, children } = props;
+  const { city, children } = props;
 
   return (
     <Contained backgroundColor="secondary-1">

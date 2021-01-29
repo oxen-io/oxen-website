@@ -63,7 +63,7 @@ export function DesktopHeader({ sticky }: Props) {
           <div className="flex flex-grow">
             <Link href="/">
               <a className="flex items-center flex-shrink-0 text-secondary">
-                <OxenLogoSVG className="fill-current h-8" />
+                <OxenLogoSVG className="fill-current h-10" />
               </a>
             </Link>
           </div>

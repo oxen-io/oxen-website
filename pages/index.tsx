@@ -2,7 +2,6 @@ import Head from 'next/head';
 import React from 'react';
 import { HomeLanding } from '../components/pages/home/HomeLanding';
 import { METADATA } from '../constants';
-// import { ISanityArticle } from '../types/article';
 
 // interface Props {
 // posts: Array<ISanityArticle>;

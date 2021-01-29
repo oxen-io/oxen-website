@@ -33,7 +33,7 @@ export function MobileHeader({ sticky }: Props) {
         <div className="antialiased">
           <Link href="/">
             <a className="flex items-center flex-shrink-0 text-secondary">
-              <OxenLogoSVG className="fill-current h-8" />
+              <OxenLogoSVG className="fill-current h-10" />
             </a>
           </Link>
         </div>

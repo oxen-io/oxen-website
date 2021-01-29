@@ -1,9 +1,9 @@
-import { ISanityArticle } from '../types/article';
+import { IPost } from '../types/blog';
 
 export interface ISearch {
   searchQuery: string;
   searchBarPinnedToHeader: boolean;
-  searchResultItems: Array<ISanityArticle>;
+  searchResultItems: Array<IPost>;
 }
 
 export const initialSearchState: ISearch = {
@@ -21,7 +21,7 @@ export enum SearchActions {
 // ////////////////////////////// //
 //         Action Creators        //
 // ////////////////////////////// //
-export const setSearchResultItems = (payload: Array<ISanityArticle>) => ({
+export const setSearchResultItems = (payload: Array<IPost>) => ({
   type: SearchActions.SET_SEARCH_RESULT_ITEMS,
   payload,
 });

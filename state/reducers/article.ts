@@ -1,6 +1,6 @@
-import { IArticle } from '../../types/article';
+import { IPost } from '../../types/blog';
 
-export const initialArticleState: IArticle | Record<string, unknown> = {};
+export const initialArticleState: IPost | Record<string, unknown> = {};
 
 export enum ArticleActions {
   SET_ARTICLE = 'SET_ARTICLE',
@@ -10,7 +10,7 @@ export enum ArticleActions {
 //         Action Creators        //
 // ////////////////////////////// //
 
-export const setArticle = (article: IArticle) => ({
+export const setArticle = (article: IPost) => ({
   type: ArticleActions.SET_ARTICLE,
   payload: article,
 });
@@ -21,9 +21,9 @@ export interface ArticleAction {
 }
 
 export const articleReducer = (
-  state: IArticle | Record<string, unknown> = initialArticleState,
+  state: IPost | Record<string, unknown> = initialArticleState,
   action: ArticleAction,
-): IArticle | Record<string, unknown> => {
+): IPost | Record<string, unknown> => {
   switch (action.type) {
     case ArticleActions.SET_ARTICLE: {
       return { ...action.payload };

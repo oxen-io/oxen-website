@@ -1,4 +1,4 @@
-import { IFigureImage } from '../../../types/article';
+import { IFigureImage } from '../../../types/blog';
 
 interface Props {
   featureImage: IFigureImage;
@@ -13,8 +13,8 @@ export function ArticleSectionFeatureImage({ featureImage }: Props) {
       >
         <div className="absolute inset-0">
           <img
-            src={featureImage.source}
-            alt={featureImage.altText}
+            src={featureImage.imageUrl}
+            alt={featureImage.description}
             style={{ objectFit: 'cover' }}
             className="w-full h-full"
           />

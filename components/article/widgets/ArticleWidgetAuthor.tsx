@@ -1,12 +1,11 @@
-import { IAuthor } from '../../../types/article';
-// import { Avatar } from '../../Avatar';
+import { IAuthor } from '../../../types/blog';
 
 interface Props {
   author: IAuthor;
-  date: string;
+  publishedDate: string;
 }
 
-export function ArticleWidgetAuthor({ author, date }: Props) {
+export function ArticleWidgetAuthor({ author, publishedDate }: Props) {
   return (
     <div className="flex items-center space-x-3">
       {/* <Avatar size={10} imageSrc={author?.imageSrc} /> */}
@@ -15,7 +14,7 @@ export function ArticleWidgetAuthor({ author, date }: Props) {
         <span className="font-roboto tracking-wider text-sm font-bold">
           By: {author.name}
         </span>
-        <span>{date}</span>
+        <span>{publishedDate}</span>
       </div>
     </div>
   );

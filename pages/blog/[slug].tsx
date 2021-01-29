@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Article } from '../../components/article/Article';
 import { setArticle } from '../../state/reducers/article';
-import { IArticle } from '../../types/article';
+import { IPost } from '../../types/blog';
 import { generateTitle } from '../../utils/metadata';
 
 // export const getServerSideProps: GetServerSideProps = async context => {
@@ -23,7 +23,7 @@ import { generateTitle } from '../../utils/metadata';
 //   };
 // };
 
-function Post(props: IArticle) {
+function Post(props: IPost) {
   const dispatch = useDispatch();
   dispatch(setArticle(props));
 

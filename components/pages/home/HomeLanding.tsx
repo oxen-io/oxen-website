@@ -8,10 +8,7 @@ export function HomeLanding() {
       split
       background="linear-gradient(0deg, rgba(219,247,245,1) 0%, rgba(255,255,255,0) 100%)"
     >
-      <LandingSplit
-        title="Privacy should be simple."
-        subtitle="good coins nd stuff"
-      ></LandingSplit>
+      <LandingSplit title="Privacy should be simple."></LandingSplit>
 
       <LandingSplit>
         <div

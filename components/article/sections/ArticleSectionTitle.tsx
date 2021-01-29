@@ -1,17 +1,17 @@
 import React from 'react';
 import { UI } from '../../../constants';
-import { IAuthor } from '../../../types/article';
+import { IAuthor } from '../../../types/blog';
 import { Contained } from '../../Contained';
 import { ArticleWidgetAuthor } from '../widgets/ArticleWidgetAuthor';
 
 interface Props {
   title: string;
   author: IAuthor;
-  date: string;
+  publishedDate: string;
 }
 
 export function ArticleSectionTitle(props: Props) {
-  const { title, author, date } = props;
+  const { title, author, publishedDate } = props;
 
   return (
     <Contained>
@@ -28,7 +28,7 @@ export function ArticleSectionTitle(props: Props) {
           </h1>
         </div>
 
-        <ArticleWidgetAuthor author={author} date={date} />
+        <ArticleWidgetAuthor author={author} publishedDate={publishedDate} />
       </div>
     </Contained>
   );

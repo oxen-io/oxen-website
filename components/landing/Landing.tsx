@@ -13,15 +13,14 @@ export function Landing({ split, children, background }: Props) {
   return (
     <div
       style={{
-        height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px)`,
-        marginTop: `${UI.MENUBAR_HEIGHT_PX}px`,
+        height: `calc(100vh - ${UI.HEADER_HEIGHT_PX + UI.MENUBAR_HEIGHT_PX}px)`,
         background,
       }}
       className="relative flex items-center w-full"
     >
       {split ? (
         <Contained>
-          <div className="flex w-full h-full justify-between items-center">
+          <div className="flex w-full h-full justify-between items-center space-x-10">
             {children}
           </div>
         </Contained>

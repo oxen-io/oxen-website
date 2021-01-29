@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { ScreenContext } from '../../contexts/screen';
-import { IArticle } from '../../types/article';
+import { IPost } from '../../types/blog';
 import { generateURL } from '../../utils/routing';
 
-export function ArticleCardRow(post: IArticle) {
+export function ArticleCardRow(post: IPost) {
   const { isMobile } = useContext(ScreenContext);
-  const { city, slug, category } = post;
+  const { slug, tags } = post;
   const { href, as } = generateURL(slug);
 
   const ArticlePreviewContent = () => (
@@ -29,10 +29,10 @@ export function ArticleCardRow(post: IArticle) {
       }}
       className="relative rounded-lg bg-primary bg-opacity-10 overflow-hidden"
     >
-      {post?.featureImage?.source && (
+      {post?.featureImage?.imageUrl && (
         <img
-          src={post.featureImage.source}
-          alt={post.featureImage.altText}
+          src={post.featureImage.imageUrl}
+          alt={post.featureImage.description}
           className="w-full h-full rounded-lg object-cover"
         />
       )}

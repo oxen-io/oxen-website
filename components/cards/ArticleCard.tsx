@@ -2,19 +2,19 @@ import classNames from 'classnames';
 import router from 'next/dist/client/router';
 import { SyntheticEvent } from 'react';
 import { useMeasure } from 'react-use';
-import { ISanityArticle } from '../../types/article';
+import { IPost } from '../../types/blog';
 import { generateURL } from '../../utils/routing';
 import { titleCase } from '../../utils/text';
 import { OutlineBlock } from '../OutlineBlock';
 
-export function ArticleCard(props: ISanityArticle): JSX.Element {
+export function ArticleCard(props: IPost): JSX.Element {
   const {
     featureImage,
     title,
-    paragraph,
+    subtitle,
     /*tags*/ slug,
-    city,
-    category,
+    // city,
+    // category,
   } = props;
 
   const [ref, { width }] = useMeasure();
@@ -43,12 +43,12 @@ export function ArticleCard(props: ISanityArticle): JSX.Element {
         style={{ paddingBottom: '60%' }}
         className="relative w-full h-0 overflow-hidden bg-white bg-opacity-25"
       >
-        {featureImage.source && (
+        {featureImage.imageUrl && (
           <div className="absolute inset-0">
             <img
               className="object-cover w-full h-full"
-              src={featureImage?.source}
-              alt={featureImage?.altText}
+              src={featureImage?.imageUrl}
+              alt={featureImage?.description}
             />
           </div>
         )}
@@ -69,7 +69,7 @@ export function ArticleCard(props: ISanityArticle): JSX.Element {
           >
             {title}
           </div>
-          <p className="text-gray-700 text-base">{paragraph}</p>
+          <p className="text-gray-700 text-base">{subtitle}</p>
         </div>
 
         <div className={classNames('flex space-x-1 mt-1', !isSmall && 'mb-2')}>

@@ -2,13 +2,13 @@ import Head from 'next/head';
 import React from 'react';
 import { Landing } from '../components/landing/Landing';
 import { LandingSplit } from '../components/landing/LandingSplit';
-import { METADATA } from '../constants';
+import { generateTitle } from '../utils/metadata';
 
 const Coin = () => {
   return (
     <div>
       <Head>
-        <title>{`Oxen Coin - ${METADATA.TITLE_SUFFIX}`}</title>
+        <title>{generateTitle('Oxen Coin')}</title>
         <meta property="og:title" content="Oxen - Coin" key="title" />
       </Head>
 

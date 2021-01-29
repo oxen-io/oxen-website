@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { ScreenContext } from '../../contexts/screen';
-import { IArticle } from '../../types/article';
+import { IPost } from '../../types/blog';
 import { ArticleSectionAbstract } from './sections/ArticleSectionAbstract';
 import { ArticleSectionContent } from './sections/ArticleSectionContent';
 import { ArticleSectionTitle } from './sections/ArticleSectionTitle';
 import { ArticleSubtitleSection } from './sections/ArticleSubtitleSection';
 
-export function Article(props: IArticle) {
+export function Article(props: IPost) {
   const { isMobile } = useContext(ScreenContext);
 
   return (
@@ -16,8 +16,8 @@ export function Article(props: IArticle) {
   );
 }
 
-function ArticleMobile(props: IArticle) {
-  const { id, title, slug, subtitle, author, date, city, location } = props;
+function ArticleMobile(props: IPost) {
+  const { id, title, slug, subtitle, author, publishedDate } = props;
 
   return (
     <article>
@@ -33,14 +33,18 @@ function ArticleMobile(props: IArticle) {
   );
 }
 
-function ArticleDesktop(props: IArticle) {
-  const { id, title, subtitle, author, date, slug, city, location } = props;
+function ArticleDesktop(props: IPost) {
+  const { id, title, description, author, publishedDate, slug } = props;
 
   return (
     <article>
-      <ArticleSectionTitle title={title} author={author} date={date} />
-      <ArticleSectionAbstract city={city} location={location}>
-        <ArticleSubtitleSection subtitle={subtitle} />
+      <ArticleSectionTitle
+        title={title}
+        author={author}
+        publishedDate={publishedDate}
+      />
+      <ArticleSectionAbstract>
+        <ArticleSubtitleSection subtitle={description} />
       </ArticleSectionAbstract>
       <ArticleSectionContent {...props} />
     </article>

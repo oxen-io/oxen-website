@@ -21,20 +21,21 @@ function ArticleMobile(props: IPost) {
 
   return (
     <article>
-      <ArticleSectionTitle title={title} author={author} date={date} />
+      <ArticleSectionTitle
+        title={title}
+        author={author}
+        publishedDate={publishedDate}
+      />
       <ArticleSubtitleSection subtitle={subtitle} />
 
-      <ArticleSectionAbstract
-        city={city}
-        location={location}
-      ></ArticleSectionAbstract>
+      <ArticleSectionAbstract />
       <ArticleSectionContent {...props} />
     </article>
   );
 }
 
 function ArticleDesktop(props: IPost) {
-  const { id, title, description, author, publishedDate, slug } = props;
+  const { id, title, subtitle, author, publishedDate, slug } = props;
 
   return (
     <article>
@@ -44,7 +45,7 @@ function ArticleDesktop(props: IPost) {
         publishedDate={publishedDate}
       />
       <ArticleSectionAbstract>
-        <ArticleSubtitleSection subtitle={description} />
+        <ArticleSubtitleSection subtitle={subtitle} />
       </ArticleSectionAbstract>
       <ArticleSectionContent {...props} />
     </article>

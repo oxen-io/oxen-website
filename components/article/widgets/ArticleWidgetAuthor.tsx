@@ -12,7 +12,7 @@ export function ArticleWidgetAuthor({ author, publishedDate }: Props) {
 
       <div className="flex flex-col leading-tight">
         <span className="font-roboto tracking-wider text-sm font-bold">
-          By: {author.name}
+          By: {author?.name}
         </span>
         <span>{publishedDate}</span>
       </div>

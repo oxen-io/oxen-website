@@ -2,12 +2,11 @@ import React, { ReactNode } from 'react';
 import { Contained } from '../../Contained';
 
 interface Props {
-  city: string;
   children?: ReactNode;
 }
 
 export function ArticleSectionAbstract(props: Props) {
-  const { city, children } = props;
+  const { children } = props;
 
   return (
     <Contained backgroundColor="secondary-1">

@@ -9,6 +9,8 @@ import { generateTitle } from '../../utils/metadata';
 export async function getServerSideProps(context) {
   const api = new BlogApi();
   const posts = await api.fetchBlogEntries();
+
+  console.log('index ➡️   posts:', posts);
   return { props: { posts } };
 }
 

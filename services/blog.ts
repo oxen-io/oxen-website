@@ -12,7 +12,7 @@ export class BlogApi {
     });
   }
 
-  async fetchBlogEntries(): Promise<Array<IPost>> {
+  public async fetchBlogEntries(): Promise<Array<IPost>> {
     return this.client
       .getEntries({
         // content_type: 'blogPost', // only fetch blog post entry
@@ -27,7 +27,7 @@ export class BlogApi {
       });
   }
 
-  async fetchBlogById(id): Promise<IPost> {
+  public async fetchBlogById(id): Promise<IPost> {
     return this.client.getEntry(id).then(entry => {
       if (entry) {
         const post = this.convertPost(entry);
@@ -37,46 +37,42 @@ export class BlogApi {
     });
   }
 
-  convertImage = (rawImage): IFigureImage => {
-    if (rawImage) {
-      return {
-        imageUrl: rawImage.file.url.replace('//', 'http://'), // may need to put null check as well here
-        description: rawImage.description,
-        title: rawImage.title,
-      };
-    }
-    return null;
-  };
+  public convertImage = (rawImage): IFigureImage =>
+    rawImage
+      ? {
+          imageUrl: rawImage.file.url.replace('//', 'http://'), // may need to put null check as well here
+          description: rawImage.description,
+          title: rawImage.title,
+        }
+      : null;
 
-  convertAuthor = (rawAuthor): IAuthor => {
-    if (rawAuthor) {
-      return {
-        name: rawAuthor.name,
-        phone: rawAuthor.phone,
-        shortBio: rawAuthor.shortBio,
-        title: rawAuthor.title,
-        email: rawAuthor.email,
-        twitter: rawAuthor.twitter,
-        facebook: rawAuthor.facebook,
-        github: rawAuthor.github,
-      };
-    }
-    return null;
-  };
+  public convertAuthor = (rawAuthor): IAuthor =>
+    rawAuthor
+      ? {
+          name: rawAuthor.name,
+          shortBio: rawAuthor.shortBio,
+          position: rawAuthor.position,
+          email: rawAuthor.email,
+          twitter: rawAuthor?.twitter ?? null,
+          facebook: rawAuthor.facebook,
+          github: rawAuthor.github,
+        }
+      : null;
 
-  convertPost = (rawData): IPost => {
+  public convertPost = (rawData): IPost => {
     const rawPost = rawData.fields;
     const rawFeatureImage = rawPost.featureImage
       ? rawPost.featureImage.fields
       : null;
     const rawAuthor = rawPost.author ? rawPost.author.fields : null;
+
     return {
       id: rawData.sys.id,
       body: rawPost.body,
-      description: rawPost.description,
+      subtitle: rawPost.subtitle,
       publishedDate: moment(rawPost.publishedDate).format('DD MMM YYYY'),
       slug: rawPost.slug,
-      tags: rawPost.tags,
+      tags: rawPost?.tags ?? [],
       title: rawPost.title,
       featureImage: this.convertImage(rawFeatureImage),
       author: this.convertAuthor(rawAuthor),

@@ -1,28 +1,28 @@
 export type IAuthor = {
   name: string;
-  phone: string;
   shortBio: string;
-  title: string;
   email: string;
-  twitter: string;
-  facebook: string;
-  github: string;
+  // Eg. Marketing Researcher
+  position: string | null;
+  twitter: string | null;
+  facebook: string | null;
+  github: string | null;
 };
 
 export type IFigureImage = {
+  title: string | null;
+  description: string | null;
   imageUrl: string;
-  description: string;
-  title: string;
 };
 
 export type IPost = {
   id: string;
-  body: string;
-  publishedDate: string;
-  slug: string;
-  tags: Array<string>;
   title: string;
   subtitle: string;
-  featureImage?: IFigureImage;
+  body: string;
   author?: IAuthor;
+  publishedDate: string;
+  featureImage?: IFigureImage;
+  tags: Array<string>;
+  slug: string;
 };

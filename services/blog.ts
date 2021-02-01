@@ -54,8 +54,8 @@ export class BlogApi {
           position: rawAuthor.position,
           email: rawAuthor.email,
           twitter: rawAuthor?.twitter ?? null,
-          facebook: rawAuthor.facebook,
-          github: rawAuthor.github,
+          facebook: rawAuthor.facebook ?? null,
+          github: rawAuthor.github ?? null,
         }
       : null;
 

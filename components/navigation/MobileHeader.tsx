@@ -8,11 +8,7 @@ import { UI } from '../../constants';
 import { toggleMobileMenu } from '../../state/navigation';
 import { MobileMenu } from './MobileMenu';
 
-interface Props {
-  sticky: boolean;
-}
-
-export function MobileHeader({ sticky }: Props) {
+export function MobileHeader() {
   const dispatch = useDispatch();
 
   return (
@@ -22,12 +18,8 @@ export function MobileHeader({ sticky }: Props) {
         paddingLeft: `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
         paddingRight: `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
         height: `${UI.HEADER_HEIGHT_PX}px`,
-        marginTop: sticky ? '0' : `${UI.MENUBAR_HEIGHT_PX}px`,
       }}
-      className={classNames(
-        sticky ? 'fixed' : 'absolute',
-        'left-0 right-0 top-0 w-full bg-white',
-      )}
+      className={classNames('w-full bg-white')}
     >
       <div className="relative w-full h-full flex items-center justify-between">
         <div className="antialiased">
@@ -44,7 +36,7 @@ export function MobileHeader({ sticky }: Props) {
         />
       </div>
 
-      <MobileMenu sticky={sticky} />
+      <MobileMenu />
     </div>
   );
 }

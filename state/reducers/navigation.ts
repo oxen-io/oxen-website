@@ -14,10 +14,16 @@ export const navigationReducer = (
   action: NavigationAction,
 ) => {
   switch (action.type) {
-    case NavigationActions.EXPAND_MOBILE_MENU: {
+    case NavigationActions.EXPAND_SIDE_MENU: {
+      return { ...state, sideMenuExpanded: true };
+    }
+    case NavigationActions.COLLAPSE_SIDE_MENU: {
+      return { ...state, sideMenuExpanded: false };
+    }
+    case NavigationActions.OPEN_MOBILE_MENU: {
       return { ...state, mobileMenuExpanded: true };
     }
-    case NavigationActions.COLLAPSE_MOBILE_MENU: {
+    case NavigationActions.CLOSE_MOBILE_MENU: {
       return { ...state, mobileMenuExpanded: false };
     }
     case NavigationActions.TOGGLE_MOBILE_MENU: {

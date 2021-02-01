@@ -4,10 +4,12 @@ export interface IMenuItem {
 }
 
 export const menuItems: IMenuItem[] = [
-  { label: 'Stack', href: '/stack' },
-  { label: 'Community', href: '/community' },
-  { label: 'About', href: '/about' },
+  { label: 'Docs', href: '/' },
+  { label: 'Dev Updates', href: '/' },
+  { label: 'CoinGecko', href: '/' },
+  { label: 'Wallet', href: '/' },
+  { label: 'Explorer', href: '/' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Build', href: '/build' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Community', href: '/blog' },
+  { label: 'Technology', href: '/blog' },
 ];

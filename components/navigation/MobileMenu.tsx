@@ -5,11 +5,7 @@ import { UI } from '../../constants';
 import { menuItems } from '../../constants/navigation';
 import { IState } from '../../state/reducers';
 
-interface Props {
-  sticky: boolean;
-}
-
-export function MobileMenu({ sticky }: Props) {
+export function MobileMenu() {
   const { mobileMenuExpanded: expanded } = useSelector(
     (state: IState) => state.navigation,
   );
@@ -18,6 +14,7 @@ export function MobileMenu({ sticky }: Props) {
     <div
       style={{
         marginTop: `${UI.HEADER_HEIGHT_PX}px`,
+        display: expanded ? 'block' : 'none',
       }}
       className="absolute top-0 left-0 right-0 overflow-hidden"
     >

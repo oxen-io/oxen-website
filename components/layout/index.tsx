@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
-import { UI } from '../../constants';
-import { Footer } from '../Footer';
-import { Header } from '../header/Header';
-import { SideMenu } from '../SideMenu';
+import { Header } from '../navigation/Header';
+import { SideMenu } from '../navigation/SideMenu';
 
 interface Props {
   children: ReactNode;
@@ -14,23 +12,14 @@ export default function Layout({ children }: Props) {
       style={{ height: '100vh', width: '100%' }}
       className="flex flex-col justify-between"
     >
-      <div className="relative flex-grow">
-        {/* <SearchOverlay /> */}
+      <div className="relative flex flex-col">
         <Header />
-        <div
-          style={{ marginTop: `${UI.HEADER_HEIGHT_PX}px` }}
-          className="flex-grow"
-        >
-          <div className="flex w-full">
-            <div className="flex-1">
-              <SideMenu />
-            </div>
-            <div className="flex-1">{children}</div>
+        <div className="flex-grow border-t border-black">
+          <div className="flex w-full h-full">
+            <SideMenu />
+            <div className="flex-1 overflow-x-hidden">{children}</div>
           </div>
         </div>
-      </div>
-      <div>
-        <Footer />
       </div>
     </div>
   );

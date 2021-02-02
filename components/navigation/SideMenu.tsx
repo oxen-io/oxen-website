@@ -1,12 +1,12 @@
-import { CloseOutlined, RightOutlined } from '@ant-design/icons';
+import { CloseOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import { collapseSideMenu, expandSideMenu } from '../../state/navigation';
 import { IState } from '../../state/reducers';
-import { Button } from '../Button';
 
 enum SideMenuItem {
   WHO_ARE_WE = 'WHO_ARE_WE',
@@ -22,6 +22,7 @@ enum SideMenuItem {
 interface ISideMenuItem {
   id: number;
   label: string;
+  href?: string;
 }
 
 // TODO - Put sideMenuItems in Contentful and fetch them server side.
@@ -57,12 +58,14 @@ const sideMenuItems = {
   [SideMenuItem.BLOG]: {
     id: 8,
     label: 'Our blog',
+    href: '/blog',
   },
 } as { [name: string]: ISideMenuItem };
 
 export function SideMenu() {
   const { sideMenuExpanded } = useSelector((state: IState) => state.navigation);
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
+  const router = useRouter();
 
   const isCollapsible = isTablet || isMobile;
   const [active, setActive] = useState<ISideMenuItem>(
@@ -74,8 +77,8 @@ export function SideMenu() {
       <div
         style={{
           height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
-          minWidth: isCollapsible && sideMenuExpanded ? '250px' : 'unset',
-          width: isCollapsible && sideMenuExpanded ? 'unset' : '0px',
+          minWidth: sideMenuExpanded ? '250px' : 'unset',
+          width: sideMenuExpanded || !isCollapsible ? 'unset' : '0px',
         }}
         className="overflow-y-auto children:last:border-b-0 duration-300"
       >
@@ -84,7 +87,14 @@ export function SideMenu() {
             item={item}
             key={item.label}
             isActive={item.id === active.id}
-            onClick={() => setActive(item)}
+            onClick={() => {
+              if (item.href) {
+                router.push(item.href);
+                return;
+              }
+
+              setActive(item);
+            }}
           />
         ))}
       </div>
@@ -102,6 +112,7 @@ interface SideMenuRowProps {
 
 function SideMenuRow({ item, isActive, onClick }: SideMenuRowProps) {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
+  const isCollapsible = isTablet || isMobile;
 
   return (
     <div
@@ -113,7 +124,7 @@ function SideMenuRow({ item, isActive, onClick }: SideMenuRowProps) {
       )}
     >
       <span className="whitespace-no-wrap">{item.label}</span>
-      {isActive ? <CloseOutlined /> : <RightOutlined />}
+      {!isCollapsible && isActive ? <CloseOutlined /> : <RightOutlined />}
     </div>
   );
 }
@@ -135,11 +146,9 @@ function SideMenuActiveIndicator({ active }: { active: ISideMenuItem }) {
         {isCollapsible && (
           <>
             {sideMenuExpanded ? (
-              <Button onClick={() => dispatch(collapseSideMenu())}>
-                {'<'}
-              </Button>
+              <LeftOutlined onClick={() => dispatch(expandSideMenu())} />
             ) : (
-              <Button onClick={() => dispatch(expandSideMenu())}>{'>'}</Button>
+              <RightOutlined onClick={() => dispatch(collapseSideMenu())} />
             )}
           </>
         )}

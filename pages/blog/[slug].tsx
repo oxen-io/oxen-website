@@ -1,32 +1,28 @@
 // [slug].js
 import Head from 'next/head';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Article } from '../../components/article/Article';
-import { setArticle } from '../../state/reducers/article';
+import { BlogApi } from '../../services/blog';
 import { IPost } from '../../types/blog';
 import { generateTitle } from '../../utils/metadata';
 
-// export const getServerSideProps: GetServerSideProps = async context => {
-//   const article = await getArticleBy('slug', String(context.query.slug) ?? '');
+export async function getServerSideProps({ params }) {
+  const api = new BlogApi();
+  const post = await api.fetchBlogBySlug(String(params.slug) ?? '');
 
-//   // Redirect to 404 for nonexistent page
-//   if (!article) {
-//     return {
-//       props: undefined,
-//       notFound: true,
-//     };
-//   }
+  console.log('index ➡️   post:', post);
 
-//   return {
-//     props: article,
-//   };
-// };
+  if (!post) {
+    return {
+      props: undefined,
+      notFound: true,
+    };
+  }
 
-function Post(props: IPost) {
-  const dispatch = useDispatch();
-  dispatch(setArticle(props));
+  return { props: post };
+}
 
+function Post(post: IPost) {
   // Scroll to top on load
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -34,13 +30,15 @@ function Post(props: IPost) {
     }
   }, []);
 
+  console.log('[slug] ➡️   posts:', post);
+
   return (
     <>
       <Head>
-        <title>{generateTitle(props.title)}</title>
+        <title>{generateTitle(post.title)}</title>
       </Head>
 
-      <Article {...props} />
+      <Article {...post} />
     </>
   );
 }

@@ -1,5 +1,8 @@
+import { Document } from '@contentful/rich-text-types';
+
 export type IAuthor = {
   name: string;
+  avatar?: IFigureImage;
   shortBio: string;
   email: string;
   // Eg. Marketing Researcher
@@ -19,10 +22,15 @@ export type IPost = {
   id: string;
   title: string;
   subtitle: string;
-  body: string;
+  body: Document;
   author?: IAuthor;
   publishedDate: string;
   featureImage?: IFigureImage;
   tags: Array<string>;
   slug: string;
+};
+
+export type BodyDocument = {
+  nodeType: 'document';
+  content: any;
 };

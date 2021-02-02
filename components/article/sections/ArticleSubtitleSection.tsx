@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function ArticleSubtitleSection({ subtitle }: Props) {
-  const { isMobile, isDesktop } = useContext(ScreenContext);
+  const { isDesktop } = useContext(ScreenContext);
 
   return (
     <Contained>
@@ -16,7 +16,7 @@ export function ArticleSubtitleSection({ subtitle }: Props) {
           style={{
             maxWidth: isDesktop ? '700px' : 'unset',
           }}
-          className="text-lg w-full desktop:text-xl text-center font-medium font-roboto text-gray-900"
+          className="text-lg w-full mb-3 desktop:mb-6 desktop:text-2xl text-center font-medium font-roboto text-gray-900"
         >
           {subtitle}
         </span>

@@ -17,7 +17,7 @@ const UI = {
   Z_INDEX_MODAL_OVERLAY: 33333,
 
   ARTICLE: {
-    TITLE_MAX_WIDTH_REM: 29,
+    TITLE_MAX_WIDTH_REM: 45,
   },
 };
 

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import { SideMenu } from '../components/navigation/SideMenu';
 import { HomeLanding } from '../components/pages/home/HomeLanding';
 import { METADATA } from '../constants';
 
@@ -31,7 +32,14 @@ const Index = () => {
         ></meta>
       </Head>
 
-      <HomeLanding />
+      <div className="flex-grow border-t border-black">
+        <div className="flex w-full h-full">
+          <SideMenu />
+          <div className="flex-1 overflow-x-hidden">
+            <HomeLanding />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

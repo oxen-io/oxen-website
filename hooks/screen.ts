@@ -4,20 +4,6 @@ import { UI } from '../constants';
 
 export function useScreenSize() {
   // Default to mobile view
-  // const isMobile = useMedia(`(max-width: ${UI.TABLET_BREAKPOINT}px)`, true);
-  // const isTablet = useMedia(
-  //   `(min-width: ${UI.MOBILE_BREAKPOINT}px) and  (max-width: ${UI.TABLET_BREAKPOINT}px)`,
-  //   false,
-  // );
-  // const isDesktop = useMedia(`(min-width: ${UI.TABLET_BREAKPOINT}px)`, false);
-  // const isHuge = useMedia(`(min-width: ${UI.DESKTOP_BREAKPOINT}px)`, false);
-
-  // console.log('screen ➡️ isMobile:', isMobile);
-  // console.log('screen ➡️ isTablet:', isTablet);
-  // console.log('screen ➡️ isDesktop:', isDesktop);
-  // console.log('screen ➡️ isHuge:', isHuge);
-
-  // Use width rather than media queries for improved performance.
   const { width } = useWindowSize();
 
   // Default to mobile view
@@ -27,7 +13,7 @@ export function useScreenSize() {
   const [isHuge, setIsHuge] = useState(false);
 
   useEffect(() => {
-    const _isMobile = width <= UI.TABLET_BREAKPOINT;
+    const _isMobile = width <= UI.MOBILE_BREAKPOINT;
     const _isTablet =
       width > UI.MOBILE_BREAKPOINT && width <= UI.TABLET_BREAKPOINT;
     const _isDesktop = width > UI.TABLET_BREAKPOINT;

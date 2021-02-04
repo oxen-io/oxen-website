@@ -27,14 +27,14 @@ export function ArticleCard(props: IPost): JSX.Element {
     router.push(href, as);
   };
 
-  const tags = ['crepes', 'sweet'];
+  const tags = ['admin', 'testing'];
 
   return (
     <div
       ref={ref}
       className={classNames(
-        'overflow-hidden w-full bg-secondary bg-opacity-75',
-        isSmall ? 'rounded-lg' : 'rounded-xl',
+        'overflow-hidden w-full bg-white shadow-lg bg-opacity-75',
+        isSmall ? 'rounded-md' : 'rounded-lg',
         isSmall ? 'pb-3' : 'pb-1',
       )}
       onClick={e => handleClick(e)}
@@ -69,7 +69,16 @@ export function ArticleCard(props: IPost): JSX.Element {
           >
             {title}
           </div>
-          <p className="text-gray-700 text-base">{subtitle}</p>
+          <p
+            style={{
+              lineHeight: '1em',
+              height: '2em',
+              paddingBottom: '2.1em',
+            }}
+            className="text-base text-gray-700"
+          >
+            {subtitle}
+          </p>
         </div>
 
         <div className={classNames('flex space-x-1 mt-1', !isSmall && 'mb-2')}>
@@ -84,7 +93,7 @@ export function ArticleCard(props: IPost): JSX.Element {
                     {titleCase(tag)}
                   </span>
                 ) : (
-                  <OutlineBlock size="tiny" theme="alt" bold key={tag}>
+                  <OutlineBlock size="tiny" theme="default" bold key={tag}>
                     {titleCase(tag)}
                   </OutlineBlock>
                 )}

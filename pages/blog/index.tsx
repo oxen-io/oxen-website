@@ -1,8 +1,8 @@
 import { InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import { Article } from '../../components/article/Article';
-import { Contained } from '../../components/Contained';
+import { ArticleCard } from '../../components/cards/ArticleCard';
+import { CardGrid } from '../../components/cards/CardGrid';
 import { BlogApi } from '../../services/blog';
 import { generateTitle } from '../../utils/metadata';
 
@@ -28,13 +28,11 @@ const Blog = (
       </Head>
 
       <div className="flex flex-col w-full space-y-10">
-        <Contained>
-          <div className="flex justify-center items-baseline space-x-6 space-y-4 mt-6 mb-16">
-            {posts?.map(post => (
-              <Article key={post.id} {...post} />
-            ))}
-          </div>
-        </Contained>
+        <CardGrid>
+          {[...posts, ...posts, ...posts, ...posts, ...posts]?.map(post => (
+            <ArticleCard key={post.id} {...post} />
+          ))}
+        </CardGrid>
       </div>
     </div>
   );

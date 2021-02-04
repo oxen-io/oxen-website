@@ -7,6 +7,7 @@ import { IPost } from '../../types/blog';
 import { generateTitle } from '../../utils/metadata';
 
 export async function getServerSideProps({ params }) {
+  console.log('Sulg', params);
   const api = new BlogApi();
   const post = await api.fetchBlogBySlug(String(params.slug) ?? '');
 

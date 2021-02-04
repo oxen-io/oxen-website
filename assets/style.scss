@@ -215,3 +215,9 @@ $breakpoint-huge: 1280px;
 body {
   min-width: 350px;
 }
+
+.hide-scroll {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { IFigureImage } from '../../../types/blog';
+import { IFigureImage } from '../../../types/cms';
 
 interface Props {
   featureImage: IFigureImage;
@@ -6,10 +6,10 @@ interface Props {
 
 export function ArticleSectionFeatureImage({ featureImage }: Props) {
   return (
-    <div className="pb-4 w-full desktop:pb-0">
+    <div className="w-full pb-4 desktop:pb-0">
       <div
         style={{ paddingBottom: '40%' }}
-        className="relative w-full h-0 mb-4 bg-gray-300 rounded-md overflow-hidden"
+        className="relative w-full h-0 mb-4 overflow-hidden bg-gray-300 rounded-md"
       >
         <div className="absolute inset-0">
           <img
@@ -22,7 +22,7 @@ export function ArticleSectionFeatureImage({ featureImage }: Props) {
       </div>
 
       {featureImage?.description && (
-        <div className="w-8/12 italic text-sm">{featureImage.description}</div>
+        <div className="w-8/12 text-sm italic">{featureImage.description}</div>
       )}
     </div>
   );

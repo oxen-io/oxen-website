@@ -16,13 +16,13 @@ export function SideMenuDefault() {
         width: '50vw',
         minWidth: '375px',
       }}
-      className="relative flex text-primary"
+      className="relative flex text-primary bg-alt"
     >
       <div
         style={{
           height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
         }}
-        className="w-full overflow-y-auto duration-300 children:last:border-b-0"
+        className="w-full overflow-y-auto"
       >
         <SideMenuInner />
       </div>

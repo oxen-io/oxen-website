@@ -1,7 +1,3 @@
-export enum ModalInstance {
-  LOGIN = 'LOGIN',
-}
-
 export enum SideMenuItem {
   WHO_ARE_WE = 'WHO_ARE_WE',
   MISSION = 'MISSION',
@@ -16,9 +12,6 @@ export enum SideMenuItem {
 export interface INavigation {
   sideMenuExpanded: boolean;
   sideMenuActive: SideMenuItem;
-  mobileMenuExpanded: boolean;
-  searchOverlayExpanded: boolean;
-  openedModal: ModalInstance | null;
 }
 
 export const initialNavigationState: INavigation = {
@@ -26,22 +19,12 @@ export const initialNavigationState: INavigation = {
   // On desktop it's always open (if it fits).
   sideMenuExpanded: false,
   sideMenuActive: SideMenuItem.WHO_ARE_WE,
-  mobileMenuExpanded: false,
-  searchOverlayExpanded: false,
-  openedModal: null,
 };
 
 export enum NavigationActions {
   EXPAND_SIDE_MENU = 'EXPAND_SIDE_MENU',
   SET_SIDE_MENU_ACTIVE = 'SET_SIDE_MENU_ACTIVE',
   COLLAPSE_SIDE_MENU = 'COLLAPSE_SIDE_MENU',
-  OPEN_MOBILE_MENU = 'OPEN_MOBILE_MENU',
-  CLOSE_MOBILE_MENU = 'CLOSE_MOBILE_MENU',
-  TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU',
-  EXPAND_SEARCH_OVERLAY = 'EXPAND_SEARCH_OVERLAY',
-  COLLAPSE_SEARCH_OVERLAY = 'COLLAPSE_SEARCH_OVERLAY',
-  TOGGLE_SEARCH_OVERLAY = 'TOGGLE_SEARCH_OVERLAY',
-  SET_MODAL_IS_OPEN = 'SET_MODAL_IS_OPEN',
 }
 
 // ////////////////////////////// //
@@ -58,33 +41,4 @@ export const setSideMenuActive = (active: SideMenuItem) => ({
 
 export const collapseSideMenu = () => ({
   type: NavigationActions.COLLAPSE_SIDE_MENU,
-});
-
-export const openMobileMenu = () => ({
-  type: NavigationActions.OPEN_MOBILE_MENU,
-});
-
-export const closeMobileMenu = () => ({
-  type: NavigationActions.CLOSE_MOBILE_MENU,
-});
-
-export const toggleMobileMenu = () => ({
-  type: NavigationActions.TOGGLE_MOBILE_MENU,
-});
-
-export const expandSearchOverlay = () => ({
-  type: NavigationActions.EXPAND_SEARCH_OVERLAY,
-});
-
-export const collapseSearchOverlay = () => ({
-  type: NavigationActions.COLLAPSE_SEARCH_OVERLAY,
-});
-
-export const toggleSearchOverlay = () => ({
-  type: NavigationActions.TOGGLE_SEARCH_OVERLAY,
-});
-
-export const setCurrentOpenModal = (isOpen: boolean) => ({
-  type: NavigationActions.SET_MODAL_IS_OPEN,
-  payload: isOpen,
 });

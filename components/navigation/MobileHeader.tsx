@@ -1,14 +1,21 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OxenLogoSVG from '../../assets/svgs/brand.svg';
 import TriangleSVG from '../../assets/svgs/triangle.svg';
 import { UI } from '../../constants';
-import { toggleMobileMenu } from '../../state/navigation';
+import { collapseSideMenu, expandSideMenu } from '../../state/navigation';
+import { IState } from '../../state/reducers';
 
 export function MobileHeader() {
+  const { sideMenuExpanded: expanded } = useSelector(
+    (state: IState) => state.navigation,
+  );
   const dispatch = useDispatch();
+
+  const toggleSideMenu = () =>
+    dispatch(expanded ? collapseSideMenu() : expandSideMenu());
 
   return (
     <div
@@ -30,8 +37,11 @@ export function MobileHeader() {
         </div>
 
         <TriangleSVG
-          onClick={() => dispatch(toggleMobileMenu())}
-          className="h-12 transform rotate-90 outline-none"
+          onClick={() => toggleSideMenu()}
+          className={classNames(
+            'h-5 transform outline-none duration-300',
+            expanded ? '-rotate-60' : 'rotate-180',
+          )}
         />
       </div>
     </div>

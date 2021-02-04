@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { ScreenContext } from '../../contexts/screen';
-import { IPost } from '../../types/blog';
+import { IPost } from '../../types/cms';
 import { generateURL } from '../../utils/routing';
 
 export function ArticleCardRow(post: IPost) {
@@ -15,7 +15,7 @@ export function ArticleCardRow(post: IPost) {
         lineHeight: '1.33em',
         height: '4em',
       }}
-      className="text-base overflow-hidden"
+      className="overflow-hidden text-base"
     >
       {post.subtitle}
     </p>
@@ -27,13 +27,13 @@ export function ArticleCardRow(post: IPost) {
         width: isMobile ? '33%' : '10rem',
         height: isMobile ? '66%' : '6rem',
       }}
-      className="relative rounded-lg bg-primary bg-opacity-10 overflow-hidden"
+      className="relative overflow-hidden rounded-lg bg-primary bg-opacity-10"
     >
       {post?.featureImage?.imageUrl && (
         <img
           src={post.featureImage.imageUrl}
           alt={post.featureImage.description}
-          className="w-full h-full rounded-lg object-cover"
+          className="object-cover w-full h-full rounded-lg"
         />
       )}
     </div>
@@ -42,7 +42,7 @@ export function ArticleCardRow(post: IPost) {
   return (
     <>
       {isMobile ? (
-        <div className="flex flex-col w-full space-y-4 mb-6">
+        <div className="flex flex-col w-full mb-6 space-y-4">
           <div className="flex w-full space-x-6">
             <ArticlePreviewImage />
             <div className="w-2/3">
@@ -62,7 +62,7 @@ export function ArticleCardRow(post: IPost) {
             className="flex flex-col flex-grow"
           >
             <Link href={href} as={as}>
-              <a className="font-roboto text-xl text-primary">{post.title}</a>
+              <a className="text-xl font-roboto text-primary">{post.title}</a>
             </Link>
 
             <ArticlePreviewContent />

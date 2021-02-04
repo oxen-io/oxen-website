@@ -1,4 +1,4 @@
-import { IPost } from '../types/blog';
+import { IPost } from '../types/cms';
 
 export interface ISearch {
   searchQuery: string;

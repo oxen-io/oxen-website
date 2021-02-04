@@ -1,8 +1,9 @@
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
-import { IAuthor, IFigureImage, IPost } from '../types/blog';
+import { SideMenuItem } from '../state/navigation';
+import { IAuthor, IFigureImage, IPost, ISplitPage } from '../types/cms';
 
-export class BlogApi {
+export class CmsApi {
   client: ContentfulClientApi;
 
   constructor() {
@@ -31,6 +32,16 @@ export class BlogApi {
       if (entry) {
         const post = this.convertPost(entry);
         return post;
+      }
+      return null;
+    });
+  }
+
+  public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
+    return this.client.getEntry(id).then(entry => {
+      if (entry) {
+        console.log('cms ➡️ entry:', entry);
+        // return this.convertPage(entry);
       }
       return null;
     });

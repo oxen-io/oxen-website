@@ -2,13 +2,13 @@
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { Article } from '../../components/article/Article';
-import { BlogApi } from '../../services/blog';
-import { IPost } from '../../types/blog';
+import { CmsApi } from '../../services/cms';
+import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
 export async function getServerSideProps({ params }) {
   console.log('Sulg', params);
-  const api = new BlogApi();
+  const api = new CmsApi();
   const post = await api.fetchBlogBySlug(String(params.slug) ?? '');
 
   console.log('index ➡️   post:', post);

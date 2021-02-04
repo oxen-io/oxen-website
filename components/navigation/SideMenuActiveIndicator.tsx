@@ -34,7 +34,11 @@ export function SideMenuActiveIndicator() {
         )}
       </div>
 
-      <div className="flex items-center justify-start w-0 h-0 transform -rotate-90">
+      <div
+        className={classNames(
+          'flex items-center justify-start w-0 h-0 duration-300 transform -rotate-90',
+        )}
+      >
         <span className="whitespace-no-wrap">
           {NAVIGATION.SIDE_MENU_ITEMS[active].label}
         </span>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NAVIGATION } from '../../constants';
 import { setSideMenuActive, SideMenuItem } from '../../state/navigation';
 import { IState } from '../../state/reducers';
-import { SideMenuRow } from './SideMenuRowProps';
+import { SideMenuRow } from './SideMenuRow';
 
 export function SideMenuInner() {
   const { sideMenuActive: active } = useSelector(
@@ -15,7 +15,7 @@ export function SideMenuInner() {
   const router = useRouter();
 
   return (
-    <div className="h-full overflow-y-auto duration-300 children:last:border-b-0">
+    <div className="flex flex-col h-full duration-300 mobile:children:last:border-b-0">
       {Object.entries(NAVIGATION.SIDE_MENU_ITEMS).map(([key, item]) => (
         <SideMenuRow
           item={item}

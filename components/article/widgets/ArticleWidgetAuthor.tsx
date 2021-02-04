@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAuthor } from '../../../types/blog';
+import { IAuthor } from '../../../types/cms';
 import { Avatar } from '../../Avatar';
 
 interface Props {
@@ -13,7 +13,7 @@ export function ArticleWidgetAuthor({ author, publishedDate }: Props) {
       <Avatar size={10} imageSrc={author?.avatar.imageUrl} />
 
       <div className="flex flex-col leading-tight">
-        <span className="font-roboto tracking-wider text-sm font-bold">
+        <span className="text-sm font-bold tracking-wider font-roboto">
           By: {author?.name}
         </span>
         <span>{publishedDate}</span>

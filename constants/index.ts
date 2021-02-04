@@ -1,4 +1,3 @@
-// import FIREBASE from './firebase';
 import METADATA from './metadata';
 import NAVIGATION from './navigation';
 import SEARCH from './search';

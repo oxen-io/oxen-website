@@ -34,3 +34,11 @@ export type BodyDocument = {
   nodeType: 'document';
   content: any;
 };
+
+export interface ISplitPage {
+  id: ISplitPage;
+  label: string;
+  title: string;
+  body: Document;
+  hero?: IFigureImage;
+}

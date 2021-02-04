@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ScreenContext } from '../../../contexts/screen';
-import { IPost } from '../../../types/blog';
+import { IPost } from '../../../types/cms';
 import { Contained } from '../../Contained';
 import { ArticleBody } from '../ArticleBody';
 import { ArticleSectionFeatureImage } from './ArticleSectionFeatureImage';
@@ -27,7 +27,7 @@ const MobileContent = (post: IPost) => {
 
 const DesktopContent = (post: IPost) => {
   return (
-    <div className="flex flex-col space-y-10 items-center">
+    <div className="flex flex-col items-center space-y-10">
       <ArticleSectionFeatureImage featureImage={post.featureImage} />
       <div className="my-10">
         <ArticleBody body={post.body} />

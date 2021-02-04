@@ -1,16 +1,23 @@
+import { InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import { SideMenu } from '../components/navigation/SideMenu';
 import { HomeLanding } from '../components/pages/home/HomeLanding';
 import { METADATA } from '../constants';
+import { CmsApi } from '../services/cms';
+import { SideMenuItem } from '../state/navigation';
 
-// interface Props {
-// posts: Array<ISanityArticle>;
-// AuthUserInfo: any;
-// }
+export async function getServerSideProps(context) {
+  const api = new CmsApi();
+  const page = await api.fetchPageById(SideMenuItem.WHO_ARE_WE);
 
-// const Index: NextPage<Props> = () => {
-const Index = () => {
+  console.log('index ➡️  page:', page);
+  return { props: page };
+}
+
+const Index = (
+  page: InferGetServerSidePropsType<typeof getServerSideProps>,
+) => {
   // const cards = posts
   //   ? posts.slice(0, 4).map(post => <ArticleCard key={post.id} {...post} />)
   //   : [];

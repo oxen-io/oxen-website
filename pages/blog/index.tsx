@@ -3,11 +3,11 @@ import Head from 'next/head';
 import React from 'react';
 import { ArticleCard } from '../../components/cards/ArticleCard';
 import { CardGrid } from '../../components/cards/CardGrid';
-import { BlogApi } from '../../services/blog';
+import { CmsApi } from '../../services/cms';
 import { generateTitle } from '../../utils/metadata';
 
 export async function getServerSideProps(context) {
-  const api = new BlogApi();
+  const api = new CmsApi();
   const posts = await api.fetchBlogEntries();
 
   console.log('index ➡️   posts:', posts);

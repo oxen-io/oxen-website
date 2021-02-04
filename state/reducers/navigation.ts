@@ -23,27 +23,6 @@ export const navigationReducer = (
     case NavigationActions.COLLAPSE_SIDE_MENU: {
       return { ...state, sideMenuExpanded: false };
     }
-    case NavigationActions.OPEN_MOBILE_MENU: {
-      return { ...state, mobileMenuExpanded: true };
-    }
-    case NavigationActions.CLOSE_MOBILE_MENU: {
-      return { ...state, mobileMenuExpanded: false };
-    }
-    case NavigationActions.TOGGLE_MOBILE_MENU: {
-      return { ...state, mobileMenuExpanded: !state.mobileMenuExpanded };
-    }
-    case NavigationActions.EXPAND_SEARCH_OVERLAY: {
-      return { ...state, searchOverlayExpanded: true };
-    }
-    case NavigationActions.COLLAPSE_SEARCH_OVERLAY: {
-      return { ...state, searchOverlayExpanded: false };
-    }
-    case NavigationActions.TOGGLE_SEARCH_OVERLAY: {
-      return { ...state, searchOverlayExpanded: !state.searchOverlayExpanded };
-    }
-    case NavigationActions.SET_MODAL_IS_OPEN: {
-      return { ...state, modalIsOpen: action.payload };
-    }
     default:
       return state;
   }

@@ -1,5 +1,3 @@
-import 'firebase/auth';
-import 'firebase/firestore'; // <- needed if using firestore
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
@@ -10,16 +8,16 @@ import '../assets/style.scss';
 import Layout from '../components/layout';
 import { METADATA } from '../constants';
 import ScreenProvider from '../contexts/screen';
-import { collapseSearchOverlay } from '../state/navigation';
+import { collapseSideMenu } from '../state/navigation';
 import { rootReducer } from '../state/reducers';
 
 const store = createStore(rootReducer);
 
 function App({ Component, pageProps }: AppProps) {
-  // Close search overlay on page changed
+  // Close side menu on page changed
   const location = useLocation();
   useEffect(() => {
-    store.dispatch(collapseSearchOverlay());
+    store.dispatch(collapseSideMenu());
   }, [location.pathname, location.search]);
 
   return (

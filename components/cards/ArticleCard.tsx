@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import router from 'next/dist/client/router';
 import { SyntheticEvent } from 'react';
 import { useMeasure } from 'react-use';
-import { IPost } from '../../types/blog';
+import { IPost } from '../../types/cms';
 import { generateURL } from '../../utils/routing';
 import { titleCase } from '../../utils/text';
 import { OutlineBlock } from '../OutlineBlock';

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ScreenContext } from '../../contexts/screen';
-import { IPost } from '../../types/blog';
+import { IPost } from '../../types/cms';
 import { Contained } from '../Contained';
 import { ArticleSectionContent } from './sections/ArticleSectionContent';
 import { ArticleSectionTitle } from './sections/ArticleSectionTitle';
@@ -23,7 +23,7 @@ function ArticleMobile(props: IPost) {
   return (
     <article>
       <Contained>
-        <div className="flex flex-col items-center space-y-6 mt-12 mb-6">
+        <div className="flex flex-col items-center mt-12 mb-6 space-y-6">
           <ArticleSectionTitle title={title} />
           <ArticleWidgetAuthor author={author} publishedDate={publishedDate} />
           <ArticleSubtitleSection subtitle={subtitle} />
@@ -39,7 +39,7 @@ function ArticleDesktop(props: IPost) {
 
   return (
     <article>
-      <div className="flex flex-col items-center space-y-4 mt-20 mb-10">
+      <div className="flex flex-col items-center mt-20 mb-10 space-y-4">
         <ArticleSectionTitle title={title} />
         <ArticleWidgetAuthor author={author} publishedDate={publishedDate} />
         <ArticleSubtitleSection subtitle={subtitle} />

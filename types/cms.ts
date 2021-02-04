@@ -1,4 +1,5 @@
 import { Document } from '@contentful/rich-text-types';
+import { SideMenuItem } from '../state/navigation';
 
 export type IAuthor = {
   name: string;
@@ -36,7 +37,7 @@ export type BodyDocument = {
 };
 
 export interface ISplitPage {
-  id: ISplitPage;
+  id: SideMenuItem;
   label: string;
   title: string;
   body: Document;

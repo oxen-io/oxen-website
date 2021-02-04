@@ -30,21 +30,25 @@ export class CmsApi {
   public async fetchBlogById(id): Promise<IPost> {
     return this.client.getEntry(id).then(entry => {
       if (entry) {
-        const post = this.convertPost(entry);
-        return post;
+        return this.convertPost(entry);
       }
       return null;
     });
   }
 
   public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
-    return this.client.getEntry(id).then(entry => {
-      if (entry) {
-        console.log('cms ➡️ entry:', entry);
-        // return this.convertPage(entry);
-      }
-      return null;
-    });
+    return this.client
+      .getEntries({
+        content_type: 'splitPage',
+        'fields.id[in]': id,
+      })
+      .then(entries => {
+        console.log('blog ➡️           entries:', entries);
+        if (entries && entries.items && entries.items.length > 0) {
+          return this.convertPage(entries.items[0]);
+        }
+        return null;
+      });
   }
 
   public async fetchBlogBySlug(slug: string): Promise<IPost> {
@@ -105,6 +109,19 @@ export class CmsApi {
       title: rawPost.title,
       featureImage: this.convertImage(rawFeatureImage),
       author: this.convertAuthor(rawAuthor),
+    };
+  };
+
+  public convertPage = (rawData): ISplitPage => {
+    const rawPage = rawData.fields;
+    const rawHero = rawPage?.hero ? rawPage?.hero?.fields : null;
+
+    return {
+      id: SideMenuItem[rawPage?.id],
+      label: rawPage?.label,
+      title: rawPage?.title,
+      body: rawPage?.body,
+      hero: this.convertImage(rawHero),
     };
   };
 }

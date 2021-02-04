@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ScreenContext } from '../../../contexts/screen';
 import { IPost } from '../../../types/cms';
 import { Contained } from '../../Contained';
-import { ArticleBody } from '../ArticleBody';
+import { RichBody } from '../../RichBody';
 import { ArticleSectionFeatureImage } from './ArticleSectionFeatureImage';
 
 export function ArticleSectionContent(post: IPost) {
@@ -19,7 +19,7 @@ const MobileContent = (post: IPost) => {
     <div className="flex flex-col space-y-4">
       <ArticleSectionFeatureImage featureImage={post.featureImage} />
       <div>
-        <ArticleBody body={post.body} />
+        <RichBody body={post.body} />
       </div>
     </div>
   );
@@ -30,7 +30,7 @@ const DesktopContent = (post: IPost) => {
     <div className="flex flex-col items-center space-y-10">
       <ArticleSectionFeatureImage featureImage={post.featureImage} />
       <div className="my-10">
-        <ArticleBody body={post.body} />
+        <RichBody body={post.body} />
       </div>
     </div>
   );

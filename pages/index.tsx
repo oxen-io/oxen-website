@@ -7,7 +7,7 @@ import { METADATA } from '../constants';
 import { CmsApi } from '../services/cms';
 import { SideMenuItem } from '../state/navigation';
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const api = new CmsApi();
   const page = await api.fetchPageById(SideMenuItem.WHO_ARE_WE);
 

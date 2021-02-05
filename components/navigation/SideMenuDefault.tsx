@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { UI } from '../../constants';
 import { IState } from '../../state/reducers';
-import { SideMenuActiveIndicator } from './SideMenuActiveIndicator';
 import { SideMenuInner } from './SideMenuInner';
+import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
 
 export function SideMenuDefault() {
   const { sideMenuActive: active } = useSelector(
@@ -27,7 +27,7 @@ export function SideMenuDefault() {
         <SideMenuInner />
       </div>
 
-      <SideMenuActiveIndicator />
+      <SideMenuSideBar mode={SideBarMode.LABEL} />
     </div>
   );
 }

@@ -20,7 +20,7 @@ export function DesktopHeader() {
           <div className="flex flex-grow">
             <Link href="/">
               <a className="flex items-center flex-shrink-0 text-primary">
-                <OxenLogoSVG className="h-10 fill-current" />
+                <OxenLogoSVG className="h-8 fill-current" />
               </a>
             </Link>
           </div>

@@ -17,11 +17,11 @@ export const navigationReducer = (
     case NavigationActions.EXPAND_SIDE_MENU: {
       return { ...state, sideMenuExpanded: true };
     }
-    case NavigationActions.SET_SIDE_MENU_ACTIVE: {
-      return { ...state, sideMenuActive: action.payload };
-    }
     case NavigationActions.COLLAPSE_SIDE_MENU: {
       return { ...state, sideMenuExpanded: false };
+    }
+    case NavigationActions.SET_SIDE_MENU_ACTIVE: {
+      return { ...state, sideMenuActive: action.payload };
     }
     default:
       return state;

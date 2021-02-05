@@ -1,14 +1,16 @@
 import classNames from 'classnames';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OxenLogoSVG from '../../assets/svgs/brand.svg';
 import TriangleSVG from '../../assets/svgs/triangle.svg';
 import { UI } from '../../constants';
+import { ScreenContext } from '../../contexts/screen';
 import { collapseSideMenu, expandSideMenu } from '../../state/navigation';
 import { IState } from '../../state/reducers';
 
 export function MobileHeader() {
+  const { isMobile } = useContext(ScreenContext);
   const { sideMenuExpanded: expanded } = useSelector(
     (state: IState) => state.navigation,
   );
@@ -31,18 +33,20 @@ export function MobileHeader() {
         <div className="antialiased">
           <Link href="/">
             <a className="flex items-center flex-shrink-0 text-primary">
-              <OxenLogoSVG className="h-10 fill-current" />
+              <OxenLogoSVG className="h-8 fill-current" />
             </a>
           </Link>
         </div>
 
-        <TriangleSVG
-          onClick={() => toggleSideMenu()}
-          className={classNames(
-            'h-5 transform outline-none duration-300',
-            expanded ? '-rotate-60' : 'rotate-180',
-          )}
-        />
+        {isMobile && (
+          <TriangleSVG
+            onClick={() => toggleSideMenu()}
+            className={classNames(
+              'h-3 transform outline-none duration-300',
+              expanded ? 'rotate-180' : '-rotate-60',
+            )}
+          />
+        )}
       </div>
     </div>
   );

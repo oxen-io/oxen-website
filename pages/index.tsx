@@ -1,11 +1,14 @@
 import { InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { SideMenu } from '../components/navigation/SideMenu';
 import { HomeLanding } from '../components/pages/home/HomeLanding';
-import { METADATA } from '../constants';
+import { METADATA, UI } from '../constants';
+import { ScreenContext } from '../contexts/screen';
 import { CmsApi } from '../services/cms';
 import { SideMenuItem } from '../state/navigation';
+import { IState } from '../state/reducers';
 
 export async function getServerSideProps() {
   const api = new CmsApi();
@@ -23,6 +26,9 @@ const Index = (
   //   : [];
 
   // console.log('posts', posts);
+
+  const { isTablet } = useContext(ScreenContext);
+  const { sideMenuExpanded } = useSelector((state: IState) => state.navigation);
 
   return (
     <div>
@@ -42,7 +48,12 @@ const Index = (
       <div className="flex-grow border-t border-black">
         <div className="flex w-full h-full">
           <SideMenu />
-          <div className="flex-1 overflow-x-hidden">
+          <div
+            style={{
+              marginLeft: `${isTablet ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX : 0}px`,
+            }}
+            className="flex-1 overflow-x-hidden"
+          >
             <HomeLanding />
           </div>
         </div>

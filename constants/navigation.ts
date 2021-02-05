@@ -12,7 +12,6 @@ const MENU_ITEMS: IMenuItem[] = [
   { label: 'CoinGecko', href: '/' },
   { label: 'Wallet', href: '/' },
   { label: 'Explorer', href: '/' },
-  { label: 'Blog', href: '/blog' },
   { label: 'Community', href: '/blog' },
   { label: 'Technology', href: '/blog' },
 ];

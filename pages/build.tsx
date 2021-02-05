@@ -6,9 +6,9 @@ import { METADATA } from '../constants';
 import { SideMenuItem } from '../state/navigation';
 import { IState } from '../state/reducers';
 
-const Index = () => {
+const Build = () => {
   const page = useSelector((state: IState) => state.navigation).pages[
-    SideMenuItem.WHO_ARE_WE
+    SideMenuItem.BUILD
   ];
 
   return (
@@ -22,11 +22,9 @@ const Index = () => {
         />
       </Head>
 
-      <div>
-        <RichBody body={page?.body} />
-      </div>
+      <RichBody body={page?.body} />
     </div>
   );
 };
 
-export default Index;
+export default Build;

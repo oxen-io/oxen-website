@@ -8,12 +8,20 @@ import '../assets/style.scss';
 import Layout from '../components/layout';
 import { METADATA } from '../constants';
 import ScreenProvider from '../contexts/screen';
-import { collapseSideMenu } from '../state/navigation';
+import { CmsApi } from '../services/cms';
+import { collapseSideMenu, setSplitPagesContent } from '../state/navigation';
 import { rootReducer } from '../state/reducers';
 
 const store = createStore(rootReducer);
 
 function App({ Component, pageProps }: AppProps) {
+  const { pages } = pageProps;
+
+  useEffect(() => {
+    // Set all pages on app load
+    store.dispatch(setSplitPagesContent(pages));
+  }, []);
+
   // Close side menu on page changed
   const location = useLocation();
   useEffect(() => {
@@ -40,5 +48,12 @@ function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+App.getInitialProps = async () => {
+  const api = new CmsApi();
+  const pages = await api.fetchPageEntries();
+
+  return { pageProps: { pages } };
+};
 
 export default App;

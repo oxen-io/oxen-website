@@ -1,15 +1,13 @@
 import Head from 'next/head';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RichBody } from '../components/RichBody';
 import { METADATA } from '../constants';
 import { SideMenuItem } from '../state/navigation';
 import { IState } from '../state/reducers';
 
-const Index = () => {
-  const page = useSelector((state: IState) => state.navigation).pages[
-    SideMenuItem.WHO_ARE_WE
-  ];
+const Trade = () => {
+  const pages = useSelector((state: IState) => state.navigation)?.pages;
+  const page = pages[SideMenuItem.WHO_ARE_WE];
 
   return (
     <div>
@@ -22,11 +20,9 @@ const Index = () => {
         />
       </Head>
 
-      <div>
-        <RichBody body={page?.body} />
-      </div>
+      <div>TRADE</div>
     </div>
   );
 };
 
-export default Index;
+export default Trade;

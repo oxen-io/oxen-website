@@ -13,7 +13,9 @@ export function DesktopHeader() {
       style={{
         height: `${UI.HEADER_HEIGHT_PX}px`,
       }}
-      className={classNames('w-full bg-alt flex items-center')}
+      className={classNames(
+        'w-full bg-alt flex items-center border-b border-primary',
+      )}
     >
       <div className="flex items-center w-full h-full px-6">
         <div className="flex items-center justify-between w-full antialiased">

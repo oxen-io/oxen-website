@@ -23,7 +23,6 @@ export function SideMenuFullscreen({ withSideBar }: Props) {
   return (
     <div
       style={{
-        height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
         top: `${UI.HEADER_HEIGHT_PX}px`,
         zIndex: 30000,
         transform: expanded
@@ -34,9 +33,7 @@ export function SideMenuFullscreen({ withSideBar }: Props) {
                 : ''
             }`,
       }}
-      className={classNames(
-        'fixed inset-0 flex duration-300 transform border-t bg-alt border-primary',
-      )}
+      className={classNames('fixed inset-0 flex duration-300 transform bg-alt')}
     >
       <div className="flex flex-col w-full space-y-4">
         <SideMenuInner />

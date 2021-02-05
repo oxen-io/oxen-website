@@ -27,7 +27,7 @@ export function MobileHeader() {
         paddingRight: `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
         height: `${UI.HEADER_HEIGHT_PX}px`,
       }}
-      className={classNames('w-full bg-alt')}
+      className={classNames('w-full bg-alt border-b border-primary')}
     >
       <div className="relative flex items-center justify-between w-full h-full">
         <div className="antialiased">

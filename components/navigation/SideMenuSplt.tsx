@@ -5,7 +5,7 @@ import { IState } from '../../state/reducers';
 import { SideMenuInner } from './SideMenuInner';
 import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
 
-export function SideMenuDefault() {
+export function SideMenuSplt() {
   const { sideMenuActive: active } = useSelector(
     (state: IState) => state.navigation,
   );
@@ -13,8 +13,7 @@ export function SideMenuDefault() {
   return (
     <div
       style={{
-        width: '50vw',
-        minWidth: '375px',
+        minWidth: '50vw',
       }}
       className="relative flex text-primary bg-alt"
     >

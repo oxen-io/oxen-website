@@ -1,15 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { UI } from '../../constants';
-import { IState } from '../../state/reducers';
 import { SideMenuInner } from './SideMenuInner';
 import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
 
 export function SideMenuSplt() {
-  const { sideMenuActive: active } = useSelector(
-    (state: IState) => state.navigation,
-  );
-
   return (
     <div
       style={{

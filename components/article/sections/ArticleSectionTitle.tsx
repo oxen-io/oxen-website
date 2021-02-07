@@ -14,7 +14,7 @@ export function ArticleSectionTitle(props: Props) {
         maxWidth: `${UI.ARTICLE.TITLE_MAX_WIDTH_REM}rem`,
       }}
     >
-      <h1 className="font-prompt text-primary text-4xl desktop:text-7xl tablet:text-fixexl tracking-wide leading-none text-center">
+      <h1 className="text-4xl leading-none tracking-wide text-center font-prompt text-primary desktop:text-7xl tablet:text-fixexl">
         {title}
       </h1>
     </div>

@@ -2,23 +2,18 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import FacebookSVG from '../../assets/svgs/socials/facebook.svg';
 import InstargamSVG from '../../assets/svgs/socials/instagram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
 import { NAVIGATION } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
-import { setSideMenuActive, SideMenuItem } from '../../state/navigation';
-import { IState } from '../../state/reducers';
 import { Contained } from '../Contained';
 import { SideMenuRow } from './SideMenuRow';
 
 export function SideMenuInner() {
   const { isHuge, isDesktop } = useContext(ScreenContext);
-  const { sideMenuActive: active } = useSelector(
-    (state: IState) => state.navigation,
-  );
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -30,15 +25,7 @@ export function SideMenuInner() {
           <SideMenuRow
             item={item}
             key={item.label}
-            isActive={key === active}
-            onClick={() => {
-              if (item.href) {
-                router.push(item.href);
-                return;
-              }
-
-              dispatch(setSideMenuActive(SideMenuItem[key]));
-            }}
+            isActive={item.href === router.asPath}
           />
         ))}
       </div>

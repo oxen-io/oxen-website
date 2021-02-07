@@ -20,8 +20,8 @@ export const navigationReducer = (
     case NavigationActions.COLLAPSE_SIDE_MENU: {
       return { ...state, sideMenuExpanded: false };
     }
-    case NavigationActions.SET_SIDE_MENU_ACTIVE: {
-      return { ...state, sideMenuActive: action.payload };
+    case NavigationActions.SET_SPLIT_PAGES_CONTENT: {
+      return { ...state, pages: action.payload };
     }
     default:
       return state;

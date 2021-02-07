@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TriangleSVG from '../../assets/svgs/triangle.svg';
@@ -19,11 +20,22 @@ interface Props {
 export function SideMenuSideBar({ mode }: Props) {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
   const isCollapsible = isTablet || isMobile;
-  const { sideMenuExpanded: expanded, sideMenuActive: active } = useSelector(
+  const { sideMenuExpanded: expanded } = useSelector(
     (state: IState) => state.navigation,
   );
 
+  const router = useRouter();
   const dispatch = useDispatch();
+
+  const label = Object.values(NAVIGATION.SIDE_MENU_ITEMS).find(
+    item => item.href === router.asPath,
+  )?.label;
+
+  console.log('SideMenuSideBar ➡️ label:', label);
+  console.log(
+    'SideMenuSideBar ➡️ NAVIGATION.SIDE_MENU_ITEMS:',
+    NAVIGATION.SIDE_MENU_ITEMS,
+  );
 
   const toggleSideMenu = () =>
     dispatch(expanded ? collapseSideMenu() : expandSideMenu());
@@ -60,9 +72,7 @@ export function SideMenuSideBar({ mode }: Props) {
         )}
       >
         <span className="whitespace-no-wrap">
-          {mode === SideBarMode.LABEL
-            ? NAVIGATION.SIDE_MENU_ITEMS[active].label
-            : 'Menu'}
+          {mode === SideBarMode.LABEL ? label : 'Menu'}
         </span>
       </div>
     </div>

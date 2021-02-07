@@ -7,9 +7,8 @@ import { SideMenuItem } from '../state/navigation';
 import { IState } from '../state/reducers';
 
 const Index = () => {
-  const page = useSelector((state: IState) => state.navigation).pages[
-    SideMenuItem.WHO_ARE_WE
-  ];
+  const { pages } = useSelector((state: IState) => state.navigation);
+  const page = pages ? pages[SideMenuItem.WHO_ARE_WE] : undefined;
 
   return (
     <div>

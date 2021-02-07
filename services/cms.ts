@@ -1,6 +1,6 @@
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
-import { SideMenuItem } from '../state/navigation';
+import { SideMenuItem, TPages } from '../state/navigation';
 import { IAuthor, IFigureImage, IPost, ISplitPage } from '../types/cms';
 
 export class CmsApi {
@@ -36,21 +36,6 @@ export class CmsApi {
     });
   }
 
-  public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
-    return this.client
-      .getEntries({
-        content_type: 'splitPage',
-        'fields.id[in]': id,
-      })
-      .then(entries => {
-        console.log('blog ➡️           entries:', entries);
-        if (entries && entries.items && entries.items.length > 0) {
-          return this.convertPage(entries.items[0]);
-        }
-        return null;
-      });
-  }
-
   public async fetchBlogBySlug(slug: string): Promise<IPost> {
     return this.client
       .getEntries({
@@ -62,6 +47,48 @@ export class CmsApi {
         if (entries && entries.items && entries.items.length > 0) {
           const post = this.convertPost(entries.items[0]);
           return post;
+        }
+        return null;
+      });
+  }
+
+  public async fetchPageEntries(): Promise<TPages> {
+    try {
+      const entries = await this.client.getEntries({
+        content_type: 'splitPage', // only fetch blog post entry
+      });
+
+      if (entries && entries.items && entries.items.length > 0) {
+        const pagesArray = entries.items.map(entry => this.convertPage(entry));
+
+        console.log('cms ➡️ pagesArray:', pagesArray);
+
+        const pages: TPages = {};
+        pagesArray.forEach(page => {
+          const pageExists = SideMenuItem[page.id];
+
+          if (pageExists) {
+            pages[page.id] = page;
+          }
+        });
+
+        return pages;
+      }
+    } catch (e) {
+      return {};
+    }
+  }
+
+  public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
+    return this.client
+      .getEntries({
+        content_type: 'splitPage',
+        'fields.id[in]': id,
+      })
+      .then(entries => {
+        console.log('blog ➡️           entries:', entries);
+        if (entries && entries.items && entries.items.length > 0) {
+          return this.convertPage(entries.items[0]);
         }
         return null;
       });

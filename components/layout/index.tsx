@@ -1,9 +1,7 @@
+import { useRouter } from 'next/router';
 import React, { ReactNode, useContext } from 'react';
-import { useSelector } from 'react-redux';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
-import { IState } from '../../state/reducers';
-import { Contained } from '../Contained';
 import { Header } from '../navigation/Header';
 import { SideMenu } from '../navigation/SideMenu';
 
@@ -13,7 +11,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const { isTablet } = useContext(ScreenContext);
-  const { sideMenuExpanded } = useSelector((state: IState) => state.navigation);
+  const router = useRouter();
 
   return (
     <div
@@ -33,9 +31,9 @@ export default function Layout({ children }: Props) {
           style={{
             marginLeft: `${isTablet ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX : 0}px`,
           }}
-          className="overflow-y-auto"
+          className="w-full py-6 overflow-y-auto bg-alt"
         >
-          <Contained>{children}</Contained>
+          {children}
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
+import { ISplitPage } from '../types/cms';
+
 export enum SideMenuItem {
   WHO_ARE_WE = 'WHO_ARE_WE',
   MISSION = 'MISSION',
-  BUY_OXEN = 'BUY_OXEN',
+  TRADE = 'TRADE',
   TOOLS = 'TOOLS',
   BUILD = 'BUILD',
   SUPPORT = 'SUPPORT',
@@ -9,22 +11,25 @@ export enum SideMenuItem {
   BLOG = 'BLOG',
 }
 
+export type TPages = {
+  [name: string]: ISplitPage;
+};
+
 export interface INavigation {
   sideMenuExpanded: boolean;
-  sideMenuActive: SideMenuItem;
+  pages?: TPages;
 }
 
 export const initialNavigationState: INavigation = {
   // Side menu expanded only toggles for mobile.
   // On desktop it's always open (if it fits).
   sideMenuExpanded: false,
-  sideMenuActive: SideMenuItem.WHO_ARE_WE,
 };
 
 export enum NavigationActions {
   EXPAND_SIDE_MENU = 'EXPAND_SIDE_MENU',
-  SET_SIDE_MENU_ACTIVE = 'SET_SIDE_MENU_ACTIVE',
   COLLAPSE_SIDE_MENU = 'COLLAPSE_SIDE_MENU',
+  SET_SPLIT_PAGES_CONTENT = 'SET_SPLIT_PAGES_CONTENT',
 }
 
 // ////////////////////////////// //
@@ -34,11 +39,11 @@ export const expandSideMenu = () => ({
   type: NavigationActions.EXPAND_SIDE_MENU,
 });
 
-export const setSideMenuActive = (active: SideMenuItem) => ({
-  type: NavigationActions.SET_SIDE_MENU_ACTIVE,
-  payload: active,
-});
-
 export const collapseSideMenu = () => ({
   type: NavigationActions.COLLAPSE_SIDE_MENU,
+});
+
+export const setSplitPagesContent = (pages: TPages) => ({
+  type: NavigationActions.SET_SPLIT_PAGES_CONTENT,
+  payload: pages,
 });

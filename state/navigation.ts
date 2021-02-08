@@ -17,6 +17,7 @@ export type TPages = {
 
 export interface INavigation {
   sideMenuExpanded: boolean;
+  sideMenuSplit: boolean;
   pages?: TPages;
 }
 
@@ -24,9 +25,11 @@ export const initialNavigationState: INavigation = {
   // Side menu expanded only toggles for mobile.
   // On desktop it's always open (if it fits).
   sideMenuExpanded: false,
+  sideMenuSplit: true,
 };
 
 export enum NavigationActions {
+  SET_SIDE_MENU_SPLIT = 'SET_SIDE_MENU_SPLIT',
   EXPAND_SIDE_MENU = 'EXPAND_SIDE_MENU',
   COLLAPSE_SIDE_MENU = 'COLLAPSE_SIDE_MENU',
   SET_SPLIT_PAGES_CONTENT = 'SET_SPLIT_PAGES_CONTENT',
@@ -35,6 +38,11 @@ export enum NavigationActions {
 // ////////////////////////////// //
 //         Action Creators        //
 // ////////////////////////////// //
+export const setSideMenuSplit = (split: boolean) => ({
+  type: NavigationActions.SET_SIDE_MENU_SPLIT,
+  payload: split,
+});
+
 export const expandSideMenu = () => ({
   type: NavigationActions.EXPAND_SIDE_MENU,
 });

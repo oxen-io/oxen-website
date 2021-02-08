@@ -19,17 +19,20 @@ interface Props {
 
 export function SideMenuSideBar({ mode }: Props) {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
-  const isCollapsible = isTablet || isMobile;
-  const { sideMenuExpanded: expanded } = useSelector(
+  const { sideMenuExpanded: expanded, sideMenuSplit } = useSelector(
     (state: IState) => state.navigation,
   );
+
+  const isCollapsible = isTablet || isMobile || !sideMenuSplit;
 
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const label = Object.values(NAVIGATION.SIDE_MENU_ITEMS).find(
+  const selectedSideMenuItem = Object.values(NAVIGATION.SIDE_MENU_ITEMS).find(
     item => item.href === router.asPath,
   )?.label;
+
+  const label = sideMenuSplit ? selectedSideMenuItem : 'Menu';
 
   console.log('SideMenuSideBar ➡️ label:', label);
   console.log(
@@ -51,7 +54,7 @@ export function SideMenuSideBar({ mode }: Props) {
         mode === SideBarMode.LABEL && 'border-r border-b',
         mode === SideBarMode.MENU && !expanded && 'border-r',
       )}
-      onClick={() => mode === SideBarMode.MENU && toggleSideMenu()}
+      onClick={() => isCollapsible && toggleSideMenu()}
     >
       <div>
         {isCollapsible && (

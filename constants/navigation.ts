@@ -60,9 +60,15 @@ const SIDE_MENU_ITEMS = {
   },
 } as { [name: string]: ISideMenuItem };
 
+// Pages in which the sidebar breaks out of the split view
+const SIDEBAR_OVERLAY_PAGES = ['blog'];
+
 const NAVIGATION = {
   MENU_ITEMS,
   SIDE_MENU_ITEMS,
+  OVERLAY_PAGE_REGEX: new RegExp(
+    `^/(${SIDEBAR_OVERLAY_PAGES.map(i => `(${i})`).join('|')})[/]?`,
+  ),
 };
 
 export default NAVIGATION;

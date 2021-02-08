@@ -14,6 +14,9 @@ export const navigationReducer = (
   action: NavigationAction,
 ) => {
   switch (action.type) {
+    case NavigationActions.SET_SIDE_MENU_SPLIT: {
+      return { ...state, sideMenuSplit: action.payload };
+    }
     case NavigationActions.EXPAND_SIDE_MENU: {
       return { ...state, sideMenuExpanded: true };
     }

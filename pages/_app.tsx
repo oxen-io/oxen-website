@@ -1,32 +1,51 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { Provider as StoreProvider } from 'react-redux';
-import { useLocation } from 'react-use';
 import { createStore } from 'redux';
 import '../assets/style.scss';
 import Layout from '../components/layout';
-import { METADATA } from '../constants';
+import { METADATA, NAVIGATION } from '../constants';
 import ScreenProvider from '../contexts/screen';
 import { CmsApi } from '../services/cms';
-import { collapseSideMenu, setSplitPagesContent } from '../state/navigation';
+import {
+  collapseSideMenu,
+  setSideMenuSplit,
+  setSplitPagesContent,
+} from '../state/navigation';
 import { rootReducer } from '../state/reducers';
 
 const store = createStore(rootReducer);
 
 function App({ Component, pageProps }: AppProps) {
   const { pages } = pageProps;
+  const router = useRouter();
+
+  const handleLocationChange = url => {
+    // Break out of split view
+    const split = !NAVIGATION.OVERLAY_PAGE_REGEX.test(url);
+    store.dispatch(setSideMenuSplit(split));
+    store.dispatch(collapseSideMenu());
+  };
 
   useEffect(() => {
     // Set all pages on app load
     store.dispatch(setSplitPagesContent(pages));
+    store.dispatch(collapseSideMenu());
+    handleLocationChange(router.pathname);
+
+    console.log('NAVIGATION.OVERLAY_PAGE_REGEX', NAVIGATION.OVERLAY_PAGE_REGEX);
   }, []);
 
   // Close side menu on page changed
-  const location = useLocation();
   useEffect(() => {
-    store.dispatch(collapseSideMenu());
-  }, [location.pathname, location.search]);
+    router.events.on('routeChangeComplete', handleLocationChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleLocationChange);
+    };
+  }, []);
 
   return (
     <>

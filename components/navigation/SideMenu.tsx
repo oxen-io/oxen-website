@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ScreenContext } from '../../contexts/screen';
 import { SideMenuFullscreen } from './SideMenuFullscreen';
 import { SideMenuInner } from './SideMenuInner';
-import { SideMenuSplt } from './SideMenuSplt';
+import { SideMenuSplit } from './SideMenuSplit';
 
 export interface ISideMenuItem {
   id: number;
@@ -30,6 +30,6 @@ export function SideMenu() {
       <SideMenuInner />
     </div>
   ) : (
-    <SideMenuSplt />
+    <SideMenuSplit />
   );
 }

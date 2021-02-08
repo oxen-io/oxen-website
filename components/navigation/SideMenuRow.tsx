@@ -34,7 +34,6 @@ export function SideMenuRow({ item, isActive }: SideMenuRowProps) {
               ? `0 ${UI.PAGE_CONTAINED_PADDING_VW}vw`
               : 'unset',
         }}
-        ll
         className={classNames(
           'flex flex-1 space-x-6 justify-between text-primary items-center cursor-pointer border-b border-black py-4 hover:bg-secondary duration-300',
           isHuge ? 'text-3xl' : isDesktop ? 'text-xl' : 'text-xl',

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { ReactNode, useContext } from 'react';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
@@ -11,12 +10,11 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const { isTablet } = useContext(ScreenContext);
-  const router = useRouter();
 
   return (
     <div
       style={{ height: '100vh', width: '100%' }}
-      className="relative flex flex-col justify-between"
+      className="relative flex flex-col justify-between bg-alt"
     >
       <Header />
 

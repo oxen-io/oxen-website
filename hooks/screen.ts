@@ -25,5 +25,5 @@ export function useScreenSize() {
     if (isHuge !== _isHuge) setIsHuge(_isHuge);
   }, [width]);
 
-  return { isMobile, isTablet, isDesktop, isHuge };
+  return { isMobile, isTablet, isDesktop, isHuge, width };
 }

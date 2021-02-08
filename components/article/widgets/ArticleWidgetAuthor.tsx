@@ -13,7 +13,7 @@ export function ArticleWidgetAuthor({ author, publishedDate }: Props) {
       <Avatar size={10} imageSrc={author?.avatar.imageUrl} />
 
       <div className="flex flex-col leading-tight">
-        <span className="text-sm font-bold tracking-wider font-roboto">
+        <span className="text-sm font-bold tracking-wider font-sans">
           By: {author?.name}
         </span>
         <span>{publishedDate}</span>

@@ -13,13 +13,13 @@ interface Props {
 export function CardGrid({ children }: Props) {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
 
-  const spacing = isHuge ? 4 : isDesktop ? 4 : 3;
-  const spacingX = `pl-${spacing}`;
+  const spacing = isHuge ? 4 : isDesktop ? 6 : 4;
   const spacingY = `space-y-${spacing}`;
+  const spacingX = `space-x-${spacing}`;
 
   return (
     <>
-      {isMobile || isTablet ? (
+      {isMobile ? (
         <div className="">
           <HorizontalScrollable>
             {children.map(child => (
@@ -42,26 +42,11 @@ export function CardGrid({ children }: Props) {
           <div className={classNames('flex flex-col', spacingY)}>
             {_.chunk(
               children,
-              isHuge ? 4 : isDesktop ? 3 : isTablet ? 2 : 1,
+              isHuge ? 4 : isDesktop ? 2 : isTablet ? 2 : 1,
             ).map(group => (
-              <div key={uuid()} className="flex">
+              <div key={uuid()} className={classNames('flex w-full', spacingX)}>
                 {group.map((item, index) => (
-                  <div
-                    key={uuid()}
-                    className={classNames(
-                      spacingX,
-                      index === 0 && group.length > 1 && spacingX,
-                      index === 1 && group.length > 2 && spacingX,
-                      index === 2 && group.length > 3 && spacingX,
-                      isHuge
-                        ? 'w-1/4'
-                        : isDesktop
-                        ? 'w-1/3'
-                        : isTablet
-                        ? 'w-1/2'
-                        : 'w-full',
-                    )}
-                  >
+                  <div key={uuid()} className="flex-1">
                     {item}
                   </div>
                 ))}

@@ -11,10 +11,15 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
-  const { isTablet } = useContext(ScreenContext);
+  const { isTablet, isDesktop } = useContext(ScreenContext);
   const { sideMenuSplit, sideMenuExpanded } = useSelector(
     (state: IState) => state.navigation,
   );
+
+  const marginLeft =
+    (!sideMenuSplit && isDesktop) || isTablet
+      ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX
+      : 0;
 
   return (
     <div
@@ -32,7 +37,7 @@ export default function Layout({ children }: Props) {
         <SideMenu />
         <div
           style={{
-            marginLeft: `${isTablet ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX : 0}px`,
+            marginLeft: `${marginLeft}px`,
             filter:
               !sideMenuSplit && sideMenuExpanded
                 ? 'brightness(0.9)'

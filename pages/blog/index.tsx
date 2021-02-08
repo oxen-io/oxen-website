@@ -1,8 +1,11 @@
 import { InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { ArticleCard } from '../../components/cards/ArticleCard';
+import { ArticleCardFeature } from '../../components/cards/ArticleCardFeature';
 import { CardGrid } from '../../components/cards/CardGrid';
+import { Contained } from '../../components/Contained';
 import { CmsApi } from '../../services/cms';
 import { generateTitle } from '../../utils/metadata';
 
@@ -21,13 +24,23 @@ const Blog = (
 
   console.log('index ➡️ posts:', posts);
 
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log('index ➡️ router.query;:', router.query);
+  }, []);
+
   return (
     <div>
       <Head>
         <title>{generateTitle('Blog')}</title>
       </Head>
 
-      <div className="flex flex-col w-full space-y-10">
+      <div className="flex flex-col w-full mt-6 space-y-10">
+        <Contained>
+          <ArticleCardFeature {...posts[0]} />
+        </Contained>
+
         <CardGrid>
           {[...posts, ...posts, ...posts, ...posts, ...posts]?.map(post => (
             <ArticleCard key={post.id} {...post} />

@@ -8,12 +8,12 @@ export interface IMenuItem {
 
 const MENU_ITEMS: IMenuItem[] = [
   { label: 'Docs', href: '/' },
-  { label: 'Dev Updates', href: '/' },
+  // { label: 'Dev Updates', href: '/' },
   { label: 'CoinGecko', href: '/' },
   { label: 'Wallet', href: '/' },
   { label: 'Explorer', href: '/' },
   { label: 'Community', href: '/' },
-  { label: 'Technology', href: '/' },
+  { label: 'Tech', href: '/' },
 ];
 
 // TODO - Put SIDE_MENU_ITEMS in Contentful and fetch them server side.

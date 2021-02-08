@@ -1,104 +1,85 @@
 import classNames from 'classnames';
-import router from 'next/dist/client/router';
-import { SyntheticEvent } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { useMeasure } from 'react-use';
 import { IPost } from '../../types/cms';
 import { generateURL } from '../../utils/routing';
-import { titleCase } from '../../utils/text';
-import { OutlineBlock } from '../OutlineBlock';
+import { TagRow } from '../TagRow';
 
 export function ArticleCard(props: IPost): JSX.Element {
   const {
-    featureImage,
     title,
+    description,
     subtitle,
-    /*tags*/ slug,
-    // city,
-    // category,
+    featureImage,
+    publishedDate,
+    author,
+    tags,
+    slug,
   } = props;
 
+  const router = useRouter();
   const [ref, { width }] = useMeasure();
   const isSmall = width < 130;
 
-  const handleClick = (e: SyntheticEvent) => {
-    const { href, as } = generateURL(slug);
-
-    e.preventDefault();
-    router.push(href, as);
-  };
-
-  const tags = ['admin', 'testing'];
+  const { href, as } = generateURL(slug);
 
   return (
     <div
       ref={ref}
       className={classNames(
-        'overflow-hidden w-full bg-white shadow-lg bg-opacity-75',
-        isSmall ? 'rounded-md' : 'rounded-lg',
+        'overflow-hidden w-full bg-opacity-75',
         isSmall ? 'pb-3' : 'pb-1',
       )}
-      onClick={e => handleClick(e)}
     >
       <div
-        style={{ paddingBottom: '60%' }}
-        className="relative w-full h-0 overflow-hidden bg-white bg-opacity-25"
+        onClick={() => router.push(href, as)}
+        className="relative aspect-w-16 aspect-h-9"
       >
         {featureImage.imageUrl && (
-          <div className="absolute inset-0">
-            <img
-              className="object-cover w-full h-full"
-              src={featureImage?.imageUrl}
-              alt={featureImage?.description}
-            />
-          </div>
+          <img
+            className="object-cover cursor-pointer"
+            src={featureImage?.imageUrl}
+            alt={featureImage?.description}
+          />
         )}
       </div>
 
-      <div className={isSmall ? 'px-3' : 'px-4'}>
+      <div>
         <div className={isSmall ? 'py-1' : 'py-3'}>
-          <div
-            style={{
-              lineHeight: '1em',
-              height: '2em',
-              paddingBottom: '2.1em',
-            }}
-            className={classNames(
-              isSmall ? 'text-base' : 'text-xl',
-              'font-roboto overflow-hidden cursor-pointer',
-            )}
-          >
-            {title}
-          </div>
+          <Link href={href} as={as}>
+            <a>
+              <p
+                style={{
+                  maxHeight: '2em',
+                }}
+                className={classNames(
+                  isSmall ? 'text-base' : 'text-lg',
+                  'font-sans overflow-hidden cursor-pointer mb-3 hover:underline leading-none text-primary',
+                )}
+              >
+                {title}
+              </p>
+            </a>
+          </Link>
+
           <p
             style={{
-              lineHeight: '1em',
-              height: '2em',
+              height: '4em',
               paddingBottom: '2.1em',
             }}
-            className="text-base text-gray-700"
+            className="mt-1 overflow-hidden text-xs leading-none text-gray-800"
           >
-            {subtitle}
+            {description?.substr(0, 250) ?? subtitle}...
           </p>
-        </div>
 
-        <div className={classNames('flex space-x-1 mt-1', !isSmall && 'mb-2')}>
-          {tags
-            .filter(tag => Boolean(tag))
-            // Maximum of three tags
-            .slice(0, 3)
-            .map(tag => (
-              <div key={tag.toLowerCase()}>
-                {isSmall ? (
-                  <span className="text-xs font-medium text-primary hover:underline">
-                    {titleCase(tag)}
-                  </span>
-                ) : (
-                  <OutlineBlock size="tiny" theme="default" bold key={tag}>
-                    {titleCase(tag)}
-                  </OutlineBlock>
-                )}
-              </div>
-            ))}
+          <div className="flex flex-col space-y-1">
+            <p className="mt-2 font-sans text-xs text-gray-800">
+              {publishedDate} — {author.name}
+            </p>
+            <TagRow tags={tags} />
+          </div>
         </div>
       </div>
     </div>

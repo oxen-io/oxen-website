@@ -25,7 +25,7 @@ export const DropdownItem = (props: DropdownItemProps) => {
       className={classNames(
         'flex items-center',
         'block',
-        'font-roboto text-sm text-primary',
+        'font-sans text-sm text-primary',
         'hover:text-opacity-100 text-opacity-75',
         'select-none',
         'cursor-pointer',

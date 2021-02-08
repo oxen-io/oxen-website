@@ -8,7 +8,7 @@ export function ColorPalette() {
         <SectionTitle>Color Palette</SectionTitle>
       </div>
       <div className="flex pb-10 space-x-4">
-        <div className="flex flex-col space-y-3 font-roboto">
+        <div className="flex flex-col space-y-3 font-sans">
           <div className="flex justify-center items-center w-8 h-8 text-3xl">
             0
           </div>

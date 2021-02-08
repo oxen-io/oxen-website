@@ -65,13 +65,13 @@ function oxen404() {
             <div style={_404SectionStyles} className="absolute left-0 z-50">
               <h1
                 style={_404TitleStyles}
-                className="-mb-4 text-opacity-25 font-roboto text-primary text-8xl"
+                className="-mb-4 text-opacity-25 font-sans text-primary text-8xl"
               >
                 404
               </h1>
               <p
                 style={_404TextStyles}
-                className="text-4xl tracking-tight font-roboto text-primary"
+                className="text-4xl tracking-tight font-sans text-primary"
               >
                 Nothing found here.
               </p>
@@ -87,7 +87,7 @@ function oxen404() {
             <div className="z-50 flex-col flex-grow my-4">
               <h2
                 className={classNames(
-                  'text-primary font-roboto font-semibold ml-1 mt-6 text-twoxl whitespace-no-wrap',
+                  'text-primary font-sans font-semibold ml-1 mt-6 text-twoxl whitespace-no-wrap',
                 )}
               >
                 Something went wrong?
@@ -107,7 +107,7 @@ function oxen404() {
               <div
                 role="button"
                 className={classNames(
-                  'bg-primary cursor-pointer mt-4 text-white font-roboto px-4 py-2 select-none rounded-lg text-center',
+                  'bg-primary cursor-pointer mt-4 text-white font-sans px-4 py-2 select-none rounded-lg text-center',
                   isMobile ? 'text-lg' : 'text-sm',
                   isMobile ? 'w-full' : 'w-4/12',
                 )}

@@ -19,17 +19,18 @@ export type IFigureImage = {
   imageUrl: string;
 };
 
-export type IPost = {
+export interface IPost {
   id: string;
   title: string;
   subtitle: string;
+  description: string;
   body: Document;
   author?: IAuthor;
   publishedDate: string;
   featureImage?: IFigureImage;
   tags: Array<string>;
   slug: string;
-};
+}
 
 export type BodyDocument = {
   nodeType: 'document';

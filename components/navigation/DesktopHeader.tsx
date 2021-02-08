@@ -27,7 +27,7 @@ export function DesktopHeader() {
             </Link>
           </div>
 
-          <div className="flex ml-6 space-x-4">
+          <div className="flex ml-6 space-x-4 text-sm">
             {NAVIGATION.MENU_ITEMS.map(item => (
               <Link key={item.label} href={item.href} as={item.href}>
                 <a className="uppercase whitespace-no-wrap hover:underline">

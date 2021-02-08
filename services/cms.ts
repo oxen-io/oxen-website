@@ -127,12 +127,13 @@ export class CmsApi {
     console.log('blog ➡️ author', rawAuthor);
 
     return {
-      id: rawData.sys.id,
-      body: rawPost.body,
-      subtitle: rawPost.subtitle,
-      publishedDate: moment(rawPost.publishedDate).format('DD MMM YYYY'),
+      id: rawData.sys.id ?? null,
+      body: rawPost.body ?? null,
+      subtitle: rawPost.subtitle ?? null,
+      description: rawPost.description ?? null,
+      publishedDate: moment(rawPost.publishedDate).format('DD MMMM YYYY'),
       slug: rawPost.slug,
-      tags: rawPost?.tags ?? [],
+      tags: rawPost?.tags?.map(t => t?.fields?.label) ?? [],
       title: rawPost.title,
       featureImage: this.convertImage(rawFeatureImage),
       author: this.convertAuthor(rawAuthor),

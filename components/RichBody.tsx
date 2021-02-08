@@ -20,7 +20,7 @@ const Bold = ({ children }) => (
 );
 
 const Paragraph = ({ children }) => (
-  <p className="mb-3 tracking-wide font-roboto">{children}</p>
+  <p className="mb-3 tracking-wide font-sans">{children}</p>
 );
 
 const options = {
@@ -42,7 +42,7 @@ const options = {
     [BLOCKS.HEADING_2]: (node: Heading2) => {
       const content = (node.content[0] as Text)?.value;
       return (
-        <h2 className="mt-8 mb-2 text-3xl font-semibold tracking-wide font-roboto">
+        <h2 className="mt-8 mb-2 text-3xl font-semibold tracking-wide font-sans">
           {content}
         </h2>
       );
@@ -50,15 +50,13 @@ const options = {
     [BLOCKS.HEADING_3]: (node: Heading3) => {
       const content = (node.content[0] as Text)?.value;
       return (
-        <h2 className="mt-6 mb-2 text-xl font-semibold font-roboto">
-          {content}
-        </h2>
+        <h2 className="mt-6 mb-2 text-xl font-semibold font-sans">{content}</h2>
       );
     },
     [BLOCKS.HEADING_4]: (node: Heading4) => {
       const content = (node.content[0] as Text)?.value;
       return (
-        <h2 className="mt-6 mb-2 text-lg font-bold font-roboto">{content}</h2>
+        <h2 className="mt-6 mb-2 text-lg font-bold font-sans">{content}</h2>
       );
     },
     [BLOCKS.EMBEDDED_ASSET]: (node: AssetLinkBlock) => {

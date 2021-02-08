@@ -38,9 +38,9 @@ export function SideMenuInner() {
         ))}
       </div>
 
-      {!isHuge && (
-        <Contained>
-          <div className="flex flex-col w-full space-y-4">
+      <Contained>
+        <div className="flex flex-col w-full space-y-4">
+          {!isDesktop && (
             <div
               className={classNames(
                 'flex justify-between pt-8 pb-2 font-medium uppercase font-prompt',
@@ -57,15 +57,14 @@ export function SideMenuInner() {
                 </div>
               ))}
             </div>
-
-            <div className="flex space-x-3">
-              <FacebookSVG className="h-10" />
-              <TwitterSVG className="h-10" />
-              <InstargamSVG className="h-10" />
-            </div>
+          )}
+          <div className="flex space-x-3">
+            <FacebookSVG className="h-10" />
+            <TwitterSVG className="h-10" />
+            <InstargamSVG className="h-10" />
           </div>
-        </Contained>
-      )}
+        </div>
+      </Contained>
     </div>
   );
 }

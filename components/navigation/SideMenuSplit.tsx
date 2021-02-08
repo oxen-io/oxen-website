@@ -1,7 +1,9 @@
 import classNames from 'classnames';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useClickAway } from 'react-use';
 import { UI } from '../../constants';
+import { collapseSideMenu } from '../../state/navigation';
 import { IState } from '../../state/reducers';
 import { SideMenuInner } from './SideMenuInner';
 import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
@@ -11,8 +13,16 @@ export function SideMenuSplit() {
     (state: IState) => state.navigation,
   );
 
-  console.log('Side menu split?', sideMenuSplit);
-  console.log('SideMenuSplit ➡️ sideMenuExpanded:', sideMenuExpanded);
+  const ref = useRef(null);
+  const dispatch = useDispatch();
+
+  const onClickAway = () => {
+    if (sideMenuExpanded && !sideMenuSplit) {
+      dispatch(collapseSideMenu());
+    }
+  };
+
+  useClickAway(ref, onClickAway);
 
   const transform =
     sideMenuSplit || sideMenuExpanded
@@ -21,6 +31,7 @@ export function SideMenuSplit() {
 
   return (
     <div
+      ref={ref}
       style={{
         minWidth: '50vw',
         zIndex: 30033,

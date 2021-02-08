@@ -11,8 +11,7 @@ module.exports = {
     },
     fontFamily: {
       prompt: ['Prompt'],
-      roboto: ['Roboto'],
-      robotoslab: ['RobotoSlab'],
+      sans: ['WorkSans'],
     },
     fontSize: {
       xs: ['.75rem'],

@@ -18,6 +18,14 @@ export function SideMenuInner() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const itemIsActive = (href: string) => {
+    return href === '/'
+      ? // Location is at home
+        router.asPath === '/'
+      : // All other pages
+        new RegExp(`^${href}`).test(router.pathname);
+  };
+
   return (
     <div className="flex flex-col flex-grow h-full">
       <div className="flex flex-col flex-grow h-full duration-300 mobile:children:last:border-b-0">
@@ -25,7 +33,7 @@ export function SideMenuInner() {
           <SideMenuRow
             item={item}
             key={item.label}
-            isActive={item.href === router.asPath}
+            isActive={itemIsActive(item.href)}
           />
         ))}
       </div>

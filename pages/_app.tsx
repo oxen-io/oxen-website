@@ -25,6 +25,12 @@ function App({ Component, pageProps }: AppProps) {
   const handleLocationChange = url => {
     // Break out of split view
     const split = !NAVIGATION.OVERLAY_PAGE_REGEX.test(url);
+
+    console.log(
+      '_app ➡️ NAVIGATION.OVERLAY_PAGE_REGEX.test(url);:',
+      NAVIGATION.OVERLAY_PAGE_REGEX.test(url),
+    );
+
     store.dispatch(setSideMenuSplit(split));
     store.dispatch(collapseSideMenu());
   };
@@ -57,6 +63,7 @@ function App({ Component, pageProps }: AppProps) {
               name="viewport"
               content="width=device-width, initial-scale=1, maximum-scale=1"
             ></meta>
+            s
           </Head>
 
           <Layout>

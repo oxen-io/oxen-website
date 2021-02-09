@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import FacebookSVG from '../../assets/svgs/socials/facebook.svg';
-import InstargamSVG from '../../assets/svgs/socials/instagram.svg';
+import GithubSVG from '../../assets/svgs/socials/github.svg';
+import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
 import { NAVIGATION } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
@@ -58,10 +58,16 @@ export function SideMenuInner() {
               ))}
             </div>
           )}
-          <div className="flex space-x-3">
-            <FacebookSVG className="h-10" />
-            <TwitterSVG className="h-10" />
-            <InstargamSVG className="h-10" />
+          <div className="flex mb-6 space-x-3">
+            <a href="https://t.me/Oxen_Community">
+              <TelegramSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+            </a>
+            <a href="https://twitter.com/Oxen_io">
+              <TwitterSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+            </a>
+            <a href="https://github.com/oxen-io">
+              <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+            </a>
           </div>
         </div>
       </Contained>

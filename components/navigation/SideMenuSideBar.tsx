@@ -23,7 +23,7 @@ export function SideMenuSideBar({ mode }: Props) {
     (state: IState) => state.navigation,
   );
 
-  const isCollapsible = isTablet || isMobile || !sideMenuSplit;
+  const isCollapsible = isTablet || isMobile;
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -32,7 +32,8 @@ export function SideMenuSideBar({ mode }: Props) {
     item => item.href === router.asPath,
   )?.label;
 
-  const label = sideMenuSplit ? selectedSideMenuItem : 'Menu';
+  const label = sideMenuSplit ? selectedSideMenuItem : 'Blog';
+  const isBlog = !sideMenuSplit;
 
   console.log('SideMenuSideBar ➡️ label:', label);
   console.log(
@@ -58,14 +59,20 @@ export function SideMenuSideBar({ mode }: Props) {
     >
       <div>
         {isCollapsible && (
-          <>
-            <TriangleSVG
-              className={classNames(
-                'h-4 transform outline-none duration-300 cursor-pointer',
-                expanded ? 'rotate-180' : '-rotate-60',
-              )}
-            />
-          </>
+          <TriangleSVG
+            className={classNames(
+              'h-4 transform outline-none duration-300 cursor-pointer',
+              expanded ? 'rotate-180' : '-rotate-60',
+            )}
+          />
+        )}
+        {isBlog && !isCollapsible && (
+          <TriangleSVG
+            onClick={() => router.push('/blog', '/blog')}
+            className={classNames(
+              'h-4 transform outline-none duration-300 cursor-pointer',
+            )}
+          />
         )}
       </div>
 

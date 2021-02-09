@@ -21,7 +21,7 @@ export function SideMenu() {
   // Fullscreen overlay with no sidebar: ONLY ON MOBILE
   // Fullscreen overlay with sidebar: ONLY ON TABLET
   // Split screen overlay with sidebar: ONLY ON DESKTOP && /blog
-  // Split: DESKTOP && (! /blog)
+  // Just sidebar: /blog
 
   return isMobile || isTablet ? (
     <SideMenuFullscreen withSideBar={isTablet} />

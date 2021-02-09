@@ -27,32 +27,31 @@ export function SideMenuSplit() {
   const transform =
     sideMenuSplit || sideMenuExpanded
       ? 'translateX(0)'
-      : `translateX(-100%) translateX(${UI.SIDE_MENU_SIDE_BAR_WIDTH_PX - 1}px)`;
+      : `translateX(-100%) translateX(${UI.SIDE_MENU_SIDE_BAR_WIDTH_PX - 3}px)`;
 
   return (
     <div
       ref={ref}
       style={{
-        minWidth: '50vw',
+        minWidth: sideMenuSplit ? '50vw' : '0',
         zIndex: 30033,
         height: sideMenuSplit
           ? 'unset'
           : `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
         transform,
       }}
-      className={classNames(
-        'flex text-primary bg-alt duration-300',
-        sideMenuSplit ? 'relative' : 'fixed',
-      )}
+      className={classNames('relative flex text-primary bg-alt duration-300')}
     >
-      <div
-        style={{
-          height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
-        }}
-        className="w-full overflow-y-auto"
-      >
-        <SideMenuInner />
-      </div>
+      {sideMenuSplit && (
+        <div
+          style={{
+            height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
+          }}
+          className="w-full overflow-y-auto"
+        >
+          <SideMenuInner />
+        </div>
+      )}
 
       <SideMenuSideBar mode={SideBarMode.LABEL} />
     </div>

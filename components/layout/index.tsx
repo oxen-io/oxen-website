@@ -38,10 +38,6 @@ export default function Layout({ children }: Props) {
         <div
           style={{
             marginLeft: `${marginLeft}px`,
-            filter:
-              !sideMenuSplit && sideMenuExpanded
-                ? 'brightness(0.9)'
-                : 'brightness(1)',
           }}
           className="w-full py-6 overflow-y-auto duration-300 bg-alt"
         >

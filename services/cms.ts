@@ -43,7 +43,6 @@ export class CmsApi {
         'fields.slug[in]': slug,
       })
       .then(entries => {
-        console.log('blog ➡️           entries:', entries);
         if (entries && entries.items && entries.items.length > 0) {
           const post = this.convertPost(entries.items[0]);
           return post;
@@ -60,8 +59,6 @@ export class CmsApi {
 
       if (entries && entries.items && entries.items.length > 0) {
         const pagesArray = entries.items.map(entry => this.convertPage(entry));
-
-        console.log('cms ➡️ pagesArray:', pagesArray);
 
         const pages: TPages = {};
         pagesArray.forEach(page => {
@@ -86,7 +83,6 @@ export class CmsApi {
         'fields.id[in]': id,
       })
       .then(entries => {
-        console.log('blog ➡️           entries:', entries);
         if (entries && entries.items && entries.items.length > 0) {
           return this.convertPage(entries.items[0]);
         }
@@ -123,8 +119,6 @@ export class CmsApi {
       ? rawPost?.featureImage.fields
       : null;
     const rawAuthor = rawPost.author ? rawPost.author.fields : null;
-
-    console.log('blog ➡️ author', rawAuthor);
 
     return {
       id: rawData.sys.id ?? null,

@@ -1,24 +1,42 @@
-import { InferGetServerSidePropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { ArticleCard } from '../../components/cards/ArticleCard';
 import { ArticleCardFeature } from '../../components/cards/ArticleCardFeature';
 import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import { CmsApi } from '../../services/cms';
+import { PageType, setPageType } from '../../state/navigation';
 import { generateTitle } from '../../utils/metadata';
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async context => {
   const api = new CmsApi();
   const posts = await api.fetchBlogEntries();
 
-  console.log('index ➡️   posts:', posts);
+  // const { url } = context.req;
+  // const onBlog = NAVIGATION.BLOG_REGEX.test(url);
+  // const onPost = NAVIGATION.POST_REGEX.test(url);
+
+  // const pageType = onBlog
+  //   ? PageType.BLOG
+  //   : onPost
+  //   ? PageType.POST
+  //   : PageType.NORMAL;
+
   return { props: { posts } };
-}
+};
 
 const Blog = ({
   posts,
+  pageType,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setPageType(PageType.BLOG));
+  }, []);
+
   return (
     <div>
       <Head>

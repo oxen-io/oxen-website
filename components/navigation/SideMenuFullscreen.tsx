@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NAVIGATION, UI } from '../../constants';
+import { UI } from '../../constants';
 import { IState } from '../../state/reducers';
 import { SideMenuInner } from './SideMenuInner';
 import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
@@ -13,11 +13,6 @@ interface Props {
 export function SideMenuFullscreen({ withSideBar }: Props) {
   const { sideMenuExpanded: expanded } = useSelector(
     (state: IState) => state.navigation,
-  );
-
-  console.log(
-    'SideMenuMobile ➡️ NAVIGATION.MENU_ITEMS:',
-    NAVIGATION.MENU_ITEMS,
   );
 
   return (

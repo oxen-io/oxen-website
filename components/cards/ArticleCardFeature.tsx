@@ -59,7 +59,7 @@ export function ArticleCardFeature(props: IPost) {
           <div className="flex-grow overflow-hidden">
             <p
               style={{ maxHeight: '7.25em' }}
-              className="overflow-hidden text-sm leading-tight "
+              className="overflow-hidden text-sm leading-tight"
             >
               {description.substring(0, 250)}...
             </p>

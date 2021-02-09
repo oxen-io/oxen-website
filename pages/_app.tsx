@@ -28,15 +28,16 @@ function App({ Component, pageProps }: AppProps) {
     const onBlog = NAVIGATION.BLOG_REGEX.test(url);
     const onPost = NAVIGATION.POST_REGEX.test(url);
 
-    console.log('_app ➡️ url:', url);
-    console.log('_app ➡️ onBlog:', onBlog);
-    console.log('_app ➡️ NAVIGATION.BLOG_REGEX:', NAVIGATION.BLOG_REGEX);
-
     const pageType = onBlog
       ? PageType.BLOG
       : onPost
       ? PageType.POST
       : PageType.NORMAL;
+
+    console.log('_app ➡️ url:', url);
+    console.log('_app ➡️ onBlog:', onBlog);
+    console.log('_app ➡️ onPost:', onPost);
+    console.log('_app ➡️ pageType:', pageType);
 
     store.dispatch(setPageType(pageType));
     store.dispatch(collapseSideMenu());
@@ -47,11 +48,6 @@ function App({ Component, pageProps }: AppProps) {
     store.dispatch(setSplitPagesContent(pages));
     store.dispatch(collapseSideMenu());
     handleLocationChange(router.pathname);
-
-    console.log(
-      '_app ➡️ store.getState().navigation.pageType:',
-      store.getState().navigation.pageType,
-    );
   }, []);
 
   // Close side menu on page changed

@@ -36,7 +36,11 @@ export function SideMenuSideBar({ mode }: Props) {
 
   const isBlog = pageType === PageType.BLOG;
   const isPost = pageType === PageType.POST;
-  const label = isPost ? postTitle : isBlog ? 'Blog' : selectedSideMenuItem;
+  const label = isPost
+    ? postTitle?.substr(0, 120)
+    : isBlog
+    ? 'Blog'
+    : selectedSideMenuItem;
   const isCollapsible = (isTablet || isMobile) && !isPost && !isBlog;
 
   const toggleSideMenu = () =>

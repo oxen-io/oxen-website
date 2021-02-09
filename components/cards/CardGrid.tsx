@@ -18,10 +18,8 @@ export function CardGrid({ children }: Props) {
   const spacingX = `space-x-${spacing}`;
 
   const grouping = isHuge ? 4 : isDesktop ? 3 : isTablet ? 2 : 1;
-  const numPaddingCards = children.length % grouping;
-
-  console.log('CardGrid ➡️ grouping:', grouping);
-  console.log('CardGrid ➡️ paddingCards:', numPaddingCards);
+  const numPaddingCards =
+    Math.ceil(children.length / grouping) * grouping - children.length;
 
   // Add cards to ensure we fill up each row. Hidden where the row is incomplete
   // to keep even widths
@@ -29,8 +27,6 @@ export function CardGrid({ children }: Props) {
     ...children,
     ...Array.from(Array(numPaddingCards).keys()).map(i => <div key={i}></div>),
   ];
-
-  console.log('CardGrid ➡️ cards:', cards);
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
+import { PageType } from '../../state/navigation';
 import { IState } from '../../state/reducers';
 import { Header } from '../navigation/Header';
 import { SideMenu } from '../navigation/SideMenu';
@@ -12,12 +13,12 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const { isTablet, isDesktop } = useContext(ScreenContext);
-  const { sideMenuSplit, sideMenuExpanded } = useSelector(
+  const { pageType, sideMenuExpanded } = useSelector(
     (state: IState) => state.navigation,
   );
 
   const marginLeft =
-    (!sideMenuSplit && isDesktop) || isTablet
+    (pageType !== PageType.NORMAL && isDesktop) || isTablet
       ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX
       : 0;
 

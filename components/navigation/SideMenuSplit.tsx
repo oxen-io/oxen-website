@@ -3,13 +3,13 @@ import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useClickAway } from 'react-use';
 import { UI } from '../../constants';
-import { collapseSideMenu } from '../../state/navigation';
+import { collapseSideMenu, PageType } from '../../state/navigation';
 import { IState } from '../../state/reducers';
 import { SideMenuInner } from './SideMenuInner';
 import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
 
 export function SideMenuSplit() {
-  const { sideMenuSplit, sideMenuExpanded } = useSelector(
+  const { pageType, sideMenuExpanded } = useSelector(
     (state: IState) => state.navigation,
   );
 
@@ -17,7 +17,7 @@ export function SideMenuSplit() {
   const dispatch = useDispatch();
 
   const onClickAway = () => {
-    if (sideMenuExpanded && !sideMenuSplit) {
+    if (sideMenuExpanded && pageType === PageType.NORMAL) {
       dispatch(collapseSideMenu());
     }
   };
@@ -25,7 +25,7 @@ export function SideMenuSplit() {
   useClickAway(ref, onClickAway);
 
   const transform =
-    sideMenuSplit || sideMenuExpanded
+    pageType === PageType.NORMAL || sideMenuExpanded
       ? 'translateX(0)'
       : `translateX(-100%) translateX(${UI.SIDE_MENU_SIDE_BAR_WIDTH_PX - 3}px)`;
 
@@ -33,16 +33,17 @@ export function SideMenuSplit() {
     <div
       ref={ref}
       style={{
-        minWidth: sideMenuSplit ? '50vw' : '0',
+        minWidth: pageType === PageType.NORMAL ? '50vw' : '0',
         zIndex: 20033,
-        height: sideMenuSplit
-          ? 'unset'
-          : `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
+        height:
+          pageType === PageType.NORMAL
+            ? 'unset'
+            : `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
         transform,
       }}
       className={classNames('relative flex text-primary bg-alt duration-300')}
     >
-      {sideMenuSplit && (
+      {pageType === PageType.NORMAL && (
         <div
           style={{
             height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,

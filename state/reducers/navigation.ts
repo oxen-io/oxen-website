@@ -17,8 +17,8 @@ export const navigationReducer = (
     case NavigationActions.SET_HEADER_COLLAPSED: {
       return { ...state, headerCollapsed: action.payload };
     }
-    case NavigationActions.SET_SIDE_MENU_SPLIT: {
-      return { ...state, sideMenuSplit: action.payload };
+    case NavigationActions.SET_PAGE_TYPE: {
+      return { ...state, pageType: action.payload };
     }
     case NavigationActions.EXPAND_SIDE_MENU: {
       return { ...state, sideMenuExpanded: true };

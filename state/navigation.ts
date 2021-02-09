@@ -18,21 +18,27 @@ export type TPages = {
 export interface INavigation {
   headerCollapsed: boolean;
   sideMenuExpanded: boolean;
-  sideMenuSplit: boolean;
+  pageType: PageType;
   pages?: TPages;
+}
+
+export enum PageType {
+  NORMAL = 'NORMAL',
+  BLOG = 'BLOG',
+  POST = 'POST',
 }
 
 export const initialNavigationState: INavigation = {
   // Side menu expanded only toggles for mobile.
   // On desktop it's always open (if it fits).
+  pageType: PageType.NORMAL,
   headerCollapsed: true,
   sideMenuExpanded: false,
-  sideMenuSplit: true,
 };
 
 export enum NavigationActions {
   SET_HEADER_COLLAPSED = 'SET_HEADER_COLLAPSED',
-  SET_SIDE_MENU_SPLIT = 'SET_SIDE_MENU_SPLIT',
+  SET_PAGE_TYPE = 'SET_PAGE_TYPE',
   EXPAND_SIDE_MENU = 'EXPAND_SIDE_MENU',
   COLLAPSE_SIDE_MENU = 'COLLAPSE_SIDE_MENU',
   SET_SPLIT_PAGES_CONTENT = 'SET_SPLIT_PAGES_CONTENT',
@@ -46,9 +52,9 @@ export const setHeaderCollapsed = (collapsed: boolean) => ({
   payload: collapsed,
 });
 
-export const setSideMenuSplit = (split: boolean) => ({
-  type: NavigationActions.SET_SIDE_MENU_SPLIT,
-  payload: split,
+export const setPageType = (type: PageType) => ({
+  type: NavigationActions.SET_PAGE_TYPE,
+  payload: type,
 });
 
 export const expandSideMenu = () => ({

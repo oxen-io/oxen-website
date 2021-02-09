@@ -61,12 +61,14 @@ export function SideMenuSideBar({ mode }: Props) {
           />
         )}
         {isBlog && !isCollapsible && (
-          <TriangleSVG
-            onClick={() => router.push('/blog', '/blog')}
-            className={classNames(
-              'h-4 transform outline-none duration-300 cursor-pointer',
-            )}
-          />
+          <a href="/blog">
+            <TriangleSVG
+              // onClick={() => router.push('/blog', '/blog')}
+              className={classNames(
+                'h-4 transform outline-none duration-300 rotate-180 cursor-pointer',
+              )}
+            />
+          </a>
         )}
       </div>
 

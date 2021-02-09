@@ -32,14 +32,8 @@ export function SideMenuSideBar({ mode }: Props) {
     item => item.href === router.asPath,
   )?.label;
 
-  const label = sideMenuSplit ? selectedSideMenuItem : 'Blog';
   const isBlog = !sideMenuSplit;
-
-  console.log('SideMenuSideBar ➡️ label:', label);
-  console.log(
-    'SideMenuSideBar ➡️ NAVIGATION.SIDE_MENU_ITEMS:',
-    NAVIGATION.SIDE_MENU_ITEMS,
-  );
+  const label = isBlog ? 'Blog' : selectedSideMenuItem;
 
   const toggleSideMenu = () =>
     dispatch(expanded ? collapseSideMenu() : expandSideMenu());

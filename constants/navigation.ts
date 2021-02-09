@@ -4,16 +4,32 @@ import { SideMenuItem } from '../state/navigation';
 export interface IMenuItem {
   label: string;
   href: string;
+  newTab: boolean;
+  subtle: boolean;
 }
 
 const MENU_ITEMS: IMenuItem[] = [
-  { label: 'Docs', href: '/' },
-  // { label: 'Dev Updates', href: '/' },
-  { label: 'CoinGecko', href: '/' },
-  { label: 'Wallet', href: '/' },
-  { label: 'Explorer', href: '/' },
-  { label: 'Community', href: '/' },
-  { label: 'Tech', href: '/' },
+  { label: 'Blog', href: '/blog', newTab: false, subtle: false },
+  { label: 'Docs', href: 'https://docs.oxen.io', newTab: true, subtle: false },
+  { label: 'Community', href: '/community', newTab: false, subtle: false },
+  {
+    label: 'Explorer',
+    href: 'https://oxen.observer/',
+    newTab: true,
+    subtle: true,
+  },
+  {
+    label: 'CoinGecko',
+    href: 'https://www.coingecko.com/en/coins/oxen',
+    newTab: true,
+    subtle: true,
+  },
+  {
+    label: 'Downloads',
+    href: 'https://docs.oxen.io/downloads',
+    newTab: true,
+    subtle: true,
+  },
 ];
 
 // TODO - Put SIDE_MENU_ITEMS in Contentful and fetch them server side.

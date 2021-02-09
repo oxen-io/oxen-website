@@ -18,18 +18,6 @@ export function ArticleCardFeature(props: IPost) {
     slug,
   } = props;
 
-  // top menu items
-  // Buttons (important)
-  // home
-  // 1. BLog
-  // 2. Doc
-  // 3. Community
-
-  // Aux items
-  // 1. EXPLORER
-  // 2. CoinGecko
-  // 3. DOWNLOADS (links to docs/downloads)
-
   // Side menu behaviour
   // Blog keeps the title
 

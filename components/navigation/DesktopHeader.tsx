@@ -27,10 +27,19 @@ export function DesktopHeader() {
             </Link>
           </div>
 
-          <div className="flex ml-6 space-x-4 text-sm">
+          <div className="flex items-center ml-6 space-x-4 text-sm">
             {NAVIGATION.MENU_ITEMS.map(item => (
               <Link key={item.label} href={item.href} as={item.href}>
-                <a className="uppercase whitespace-no-wrap hover:underline">
+                <a
+                  className={classNames(
+                    'uppercase whitespace-no-wrap',
+                    item.subtle
+                      ? 'text-xs hover:underline'
+                      : 'text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-25',
+                  )}
+                  target={item.newTab ? '_blank' : undefined}
+                  rel={item.newTab ? 'noreferrer' : undefined}
+                >
                   {item.label}
                 </a>
               </Link>

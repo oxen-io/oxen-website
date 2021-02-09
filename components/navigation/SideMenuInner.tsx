@@ -43,12 +43,12 @@ export function SideMenuInner() {
           {!isDesktop && (
             <div
               className={classNames(
-                'flex justify-between pt-8 pb-2 font-medium uppercase font-prompt',
-                isDesktop ? 'text-xs' : 'text-sm',
+                'flex flex-col pt-8 pb-2 font-medium uppercase font-prompt',
+                isDesktop ? 'text-xs' : 'text-base',
               )}
             >
               {_.chunk(NAVIGATION.MENU_ITEMS, 3).map(group => (
-                <div key={uuid()} className="flex flex-col space-y-2">
+                <div key={uuid()} className="flex justify-between space-x-2 ">
                   {group.map(item => (
                     <a key={item.label} href={item.href}>
                       {item.label}
@@ -58,14 +58,27 @@ export function SideMenuInner() {
               ))}
             </div>
           )}
-          <div className="flex mb-6 space-x-3">
-            <a href="https://t.me/Oxen_Community">
+
+          <div className="flex pb-6 -mx-6 space-x-3">
+            <a
+              href="https://t.me/Oxen_Community"
+              target="_blank"
+              rel="noreferrer"
+            >
               <TelegramSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
             </a>
-            <a href="https://twitter.com/Oxen_io">
+            <a
+              href="https://twitter.com/Oxen_io"
+              target="_blank"
+              rel="noreferrer"
+            >
               <TwitterSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
             </a>
-            <a href="https://github.com/oxen-io">
+            <a
+              href="https://github.com/oxen-io"
+              target="_blank"
+              rel="noreferrer"
+            >
               <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
             </a>
           </div>

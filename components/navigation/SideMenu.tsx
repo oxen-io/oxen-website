@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { ScreenContext } from '../../contexts/screen';
+import { PageType } from '../../state/navigation';
+import { IState } from '../../state/reducers';
 import { SideMenuFullscreen } from './SideMenuFullscreen';
-import { SideMenuInner } from './SideMenuInner';
 import { SideMenuSplit } from './SideMenuSplit';
 
 export interface ISideMenuItem {
@@ -12,7 +14,9 @@ export interface ISideMenuItem {
 
 export function SideMenu() {
   const { isMobile, isTablet } = useContext(ScreenContext);
-  const overlay = false;
+  const { sideMenuExpanded: expanded, pageType, postTitle } = useSelector(
+    (state: IState) => state.navigation,
+  );
 
   // ON MOBILE: overlay with no sidebar
   // ON TABLET: overlay with sidebar
@@ -23,12 +27,11 @@ export function SideMenu() {
   // Split screen overlay with sidebar: ONLY ON DESKTOP && /blog
   // Just sidebar: /blog
 
-  return isMobile || isTablet ? (
+  const isBlog = pageType === PageType.BLOG;
+  const isPost = pageType === PageType.POST;
+
+  return (isMobile || isTablet) && !isBlog && !isPost ? (
     <SideMenuFullscreen withSideBar={isTablet} />
-  ) : overlay ? (
-    <div className="fixed inset-0">
-      <SideMenuInner />
-    </div>
   ) : (
     <SideMenuSplit />
   );

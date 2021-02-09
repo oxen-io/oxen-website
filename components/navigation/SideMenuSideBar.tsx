@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import TriangleSVG from '../../assets/svgs/triangle.svg';
 import { NAVIGATION, UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
-import { collapseSideMenu, expandSideMenu } from '../../state/navigation';
+import {
+  collapseSideMenu,
+  expandSideMenu,
+  PageType,
+} from '../../state/navigation';
 import { IState } from '../../state/reducers';
 
 export enum SideBarMode {
@@ -18,12 +22,10 @@ interface Props {
 }
 
 export function SideMenuSideBar({ mode }: Props) {
-  const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
-  const { sideMenuExpanded: expanded, sideMenuSplit } = useSelector(
+  const { isMobile, isTablet, isHuge } = useContext(ScreenContext);
+  const { sideMenuExpanded: expanded, pageType, postTitle } = useSelector(
     (state: IState) => state.navigation,
   );
-
-  const isCollapsible = isTablet || isMobile;
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -32,8 +34,10 @@ export function SideMenuSideBar({ mode }: Props) {
     item => item.href === router.asPath,
   )?.label;
 
-  const isBlog = !sideMenuSplit;
-  const label = isBlog ? 'Blog' : selectedSideMenuItem;
+  const isBlog = pageType === PageType.BLOG;
+  const isPost = pageType === PageType.POST;
+  const label = isPost ? postTitle : isBlog ? 'Blog' : selectedSideMenuItem;
+  const isCollapsible = (isTablet || isMobile) && !isPost && !isBlog;
 
   const toggleSideMenu = () =>
     dispatch(expanded ? collapseSideMenu() : expandSideMenu());
@@ -49,21 +53,20 @@ export function SideMenuSideBar({ mode }: Props) {
         mode === SideBarMode.LABEL && 'border-r border-b',
         mode === SideBarMode.MENU && !expanded && 'border-r',
       )}
-      onClick={() => isCollapsible && toggleSideMenu()}
     >
       <div>
         {isCollapsible && (
           <TriangleSVG
+            onClick={() => isCollapsible && toggleSideMenu()}
             className={classNames(
               'h-4 transform outline-none duration-300 cursor-pointer',
               expanded ? 'rotate-180' : '-rotate-60',
             )}
           />
         )}
-        {isBlog && !isCollapsible && (
-          <a href="/blog">
+        {(isBlog || isPost) && !isCollapsible && (
+          <a href={isPost ? '/blog' : '/'}>
             <TriangleSVG
-              // onClick={() => router.push('/blog', '/blog')}
               className={classNames(
                 'h-4 transform outline-none duration-300 rotate-180 cursor-pointer',
               )}

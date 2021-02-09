@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import React, { useRef } from 'react';
+import { v4 as uuid } from 'uuid';
 import OxenLogoSVG from '../../assets/svgs/brand.svg';
 import { NAVIGATION, UI } from '../../constants';
 
@@ -45,15 +46,15 @@ export function DesktopHeader() {
               );
 
               return (
-                <>
+                <div key={uuid()}>
                   {item.external ? (
                     link
                   ) : (
-                    <Link key={item.label} href={item.href} as={item.href}>
+                    <Link href={item.href} as={item.href}>
                       {link}
                     </Link>
                   )}
-                </>
+                </div>
               );
             })}
           </div>

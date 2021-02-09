@@ -11,7 +11,8 @@ import ScreenProvider from '../contexts/screen';
 import { CmsApi } from '../services/cms';
 import {
   collapseSideMenu,
-  setSideMenuSplit,
+  PageType,
+  setPageType,
   setSplitPagesContent,
 } from '../state/navigation';
 import { rootReducer } from '../state/reducers';
@@ -24,14 +25,20 @@ function App({ Component, pageProps }: AppProps) {
 
   const handleLocationChange = url => {
     // Break out of split view
-    const split = !NAVIGATION.OVERLAY_PAGE_REGEX.test(url);
+    const onBlog = NAVIGATION.BLOG_REGEX.test(url);
+    const onPost = NAVIGATION.POST_REGEX.test(url);
 
-    console.log(
-      '_app ➡️ NAVIGATION.OVERLAY_PAGE_REGEX.test(url);:',
-      NAVIGATION.OVERLAY_PAGE_REGEX.test(url),
-    );
+    console.log('_app ➡️ url:', url);
+    console.log('_app ➡️ onBlog:', onBlog);
+    console.log('_app ➡️ NAVIGATION.BLOG_REGEX:', NAVIGATION.BLOG_REGEX);
 
-    store.dispatch(setSideMenuSplit(split));
+    const pageType = onBlog
+      ? PageType.BLOG
+      : onPost
+      ? PageType.POST
+      : PageType.NORMAL;
+
+    store.dispatch(setPageType(pageType));
     store.dispatch(collapseSideMenu());
   };
 
@@ -41,7 +48,10 @@ function App({ Component, pageProps }: AppProps) {
     store.dispatch(collapseSideMenu());
     handleLocationChange(router.pathname);
 
-    console.log('NAVIGATION.OVERLAY_PAGE_REGEX', NAVIGATION.OVERLAY_PAGE_REGEX);
+    console.log(
+      '_app ➡️ store.getState().navigation.pageType:',
+      store.getState().navigation.pageType,
+    );
   }, []);
 
   // Close side menu on page changed

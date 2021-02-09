@@ -1,12 +1,15 @@
 // [slug].js
 import Head from 'next/head';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Article } from '../../components/article/Article';
 import { CmsApi } from '../../services/cms';
+import { setPostTitle } from '../../state/navigation';
+import { IState } from '../../state/reducers';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const api = new CmsApi();
   const post = await api.fetchBlogBySlug(String(params.slug) ?? '');
 
@@ -17,18 +20,18 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  return { props: post, revalidate: 60 };
+  return { props: { post } };
 }
 
-function Post(post: IPost) {
-  // Scroll to top on load
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-    }
-  }, []);
+function Post({ post }: { post: IPost }) {
+  const { pageType, postTitle } = useSelector(
+    (state: IState) => state.navigation,
+  );
+  const dispatch = useDispatch();
 
-  console.log('[slug] ➡️   posts:', post);
+  useEffect(() => {
+    dispatch(setPostTitle(postTitle));
+  }, []);
 
   return (
     <>

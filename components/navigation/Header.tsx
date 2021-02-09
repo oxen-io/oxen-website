@@ -4,6 +4,6 @@ import { DesktopHeader } from './DesktopHeader';
 import { MobileHeader } from './MobileHeader';
 
 export function Header() {
-  const { isDesktop } = useContext(ScreenContext);
-  return <>{isDesktop ? <DesktopHeader /> : <MobileHeader />}</>;
+  const { isHuge } = useContext(ScreenContext);
+  return <>{isHuge ? <DesktopHeader /> : <MobileHeader />}</>;
 }

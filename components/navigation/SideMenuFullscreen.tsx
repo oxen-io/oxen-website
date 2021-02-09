@@ -24,7 +24,7 @@ export function SideMenuFullscreen({ withSideBar }: Props) {
     <div
       style={{
         top: `${UI.HEADER_HEIGHT_PX}px`,
-        zIndex: 30000,
+        zIndex: 20000,
         transform: expanded
           ? 'translateX(0)'
           : `translateX(-100%) ${

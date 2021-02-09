@@ -28,22 +28,34 @@ export function DesktopHeader() {
           </div>
 
           <div className="flex items-center ml-6 space-x-4 text-sm">
-            {NAVIGATION.MENU_ITEMS.map(item => (
-              <Link key={item.label} href={item.href} as={item.href}>
+            {NAVIGATION.MENU_ITEMS.map(item => {
+              const link = (
                 <a
                   className={classNames(
-                    'uppercase whitespace-no-wrap',
+                    'uppercase whitespace-no-wrap cursor-pointer',
                     item.subtle
                       ? 'text-xs hover:underline'
-                      : 'text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-25',
+                      : 'duration-300 text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-10',
                   )}
                   target={item.newTab ? '_blank' : undefined}
                   rel={item.newTab ? 'noreferrer' : undefined}
                 >
                   {item.label}
                 </a>
-              </Link>
-            ))}
+              );
+
+              return (
+                <>
+                  {item.external ? (
+                    link
+                  ) : (
+                    <Link key={item.label} href={item.href} as={item.href}>
+                      {link}
+                    </Link>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

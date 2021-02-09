@@ -34,7 +34,7 @@ export function SideMenuSplit() {
       ref={ref}
       style={{
         minWidth: sideMenuSplit ? '50vw' : '0',
-        zIndex: 30033,
+        zIndex: 20033,
         height: sideMenuSplit
           ? 'unset'
           : `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,

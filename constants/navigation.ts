@@ -6,29 +6,51 @@ export interface IMenuItem {
   href: string;
   newTab: boolean;
   subtle: boolean;
+  external: boolean;
 }
 
 const MENU_ITEMS: IMenuItem[] = [
-  { label: 'Blog', href: '/blog', newTab: false, subtle: false },
-  { label: 'Docs', href: 'https://docs.oxen.io', newTab: true, subtle: false },
-  { label: 'Community', href: '/community', newTab: false, subtle: false },
+  {
+    label: 'Blog',
+    href: '/blog',
+    newTab: false,
+    subtle: false,
+    external: false,
+  },
+  {
+    label: 'Docs',
+    href: 'https://docs.oxen.io',
+    newTab: true,
+    subtle: false,
+    external: true,
+  },
+  {
+    label: 'Community',
+    href: '/community',
+    newTab: false,
+    subtle: false,
+    external: false,
+  },
   {
     label: 'Explorer',
     href: 'https://oxen.observer/',
     newTab: true,
     subtle: true,
+    external: true,
   },
   {
     label: 'CoinGecko',
     href: 'https://www.coingecko.com/en/coins/oxen',
     newTab: true,
     subtle: true,
+    external: true,
   },
   {
     label: 'Downloads',
     href: 'https://docs.oxen.io/downloads',
     newTab: true,
     subtle: true,
+    external: true,
   },
 ];
 

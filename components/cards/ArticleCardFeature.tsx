@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ScreenContext } from '../../contexts/screen';
 import { IPost } from '../../types/cms';
 import { generateURL } from '../../utils/routing';
 import { TagRow } from '../TagRow';
@@ -17,14 +18,32 @@ export function ArticleCardFeature(props: IPost) {
     slug,
   } = props;
 
+  // top menu items
+  // Buttons (important)
+  // home
+  // 1. BLog
+  // 2. Doc
+  // 3. Community
+
+  // Aux items
+  // 1. EXPLORER
+  // 2. CoinGecko
+  // 3. DOWNLOADS (links to docs/downloads)
+
+  // Side menu behaviour
+  // Blog keeps the title
+
+  //
+
   const { href, as } = generateURL(slug);
+  const { isMobile, isTablet } = useContext(ScreenContext);
 
   const router = useRouter();
   const onClick = () => router.push(href, as);
 
   return (
-    <div className="flex w-full space-x-6">
-      <div className="w-7/12 relatvie">
+    <div className="flex flex-col w-full space-x-0 tablet:space-x-6 tablet:flex-row">
+      <div className="w-full tablet:w-7/12 relatvie">
         <div
           onClick={onClick}
           style={{ minHeight: '100%' }}
@@ -34,7 +53,7 @@ export function ArticleCardFeature(props: IPost) {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between w-5/12">
+      <div className="flex flex-col justify-between w-full mt-6 tablet:w-5/12 tablet:mt-0">
         <div className="flex flex-col space-y-3">
           <Link href={href} as={as}>
             <a

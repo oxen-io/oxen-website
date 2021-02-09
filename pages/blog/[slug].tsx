@@ -6,12 +6,9 @@ import { CmsApi } from '../../services/cms';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
-export async function getServerSideProps({ params }) {
-  console.log('Sulg', params);
+export async function getStaticProps({ params }) {
   const api = new CmsApi();
   const post = await api.fetchBlogBySlug(String(params.slug) ?? '');
-
-  console.log('index ➡️   post:', post);
 
   if (!post) {
     return {
@@ -20,7 +17,7 @@ export async function getServerSideProps({ params }) {
     };
   }
 
-  return { props: post };
+  return { props: post, revalidate: 60 };
 }
 
 function Post(post: IPost) {

@@ -30,6 +30,7 @@ function App({ Component, pageProps }: AppProps) {
 
     console.log('_app ➡️ url:', url);
     console.log('_app ➡️ onBlog:', onBlog);
+    console.log('_app ➡️ onPost:', onPost);
     console.log('_app ➡️ NAVIGATION.BLOG_REGEX:', NAVIGATION.BLOG_REGEX);
 
     const pageType = onBlog

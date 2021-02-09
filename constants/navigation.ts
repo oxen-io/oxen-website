@@ -91,18 +91,13 @@ const SIDE_MENU_ITEMS = {
     label: 'How can I find more?',
     href: '/explore',
   },
-  [SideMenuItem.BLOG]: {
-    id: 8,
-    label: 'Our blog',
-    href: '/blog',
-  },
 } as { [name: string]: ISideMenuItem };
 
 const NAVIGATION = {
   MENU_ITEMS,
   SIDE_MENU_ITEMS,
-  BLOG_REGEX: /^\/(blog)[/]?$/,
-  POST_REGEX: /^\/(blog\/\[slug\])[/]?$/,
+  BLOG_REGEX: /^\/(blog)[?tag=[\w]*]?$/,
+  POST_REGEX: /^\/(blog\/)[\w-]{1,100}$/,
 };
 
 export default NAVIGATION;

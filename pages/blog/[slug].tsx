@@ -30,7 +30,7 @@ function Post({ post }: { post: IPost }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setPostTitle(postTitle));
+    dispatch(setPostTitle(post.title));
   }, []);
 
   return (

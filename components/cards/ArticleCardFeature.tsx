@@ -46,7 +46,7 @@ export function ArticleCardFeature(props: IPost) {
         className="flex flex-col justify-between w-full tablet:w-5/12"
       >
         <div className="flex flex-col space-y-3">
-          <Link href={href} as={as}>
+          <Link href={href}>
             <a
               style={{ height: '2.95em' }}
               className="overflow-hidden font-sans text-3xl font-medium leading-none hover:underline"
@@ -59,7 +59,7 @@ export function ArticleCardFeature(props: IPost) {
           <div className="flex-grow overflow-hidden">
             <p
               style={{ maxHeight: '7.25em' }}
-              className="overflow-hidden text-sm leading-tight "
+              className="overflow-hidden text-sm leading-tight"
             >
               {description.substring(0, 250)}...
             </p>

@@ -25,8 +25,8 @@ const MENU_ITEMS: IMenuItem[] = [
     external: true,
   },
   {
-    label: 'Community',
-    href: '/community',
+    label: 'Get Involved',
+    href: '/get-involved',
     newTab: false,
     subtle: false,
     external: false,

@@ -16,10 +16,11 @@ export type TPages = {
 };
 
 export interface INavigation {
-  headerCollapsed: boolean;
-  sideMenuExpanded: boolean;
   pageType: PageType;
   postTitle?: string;
+  headerCollapsed: boolean;
+  sideMenuExpanded: boolean;
+  headerMobileMenuExpanded: boolean;
   pages?: TPages;
 }
 
@@ -36,6 +37,7 @@ export const initialNavigationState: INavigation = {
   postTitle: undefined,
   headerCollapsed: true,
   sideMenuExpanded: false,
+  headerMobileMenuExpanded: false,
 };
 
 export enum NavigationActions {
@@ -45,6 +47,8 @@ export enum NavigationActions {
   EXPAND_SIDE_MENU = 'EXPAND_SIDE_MENU',
   COLLAPSE_SIDE_MENU = 'COLLAPSE_SIDE_MENU',
   SET_SPLIT_PAGES_CONTENT = 'SET_SPLIT_PAGES_CONTENT',
+  EXPAND_MOBILE_HEADER_MENU = 'EXPAND_MOBILE_HEADER_MENU',
+  COLLAPSE_MOBILE_HEADER_MENU = 'COLLAPSE_MOBILE_HEADER_MENU',
 }
 
 // ////////////////////////////// //
@@ -77,4 +81,12 @@ export const collapseSideMenu = () => ({
 export const setSplitPagesContent = (pages: TPages) => ({
   type: NavigationActions.SET_SPLIT_PAGES_CONTENT,
   payload: pages,
+});
+
+export const expandMobileHeaderMenu = () => ({
+  type: NavigationActions.EXPAND_MOBILE_HEADER_MENU,
+});
+
+export const collapseMobileHeader = () => ({
+  type: NavigationActions.COLLAPSE_MOBILE_HEADER_MENU,
 });

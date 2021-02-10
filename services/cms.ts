@@ -17,6 +17,7 @@ export class CmsApi {
     return this.client
       .getEntries({
         content_type: 'post', // only fetch blog post entry
+        order: 'sys.createdAt',
       })
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {
@@ -55,6 +56,7 @@ export class CmsApi {
     try {
       const entries = await this.client.getEntries({
         content_type: 'splitPage', // only fetch blog post entry
+        order: 'sys.createdAt',
       });
 
       if (entries && entries.items && entries.items.length > 0) {

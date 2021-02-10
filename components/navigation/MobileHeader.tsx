@@ -6,18 +6,28 @@ import OxenLogoSVG from '../../assets/svgs/brand.svg';
 import TriangleSVG from '../../assets/svgs/triangle.svg';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
-import { collapseSideMenu, expandSideMenu } from '../../state/navigation';
+import {
+  collapseSideMenu,
+  expandMobileHeaderMenu,
+  expandSideMenu,
+  PageType,
+} from '../../state/navigation';
 import { IState } from '../../state/reducers';
+import { MobileMenu } from './MobileMenu';
 
 export function MobileHeader() {
-  const { isMobile } = useContext(ScreenContext);
-  const { sideMenuExpanded: expanded } = useSelector(
+  const { isMobile, isTablet } = useContext(ScreenContext);
+  const { sideMenuExpanded, headerMobileMenuExpanded, pageType } = useSelector(
     (state: IState) => state.navigation,
   );
   const dispatch = useDispatch();
 
+  // On blog page, the sidebar disappears so we need a
+  // hamburger menu for topbar links
+  const isBlog = pageType === PageType.BLOG;
+
   const toggleSideMenu = () =>
-    dispatch(expanded ? collapseSideMenu() : expandSideMenu());
+    dispatch(sideMenuExpanded ? collapseSideMenu() : expandSideMenu());
 
   return (
     <div
@@ -38,14 +48,27 @@ export function MobileHeader() {
           </Link>
         </div>
 
-        {isMobile && (
+        {isMobile && !isBlog && (
           <TriangleSVG
             onClick={() => toggleSideMenu()}
             className={classNames(
               'h-3 transform outline-none duration-300',
-              expanded ? 'rotate-180' : '-rotate-60',
+              sideMenuExpanded ? 'rotate-180' : '-rotate-60',
             )}
           />
+        )}
+
+        {isTablet && !isBlog && (
+          <>
+            <TriangleSVG
+              onClick={() => dispatch(expandMobileHeaderMenu())}
+              className={classNames(
+                'h-3 transform outline-none duration-300',
+                headerMobileMenuExpanded ? 'rotate-90' : 'rotate-90',
+              )}
+            />
+            <MobileMenu />
+          </>
         )}
       </div>
     </div>

@@ -40,7 +40,7 @@ export function SideMenuInner() {
 
       <Contained>
         <div className="flex flex-col w-full space-y-4">
-          {!isHuge && (
+          {!isDesktop && (
             <div
               className={classNames(
                 'flex flex-col pt-8 pb-2 font-medium uppercase font-prompt',

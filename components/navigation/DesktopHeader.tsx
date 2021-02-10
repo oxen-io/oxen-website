@@ -1,12 +1,16 @@
 import classNames from 'classnames';
 import Link from 'next/link';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 import OxenLogoSVG from '../../assets/svgs/brand.svg';
 import { NAVIGATION, UI } from '../../constants';
+import { ScreenContext } from '../../contexts/screen';
 
 export function DesktopHeader() {
+  const { width } = useContext(ScreenContext);
   const navBarRef = useRef(null);
+
+  const tightHeader = width < 740 && width > UI.TABLET_BREAKPOINT;
 
   return (
     <div
@@ -15,7 +19,7 @@ export function DesktopHeader() {
         height: `${UI.HEADER_HEIGHT_PX}px`,
       }}
       className={classNames(
-        'w-full bg-alt flex items-center border-b border-primary',
+        'w-full overflow-hidden bg-alt flex items-center border-b border-primary',
       )}
     >
       <div className="flex items-center w-full h-full px-6">
@@ -23,7 +27,12 @@ export function DesktopHeader() {
           <div className="flex flex-grow">
             <Link href="/">
               <a className="flex items-center flex-shrink-0 text-primary">
-                <OxenLogoSVG className="h-8 fill-current" />
+                <OxenLogoSVG
+                  className={classNames(
+                    'fill-current',
+                    tightHeader ? 'h-6' : 'h-8',
+                  )}
+                />
               </a>
             </Link>
           </div>

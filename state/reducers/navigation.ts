@@ -32,6 +32,12 @@ export const navigationReducer = (
     case NavigationActions.SET_SPLIT_PAGES_CONTENT: {
       return { ...state, pages: action.payload };
     }
+    case NavigationActions.EXPAND_MOBILE_HEADER_MENU: {
+      return { ...state, headerMobileMenuExpanded: true };
+    }
+    case NavigationActions.COLLAPSE_MOBILE_HEADER_MENU: {
+      return { ...state, headerMobileMenuExpanded: false };
+    }
     default:
       return state;
   }

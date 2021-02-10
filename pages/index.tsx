@@ -1,15 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RichBody } from '../components/RichBody';
 import { METADATA } from '../constants';
-import { SideMenuItem } from '../state/navigation';
-import { IState } from '../state/reducers';
 
 const Index = () => {
-  const { pages } = useSelector((state: IState) => state.navigation);
-  const page = pages ? pages[SideMenuItem.WHO_ARE_WE] : undefined;
-
   return (
     <div>
       <Head>
@@ -22,7 +15,7 @@ const Index = () => {
       </Head>
 
       <div>
-        <RichBody body={page?.body} />
+        <img className="object-cover w-full h-full" src="/hero.jpg" />
       </div>
     </div>
   );

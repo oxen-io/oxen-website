@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withPlugins = require('next-compose-plugins');
-const withSass = require('@zeit/next-sass');
 const withFonts = require('next-fonts');
 const withSvgr = require('next-svgr');
 
@@ -25,4 +24,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([withSass, withFonts, withSvgr], nextConfig);
+module.exports = withPlugins([withFonts, withSvgr], nextConfig);

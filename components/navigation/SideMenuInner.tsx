@@ -2,23 +2,28 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import GithubSVG from '../../assets/svgs/socials/github.svg';
 import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
 import { NAVIGATION } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
+import { slugify } from '../../services/cms';
+import { IState } from '../../state/reducers';
 import { Contained } from '../Contained';
 import { SideMenuRow } from './SideMenuRow';
 
 export function SideMenuInner() {
   const { isHuge, isDesktop } = useContext(ScreenContext);
-
+  const { pages } = useSelector((state: IState) => state.navigation);
   const dispatch = useDispatch();
   const router = useRouter();
 
   const itemIsActive = (href: string) => {
+    console.log('SideMenuInner ➡️ router.pathname:', router.pathname);
+    console.log('SideMenuInner ➡️     href:', href);
+
     return href === '/'
       ? // Location is at home
         router.asPath === '/'
@@ -29,11 +34,22 @@ export function SideMenuInner() {
   return (
     <div className="flex flex-col flex-grow h-full">
       <div className="flex flex-col flex-grow h-full duration-300 mobile:children:last:border-b-0">
-        {Object.entries(NAVIGATION.SIDE_MENU_ITEMS).map(([key, item]) => (
+        {/* {Object.entries(NAVIGATION.SIDE_MENU_ITEMS).map(([key, item]) => (
           <SideMenuRow
             item={item}
             key={item.label}
             isActive={itemIsActive(item.href)}
+          />
+        ))} */}
+        {Object.entries(pages ?? {}).map(([key, item]) => (
+          <SideMenuRow
+            item={{
+              id: 1,
+              href: slugify(item.id),
+              label: item.label,
+            }}
+            key={item.label}
+            isActive={itemIsActive(slugify(item.id))}
           />
         ))}
       </div>

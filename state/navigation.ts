@@ -1,16 +1,5 @@
 import { ISplitPage } from '../types/cms';
 
-export enum SideMenuItem {
-  WHO_ARE_WE = 'WHO_ARE_WE',
-  MISSION = 'MISSION',
-  TRADE = 'TRADE',
-  TOOLS = 'TOOLS',
-  BUILD = 'BUILD',
-  SUPPORT = 'SUPPORT',
-  LEARN_MORE = 'LEARN_MORE',
-  BLOG = 'BLOG',
-}
-
 export type TPages = {
   [name: string]: ISplitPage;
 };

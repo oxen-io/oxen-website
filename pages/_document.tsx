@@ -1,10 +1,10 @@
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 
 export default class CustomDocument extends Document<any> {
   render() {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
           <link rel="shortcut icon" href="/favicon.ico"></link>
           <link
@@ -30,7 +30,7 @@ export default class CustomDocument extends Document<any> {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

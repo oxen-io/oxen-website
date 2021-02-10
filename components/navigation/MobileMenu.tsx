@@ -13,10 +13,11 @@ export function MobileMenu() {
   return (
     <div
       style={{
-        marginTop: `${UI.HEADER_HEIGHT_PX}px`,
+        top: `${UI.HEADER_HEIGHT_PX}px`,
+        left: `${UI.SIDE_MENU_SIDE_BAR_WIDTH_PX}px`,
         display: expanded ? 'block' : 'none',
       }}
-      className="absolute top-0 left-0 right-0 overflow-hidden"
+      className="fixed right-0 overflow-hidden"
     >
       <div
         style={{
@@ -26,7 +27,7 @@ export function MobileMenu() {
       >
         {NAVIGATION.MENU_ITEMS.map(item => {
           return (
-            <div key={uuid()}>
+            <div key={uuid()} className="flex justify-center px-6 py-1">
               {item.external ? (
                 <a className="w-full py-4 text-lg text-center uppercase focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white">
                   {item.label}

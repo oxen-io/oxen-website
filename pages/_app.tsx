@@ -8,19 +8,12 @@ import '../assets/style.scss';
 import Layout from '../components/layout';
 import { METADATA, NAVIGATION } from '../constants';
 import ScreenProvider from '../contexts/screen';
-import { CmsApi } from '../services/cms';
-import {
-  collapseSideMenu,
-  PageType,
-  setPageType,
-  setSplitPagesContent,
-} from '../state/navigation';
+import { collapseSideMenu, PageType, setPageType } from '../state/navigation';
 import { rootReducer } from '../state/reducers';
 
 const store = createStore(rootReducer);
 
 function App({ Component, pageProps }: AppProps) {
-  const { pages } = pageProps;
   const router = useRouter();
 
   const handleLocationChange = url => {
@@ -45,7 +38,7 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     // Set all pages on app load
-    store.dispatch(setSplitPagesContent(pages));
+    // store.dispatch(setSplitPagesContent(pages));
     store.dispatch(collapseSideMenu());
     handleLocationChange(router.pathname);
   }, []);
@@ -80,12 +73,5 @@ function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
-
-App.getInitialProps = async () => {
-  const api = new CmsApi();
-  const pages = await api.fetchPageEntries();
-
-  return { pageProps: { pages } };
-};
 
 export default App;

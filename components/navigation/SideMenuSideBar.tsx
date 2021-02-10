@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TriangleSVG from '../../assets/svgs/triangle.svg';
-import { NAVIGATION, UI } from '../../constants';
+import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
+import { slugify } from '../../services/cms';
 import {
   collapseSideMenu,
   expandSideMenu,
@@ -23,15 +24,18 @@ interface Props {
 
 export function SideMenuSideBar({ mode }: Props) {
   const { isMobile, isTablet, isHuge } = useContext(ScreenContext);
-  const { sideMenuExpanded: expanded, pageType, postTitle } = useSelector(
-    (state: IState) => state.navigation,
-  );
+  const {
+    sideMenuExpanded: expanded,
+    pageType,
+    postTitle,
+    pages,
+  } = useSelector((state: IState) => state.navigation);
 
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const selectedSideMenuItem = Object.values(NAVIGATION.SIDE_MENU_ITEMS).find(
-    item => item.href === router.asPath,
+  const selectedSideMenuItem = Object.values(pages ?? {}).find(
+    item => slugify(item.id) === router.asPath,
   )?.label;
 
   const isBlog = pageType === PageType.BLOG;

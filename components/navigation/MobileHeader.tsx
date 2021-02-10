@@ -52,19 +52,19 @@ export function MobileHeader() {
           <TriangleSVG
             onClick={() => toggleSideMenu()}
             className={classNames(
-              'h-3 transform outline-none duration-300',
+              'h-3 transform outline-none duration-300 cursor-pointer',
               sideMenuExpanded ? 'rotate-180' : '-rotate-60',
             )}
           />
         )}
 
-        {isTablet && !isBlog && (
+        {(isTablet || isMobile) && isBlog && (
           <>
             <TriangleSVG
               onClick={() => dispatch(expandMobileHeaderMenu())}
               className={classNames(
-                'h-3 transform outline-none duration-300',
-                headerMobileMenuExpanded ? 'rotate-90' : 'rotate-90',
+                'h-3 transform outline-none duration-300 cursor-pointer',
+                headerMobileMenuExpanded ? '-rotate-90' : 'rotate-90',
               )}
             />
             <MobileMenu />

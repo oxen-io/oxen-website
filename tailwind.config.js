@@ -34,14 +34,14 @@ module.exports = {
         primary: '#1F1C47',
         secondary: '#12C7BA',
         alt: '#DBF7F5',
-        hyper: '#C3F53A',
+        hyper: '#E5FF85',
         blush: '#FF7A87',
         blue: '#3F4BF5',
         purple: '#654192',
       },
       display: ['huge', 'desktop', 'tablet', 'mobile'],
       backgroundOpacity: {
-        '10': '0.1',
+        10: '0.1',
       },
     },
   },
@@ -55,8 +55,5 @@ module.exports = {
     require('tailwindcss-children'),
     require('@tailwindcss/aspect-ratio'),
   ],
-  purge: [
-    './components',
-    './pages',
-  ],
+  purge: ['./components', './pages'],
 };

@@ -40,7 +40,7 @@ export default function Layout({ children }: Props) {
           style={{
             marginLeft: `${marginLeft}px`,
           }}
-          className="relative w-full h-full py-6 overflow-y-auto duration-300 bg-alt"
+          className="relative w-full h-full overflow-y-auto duration-300 bg-alt"
         >
           {children}
         </div>

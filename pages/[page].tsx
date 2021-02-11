@@ -2,6 +2,8 @@
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Contained } from '../components/Contained';
+import { RichBody } from '../components/RichBody';
 import { NAVIGATION } from '../constants';
 import { CmsApi, unslugify } from '../services/cms';
 import { PageType, setPageType, SideMenuItem } from '../state/navigation';
@@ -24,9 +26,7 @@ export async function getStaticPaths() {
     }),
   );
 
-  console.log('[page] ➡️   paths:', paths);
-
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
@@ -34,8 +34,12 @@ export async function getStaticProps({ params }) {
 
   const id = unslugify(String(params?.page) ?? '');
 
+  console.log('[page] ➡️ id:', id);
+
   const api = new CmsApi();
   const page = await api.fetchPageById(SideMenuItem[id]);
+
+  console.log('[page] ➡️ page:', page);
 
   if (!page) {
     return { notFound: true };
@@ -52,7 +56,7 @@ export async function getStaticProps({ params }) {
 function Page({ page }: { page: ISplitPage }) {
   const dispatch = useDispatch();
 
-  console.log('[page] ➡️   page:', page);
+  console.log('[page] ➡️ page:', page);
 
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
@@ -65,11 +69,23 @@ function Page({ page }: { page: ISplitPage }) {
       </Head>
 
       <div>
-        {/* <div className="w-full aspect-w-16 aspect-h-16">
-          <img src={page?.hero?.imageUrl} className="object-cover" />
+        <div className="aspect-w-16 aspect-h-10">
+          <div className="flex items-center justify-center bg-gradient-to-br from-blush to-hyper">
+            <img
+              style={{ maxHeight: '90%' }}
+              src={page?.hero?.imageUrl}
+              className="w-8/12 py-12"
+            />
+          </div>
         </div>
-        {page?.title} {page} */}
-        sddsf
+
+        <Contained>
+          <h1 className="w-10/12 mt-6 mb-4 text-5xl font-bold leading-none text-primary font-prompt">
+            {page?.title}
+          </h1>
+
+          <RichBody body={page?.body} />
+        </Contained>
       </div>
     </>
   );

@@ -9,7 +9,6 @@ import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
 import { NAVIGATION } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
-import { slugify } from '../../services/cms';
 import { IState } from '../../state/reducers';
 import { Contained } from '../Contained';
 import { SideMenuRow } from './SideMenuRow';
@@ -21,27 +20,24 @@ export function SideMenuInner() {
   const router = useRouter();
 
   const itemIsActive = (href: string) => {
-    console.log('SideMenuInner ➡️ router.pathname:', router.pathname);
-    console.log('SideMenuInner ➡️     href:', href);
-
     return href === '/'
       ? // Location is at home
         router.asPath === '/'
       : // All other pages
-        new RegExp(`^${href}`).test(router.pathname);
+        new RegExp(`^${href}`).test(router.asPath);
   };
 
   return (
     <div className="flex flex-col flex-grow h-full">
       <div className="flex flex-col flex-grow h-full duration-300 mobile:children:last:border-b-0">
-        {/* {Object.entries(NAVIGATION.SIDE_MENU_ITEMS).map(([key, item]) => (
+        {Object.entries(NAVIGATION.SIDE_MENU_ITEMS).map(([key, item]) => (
           <SideMenuRow
             item={item}
             key={item.label}
             isActive={itemIsActive(item.href)}
           />
-        ))} */}
-        {Object.entries(pages ?? {}).map(([key, item]) => (
+        ))}
+        {/* {Object.entries(pages ?? {}).map(([key, item]) => (
           <SideMenuRow
             item={{
               id: 1,
@@ -51,7 +47,7 @@ export function SideMenuInner() {
             key={item.label}
             isActive={itemIsActive(slugify(item.id))}
           />
-        ))}
+        ))} */}
       </div>
 
       <Contained>

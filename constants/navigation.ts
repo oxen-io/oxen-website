@@ -1,3 +1,6 @@
+import { ISideMenuItem } from '../components/navigation/SideMenu';
+import { SideMenuItem } from '../state/navigation';
+
 export interface IMenuItem {
   label: string;
   href: string;
@@ -5,6 +8,46 @@ export interface IMenuItem {
   subtle: boolean;
   external: boolean;
 }
+
+// Hrefs are generated from Keys using slugify.
+// Eg. WHO_ARE_WE -> /who-are-we
+const SIDE_MENU_ITEMS = {
+  [SideMenuItem.WHO_ARE_WE]: {
+    id: 1,
+    label: 'Who are we',
+    href: '/who-are-we',
+  },
+  [SideMenuItem.BUILD]: {
+    id: 2,
+    label: 'How can I build?',
+    href: '/build',
+  },
+  [SideMenuItem.BUY_OXEN]: {
+    id: 3,
+    label: 'Why buy Oxen?',
+    href: '/buy-oxen',
+  },
+  [SideMenuItem.USES]: {
+    id: 4,
+    label: 'Uses',
+    href: '/uses',
+  },
+  [SideMenuItem.STAKE]: {
+    id: 7,
+    label: 'Stake',
+    href: '/stake',
+  },
+  [SideMenuItem.GET_INVOLVED]: {
+    id: 8,
+    label: 'Get involved',
+    href: '/get-involved',
+  },
+  [SideMenuItem.SESSION_LOKINET]: {
+    id: 7,
+    label: 'Session - Lokinet',
+    href: '/session-lokinet',
+  },
+} as { [name: string]: ISideMenuItem };
 
 const MENU_ITEMS: IMenuItem[] = [
   {
@@ -53,6 +96,7 @@ const MENU_ITEMS: IMenuItem[] = [
 
 const NAVIGATION = {
   MENU_ITEMS,
+  SIDE_MENU_ITEMS,
   BLOG_REGEX: /^\/(blog)[?tag=[\w]*]?$/,
   POST_REGEX: /^\/(blog\/)(([\w-]{1,100})|(\[slug\]))$/,
 };

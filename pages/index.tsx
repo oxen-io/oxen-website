@@ -14,7 +14,7 @@ const Index = () => {
         />
       </Head>
 
-      <div>
+      <div className="absolute inset-0">
         <img className="object-cover w-full h-full" src="/hero.jpg" />
       </div>
     </div>

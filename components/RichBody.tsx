@@ -20,7 +20,7 @@ const Bold = ({ children }) => (
 );
 
 const Paragraph = ({ children }) => (
-  <p className="mb-3 tracking-wide font-sans">{children}</p>
+  <p className="mb-3 font-sans tracking-wide">{children}</p>
 );
 
 const options = {
@@ -42,7 +42,7 @@ const options = {
     [BLOCKS.HEADING_2]: (node: Heading2) => {
       const content = (node.content[0] as Text)?.value;
       return (
-        <h2 className="mt-8 mb-2 text-3xl font-semibold tracking-wide font-sans">
+        <h2 className="mt-8 mb-2 font-sans text-3xl font-semibold tracking-wide">
           {content}
         </h2>
       );
@@ -50,17 +50,20 @@ const options = {
     [BLOCKS.HEADING_3]: (node: Heading3) => {
       const content = (node.content[0] as Text)?.value;
       return (
-        <h2 className="mt-6 mb-2 text-xl font-semibold font-sans">{content}</h2>
+        <h2 className="mt-6 mb-2 font-sans text-xl font-semibold">{content}</h2>
       );
     },
     [BLOCKS.HEADING_4]: (node: Heading4) => {
       const content = (node.content[0] as Text)?.value;
       return (
-        <h2 className="mt-6 mb-2 text-lg font-bold font-sans">{content}</h2>
+        <h2 className="mt-6 mb-2 font-sans text-lg font-bold">{content}</h2>
       );
     },
     [BLOCKS.EMBEDDED_ASSET]: (node: AssetLinkBlock) => {
-      const link = node.data.target.fields.file.url.replace('//', 'http://');
+      const link = (node.data.target as any).fields.file.url.replace(
+        '//',
+        'http://',
+      );
 
       return <img src={link} />;
     },

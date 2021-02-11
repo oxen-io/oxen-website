@@ -9,7 +9,7 @@ import { SideMenuSplit } from './SideMenuSplit';
 export interface ISideMenuItem {
   id: number;
   label: string;
-  href?: string;
+  href: string;
 }
 
 export function SideMenu() {

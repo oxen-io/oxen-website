@@ -2,8 +2,9 @@
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { CmsApi, slugify, unslugify } from '../services/cms';
-import { PageType, setPageType } from '../state/navigation';
+import { NAVIGATION } from '../constants';
+import { CmsApi, unslugify } from '../services/cms';
+import { PageType, setPageType, SideMenuItem } from '../state/navigation';
 import { ISplitPage } from '../types/cms';
 import { generateTitle } from '../utils/metadata';
 
@@ -13,26 +14,28 @@ interface IPath {
 
 export async function getStaticPaths() {
   // Get paths to all pages
-  const api = new CmsApi();
-  const pages = await api.fetchPageEntries();
+  // Hardcoded in navigation constants.
+  // Contentful can edit entries but cannot add/remove
+  // without touching code.
 
-  const paths: IPath[] = Object.values(pages).map(p => ({
-    params: { page: slugify(p.id) },
-  }));
+  const paths: IPath[] = Object.values(NAVIGATION.SIDE_MENU_ITEMS).map(
+    item => ({
+      params: { page: item.href },
+    }),
+  );
 
-  return { paths, fallback: true };
+  console.log('[page] ➡️   paths:', paths);
+
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
+  console.log('[page] ➡️ params:', params);
+
   const id = unslugify(String(params?.page) ?? '');
 
-  console.log('[page] ➡️ params:', params);
-  console.log('[page] ➡️ id:', id);
-
   const api = new CmsApi();
-  const page = await api.fetchPageById(id);
-
-  console.log('[page] ➡️ page:', page);
+  const page = await api.fetchPageById(SideMenuItem[id]);
 
   if (!page) {
     return { notFound: true };
@@ -40,10 +43,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      page: {
-        title: 'tasdfa',
-        label: 'sdfsdf',
-      },
+      page,
     },
     revalidate: 60,
   };
@@ -52,7 +52,7 @@ export async function getStaticProps({ params }) {
 function Page({ page }: { page: ISplitPage }) {
   const dispatch = useDispatch();
 
-  console.log('[page] ➡️   page:',   page);
+  console.log('[page] ➡️   page:', page);
 
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
@@ -61,10 +61,16 @@ function Page({ page }: { page: ISplitPage }) {
   return (
     <>
       <Head>
-        <title>{generateTitle(page.label)}</title>
+        <title>{generateTitle(page?.label)}</title>
       </Head>
 
-      <div>{page.title}</div>
+      <div>
+        {/* <div className="w-full aspect-w-16 aspect-h-16">
+          <img src={page?.hero?.imageUrl} className="object-cover" />
+        </div>
+        {page?.title} {page} */}
+        sddsf
+      </div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
-import { TPages } from '../state/navigation';
+import { SideMenuItem, TPages } from '../state/navigation';
 import { IAuthor, IFigureImage, IPost, ISplitPage } from '../types/cms';
 
 // Turns CMS IDs into slugs
@@ -69,7 +69,11 @@ export class CmsApi {
 
         const pages: TPages = {};
         pagesArray.forEach(page => {
-          pages[page.id] = page;
+          const pageExists = SideMenuItem[page.id];
+
+          if (pageExists) {
+            pages[page.id] = page;
+          }
         });
 
         return pages;
@@ -79,7 +83,7 @@ export class CmsApi {
     }
   }
 
-  public async fetchPageById(id: string): Promise<ISplitPage> {
+  public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
     return this.client
       .getEntries({
         content_type: 'splitPage',
@@ -142,7 +146,7 @@ export class CmsApi {
     const rawHero = rawPage?.hero ? rawPage?.hero?.fields : null;
 
     return {
-      id: rawPage?.id ?? null,
+      id: SideMenuItem[rawPage?.id] ?? null,
       label: rawPage?.label ?? null,
       title: rawPage?.title ?? null,
       body: rawPage?.body ?? null,

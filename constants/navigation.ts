@@ -7,6 +7,7 @@ export interface IMenuItem {
   newTab: boolean;
   subtle: boolean;
   external: boolean;
+  mobileMenuOnly?: boolean;
 }
 
 // Hrefs are generated from Keys using slugify.
@@ -70,6 +71,7 @@ const MENU_ITEMS: IMenuItem[] = [
     newTab: false,
     subtle: false,
     external: false,
+    mobileMenuOnly: true,
   },
   {
     label: 'Explorer',

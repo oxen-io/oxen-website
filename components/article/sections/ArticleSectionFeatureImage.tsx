@@ -13,7 +13,7 @@ export function ArticleSectionFeatureImage({ featureImage }: Props) {
       >
         <div className="absolute inset-0">
           <img
-            src={featureImage.imageUrl}
+            src={featureImage?.imageUrl}
             alt={featureImage.description ?? ''}
             style={{ objectFit: 'cover' }}
             className="w-full h-full"

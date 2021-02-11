@@ -8,18 +8,39 @@ import { PageType, setPageType, setPostTitle } from '../../state/navigation';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
-export async function getServerSideProps({ params }) {
+interface IPath {
+  params: { slug: string };
+}
+
+export async function getStaticPaths() {
+  // Get paths to all pages
+  // Hardcoded in navigation constants.
+  // Contentful can edit entries but cannot add/remove
+  // without touching code.
+  const api = new CmsApi();
+  const posts = await api.fetchBlogEntries();
+
+  const paths: IPath[] = posts.map(item => ({
+    params: { slug: `/blog/${item.slug}` },
+  }));
+
+  return { paths, fallback: true };
+}
+
+export async function getStaticProps({ params }) {
   const api = new CmsApi();
   const post = await api.fetchBlogBySlug(String(params?.slug) ?? '');
 
   if (!post) {
-    return {
-      props: undefined,
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
-  return { props: { post } };
+  return {
+    props: {
+      post,
+    },
+    revalidate: 60,
+  };
 }
 
 function Post({ post }: { post: IPost }) {
@@ -33,7 +54,7 @@ function Post({ post }: { post: IPost }) {
   return (
     <>
       <Head>
-        <title>{generateTitle(post.title)}</title>
+        <title>{generateTitle(post?.title)}</title>
       </Head>
 
       <Article {...post} />

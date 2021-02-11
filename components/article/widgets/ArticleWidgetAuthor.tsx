@@ -10,10 +10,10 @@ interface Props {
 export function ArticleWidgetAuthor({ author, publishedDate }: Props) {
   return (
     <div className="flex items-center space-x-3">
-      <Avatar size={10} imageSrc={author?.avatar.imageUrl} />
+      <Avatar size={10} imageSrc={author?.avatar?.imageUrl} />
 
       <div className="flex flex-col leading-tight">
-        <span className="text-sm font-bold tracking-wider font-sans">
+        <span className="font-sans text-sm font-bold tracking-wider">
           By: {author?.name}
         </span>
         <span>{publishedDate}</span>

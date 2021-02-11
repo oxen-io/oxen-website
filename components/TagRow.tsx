@@ -18,7 +18,9 @@ export function TagRow({ tags }: Props) {
         // Maximum of three tags
         .slice(0, 3)
         .map(tag => (
-          <TagBlock key={tag} tag={tag} />
+          <div key={tag} className="mb-2">
+            <TagBlock tag={tag} />
+          </div>
         ))}
     </div>
   );

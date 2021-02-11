@@ -37,7 +37,7 @@ export function ArticleCard(props: IPost): JSX.Element {
         onClick={() => router.push(href, as)}
         className="relative aspect-w-16 aspect-h-9"
       >
-        {featureImage.imageUrl && (
+        {featureImage?.imageUrl && (
           <img
             className="object-cover cursor-pointer"
             src={featureImage?.imageUrl}
@@ -76,7 +76,7 @@ export function ArticleCard(props: IPost): JSX.Element {
 
           <div className="flex flex-col space-y-1">
             <p className="mt-2 font-sans text-xs text-gray-800">
-              {publishedDate} — {author.name}
+              {publishedDate} — {author?.name}
             </p>
             <TagRow tags={tags} />
           </div>

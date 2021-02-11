@@ -12,8 +12,8 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
-  const { isTablet, isDesktop } = useContext(ScreenContext);
-  const { pageType, sideMenuExpanded } = useSelector(
+  const { isMobile, isTablet, isDesktop } = useContext(ScreenContext);
+  const { pageType, headerMobileMenuExpanded } = useSelector(
     (state: IState) => state.navigation,
   );
 
@@ -21,6 +21,10 @@ export default function Layout({ children }: Props) {
     pageType === PageType.NORMAL && isTablet
       ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX
       : 0;
+
+  const mobileMenuOpen =
+    (pageType === PageType.BLOG || pageType === PageType.POST) &&
+    headerMobileMenuExpanded;
 
   return (
     <div
@@ -39,6 +43,7 @@ export default function Layout({ children }: Props) {
         <div
           style={{
             marginLeft: `${marginLeft}px`,
+            filter: `brightness(${mobileMenuOpen ? 0.85 : 1})`,
           }}
           className="relative w-full h-full overflow-y-auto duration-300 bg-alt"
         >

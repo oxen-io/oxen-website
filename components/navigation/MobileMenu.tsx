@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useClickAway } from 'react-use';
 import { v4 as uuid } from 'uuid';
 import { NAVIGATION, UI } from '../../constants';
+import { collapseMobileHeader } from '../../state/navigation';
 import { IState } from '../../state/reducers';
 
 export function MobileMenu() {
@@ -10,8 +12,15 @@ export function MobileMenu() {
     (state: IState) => state.navigation,
   );
 
+  const dispatch = useDispatch();
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    dispatch(collapseMobileHeader());
+  });
+
   return (
     <div
+      ref={ref}
       style={{
         top: `${UI.HEADER_HEIGHT_PX}px`,
         left: `${UI.SIDE_MENU_SIDE_BAR_WIDTH_PX}px`,
@@ -23,18 +32,18 @@ export function MobileMenu() {
         style={{
           transform: expanded ? 'translateY(0)' : 'translateY(-100%)',
         }}
-        className="flex flex-col duration-300 bg-gray-100"
+        className="flex flex-col duration-300 bg-alt"
       >
         {NAVIGATION.MENU_ITEMS.map(item => {
           return (
-            <div key={uuid()} className="flex justify-center px-6 py-1">
+            <div key={uuid()} className="flex justify-center">
               {item.external ? (
-                <a className="w-full py-4 text-lg text-center uppercase focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white">
+                <a className="w-full py-4 text-lg text-center uppercase cursor-pointer focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white">
                   {item.label}
                 </a>
               ) : (
                 <Link key={item.label} href={item.href} as={item.href}>
-                  <a className="w-full py-4 text-lg text-center uppercase focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white">
+                  <a className="w-full py-4 text-lg text-center uppercase cursor-pointer focus:bg-secondary hover:bg-secondary focus:text-white hover:text-white">
                     {item.label}
                   </a>
                 </Link>

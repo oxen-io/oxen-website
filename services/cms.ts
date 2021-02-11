@@ -26,7 +26,10 @@ export class CmsApi {
       })
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {
+          console.log('cms ➡️ entries:', entries);
+
           const blogPosts = entries.items.map(entry => this.convertPost(entry));
+
           return blogPosts;
         }
         return [];
@@ -54,6 +57,21 @@ export class CmsApi {
           return post;
         }
         return null;
+      });
+  }
+
+  public async fetchBlogEntriesByTag(tag: string): Promise<IPost[]> {
+    return this.client
+      .getEntries({
+        content_type: 'post',
+        'fields.tags.sys.id[in]': tag,
+      })
+      .then(entries => {
+        if (entries && entries.items && entries.items.length > 0) {
+          const posts = entries.items.map(entry => this.convertPost(entry));
+          return posts;
+        }
+        return [];
       });
   }
 
@@ -109,11 +127,11 @@ export class CmsApi {
   public convertAuthor = (rawAuthor): IAuthor =>
     rawAuthor
       ? {
-          name: rawAuthor.name,
+          name: rawAuthor?.name ?? null,
           avatar: this.convertImage(rawAuthor.avatar.fields),
-          shortBio: rawAuthor.shortBio,
-          position: rawAuthor.position,
-          email: rawAuthor.email,
+          shortBio: rawAuthor?.shortBio ?? null,
+          position: rawAuthor?.position ?? null,
+          email: rawAuthor?.email ?? null,
           twitter: rawAuthor?.twitter ?? null,
           facebook: rawAuthor.facebook ?? null,
           github: rawAuthor.github ?? null,
@@ -132,7 +150,7 @@ export class CmsApi {
       body: rawPost.body ?? null,
       subtitle: rawPost.subtitle ?? null,
       description: rawPost.description ?? null,
-      publishedDate: moment(rawPost.publishedDate).format('DD MMMM YYYY'),
+      publishedDate: moment(rawPost.date).format('DD MMMM YYYY'),
       slug: rawPost.slug,
       tags: rawPost?.tags?.map(t => t?.fields?.label) ?? [],
       title: rawPost.title,

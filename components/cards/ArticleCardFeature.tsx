@@ -37,7 +37,7 @@ export function ArticleCardFeature(props: IPost) {
           style={{ minHeight: '100%' }}
           className="bg-opacity-25 cursor-pointer bg-primary aspect-w-14 aspect-h-8"
         >
-          <img className="object-cover" src={featureImage.imageUrl} />
+          <img className="object-cover" src={featureImage?.imageUrl} />
         </div>
       </div>
 
@@ -61,14 +61,14 @@ export function ArticleCardFeature(props: IPost) {
               style={{ maxHeight: '7.25em' }}
               className="overflow-hidden text-sm leading-tight"
             >
-              {description.substring(0, 250)}...
+              {description?.substring(0, 250)}...
             </p>
           </div>
         </div>
 
         <div className="relative">
           <p className="mt-3 mb-2 font-sans text-xs font-thin">
-            {publishedDate} — {author.name}
+            {publishedDate} — {author?.name}
           </p>
 
           <TagRow tags={tags} />

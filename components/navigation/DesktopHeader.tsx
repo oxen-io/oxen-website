@@ -38,34 +38,36 @@ export function DesktopHeader() {
           </div>
 
           <div className="flex items-center ml-6 space-x-4 text-sm">
-            {NAVIGATION.MENU_ITEMS.map(item => {
-              const link = (
-                <a
-                  className={classNames(
-                    'uppercase whitespace-no-wrap cursor-pointer',
-                    item.subtle
-                      ? 'text-xs hover:underline'
-                      : 'duration-300 text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-10',
-                  )}
-                  target={item.newTab ? '_blank' : undefined}
-                  rel={item.newTab ? 'noreferrer' : undefined}
-                >
-                  {item.label}
-                </a>
-              );
+            {NAVIGATION.MENU_ITEMS.filter(item => !item.mobileMenuOnly).map(
+              item => {
+                const link = (
+                  <a
+                    className={classNames(
+                      'uppercase whitespace-no-wrap cursor-pointer',
+                      item.subtle
+                        ? 'text-xs hover:underline'
+                        : 'duration-300 text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-10',
+                    )}
+                    target={item.newTab ? '_blank' : undefined}
+                    rel={item.newTab ? 'noreferrer' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                );
 
-              return (
-                <div key={uuid()}>
-                  {item.external ? (
-                    link
-                  ) : (
-                    <Link href={item.href} as={item.href}>
-                      {link}
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
+                return (
+                  <div key={uuid()}>
+                    {item.external ? (
+                      link
+                    ) : (
+                      <Link href={item.href} as={item.href}>
+                        {link}
+                      </Link>
+                    )}
+                  </div>
+                );
+              },
+            )}
           </div>
         </div>
       </div>

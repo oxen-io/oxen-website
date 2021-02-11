@@ -88,7 +88,7 @@ export function SideMenuSideBar({ mode }: Props) {
           'flex items-center justify-start w-0 h-0 duration-300 transform -rotate-90',
         )}
       >
-        <span className="whitespace-no-wrap">
+        <span className="whitespace-nowrap">
           {mode === SideBarMode.LABEL ? label : 'Menu'}
         </span>
       </div>

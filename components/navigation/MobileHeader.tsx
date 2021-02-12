@@ -24,7 +24,7 @@ export function MobileHeader() {
 
   // On blog page, the sidebar disappears so we need a
   // hamburger menu for topbar links
-  const isBlog = pageType === PageType.BLOG;
+  const isBlog = pageType === PageType.BLOG || pageType === PageType.POST;
 
   const toggleSideMenu = () =>
     dispatch(sideMenuExpanded ? collapseSideMenu() : expandSideMenu());

@@ -13,7 +13,8 @@ import {
   MARKS,
   Text,
 } from '@contentful/rich-text-types';
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { ArticleCallout } from './article/ArticleCallout';
 
 const Bold = ({ children }) => (
   <span className="font-semibold">{children}</span>
@@ -59,6 +60,15 @@ const options = {
         <h2 className="mt-6 mb-2 font-sans text-lg font-bold">{content}</h2>
       );
     },
+    [BLOCKS.QUOTE]: (_node, children: ReactNode) => {
+      return (
+        <div className="mt-6">
+          <ArticleCallout bold indent>
+            <Paragraph>{children}</Paragraph>{' '}
+          </ArticleCallout>
+        </div>
+      );
+    },
     [BLOCKS.EMBEDDED_ASSET]: (node: AssetLinkBlock) => {
       const link = (node.data.target as any).fields.file.url.replace(
         '//',
@@ -77,7 +87,6 @@ const options = {
     },
     [INLINES.HYPERLINK]: (node: Hyperlink) => {
       const { content } = node;
-      console.log('content hyperlink', node);
       return (
         <a
           className="cursor-pointer text-blue hover:underline"
@@ -97,6 +106,8 @@ interface Props {
 // Renders a rich text body
 export function RichBody({ body }: Props) {
   const RichBody = documentToReactComponents(body, options);
+
+  console.log('RichBody ➡️ body:', body);
 
   return <div className="text-primary">{RichBody}</div>;
 }

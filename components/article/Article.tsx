@@ -2,6 +2,7 @@ import React from 'react';
 import { IPost } from '../../types/cms';
 import { ArticleContained } from '../ArticleContained';
 import { Contained } from '../Contained';
+import { Spacer } from '../Spacer';
 import { TagRow } from '../TagRow';
 import { ArticleCallout } from './ArticleCallout';
 import { ArticleSectionContent } from './sections/ArticleSectionContent';
@@ -25,7 +26,7 @@ export function Article(props: IPost) {
 
   return (
     <article>
-      <div className="flex flex-col items-center mt-10 mb-10 space-y-4">
+      <div className="flex flex-col items-center mt-10 mb-16 space-y-4">
         <Contained>
           <ArticleSectionFeatureImage featureImage={featureImage} />
         </Contained>
@@ -45,6 +46,7 @@ export function Article(props: IPost) {
 
           <ArticleSectionContent {...props} />
 
+          <Spacer spaceY={4} />
           <TagRow tags={tags} size="medium" />
         </ArticleContained>
       </div>

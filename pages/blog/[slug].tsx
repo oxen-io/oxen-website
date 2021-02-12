@@ -21,8 +21,10 @@ export async function getStaticPaths() {
   const posts = await api.fetchBlogEntries();
 
   const paths: IPath[] = posts.map(item => ({
-    params: { slug: `/blog/${item.slug}` },
+    params: { slug: item.slug },
   }));
+
+  console.log('[slug] ➡️ paths:', paths);
 
   return { paths, fallback: true };
 }
@@ -43,6 +45,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
+// Parallax on bg as mouse moves
 function Post({ post }: { post: IPost }) {
   const dispatch = useDispatch();
 

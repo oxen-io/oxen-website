@@ -78,7 +78,7 @@ export function ArticleCard(props: IPost): JSX.Element {
             <p className="mt-2 font-sans text-xs text-gray-800">
               {publishedDate} — {author?.name}
             </p>
-            <TagRow tags={tags} />
+            <TagRow tags={tags} limit={3} />
           </div>
         </div>
       </div>

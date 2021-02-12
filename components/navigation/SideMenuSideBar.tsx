@@ -56,8 +56,7 @@ export function SideMenuSideBar({ mode }: Props) {
         width: `${UI.SIDE_MENU_SIDE_BAR_WIDTH_PX}px`,
       }}
       className={classNames(
-        'flex flex-col justify-between items-center h-full bg-blue-300 px-4 py-6 border-l border-black',
-        isHuge ? 'text-3xl' : 'w-12 text-2xl',
+        'flex flex-col justify-between w-12 text-2xl items-center h-full bg-blue-300 px-4 py-6 border-l border-black select-none',
         mode === SideBarMode.LABEL && 'border-r border-b',
         mode === SideBarMode.MENU && !expanded && 'border-r',
       )}

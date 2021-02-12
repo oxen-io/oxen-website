@@ -1,6 +1,5 @@
 import React from 'react';
 import { IAuthor } from '../../../types/cms';
-import { Avatar } from '../../Avatar';
 
 interface Props {
   author: IAuthor;
@@ -9,14 +8,14 @@ interface Props {
 
 export function ArticleWidgetAuthor({ author, publishedDate }: Props) {
   return (
-    <div className="flex items-center space-x-3">
-      <Avatar size={10} imageSrc={author?.avatar?.imageUrl} />
+    <div className="flex items-center space-x-3 text-gray-800">
+      {/* <Avatar size={10} imageSrc={author?.avatar?.imageUrl} /> */}
 
-      <div className="flex flex-col leading-tight">
-        <span className="font-sans text-sm font-bold tracking-wider">
-          By: {author?.name}
+      <div className="flex leading-tight">
+        <span>{publishedDate}</span> —
+        <span className="ml-1 font-sans text-sm tracking-wider">
+          {author?.name}
         </span>
-        <span>{publishedDate}</span>
       </div>
     </div>
   );

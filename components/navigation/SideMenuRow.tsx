@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHoverDirty } from 'react-use';
 import TriangleOutlinedSVG from '../../assets/svgs/triangle-outlined.svg';
-import TriangleSVG from '../../assets/svgs/triangle.svg';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import { collapseSideMenu } from '../../state/navigation';
@@ -23,9 +23,14 @@ export function SideMenuRow({ item, isActive }: SideMenuRowProps) {
     dispatch(collapseSideMenu());
   };
 
+  const ref = useRef(null);
+  const isHovering = useHoverDirty(ref);
+  const isExcited = !isCollapsible && (isActive || isHovering);
+
   return (
     <Link href={item.href}>
       <div
+        ref={ref}
         onClick={handleOnClick}
         style={{
           maxHeight: '5rem',
@@ -43,13 +48,12 @@ export function SideMenuRow({ item, isActive }: SideMenuRowProps) {
         <span className="pl-6 whitespace-no-wrap">{item.label}</span>
 
         {!isMobile && !isTablet && (
-          <>
-            {!isCollapsible && isActive ? (
-              <TriangleSVG className="h-4 pr-6" />
-            ) : (
-              <TriangleOutlinedSVG className="h-4 pr-6" />
+          <TriangleOutlinedSVG
+            className={classNames(
+              'h-4 pr-6 duration-300 fill-current transform text-transparent',
+              isExcited && 'text-primary scale-y-75',
             )}
-          </>
+          />
         )}
       </div>
     </Link>

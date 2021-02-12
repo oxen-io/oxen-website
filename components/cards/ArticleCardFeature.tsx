@@ -21,8 +21,6 @@ export function ArticleCardFeature(props: IPost) {
   // Side menu behaviour
   // Blog keeps the title
 
-  //
-
   const { href, as } = generateURL(slug);
   const { isMobile, isTablet } = useContext(ScreenContext);
 
@@ -71,7 +69,7 @@ export function ArticleCardFeature(props: IPost) {
             {publishedDate} — {author?.name}
           </p>
 
-          <TagRow tags={tags} />
+          <TagRow tags={tags} limit={3} />
         </div>
       </div>
     </div>

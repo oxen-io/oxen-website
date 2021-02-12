@@ -30,16 +30,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log('[page] ➡️ params:', params);
-
   const id = unslugify(String(params?.page) ?? '');
-
-  console.log('[page] ➡️ id:', id);
 
   const api = new CmsApi();
   const page = await api.fetchPageById(SideMenuItem[id]);
-
-  console.log('[page] ➡️ page:', page);
 
   if (!page) {
     return { notFound: true };
@@ -84,7 +78,9 @@ function Page({ page }: { page: ISplitPage }) {
             {page?.title}
           </h1>
 
-          <RichBody body={page?.body} />
+          <div className="mb-10">
+            <RichBody body={page?.body} />
+          </div>
         </Contained>
       </div>
     </>

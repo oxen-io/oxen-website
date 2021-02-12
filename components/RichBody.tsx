@@ -65,7 +65,15 @@ const options = {
         'http://',
       );
 
-      return <img src={link} />;
+      return (
+        <div className="flex justify-center w-full mb-6">
+          <img
+            style={{ maxWidth: '800px' }}
+            className="object-cover w-full"
+            src={link}
+          />
+        </div>
+      );
     },
     [INLINES.HYPERLINK]: (node: Hyperlink) => {
       const { content } = node;
@@ -90,5 +98,5 @@ interface Props {
 export function RichBody({ body }: Props) {
   const RichBody = documentToReactComponents(body, options);
 
-  return <>{RichBody}</>;
+  return <div className="text-primary">{RichBody}</div>;
 }

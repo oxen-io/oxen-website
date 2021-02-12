@@ -24,12 +24,12 @@ export function Avatar(props: AvatarProps) {
       {imageSrc ? (
         // Custom Avatar Image
         <img
-          className="w-full h-full rounded-full border border-primary border-opacity-25 "
+          className="w-full h-full border border-opacity-25 rounded-full border-primary "
           src={imageSrc}
           alt={'Author profile picture'}
         />
       ) : initial?.length ? (
-        <div className="flex justify-center items-center w-full h-full font-somatic text-white text-xl">
+        <div className="flex items-center justify-center w-full h-full text-xl text-white font-somatic">
           {initial[0]}
         </div>
       ) : (

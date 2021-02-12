@@ -17,6 +17,7 @@ export function DesktopHeader() {
       ref={navBarRef}
       style={{
         height: `${UI.HEADER_HEIGHT_PX}px`,
+        zIndex: UI.Z_INDEX_HEADER,
       }}
       className={classNames(
         'w-full overflow-hidden bg-alt flex items-center border-b border-primary',

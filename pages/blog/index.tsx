@@ -53,7 +53,7 @@ const Blog = ({ posts, tagPosts, tag }: Props) => {
         <title>{generateTitle('Blog')}</title>
       </Head>
 
-      <div className="flex flex-col w-full mt-6 mb-6 space-y-10">
+      <div className="flex flex-col w-full mt-6 mb-6 space-y-10 bg-alt">
         <Contained>
           {!tag && posts.length && <ArticleCardFeature {...featuredPost} />}
 

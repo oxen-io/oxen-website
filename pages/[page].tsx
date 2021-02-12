@@ -62,7 +62,7 @@ function Page({ page }: { page: ISplitPage }) {
         <title>{generateTitle(page?.label)}</title>
       </Head>
 
-      <div>
+      <div className="bg-alt">
         <div className="aspect-w-16 aspect-h-10">
           <div className="flex items-center justify-center bg-gradient-to-br from-blush to-hyper">
             <img
@@ -74,7 +74,7 @@ function Page({ page }: { page: ISplitPage }) {
         </div>
 
         <Contained>
-          <h1 className="w-10/12 mt-6 mb-4 text-5xl font-bold leading-none text-primary font-prompt">
+          <h1 className="w-10/12 mt-6 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
             {page?.title}
           </h1>
 

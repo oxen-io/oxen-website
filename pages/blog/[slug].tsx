@@ -60,7 +60,9 @@ function Post({ post }: { post: IPost }) {
         <title>{generateTitle(post?.title)}</title>
       </Head>
 
-      <Article {...post} />
+      <div className="bg-alt">
+        <Article {...post} />
+      </div>
     </>
   );
 }

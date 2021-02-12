@@ -17,10 +17,11 @@ export default function Layout({ children }: Props) {
     (state: IState) => state.navigation,
   );
 
-  const marginLeft =
+  const marginLeft = `${
     pageType === PageType.NORMAL && isTablet
       ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX
-      : 0;
+      : 0
+  }px`;
 
   const mobileMenuOpen =
     (pageType === PageType.BLOG || pageType === PageType.POST) &&
@@ -40,12 +41,13 @@ export default function Layout({ children }: Props) {
         className="flex w-full h-full"
       >
         <SideMenu />
+
         <div
           style={{
-            marginLeft: `${marginLeft}px`,
+            marginLeft,
             filter: `brightness(${mobileMenuOpen ? 0.85 : 1})`,
           }}
-          className="relative w-full h-full overflow-y-auto duration-300 bg-alt"
+          className="relative z-50 w-full h-full overflow-y-auto duration-300"
         >
           {children}
         </div>

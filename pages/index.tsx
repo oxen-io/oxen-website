@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
+import { HomeHero } from '../components/HomeHero';
+import { HomeHeroBubble } from '../components/HomeHeroBubble';
 import { METADATA } from '../constants';
 
 const Index = () => {
@@ -14,9 +16,9 @@ const Index = () => {
         />
       </Head>
 
-      <div className="absolute inset-0">
-        <img className="object-cover w-full h-full" src="/hero.jpg" />
-      </div>
+      {/* Only visible when no pages are open */}
+      <HomeHero />
+      <HomeHeroBubble />
     </div>
   );
 };

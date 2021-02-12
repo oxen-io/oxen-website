@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import {
   AssetLinkBlock,
@@ -11,9 +12,10 @@ import {
   Hyperlink,
   INLINES,
   MARKS,
-  Text,
+  Text
 } from '@contentful/rich-text-types';
 import React, { ReactNode } from 'react';
+import { CMS } from '../constants';
 import { ArticleCallout } from './article/ArticleCallout';
 
 const Bold = ({ children }) => (
@@ -29,7 +31,17 @@ const options = {
     [MARKS.BOLD]: text => <Bold>{text}</Bold>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (_node, children) => {
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      // Grab shortcodes
+      // const children;
+      const plaintext = documentToPlainTextString(node);
+      console.log('RichBody ➡️ plaintext:', plaintext);
+      console.log('RichBody ➡️ children:', children);
+
+      const isShortcode = CMS.SHORTCODE_REGEX.test(plaintext);
+      
+      if (CMS.SHORTCODES.)
+      
       return <Paragraph>{children}</Paragraph>;
     },
     [BLOCKS.HEADING_1]: (node: Heading1) => {
@@ -106,8 +118,6 @@ interface Props {
 // Renders a rich text body
 export function RichBody({ body }: Props) {
   const RichBody = documentToReactComponents(body, options);
-
-  console.log('RichBody ➡️ body:', body);
 
   return <div className="text-primary">{RichBody}</div>;
 }

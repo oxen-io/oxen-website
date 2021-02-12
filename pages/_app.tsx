@@ -32,11 +32,6 @@ function App({ Component, pageProps }: AppProps) {
       ? PageType.POST
       : PageType.NORMAL;
 
-    console.log('_app ➡️ url:', url);
-    console.log('_app ➡️ onBlog:', onBlog);
-    console.log('_app ➡️ onPost:', onPost);
-    console.log('_app ➡️ pageType:', pageType);
-
     store.dispatch(setPageType(pageType));
     store.dispatch(collapseSideMenu());
     store.dispatch(collapseMobileHeader());

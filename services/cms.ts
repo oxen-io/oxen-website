@@ -1,5 +1,6 @@
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
+import { CMS } from '../constants';
 import { SideMenuItem, TPages } from '../state/navigation';
 import { IAuthor, IFigureImage, IPost, ISplitPage } from '../types/cms';
 
@@ -172,3 +173,18 @@ export class CmsApi {
     };
   };
 }
+
+interface IShortcodeGeneralButton {
+  href: string;
+  text: string;
+}
+
+export const extractShortcodeGeneralButton = (
+  value: string,
+): IShortcodeGeneralButton => {
+  if (!CMS.SHORTCODES.GENERAL_BUTTON.test(value)) {
+    return null;
+  }
+
+  // Pull our href and text
+};

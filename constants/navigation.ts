@@ -15,38 +15,38 @@ export interface IMenuItem {
 const SIDE_MENU_ITEMS = {
   [SideMenuItem.WHO_ARE_WE]: {
     id: 1,
-    label: 'Who are we',
+    label: 'What is Oxen?',
     href: '/who-are-we',
   },
-  [SideMenuItem.BUILD]: {
-    id: 2,
-    label: 'How can I build?',
-    href: '/build',
-  },
   [SideMenuItem.BUY_OXEN]: {
-    id: 3,
-    label: 'Why buy Oxen?',
+    id: 2,
+    label: 'Why buy $OXEN?',
     href: '/buy-oxen',
+  },
+  [SideMenuItem.STAKE]: {
+    id: 3,
+    label: 'How do I stake $OXEN?',
+    href: '/stake',
   },
   [SideMenuItem.USES]: {
     id: 4,
-    label: 'Uses',
+    label: 'Who uses Oxen?',
     href: '/uses',
   },
-  [SideMenuItem.STAKE]: {
-    id: 7,
-    label: 'Stake',
-    href: '/stake',
-  },
-  [SideMenuItem.GET_INVOLVED]: {
-    id: 8,
-    label: 'Get involved',
-    href: '/get-involved',
+  [SideMenuItem.BUILD]: {
+    id: 5,
+    label: 'What can be built?',
+    href: '/build',
   },
   [SideMenuItem.SESSION_LOKINET]: {
-    id: 7,
-    label: 'Session - Lokinet',
+    id: 6,
+    label: 'Session & Lokinet',
     href: '/session-lokinet',
+  },
+  [SideMenuItem.GET_INVOLVED]: {
+    id: 7,
+    label: 'Get involved',
+    href: '/get-involved',
   },
 } as { [name: string]: ISideMenuItem };
 

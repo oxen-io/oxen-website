@@ -8,7 +8,12 @@ import '../assets/style.scss';
 import Layout from '../components/layout';
 import { METADATA, NAVIGATION } from '../constants';
 import ScreenProvider from '../contexts/screen';
-import { collapseSideMenu, PageType, setPageType } from '../state/navigation';
+import {
+  collapseMobileHeader,
+  collapseSideMenu,
+  PageType,
+  setPageType,
+} from '../state/navigation';
 import { rootReducer } from '../state/reducers';
 
 const store = createStore(rootReducer);
@@ -34,6 +39,7 @@ function App({ Component, pageProps }: AppProps) {
 
     store.dispatch(setPageType(pageType));
     store.dispatch(collapseSideMenu());
+    store.dispatch(collapseMobileHeader());
   };
 
   useEffect(() => {

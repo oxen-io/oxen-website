@@ -18,15 +18,6 @@ export function SideMenu() {
     (state: IState) => state.navigation,
   );
 
-  // ON MOBILE: overlay with no sidebar
-  // ON TABLET: overlay with sidebar
-  // ON DESKTOP: fixed with sidebar (overlay on /blog)
-
-  // Fullscreen overlay with no sidebar: ONLY ON MOBILE
-  // Fullscreen overlay with sidebar: ONLY ON TABLET
-  // Split screen overlay with sidebar: ONLY ON DESKTOP && /blog
-  // Just sidebar: /blog
-
   const isBlog = pageType === PageType.BLOG;
   const isPost = pageType === PageType.POST;
 

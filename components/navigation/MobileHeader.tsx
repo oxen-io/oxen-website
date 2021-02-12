@@ -7,6 +7,7 @@ import TriangleSVG from '../../assets/svgs/triangle.svg';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import {
+  collapseMobileHeader,
   collapseSideMenu,
   expandMobileHeaderMenu,
   expandSideMenu,
@@ -28,6 +29,13 @@ export function MobileHeader() {
 
   const toggleSideMenu = () =>
     dispatch(sideMenuExpanded ? collapseSideMenu() : expandSideMenu());
+
+  const toggleMobileMenu = () =>
+    dispatch(
+      headerMobileMenuExpanded
+        ? collapseMobileHeader()
+        : expandMobileHeaderMenu(),
+    );
 
   return (
     <div
@@ -61,7 +69,7 @@ export function MobileHeader() {
         {(isTablet || isMobile) && isBlog && (
           <>
             <TriangleSVG
-              onClick={() => dispatch(expandMobileHeaderMenu())}
+              onClick={() => toggleMobileMenu()}
               className={classNames(
                 'h-3 transform outline-none duration-300 cursor-pointer',
                 headerMobileMenuExpanded ? '-rotate-90' : 'rotate-90',

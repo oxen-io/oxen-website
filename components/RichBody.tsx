@@ -12,10 +12,11 @@ import {
   Hyperlink,
   INLINES,
   MARKS,
-  Text
+  Text,
 } from '@contentful/rich-text-types';
 import React, { ReactNode } from 'react';
 import { CMS } from '../constants';
+import { renderShortcode } from '../services/cms';
 import { ArticleCallout } from './article/ArticleCallout';
 
 const Bold = ({ children }) => (
@@ -36,13 +37,15 @@ const options = {
       // const children;
       const plaintext = documentToPlainTextString(node);
       console.log('RichBody ➡️ plaintext:', plaintext);
-      console.log('RichBody ➡️ children:', children);
 
       const isShortcode = CMS.SHORTCODE_REGEX.test(plaintext);
-      
-      if (CMS.SHORTCODES.)
-      
-      return <Paragraph>{children}</Paragraph>;
+      console.log('RichBody ➡️ isShortcode:', isShortcode);
+
+      if (!isShortcode) {
+        return <Paragraph>{children}</Paragraph>;
+      }
+
+      return renderShortcode(plaintext) ?? null;
     },
     [BLOCKS.HEADING_1]: (node: Heading1) => {
       const content = (node.content[0] as Text)?.value;

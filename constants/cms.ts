@@ -1,9 +1,30 @@
+interface IShortcodeButton {
+  regex: RegExp;
+  text: string;
+  href?: string;
+}
+
+// prettier-ignore
+const SHORTCODE_BUTTONS: { [key: string]: IShortcodeButton } = {
+  BUILD_OXEN: {
+    regex: /^\{\{[\s]*build_oxen[\s]*\}\}$/,
+    text: "Build with Oxen",
+    href: "https://docs.oxen.io/building-with-oxen" 
+  },
+  STAKING_GUIDE_BUTTON: {
+    regex: /^{{[\s*]staking_guide_button[\s*]}}$/,
+    text: "Staking guide",
+    href:
+      'https://docs.oxen.io/using-the-oxen-blockchain/oxen-service-node-guides',
+  },
+};
+
 const CMS = {
-  SHORTCODE_REGEX: /^\{\{[\w\s]{1,99}\}\}$/,
+  SHORTCODE_REGEX: /^\{\{.*\}\}$/,
+  SHORTCODE_BUTTONS,
   SHORTCODES: {
-    GITHUB_LINKS: /^\{\{[\s]*github_links[\s]*\}\}$/,
-    BUILD_OXEN: /^\{\{[\s]*build_oxen[\s]*\}\}$/,
     GENERAL_BUTTON: /^\{\{[\s]*button[\s]*href="[^"]{1,99}"[\s]*text="[\w\s]{1,33}"[\s]*\}\}$/,
+    GITHUB_LINKS: /^\{\{[\s]*github_links[\s]*\}\}$/,
   },
 };
 

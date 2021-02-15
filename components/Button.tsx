@@ -47,7 +47,7 @@ export function Button(props: Props) {
   const onClickFn = disabled ? () => null : clickHandler;
 
   const ghostClassNames = [
-    'bg-white',
+    'bg-transparent',
     `hover:bg-${color}`,
     'bg-transparent',
     selected && `bg-white`,

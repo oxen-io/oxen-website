@@ -1,5 +1,7 @@
 import { METADATA } from '../constants';
 
 export function generateTitle(prefix: string) {
-  return `${prefix} - ${METADATA.TITLE_SUFFIX}`;
+  return prefix
+    ? `${prefix} - ${METADATA.TITLE_SUFFIX}`
+    : METADATA.TITLE_SUFFIX;
 }

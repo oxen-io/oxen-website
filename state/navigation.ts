@@ -8,6 +8,7 @@ export enum SideMenuItem {
   USES = 'USES',
   SESSION_LOKINET = 'SESSION_LOKINET',
   GET_INVOLVED = 'GET_INVOLVED',
+  ROADMAP = 'ROADMAP',
 }
 
 export type TPages = {

@@ -11,7 +11,7 @@ import { ISplitPage } from '../types/cms';
 import { generateTitle } from '../utils/metadata';
 
 interface IPath {
-  params: { page: string };
+  params: { page: string; isRoadmap?: boolean };
 }
 
 export async function getStaticPaths() {
@@ -32,6 +32,17 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const id = unslugify(String(params?.page) ?? '');
 
+  // Roadmap page is special 👁️👄👁️
+  if (SideMenuItem[id] == [SideMenuItem.ROADMAP]) {
+    return {
+      props: {
+        page: null,
+        isRoadmap: true,
+      },
+      revalidate: 60,
+    };
+  }
+
   const api = new CmsApi();
   const page = await api.fetchPageById(SideMenuItem[id]);
 
@@ -42,16 +53,22 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       page,
+      isRoadmap: false,
     },
     revalidate: 60,
   };
 }
 
-function Page({ page }: { page: ISplitPage }) {
+function Page({
+  page,
+  isRoadmap,
+}: {
+  page: ISplitPage | null;
+  isRoadmap?: boolean;
+}) {
+  console.log('[page] ➡️ isRoadmap:', isRoadmap);
+
   const dispatch = useDispatch();
-
-  console.log('[page] ➡️ page:', page);
-
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
   }, []);
@@ -59,29 +76,71 @@ function Page({ page }: { page: ISplitPage }) {
   return (
     <>
       <Head>
-        <title>{generateTitle(page?.label)}</title>
+        <title>
+          {generateTitle(
+            isRoadmap
+              ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label
+              : page?.label,
+          )}
+        </title>
       </Head>
 
       <div className="bg-alt">
-        <div className="aspect-w-16 aspect-h-10">
-          <div className="flex items-center justify-center bg-gradient-to-br from-blush to-hyper">
-            <img
-              style={{ maxHeight: '90%' }}
-              src={page?.hero?.imageUrl}
-              className="w-8/12 py-12"
-            />
-          </div>
+        {isRoadmap ? (
+          <Roadmap />
+        ) : (
+          <>
+            <div className="aspect-w-16 aspect-h-10">
+              <div className="flex items-center justify-center bg-gradient-to-br from-blush to-hyper">
+                <img
+                  style={{ maxHeight: '90%' }}
+                  src={page?.hero?.imageUrl}
+                  className="w-8/12 py-12"
+                />
+              </div>
+            </div>
+
+            <Contained>
+              <h1 className="w-10/12 mt-6 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
+                {page?.title}
+              </h1>
+
+              <div className="mb-10">
+                <RichBody body={page?.body} />
+              </div>
+            </Contained>
+          </>
+        )}
+      </div>
+    </>
+  );
+}
+
+function Roadmap() {
+  return (
+    <>
+      <div className="aspect-w-16 aspect-h-10">
+        <div className="flex items-center justify-center">
+          <img
+            style={{ maxHeight: '90%' }}
+            src={'img/roadmap.png'}
+            className="w-full"
+          />
         </div>
+      </div>
 
-        <Contained>
-          <h1 className="w-10/12 mt-6 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
-            {page?.title}
-          </h1>
+      <div className="flex flex-col px-6 space-y-10">
+        <img
+          style={{ maxHeight: '90%' }}
+          src={'img/session-roadmap.png'}
+          className="w-full rounded-md"
+        />
 
-          <div className="mb-10">
-            <RichBody body={page?.body} />
-          </div>
-        </Contained>
+        <img
+          style={{ maxHeight: '90%' }}
+          src={'img/lokinet-roadmap.png'}
+          className="w-full rounded-md"
+        />
       </div>
     </>
   );

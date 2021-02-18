@@ -19,7 +19,7 @@ export function HomeHeroBubble() {
     >
       <div
         className={classNames(
-          'px-4 py-2  leading-tight  text-base border rounded-lg bg-opacity-90 border-secondary bg-alt front-prompt text-primary',
+          'px-4 py-2  leading-tight  text-base border rounded-lg bg-opacity-90 border-secondary bg-alt front-prompt text-primary animate-float',
           //   isMobile ? 'text-base' : 'text-xl',
         )}
       >

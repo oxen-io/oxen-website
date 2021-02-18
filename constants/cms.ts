@@ -20,12 +20,14 @@ const SHORTCODE_BUTTONS: { [key: string]: IShortcodeButton } = {
 };
 
 const CMS = {
-  SHORTCODE_REGEX: /^\{\{.*\}\}$/,
+  SHORTCODE_REGEX: /\{\{.*\}\}/,
   SHORTCODE_BUTTONS,
   SHORTCODES: {
-    GENERAL_BUTTON: /^\{\{[\s]*button[\s]*href="[^"]{1,99}"[\s]*text="[\w\s]{1,33}"[\s]*\}\}$/,
+    GENERAL_BUTTON: /\{\{[\s]*button[\s]*href="[^"]{1,99}"[\s]*text="[\w\s]{1,33}"[\s]*\}\}/,
     GITHUB_LINKS: /^\{\{[\s]*github_links[\s]*\}\}$/,
+    COMMUNITY_LINKS: /^{{[\s*]community_links[\s*]}}$/,
   },
+  BLOG_RESULTS_PER_PAGE: 20,
 };
 
 export default CMS;

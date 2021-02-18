@@ -6,7 +6,7 @@ import { METADATA } from '../constants';
 
 const Index = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>{METADATA.TITLE_SUFFIX}</title>
         <meta
@@ -17,9 +17,11 @@ const Index = () => {
       </Head>
 
       {/* Only visible when no pages are open */}
-      <HomeHero />
-      <HomeHeroBubble />
-    </div>
+      <div style={{ width: '100vw' }}>
+        <HomeHero />
+        <HomeHeroBubble />
+      </div>
+    </>
   );
 };
 

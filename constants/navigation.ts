@@ -48,6 +48,11 @@ const SIDE_MENU_ITEMS = {
     label: 'Get involved',
     href: '/get-involved',
   },
+  [SideMenuItem.ROADMAP]: {
+    id: 8,
+    label: "What's the 2021 roadmap?",
+    href: '/roadmap',
+  },
 } as { [name: string]: ISideMenuItem };
 
 const MENU_ITEMS: IMenuItem[] = [

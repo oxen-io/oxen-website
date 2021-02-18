@@ -12,6 +12,7 @@ import {
   Hyperlink,
   INLINES,
   MARKS,
+  OrderedList,
   Text,
 } from '@contentful/rich-text-types';
 import React, { ReactNode } from 'react';
@@ -41,11 +42,11 @@ const options = {
       const isShortcode = CMS.SHORTCODE_REGEX.test(plaintext);
       console.log('RichBody ➡️ isShortcode:', isShortcode);
 
-      if (!isShortcode) {
-        return <Paragraph>{children}</Paragraph>;
-      }
-
-      return renderShortcode(plaintext) ?? null;
+      return isShortcode ? (
+        renderShortcode(plaintext)
+      ) : (
+        <Paragraph>{children}</Paragraph>
+      );
     },
     [BLOCKS.HEADING_1]: (node: Heading1) => {
       const content = (node.content[0] as Text)?.value;
@@ -98,6 +99,15 @@ const options = {
             src={link}
           />
         </div>
+      );
+    },
+    [BLOCKS.OL_LIST]: (node: OrderedList, children: JSX.Element[]) => {
+      return (
+        <ol>
+          {children.map(item => (
+            <li key={item.key}>{item}</li>
+          ))}
+        </ol>
       );
     },
     [INLINES.HYPERLINK]: (node: Hyperlink) => {

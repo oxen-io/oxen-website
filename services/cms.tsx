@@ -1,10 +1,18 @@
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
 import React from 'react';
+import DiscordSVG from '../assets/svgs/socials/brand-discord.svg';
+import RedditSVG from '../assets/svgs/socials/brand-reddit.svg';
+import TelegramSVG from '../assets/svgs/socials/brand-telegram.svg';
 import { Button } from '../components/Button';
 import { CMS } from '../constants';
 import { SideMenuItem, TPages } from '../state/navigation';
 import { IAuthor, IFigureImage, IPost, ISplitPage } from '../types/cms';
+
+interface IFetchBlogEntriesReturn {
+  posts: Array<IPost>;
+  total: number;
+}
 
 // Turns CMS IDs into slugs
 export const slugify = (id: string) => id?.replace(/_/g, '-').toLowerCase();
@@ -21,22 +29,33 @@ export class CmsApi {
     });
   }
 
-  public async fetchBlogEntries(): Promise<Array<IPost>> {
-    return this.client
-      .getEntries({
+  public async fetchBlogEntries(
+    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    page = 1,
+  ): Promise<IFetchBlogEntriesReturn> {
+    console.log('cms ➡️ page:', page);
+    console.log('cms ➡️ quantity:', quantity);
+    console.log('cms ➡️ (page - 1) * quantity:', (page - 1) * quantity);
+
+    try {
+      const entries = await this.client.getEntries({
         content_type: 'post', // only fetch blog post entry
-        order: 'sys.createdAt',
-      })
-      .then(entries => {
-        if (entries && entries.items && entries.items.length > 0) {
-          console.log('cms ➡️ entries:', entries);
-
-          const blogPosts = entries.items.map(entry => this.convertPost(entry));
-
-          return blogPosts;
-        }
-        return [];
+        order: '-fields.date',
+        limit: quantity,
+        skip: (page - 1) * quantity,
       });
+
+      if (entries && entries.items && entries.items.length > 0) {
+        console.log('cms ➡️ entries:', entries);
+
+        const blogPosts = entries.items.map(entry => this.convertPost(entry));
+        return { posts: blogPosts, total: entries.total };
+      }
+
+      return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+    } catch (e) {
+      return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+    }
   }
 
   public async fetchBlogById(id): Promise<IPost> {
@@ -67,7 +86,7 @@ export class CmsApi {
     return this.client
       .getEntries({
         content_type: 'post',
-        'fields.tags.sys.id[in]': tag,
+        'fields.tags[in]': tag,
       })
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {
@@ -82,7 +101,7 @@ export class CmsApi {
     try {
       const entries = await this.client.getEntries({
         content_type: 'splitPage', // only fetch blog post entry
-        order: 'sys.createdAt',
+        order: 'fields.order',
       });
 
       if (entries && entries.items && entries.items.length > 0) {
@@ -155,7 +174,7 @@ export class CmsApi {
       description: rawPost.description ?? null,
       publishedDate: moment(rawPost.date).format('DD MMMM YYYY'),
       slug: rawPost.slug,
-      tags: rawPost?.tags?.map(t => t?.fields?.label) ?? [],
+      tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],
       title: rawPost.title,
       featureImage: this.convertImage(rawFeatureImage),
       author: this.convertAuthor(rawAuthor),
@@ -204,19 +223,79 @@ export const renderShortcode = (shortcode: string) => {
     );
   }
 
+  // Community links
+  if (CMS.SHORTCODES.COMMUNITY_LINKS.test(shortcode)) {
+    // Community links - Telegram, Discord, Reddit, etc
+    return (
+      <div className="flex justify-center mt-6 mb-4 space-x-4">
+        <RedditSVG
+          className="h-8 cursor-pointer"
+          onClick={() => open('https://www.reddit.com/r/oxen_io', '_blank')}
+        />
+        <TelegramSVG
+          className="h-8 cursor-pointer"
+          onClick={() => open('https://t.me/Oxen_Community', '_blank')}
+        />
+        <DiscordSVG
+          className="h-8 cursor-pointer"
+          onClick={() => open('https://discord.com/invite/67GXfD6', '_blank')}
+        />
+      </div>
+    );
+  }
+
   // Github links
   if (CMS.SHORTCODES.GITHUB_LINKS.test(shortcode)) {
     // oxen core, session android/desktop/ios, lokinet
     return (
       <>
-        <div className="flex flex-wrap justify-center mb-4 space-x-4">
-          <Button type="ghost">Oxen Core</Button>
-          <Button type="ghost">Lokinet</Button>
+        <div className="flex flex-wrap justify-center mt-6 mb-4 space-x-4">
+          <Button
+            onClick={() =>
+              open('https://github.com/oxen-io/oxen-core', '_blank')
+            }
+            type="ghost"
+          >
+            Oxen Core
+          </Button>
+          <Button
+            onClick={() =>
+              open('https://github.com/oxen-io/loki-network', '_blank')
+            }
+            type="ghost"
+          >
+            Lokinet
+          </Button>
         </div>
+
         <div className="flex flex-wrap justify-center mb-4 space-x-4">
-          <Button type="ghost">Session Android</Button>
-          <Button type="ghost">Session iOS</Button>
-          <Button type="ghost">Session Desktop</Button>
+          <Button
+            className="mb-4"
+            onClick={() =>
+              open('https://github.com/oxen-io/session-android', '_blank')
+            }
+            type="ghost"
+          >
+            Session Android
+          </Button>
+          <Button
+            className="mb-4"
+            onClick={() =>
+              open('https://github.com/oxen-io/session-ios', '_blank')
+            }
+            type="ghost"
+          >
+            Session iOS
+          </Button>
+          <Button
+            className="mb-4"
+            onClick={() =>
+              open('https://github.com/oxen-io/session-desktop', '_blank')
+            }
+            type="ghost"
+          >
+            Session Desktop
+          </Button>
         </div>
       </>
     );

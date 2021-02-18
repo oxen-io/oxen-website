@@ -15,7 +15,7 @@ export function TagBlock(props: Props) {
       href={href}
       style={{ width: 'min-content' }}
       className={classNames(
-        'flex items-center cursor-pointer rounded-full border border-secondary bg-secondary bg-opacity-25 text-primary font-thin',
+        'flex items-center cursor-pointer rounded-full whitespace-nowrap border border-secondary bg-secondary bg-opacity-25 text-primary font-thin',
         size === 'small' && 'h-4 text-xs',
         size === 'medium' && 'h-5 text-sm',
         size === 'medium' && 'h-6 text-base',

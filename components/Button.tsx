@@ -61,7 +61,7 @@ export function Button(props: Props) {
     selected && 'bg-opacity-75',
   ];
 
-  const outlineClassNames = ['rounded-xl py-2'];
+  const outlineClassNames = ['rounded-none py-2'];
 
   const textTypeClassNames = [`text-${color}`, 'hover:opacity-75'];
 
@@ -100,7 +100,7 @@ export function Button(props: Props) {
         'duration-300',
         'ease-in-out',
         'text-center',
-        'rounded-lg',
+        'rounded-none',
         'font-raleway',
         'font-semibold',
         off,

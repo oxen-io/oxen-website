@@ -109,7 +109,9 @@ $breakpoint-huge: 1280px;
 }
 
 body {
+  height: 100vh;
   min-width: 350px;
+  background-color: #dbf7f5;
 }
 
 .hide-scroll {
@@ -119,4 +121,32 @@ body {
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+// Pagination
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  li {
+    &:first-child {
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+    }
+
+    &:last-child {
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+
+    cursor: pointer;
+    padding: 0.25rem 1rem;
+    width: max-content;
+    font-weight: 500;
+    border-radius: 0;
+  }
 }

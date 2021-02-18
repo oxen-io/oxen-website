@@ -1,12 +1,15 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useDispatch } from 'react-redux';
 import { ArticleCard } from '../../components/cards/ArticleCard';
 import { ArticleCardFeature } from '../../components/cards/ArticleCardFeature';
 import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import { TagBlock } from '../../components/TagBlock';
+import { CMS } from '../../constants';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
 import { IPost } from '../../types/cms';
@@ -17,24 +20,37 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   // Get tag query
   const tag = String(context.query.tag ?? '') ?? null;
+  const page = Math.ceil(Number(context.query.page ?? 1));
 
   // Fetch posts even when tag, for related etc
-  const posts = await api.fetchBlogEntries();
+  const { posts, total } = await api.fetchBlogEntries(
+    CMS.BLOG_RESULTS_PER_PAGE,
+    page,
+  );
+
+  const pageCount = Math.floor(total / CMS.BLOG_RESULTS_PER_PAGE);
 
   // Todo, instead of making 2 reqs, filter over 1 req
   // const tagPosts = tag ? await api.fetchBlogEntriesByTag(tag ?? '') : [];
   const tagPosts = posts.filter(post => post.tags.includes(tag));
 
-  return { props: { posts, tagPosts, tag } };
+  return {
+    props: { posts, tagPosts, tag, pageCount, currentPage: page },
+  };
 };
 
 interface Props {
   posts: IPost[];
   tagPosts: IPost[];
   tag: string | null;
+  currentPage: number;
+  pageCount: number;
 }
 
-const Blog = ({ posts, tagPosts, tag }: Props) => {
+const Blog = (props: Props) => {
+  const { posts, tagPosts, tag, currentPage, pageCount } = props;
+
+  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,9 +59,23 @@ const Blog = ({ posts, tagPosts, tag }: Props) => {
 
   const tagHasPosts = tagPosts && tagPosts?.length > 0;
   const [featuredPost, ...otherPosts] = posts;
+  const showPagination = posts.length > 0 && pageCount > 1;
 
   console.log('index ➡️ tag:', tag);
   console.log('index ➡️ tagHasPosts:', tagHasPosts);
+
+  const paginationHandler = page => {
+    const currentPath = router.pathname;
+
+    // Copy current query to avoid its removing
+    const currentQuery = { ...router.query };
+    currentQuery.page = page.selected + 1;
+
+    router.push({
+      pathname: currentPath,
+      query: currentQuery,
+    });
+  };
 
   return (
     <div>
@@ -95,6 +125,31 @@ const Blog = ({ posts, tagPosts, tag }: Props) => {
             <ArticleCard key={post.id} {...post} />
           ))}
         </CardGrid>
+
+        <Contained>
+          <div className="flex justify-center">
+            {showPagination && (
+              <div className="mt-8 mobile:mt-12">
+                <ReactPaginate
+                  previousLabel={'<'}
+                  nextLabel={'>'}
+                  breakLabel={'...'}
+                  breakClassName={'break-me'}
+                  activeClassName={'active'}
+                  containerClassName={
+                    'pagination bg-primary text-white front-prompt'
+                  }
+                  subContainerClassName={''}
+                  initialPage={currentPage - 1}
+                  pageCount={pageCount}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={paginationHandler}
+                />
+              </div>
+            )}
+          </div>
+        </Contained>
       </div>
     </div>
   );

@@ -35,7 +35,10 @@ export function ArticleCardFeature(props: IPost) {
           style={{ minHeight: '100%' }}
           className="bg-opacity-25 cursor-pointer bg-primary aspect-w-14 aspect-h-8"
         >
-          <img className="object-cover" src={featureImage?.imageUrl} />
+          <img
+            className="object-cover"
+            src={`${featureImage?.imageUrl}?w=600`}
+          />
         </div>
       </div>
 

@@ -24,8 +24,4 @@ const nextConfig = {
   },
 };
 
-const withTM = require('next-transpile-modules')(['react-use'], {
-  unstable_webpack5: true,
-});
-
-module.exports = withPlugins([withFonts, withSvgr, withTM], nextConfig);
+module.exports = withPlugins([withFonts, withSvgr], nextConfig);

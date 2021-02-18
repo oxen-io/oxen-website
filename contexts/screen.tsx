@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useScreenSize } from '../hooks/screen';
 
 interface IScreen {
@@ -6,19 +6,19 @@ interface IScreen {
   isTablet: boolean;
   isDesktop: boolean;
   isHuge: boolean;
+  width: number;
 }
 
-export const ScreenContext = React.createContext(undefined);
+export const ScreenContext = React.createContext({
+  isMobile: true,
+  isTablet: false,
+  isDesktop: false,
+  isHuge: false,
+  width: 0,
+});
 
 const ScreenProvider = ({ children }) => {
   const screenParams: IScreen = useScreenSize();
-
-  useEffect(() => {
-    console.log('screen ➡️ screenParams.isMobile:', screenParams.isMobile);
-    console.log('screen ➡️ screenParams.isTablet:', screenParams.isTablet);
-    console.log('screen ➡️ screenParams.isDesktop', screenParams.isDesktop);
-    console.log('screen ➡️ screenParams.isHuge', screenParams.isHuge);
-  }, [screenParams]);
 
   return (
     <ScreenContext.Provider value={screenParams}>

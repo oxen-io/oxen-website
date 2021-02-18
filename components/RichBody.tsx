@@ -14,6 +14,7 @@ import {
   MARKS,
   OrderedList,
   Text,
+  UnorderedList,
 } from '@contentful/rich-text-types';
 import React, { ReactNode } from 'react';
 import { CMS } from '../constants';
@@ -101,9 +102,18 @@ const options = {
         </div>
       );
     },
+    [BLOCKS.UL_LIST]: (node: UnorderedList, children: JSX.Element[]) => {
+      return (
+        <ul className="ml-6 list-disc">
+          {children.map(item => (
+            <li key={item.key}>{item}</li>
+          ))}
+        </ul>
+      );
+    },
     [BLOCKS.OL_LIST]: (node: OrderedList, children: JSX.Element[]) => {
       return (
-        <ol>
+        <ol className="list-decimal">
           {children.map(item => (
             <li key={item.key}>{item}</li>
           ))}

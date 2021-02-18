@@ -91,13 +91,11 @@ function Page({
         ) : (
           <>
             <div className="aspect-w-16 aspect-h-10">
-              <div className="flex items-center justify-center bg-gradient-to-br from-blush to-hyper">
-                <img
-                  style={{ maxHeight: '90%' }}
-                  src={page?.hero?.imageUrl}
-                  className="w-8/12 py-12"
-                />
-              </div>
+              <img
+                style={{ maxHeight: '90%' }}
+                src={page?.hero?.imageUrl}
+                className="object-cover w-full"
+              />
             </div>
 
             <Contained>

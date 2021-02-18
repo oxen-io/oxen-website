@@ -38,10 +38,7 @@ const options = {
       // Grab shortcodes
       // const children;
       const plaintext = documentToPlainTextString(node);
-      console.log('RichBody ➡️ plaintext:', plaintext);
-
       const isShortcode = CMS.SHORTCODE_REGEX.test(plaintext);
-      console.log('RichBody ➡️ isShortcode:', isShortcode);
 
       return isShortcode ? (
         renderShortcode(plaintext)

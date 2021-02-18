@@ -18,18 +18,20 @@ export async function getStaticPaths() {
   // Contentful can edit entries but cannot add/remove
   // without touching code.
   const api = new CmsApi();
-  const { posts } = await api.fetchBlogEntries();
+  const { posts } = await api.fetchBlogEntries(999);
 
   const paths: IPath[] = posts.map(item => ({
     params: { slug: item.slug },
   }));
 
-  console.log('[slug] ➡️ paths:', paths);
+  console.log('paths', paths);
 
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
+  console.log(`Building page: ${params.slug}`);
+
   const api = new CmsApi();
   const post = await api.fetchBlogBySlug(String(params?.slug) ?? '');
 

@@ -13,18 +13,27 @@ interface IPath {
 }
 
 export async function getStaticPaths() {
-  // Get paths to all pages
-  // Hardcoded in navigation constants.
-  // Contentful can edit entries but cannot add/remove
-  // without touching code.
   const api = new CmsApi();
-  const { posts } = await api.fetchBlogEntries(999);
+  let posts: IPost[] = [];
+  let page = 1;
+  let foundAllPosts = false;
+
+  // Contentful only allows 100 at a time
+  while (!foundAllPosts) {
+    const { posts: _posts } = await api.fetchBlogEntries(100, page);
+
+    if (_posts.length === 0) {
+      foundAllPosts = true;
+      continue;
+    }
+
+    posts = [...posts, ..._posts];
+    page++;
+  }
 
   const paths: IPath[] = posts.map(item => ({
     params: { slug: item.slug },
   }));
-
-  console.log('paths', paths);
 
   return { paths, fallback: true };
 }

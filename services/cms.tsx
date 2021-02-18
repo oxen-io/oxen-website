@@ -46,8 +46,6 @@ export class CmsApi {
       });
 
       if (entries && entries.items && entries.items.length > 0) {
-        console.log('cms ➡️ entries:', entries);
-
         const blogPosts = entries.items.map(entry => this.convertPost(entry));
         return { posts: blogPosts, total: entries.total };
       }

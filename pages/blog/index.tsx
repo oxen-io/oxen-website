@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   // Todo, instead of making 2 reqs, filter over 1 req
   // const tagPosts = tag ? await api.fetchBlogEntriesByTag(tag ?? '') : [];
-  const tagPosts = posts.filter(post => post.tags.includes(tag));
+  const tagPosts = posts?.filter(post => post.tags.includes(tag)) ?? [];
 
   return {
     props: { posts, tagPosts, tag, pageCount, currentPage: page },

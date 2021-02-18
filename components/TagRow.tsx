@@ -18,7 +18,7 @@ export function TagRow({ tags, limit, size }: Props) {
       className="flex flex-wrap space-x-2 overflow-hidden"
     >
       {tags
-        .filter(tag => Boolean(tag))
+        ?.filter(tag => Boolean(tag))
         // Maximum of three tags
         .slice(0, limit ?? 10)
         .map(tag => (

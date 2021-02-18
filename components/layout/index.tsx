@@ -30,7 +30,7 @@ export default function Layout({ children }: Props) {
   return (
     <div
       style={{ height: '100vh', width: '100%' }}
-      className="relative flex flex-col justify-between bg-alt"
+      className="relative flex flex-col justify-between bg-alt text-primary"
     >
       <Header />
 

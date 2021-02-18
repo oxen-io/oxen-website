@@ -20,7 +20,7 @@ export function DesktopHeader() {
         zIndex: UI.Z_INDEX_HEADER,
       }}
       className={classNames(
-        'w-full overflow-hidden bg-alt flex items-center border-b border-primary',
+        'w-full overflow-hidden bg-alt text-primary flex items-center border-b border-primary',
       )}
     >
       <div className="flex items-center w-full h-full px-6">
@@ -42,6 +42,7 @@ export function DesktopHeader() {
             {NAVIGATION.MENU_ITEMS.filter(item => !item.mobileMenuOnly).map(
               item => {
                 const link = (
+                  // eslint-disable-next-line react/jsx-no-target-blank
                   <a
                     className={classNames(
                       'uppercase whitespace-no-wrap cursor-pointer',
@@ -49,6 +50,7 @@ export function DesktopHeader() {
                         ? 'text-xs hover:underline'
                         : 'duration-300 text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-10',
                     )}
+                    href={item.external ? item.href : undefined}
                     target={item.newTab ? '_blank' : undefined}
                     rel={item.newTab ? 'noreferrer' : undefined}
                   >

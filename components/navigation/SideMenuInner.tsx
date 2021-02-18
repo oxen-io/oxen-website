@@ -55,7 +55,7 @@ export function SideMenuInner() {
           {!isDesktop && (
             <div
               className={classNames(
-                'flex flex-col pt-8 pb-2 font-medium uppercase font-prompt',
+                'flex flex-col pt-8 font-medium uppercase font-prompt',
                 isDesktop ? 'text-xs' : 'text-base',
               )}
             >
@@ -71,7 +71,7 @@ export function SideMenuInner() {
             </div>
           )}
 
-          <div className="flex pb-6 space-x-3 mobile:-mx-6">
+          <div className="flex pt-3 pb-6 space-x-3 mobile:-mx-6">
             <a
               href="https://t.me/Oxen_Community"
               target="_blank"

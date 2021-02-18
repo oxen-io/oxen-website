@@ -1,9 +1,12 @@
 import classNames from 'classnames';
 import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { ScreenContext } from '../contexts/screen';
+import { expandSideMenu } from '../state/navigation';
 
 export function HomeHeroBubble() {
   const { isMobile, isTablet, isHuge } = useContext(ScreenContext);
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -15,6 +18,7 @@ export function HomeHeroBubble() {
             ? 'translateY(-40vh)'
             : 'translateY(-50vh)',
       }}
+      onClick={() => dispatch(expandSideMenu())}
       className="absolute bottom-0 z-40 px-10 duration-300"
     >
       <div

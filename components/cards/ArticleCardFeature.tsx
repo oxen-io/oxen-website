@@ -44,7 +44,7 @@ export function ArticleCardFeature(props: IPost) {
 
       <div
         style={{ marginTop: isMobile || isTablet ? '1rem' : '0' }}
-        className="flex flex-col justify-between w-full tablet:w-5/12"
+        className="flex flex-col justify-between w-full text-primary tablet:w-5/12"
       >
         <div className="flex flex-col space-y-3">
           <Link href={href} as={as}>

@@ -5,9 +5,8 @@
   "scripts": {
     "now": "npm run now",
     "dev": "NODE_ENV=development next dev",
-    "dev:https": "NODE_ENV=development node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "npm run build && next start",
     "staging": "func() { git add . && git commit -m \"$1\" && git push -u origin staging; }; func",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:fix": "npm run lint -- --fix"

@@ -54,7 +54,7 @@ export function SideMenuSideBar({ mode }: Props) {
       }}
       className={classNames(
         'flex flex-col justify-between w-12 text-2xl items-center h-full bg-blue-300 px-4 py-6 border-l border-black select-none',
-        mode === SideBarMode.LABEL && 'border-r border-b',
+        mode === SideBarMode.LABEL && 'border-r',
         mode === SideBarMode.MENU && !expanded && 'border-r',
       )}
     >

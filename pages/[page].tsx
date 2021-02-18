@@ -127,7 +127,7 @@ function Roadmap() {
         </div>
       </div>
 
-      <div className="flex flex-col px-6 space-y-10">
+      <div className="flex flex-col px-6 pb-6 space-y-10">
         <img
           style={{ maxHeight: '90%' }}
           src={'img/session-roadmap.png'}

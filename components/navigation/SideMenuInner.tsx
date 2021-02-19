@@ -71,7 +71,7 @@ export function SideMenuInner() {
             </div>
           )}
 
-          <div className="flex pt-3 pb-6 space-x-3 mobile:-mx-6">
+          <div className="flex pt-3 pb-6 -mx-6 space-x-3">
             <a
               href="https://t.me/Oxen_Community"
               target="_blank"
@@ -93,6 +93,13 @@ export function SideMenuInner() {
             >
               <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
             </a>
+            {/* <a
+              href="https://loki.opensession.id/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+            </a> */}
           </div>
         </div>
       </Contained>

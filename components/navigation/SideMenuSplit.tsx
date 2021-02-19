@@ -33,7 +33,7 @@ export function SideMenuSplit() {
     <div
       ref={ref}
       style={{
-        minWidth: pageType === PageType.NORMAL ? '50vw' : '0',
+        // minWidth: pageType === PageType.NORMAL ? '50vw' : '0',
         zIndex: 20033,
         height:
           pageType === PageType.NORMAL
@@ -41,7 +41,9 @@ export function SideMenuSplit() {
             : `calc(100vh - ${UI.HEADER_HEIGHT_PX}px`,
         transform,
       }}
-      className={classNames('relative flex text-primary bg-alt duration-300')}
+      className={classNames(
+        'relative flex text-primary bg-alWt duration-300 mt-px',
+      )}
     >
       {pageType === PageType.NORMAL && (
         <div

@@ -40,8 +40,8 @@ export function SideMenuRow({ item, isActive }: SideMenuRowProps) {
               : 'unset',
         }}
         className={classNames(
-          'flex flex-1 space-x-6 justify-between text-primary items-center cursor-pointer border-b border-black py-4 hover:bg-secondary duration-300',
-          isHuge ? 'text-3xl' : isDesktop ? 'text-xl' : 'text-xl',
+          'flex flex-1 space-x-6 justify-between text-primary items-center cursor-pointer border-b border-black py-4 hover:bg-secondary duration-300 whitespace-nowrap',
+          isHuge ? 'text-2xl' : isDesktop ? 'text-xl' : 'text-xl',
           isActive ? 'bg-secondary' : 'bg-transparent',
         )}
       >

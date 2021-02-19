@@ -47,7 +47,7 @@ export default function Layout({ children }: Props) {
             marginLeft,
             filter: `brightness(${mobileMenuOpen ? 0.85 : 1})`,
           }}
-          className="relative z-50 w-full h-full overflow-y-auto duration-300"
+          className="relative z-50 w-full h-full overflow-y-auto duration-300 bg-alt"
         >
           {children}
         </div>

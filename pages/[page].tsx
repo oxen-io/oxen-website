@@ -117,6 +117,10 @@ function Page({
 function Roadmap() {
   return (
     <>
+      <h1 className="px-6 mt-6 mb-3 text-3xl font-medium font-prompt text-primary">
+        Oxen's 2021 Roadmap
+      </h1>
+
       <div className="aspect-w-16 aspect-h-10">
         <div className="flex items-center justify-center">
           <img
@@ -128,17 +132,27 @@ function Roadmap() {
       </div>
 
       <div className="flex flex-col px-6 pb-6 space-y-10">
-        <img
-          style={{ maxHeight: '90%' }}
-          src={'img/session-roadmap.png'}
-          className="w-full rounded-md"
-        />
+        <div>
+          <h2 className="mt-6 mb-3 text-2xl font-medium font-prompt text-primary">
+            Session in 2021
+          </h2>
+          <img
+            style={{ maxHeight: '90%' }}
+            src={'img/session-roadmap.png'}
+            className="w-full rounded-md"
+          />
+        </div>
 
-        <img
-          style={{ maxHeight: '90%' }}
-          src={'img/lokinet-roadmap.png'}
-          className="w-full rounded-md"
-        />
+        <div>
+          <h2 className="mt-6 mb-3 text-2xl font-medium font-prompt text-primary">
+            Lokinet in 2021
+          </h2>
+          <img
+            style={{ maxHeight: '90%' }}
+            src={'img/lokinet-roadmap.png'}
+            className="w-full rounded-md"
+          />
+        </div>
       </div>
     </>
   );

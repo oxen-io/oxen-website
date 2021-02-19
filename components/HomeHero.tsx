@@ -9,7 +9,7 @@ export function HomeHero() {
     >
       <img
         className="object-cover object-right-bottom w-full h-full"
-        src="/hero.png"
+        src="/hero.svg"
       />
     </div>
   );

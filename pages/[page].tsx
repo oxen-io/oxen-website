@@ -90,7 +90,7 @@ function Page({
           <Roadmap />
         ) : (
           <>
-            <div className="aspect-w-16 aspect-h-10">
+            <div className="aspect-w-16 aspect-h-10 bg-gradient-to-bl from-hyper to-blush">
               <img
                 style={{ maxHeight: '90%' }}
                 src={page?.hero?.imageUrl}
@@ -138,7 +138,7 @@ function Roadmap() {
           </h2>
           <img
             style={{ maxHeight: '90%' }}
-            src={'img/session-roadmap.png'}
+            src={'img/session-roadmap.jpg'}
             className="w-full rounded-md"
           />
         </div>
@@ -149,7 +149,7 @@ function Roadmap() {
           </h2>
           <img
             style={{ maxHeight: '90%' }}
-            src={'img/lokinet-roadmap.png'}
+            src={'img/lokinet-roadmap.jpg'}
             className="w-full rounded-md"
           />
         </div>

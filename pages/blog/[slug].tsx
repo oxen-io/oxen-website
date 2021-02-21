@@ -19,23 +19,27 @@ export async function getStaticPaths() {
   let foundAllPosts = false;
 
   // Contentful only allows 100 at a time
-  while (!foundAllPosts) {
-    const { posts: _posts } = await api.fetchBlogEntries(100, page);
+  try {
+    while (!foundAllPosts) {
+      const { posts: _posts } = await api.fetchBlogEntries(100, page);
 
-    if (_posts.length === 0) {
-      foundAllPosts = true;
-      continue;
+      if (_posts.length === 0) {
+        foundAllPosts = true;
+        continue;
+      }
+
+      posts = [...posts, ..._posts];
+      page++;
     }
 
-    posts = [...posts, ..._posts];
-    page++;
+    const paths: IPath[] = posts.map(item => ({
+      params: { slug: item.slug },
+    }));
+
+    return { paths, fallback: true };
+  } catch (e) {
+    return { paths: [], fallback: true };
   }
-
-  const paths: IPath[] = posts.map(item => ({
-    params: { slug: item.slug },
-  }));
-
-  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {

@@ -9,8 +9,8 @@ dotenv.config();
 
 describe('getStaticPaths', () => {
   test('', async () => {
-    const { paths } = await getStaticPaths();
+    const { paths: postPaths } = await getStaticPaths();
 
-    console.log('getStaticPaths.test ➡️     paths:', paths);
+    console.log('getStaticPaths.test ➡️     postPaths:', postPaths);
   });
 });

@@ -127,6 +127,7 @@ body {
 .pagination {
   display: flex;
   justify-content: center;
+  border-radius: 15px;
 
   li {
     &:first-child {

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { HomeHero } from '../components/HomeHero';
 import { HomeHeroBubble } from '../components/HomeHeroBubble';
-import { METADATA } from '../constants';
+import { METADATA, NAVIGATION } from '../constants';
 
 const Index = () => {
   return (
@@ -19,7 +19,7 @@ const Index = () => {
         <meta property="og:title" content={'Oxen'} key="ogtitle" />
         <meta
           property="og:description"
-          content={post.description}
+          content={NAVIGATION.SITE_META_DESCRIPTION}
           key="ogdesc"
         />
       </Head>

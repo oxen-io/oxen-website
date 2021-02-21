@@ -52,8 +52,7 @@ export function ArticleCardFeature(props: IPost) {
               style={{ height: '2.95em' }}
               className="overflow-hidden font-sans text-3xl font-medium leading-none hover:underline"
             >
-              {title} and other sutff thatfills u pthe title for lots of lines
-              and lots more lines and heaps of lines
+              {title}
             </a>
           </Link>
 

@@ -19,7 +19,7 @@ export function HomeHeroBubble() {
             : 'translateY(-50vh)',
       }}
       onClick={() => dispatch(expandSideMenu())}
-      className="absolute bottom-0 z-40 px-10 duration-300"
+      className="absolute bottom-0 z-40 px-10 duration-300 cursor-pointer"
     >
       <div
         className={classNames(

@@ -14,6 +14,14 @@ const Index = () => {
           content="Oxen - Privacy should be simple."
           key="title"
         />
+        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
+        <meta property="og:site_name" content="oxen.io" key="ogsitename" />
+        <meta property="og:title" content={'Oxen'} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={post.description}
+          key="ogdesc"
+        />
       </Head>
 
       {/* Only visible when no pages are open */}

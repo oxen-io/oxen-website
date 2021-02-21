@@ -69,10 +69,24 @@ function Post({ post }: { post: IPost }) {
     dispatch(setPostTitle(post.title));
   }, []);
 
+  const pageTitle = generateTitle(post?.title);
+
   return (
     <>
       <Head>
-        <title>{generateTitle(post?.title)}</title>
+        <title>{pageTitle}</title>
+        <meta
+          property="og:image"
+          content={post.featureImage.imageUrl}
+          key="ogimage"
+        />
+        <meta property="og:site_name" content="oxen.io" key="ogsitename" />
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={post.description}
+          key="ogdesc"
+        />
       </Head>
 
       <div className="bg-alt">

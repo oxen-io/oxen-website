@@ -127,7 +127,7 @@ const Blog = (props: Props) => {
         </CardGrid>
 
         <Contained>
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-4">
             {showPagination && (
               <div className="mt-8 mobile:mt-12">
                 <ReactPaginate
@@ -135,7 +135,7 @@ const Blog = (props: Props) => {
                   nextLabel={'>'}
                   breakLabel={'...'}
                   breakClassName={'break-me'}
-                  activeClassName={'active'}
+                  activeClassName={'active bg-secondary'}
                   containerClassName={
                     'pagination bg-primary text-white front-prompt'
                   }

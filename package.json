@@ -6,7 +6,7 @@
     "now": "npm run now",
     "dev": "NODE_ENV=development next dev",
     "build": "next build",
-    "start": "npm run build && next start",
+    "start": "next start",
     "staging": "func() { git add . && git commit -m \"$1\" && git push -u origin staging; }; func",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:fix": "npm run lint -- --fix"

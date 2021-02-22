@@ -123,6 +123,8 @@ const options = {
         <a
           className="cursor-pointer text-blue hover:underline"
           href={node.data.uri}
+          target="_blank"
+          rel="noreferrer"
         >
           {content[0].value}
         </a>

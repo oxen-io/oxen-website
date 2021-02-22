@@ -83,7 +83,7 @@ const Blog = (props: Props) => {
         <title>{generateTitle('Blog')}</title>
       </Head>
 
-      <div className="flex flex-col w-full mt-12 mb-6 space-y-10 bg-alt">
+      <div className="flex flex-col w-full mt-12 mb-6 space-y-6 bg-alt">
         <Contained>
           {!tag && posts.length && <ArticleCardFeature {...featuredPost} />}
 
@@ -129,7 +129,7 @@ const Blog = (props: Props) => {
         <Contained>
           <div className="flex justify-center mb-4">
             {showPagination && (
-              <div className="mt-8 mobile:mt-12">
+              <div className="mt-4 mobile:mt-6">
                 <ReactPaginate
                   previousLabel={'<'}
                   nextLabel={'>'}

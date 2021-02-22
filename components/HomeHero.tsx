@@ -1,14 +1,21 @@
 export function HomeHero() {
   return (
     <div
-      style={{
-        top: '-20vh',
-        // transform: `translateX(17.5vw) translateY(-5vh)`,
-      }}
-      className="fixed bottom-0 left-0 right-0 z-30 overflow-hidden"
+      style={
+        {
+          // transform: `translateX(17.5vw) translateY(-5vh)`,
+        }
+      }
+      className="relative w-full h-full"
     >
       <img
-        className="object-cover object-right-bottom w-full h-full"
+        style={{
+          transform: ``,
+          // Make image expand into sidebar direction
+          direction: 'rtl',
+          minWidth: '100%',
+        }}
+        className="absolute bottom-0 left-0 object-cover h-full transform"
         src="/hero.svg"
       />
     </div>

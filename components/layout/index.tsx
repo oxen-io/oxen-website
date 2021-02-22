@@ -1,4 +1,5 @@
-import React, { ReactNode, useContext } from 'react';
+import { useRouter } from 'next/router';
+import React, { ReactNode, useContext, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
@@ -17,6 +18,8 @@ export default function Layout({ children }: Props) {
     (state: IState) => state.navigation,
   );
 
+  const router = useRouter();
+
   const marginLeft = `${
     pageType === PageType.NORMAL && isTablet
       ? UI.SIDE_MENU_SIDE_BAR_WIDTH_PX
@@ -26,6 +29,20 @@ export default function Layout({ children }: Props) {
   const mobileMenuOpen =
     (pageType === PageType.BLOG || pageType === PageType.POST) &&
     headerMobileMenuExpanded;
+
+  const ref = useRef<HTMLDivElement>(null);
+  const handleLocationChange = () => {
+    // Reset scroll position
+    ref.current.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handleLocationChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleLocationChange);
+    };
+  }, []);
 
   return (
     <div
@@ -43,6 +60,7 @@ export default function Layout({ children }: Props) {
         <SideMenu />
 
         <div
+          ref={ref}
           style={{
             marginLeft,
             filter: `brightness(${mobileMenuOpen ? 0.85 : 1})`,

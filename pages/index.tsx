@@ -25,7 +25,7 @@ const Index = () => {
       </Head>
 
       {/* Only visible when no pages are open */}
-      <div style={{ width: '100vw' }}>
+      <div className="w-full h-full">
         <HomeHero />
         <HomeHeroBubble />
       </div>

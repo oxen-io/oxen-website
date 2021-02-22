@@ -51,7 +51,7 @@ export function SideMenuInner() {
       </div>
 
       <Contained>
-        <div className="flex flex-col w-full space-y-4">
+        <div className="flex flex-col w-full mb-4 space-y-4">
           {!isDesktop && (
             <div
               className={classNames(
@@ -70,39 +70,41 @@ export function SideMenuInner() {
               ))}
             </div>
           )}
-
-          <div className="flex pt-3 pb-6 -mx-6 space-x-3">
-            <a
-              href="https://t.me/Oxen_Community"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <TelegramSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
-            </a>
-            <a
-              href="https://twitter.com/Oxen_io"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <TwitterSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
-            </a>
-            <a
-              href="https://github.com/oxen-io"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
-            </a>
-            {/* <a
-              href="https://loki.opensession.id/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
-            </a> */}
-          </div>
         </div>
       </Contained>
+
+      {isDesktop ? (
+        <div className="px-6">
+          <SocialsRow />
+        </div>
+      ) : (
+        <Contained>
+          <SocialsRow />
+        </Contained>
+      )}
     </div>
   );
 }
+
+const SocialsRow = () => {
+  return (
+    <div className="flex pt-3 pb-6 space-x-3">
+      <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">
+        <TelegramSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      <a href="https://twitter.com/Oxen_io" target="_blank" rel="noreferrer">
+        <TwitterSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      <a href="https://github.com/oxen-io" target="_blank" rel="noreferrer">
+        <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      {/* <a
+      href="https://loki.opensession.id/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+    </a> */}
+    </div>
+  );
+};

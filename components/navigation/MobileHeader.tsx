@@ -71,7 +71,7 @@ export function MobileHeader() {
             <TriangleSVG
               onClick={() => toggleMobileMenu()}
               className={classNames(
-                'h-3 transform outline-none duration-300 cursor-pointer',
+                'h-4 transform outline-none duration-300 cursor-pointer',
                 headerMobileMenuExpanded ? '-rotate-90' : 'rotate-90',
               )}
             />

@@ -90,14 +90,12 @@ function Page({
           <Roadmap />
         ) : (
           <>
-            <div className="aspect-w-16 aspect-h-10 bg-gradient-to-bl from-hyper to-blush">
-              <div className="flex items-center justify-center w-full h-full mt-3">
-                <img
-                  style={{ maxHeight: '90%' }}
-                  src={page?.hero?.imageUrl}
-                  className="object-cover w-full"
-                />
-              </div>
+            <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
+              <img
+                style={{ maxHeight: '33vh' }}
+                src={page?.hero?.imageUrl}
+                className="object-contain w-full"
+              />
             </div>
 
             <Contained>

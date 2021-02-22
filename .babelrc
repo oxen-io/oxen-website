@@ -11,6 +11,9 @@
         ["tailwind", { "ssr": true, "displayName": true, "preprocess": false }]
       ],
       "presets": ["next/babel"]
+    },
+    "test": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
     }
   },
   "plugins": [

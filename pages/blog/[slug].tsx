@@ -19,27 +19,28 @@ export async function getStaticPaths() {
   let foundAllPosts = false;
 
   // Contentful only allows 100 at a time
-  try {
-    while (!foundAllPosts) {
-      const { posts: _posts } = await api.fetchBlogEntries(100, page);
+  while (!foundAllPosts) {
+    const { posts: _posts } = await api.fetchBlogEntries(100, page);
 
-      if (_posts.length === 0) {
-        foundAllPosts = true;
-        continue;
-      }
-
-      posts = [...posts, ..._posts];
-      page++;
+    if (_posts.length === 0) {
+      foundAllPosts = true;
+      continue;
     }
 
-    const paths: IPath[] = posts.map(item => ({
-      params: { slug: item.slug },
-    }));
+    console.log('[slug] ➡️ page:', page);
+    console.log('[slug] ➡️ foundAllPosts:', foundAllPosts);
+    console.log('[slug] ➡️ _posts.length:', _posts.length);
+    console.log('[slug] ➡️ posts.length:', posts.length);
 
-    return { paths, fallback: true };
-  } catch (e) {
-    return { paths: [], fallback: true };
+    posts = [...posts, ..._posts];
+    page++;
   }
+
+  const paths: IPath[] = posts.map(item => ({
+    params: { slug: item.slug },
+  }));
+
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
@@ -77,14 +78,14 @@ function Post({ post }: { post: IPost }) {
         <title>{pageTitle}</title>
         <meta
           property="og:image"
-          content={post.featureImage.imageUrl}
+          content={post?.featureImage.imageUrl}
           key="ogimage"
         />
         <meta property="og:site_name" content="oxen.io" key="ogsitename" />
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta
           property="og:description"
-          content={post.description}
+          content={post?.description}
           key="ogdesc"
         />
       </Head>

@@ -25,7 +25,7 @@ const Index = () => {
       </Head>
 
       {/* Only visible when no pages are open */}
-      <div className="w-full h-full">
+      <div className="relative w-full h-full">
         <HomeHero />
         <HomeHeroBubble />
       </div>

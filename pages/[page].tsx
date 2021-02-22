@@ -71,9 +71,6 @@ function Page({
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
-
-    // Reset scroll position
-    window.scrollY = 0;
   }, []);
 
   return (
@@ -120,7 +117,7 @@ function Page({
 function Roadmap() {
   return (
     <>
-      <h1 className="px-6 mt-6 mb-3 text-3xl font-medium font-prompt text-primary">
+      <h1 className="px-6 mt-12 -mb-3 text-3xl font-medium tablet:text-5xl font-prompt text-primary">
         Oxen's 2021 Roadmap
       </h1>
 
@@ -136,7 +133,7 @@ function Roadmap() {
 
       <div className="flex flex-col px-6 pb-6 space-y-10">
         <div>
-          <h2 className="mt-6 mb-3 text-3xl font-medium font-prompt text-primary">
+          <h2 className="mt-6 mb-3 text-3xl font-medium tablet:text-4xl font-prompt text-primary">
             Session in 2021
           </h2>
           <img
@@ -147,7 +144,7 @@ function Roadmap() {
         </div>
 
         <div>
-          <h2 className="mt-6 mb-3 text-3xl font-medium font-prompt text-primary">
+          <h2 className="mt-6 mb-3 text-3xl font-medium tablet:text-4xl font-prompt text-primary">
             Lokinet in 2021
           </h2>
           <img

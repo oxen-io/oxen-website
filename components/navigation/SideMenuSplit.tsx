@@ -42,7 +42,7 @@ export function SideMenuSplit() {
         transform,
       }}
       className={classNames(
-        'relative flex text-primary bg-alWt duration-300 mt-px',
+        'relative flex text-primary bg-alWt duration-300 mt-px z-50',
       )}
     >
       {pageType === PageType.NORMAL && (

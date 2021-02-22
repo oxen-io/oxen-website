@@ -66,18 +66,17 @@ export class CmsApi {
   }
 
   public async fetchBlogBySlug(slug: string): Promise<IPost> {
-    return this.client
-      .getEntries({
-        content_type: 'post',
-        'fields.slug[in]': slug,
-      })
-      .then(entries => {
-        if (entries && entries.items && entries.items.length > 0) {
-          const post = this.convertPost(entries.items[0]);
-          return post;
-        }
-        return null;
-      });
+    const entries = await this.client.getEntries({
+      content_type: 'post',
+      'fields.slug[in]': slug,
+    });
+
+    if (entries?.items?.length > 0) {
+      const post = this.convertPost(entries.items[0]);
+      return post;
+    }
+
+    return null;
   }
 
   public async fetchBlogEntriesByTag(tag: string): Promise<IPost[]> {

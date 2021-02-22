@@ -46,9 +46,8 @@ export function DesktopHeader() {
                   <a
                     className={classNames(
                       'uppercase whitespace-no-wrap cursor-pointer',
-                      item.subtle
-                        ? 'text-xs hover:underline'
-                        : 'duration-300 text-base font-bold py-1 px-2 hover:bg-primary rounded hover:bg-opacity-10',
+                      'duration-300 text-base font-bold py-1 px-2 hover:bg-primary',
+                      'rounded hover:bg-opacity-10',
                     )}
                     href={item.external ? item.href : undefined}
                     target={item.newTab ? '_blank' : undefined}

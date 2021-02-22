@@ -5,7 +5,7 @@ import { ScreenContext } from '../contexts/screen';
 import { expandSideMenu } from '../state/navigation';
 
 export function HomeHeroBubble() {
-  const { isMobile, isTablet, isHuge } = useContext(ScreenContext);
+  const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
   const dispatch = useDispatch();
 
   return (
@@ -13,17 +13,21 @@ export function HomeHeroBubble() {
       style={{
         transform:
           isMobile || isTablet
-            ? 'translateY(-40vh)'
+            ? 'translateY(min(40vh, 20rem))'
             : isHuge
-            ? 'translateY(-40vh)'
-            : 'translateY(-50vh)',
+            ? 'translateY(50%)'
+            : 'translateY(33%)',
+        maxHeight: '400px',
       }}
       onClick={() => dispatch(expandSideMenu())}
-      className="absolute bottom-0 z-40 px-10 duration-300 cursor-pointer"
+      className={classNames(
+        'absolute h-full z-40 px-10 duration-300',
+        !isDesktop && 'cursor-pointer',
+      )}
     >
       <div
         className={classNames(
-          'px-4 py-2  leading-tight  text-base border rounded-lg bg-opacity-90 border-secondary bg-alt front-prompt text-primary animate-float',
+          'px-4 py-2 leading-tight text-base border rounded-lg bg-opacity-90 border-secondary bg-alt front-prompt text-primary animate-float',
           //   isMobile ? 'text-base' : 'text-xl',
         )}
       >

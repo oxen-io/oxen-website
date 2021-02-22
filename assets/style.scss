@@ -112,6 +112,11 @@ body {
   height: 100vh;
   min-width: 350px;
   background-color: #dbf7f5;
+
+  // Fix for Safari
+  // https://stackoverflow.com/a/37365794
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
 }
 
 .hide-scroll {

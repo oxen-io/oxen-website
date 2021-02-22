@@ -133,7 +133,7 @@ function Roadmap() {
 
       <div className="flex flex-col px-6 pb-6 space-y-10">
         <div>
-          <h2 className="mt-6 mb-3 text-2xl font-medium font-prompt text-primary">
+          <h2 className="mt-6 mb-3 text-3xl font-medium font-prompt text-primary">
             Session in 2021
           </h2>
           <img
@@ -144,7 +144,7 @@ function Roadmap() {
         </div>
 
         <div>
-          <h2 className="mt-6 mb-3 text-2xl font-medium font-prompt text-primary">
+          <h2 className="mt-6 mb-3 text-3xl font-medium font-prompt text-primary">
             Lokinet in 2021
           </h2>
           <img

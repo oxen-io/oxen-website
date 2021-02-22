@@ -4,9 +4,12 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import DiscordSVG from '../../assets/svgs/socials/discord.svg';
 import GithubSVG from '../../assets/svgs/socials/github.svg';
+import RedditSVG from '../../assets/svgs/socials/reddit.svg';
 import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
+import YouTubeSVG from '../../assets/svgs/socials/youtube.svg';
 import { NAVIGATION } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import { IState } from '../../state/reducers';
@@ -51,20 +54,19 @@ export function SideMenuInner() {
       </div>
 
       <Contained>
-        <div className="flex flex-col w-full mb-4 space-y-4">
+        <div className="flex flex-col w-full mb-4 space-y-6">
           {!isDesktop && (
             <div
               className={classNames(
-                'flex flex-col pt-8 font-medium uppercase font-prompt',
-                isDesktop ? 'text-xs' : 'text-base',
+                'flex flex-col pt-8 font-medium uppercase font-prompt text-lg',
               )}
             >
-              {_.chunk(NAVIGATION.MENU_ITEMS, 3).map(group => (
-                <div key={uuid()} className="flex justify-between space-x-2 ">
+              {_.chunk(NAVIGATION.MENU_ITEMS, 2).map(group => (
+                <div key={uuid()} className="flex space-x-4">
                   {group.map(item => (
-                    <a key={item.label} href={item.href}>
-                      {item.label}
-                    </a>
+                    <div key={item.label} className="flex-1">
+                      <a href={item.href}>{item.label}</a>
+                    </div>
                   ))}
                 </div>
               ))}
@@ -87,24 +89,45 @@ export function SideMenuInner() {
 }
 
 const SocialsRow = () => {
+  const { isDesktop } = useContext(ScreenContext);
+
   return (
-    <div className="flex pt-3 pb-6 space-x-3">
+    <div
+      className={classNames(
+        'flex pt-3 pb-6 space-x-3 justify-between',
+        isDesktop && 'justify-between',
+      )}
+    >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">
-        <TelegramSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+        <TelegramSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <a href="https://twitter.com/Oxen_io" target="_blank" rel="noreferrer">
-        <TwitterSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+        <TwitterSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <a href="https://github.com/oxen-io" target="_blank" rel="noreferrer">
-        <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+        <GithubSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
-      {/* <a
-      href="https://loki.opensession.id/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
-    </a> */}
+      <a
+        href="https://discord.com/invite/67GXfD6"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <DiscordSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      <a
+        href="https://www.youtube.com/channel/UCN7LL0dEffQ7FSjbY5wwlnw"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <YouTubeSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      <a
+        href="https://www.reddit.com/r/oxen_io/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <RedditSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+      </a>
     </div>
   );
 };

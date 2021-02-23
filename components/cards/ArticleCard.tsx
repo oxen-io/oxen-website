@@ -33,6 +33,7 @@ export function ArticleCard(props: IPost): JSX.Element {
   return (
     <div
       ref={ref}
+      style={{ wordBreak: 'break-word' }}
       className={classNames(
         'overflow-hidden w-full bg-opacity-75',
         isSmall ? 'pb-3' : 'pb-1',

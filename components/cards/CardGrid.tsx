@@ -8,29 +8,30 @@ import { Contained } from '../Contained';
 import { HorizontalScrollable } from '../HorizontalScrollable';
 
 interface Props {
+  rows?: number;
   children: JSX.Element[];
 }
 
-export function CardGrid({ children }: Props) {
+export function CardGrid({ rows, children }: Props) {
   const { isMobile, isDesktop, isHuge } = useContext(ScreenContext);
 
   const [ref, { width }] = useMeasure();
   const widthOfCardPx = 200;
   const grouping = Math.max(1, Math.min(4, Math.floor(width / widthOfCardPx)));
+  const numPaddingCards =
+    Math.ceil(children.length / grouping) * grouping - children.length;
 
   const spacing = isHuge ? 3 : isDesktop ? 6 : 4;
   const spacingY = `space-y-${spacing}`;
   const spacingX = `space-x-${spacing}`;
 
-  // const grouping = isHuge ? 3 : isDesktop ? 2 : isTablet ? 1 : 1;
-  const numPaddingCards =
-    Math.ceil(children.length / grouping) * grouping - children.length;
+  const items =
+    rows && rows > 0 ? children.slice(0, grouping * rows) : children;
 
-  console.log('CardGrid ➡️ grouping:', grouping);
   // Add cards to ensure we fill up each row. Hidden where the row is incomplete
   // to keep even widths
   const cards = [
-    ...children,
+    ...items,
     ...Array.from(Array(numPaddingCards).keys()).map(i => <div key={i}></div>),
   ];
 

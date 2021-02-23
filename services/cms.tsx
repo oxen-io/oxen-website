@@ -79,25 +79,25 @@ export class CmsApi {
     return null;
   }
 
-  public async fetchBlogEntriesByTag(tag: string): Promise<IPost[]> {
+  public async fetchBlogEntriesByTag(
+    tag: string,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    page = 1,
+  ): Promise<IFetchBlogEntriesReturn> {
     const entries = await this.client.getEntries({
       content_type: 'post',
-      'fields.tags[in]': tag,
       order: '-fields.date',
+      'fields.tags[in]': tag,
+      limit: quantity,
+      skip: (page - 1) * quantity,
     });
-
-    console.log(
-      'cms ➡️ entries:',
-      Object.values(entries?.items).map(item => (item.fields as any).tags),
-    );
-    console.log('cms ➡️ tag:', tag);
 
     if (entries?.items?.length > 0) {
       const posts = entries.items.map(entry => this.convertPost(entry));
-      return posts;
+      return { posts, total: entries.total };
     }
 
-    return [];
+    return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
   }
 
   public async fetchPageEntries(): Promise<TPages> {

@@ -23,18 +23,41 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const page = Math.ceil(Number(context.query.page ?? 1));
 
   // Fetch posts even when tag, for related etc
-  const { posts, total } = await api.fetchBlogEntries(
-    CMS.BLOG_RESULTS_PER_PAGE,
-    page,
+  // Pagination only occurs when tag isnt defined.
+  // If tag is defined, pagination is for tag results
+  const { posts, total: totalPosts } = await api.fetchBlogEntries(
+    tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE,
+    tag ? 1 : page,
   );
 
+  // Get tags for pagination
+  let tagPosts = [];
+  let tagTotalPosts;
+  if (tag) {
+    const {
+      posts: _tagPosts = [],
+      total: _tagTotalPosts,
+    } = await api.fetchBlogEntriesByTag(
+      tag ?? '',
+      CMS.BLOG_RESULTS_PER_PAGE,
+      page,
+    );
+
+    tagPosts = _tagPosts;
+    tagTotalPosts = _tagTotalPosts;
+  }
+
+  const total = tagTotalPosts ?? totalPosts;
   const pageCount = Math.floor(total / CMS.BLOG_RESULTS_PER_PAGE);
 
-  // Todo, instead of making 2 reqs, filter over 1 req
-  const tagPosts = tag ? await api.fetchBlogEntriesByTag(tag ?? '') : [];
-
   return {
-    props: { posts, tagPosts, tag, pageCount, currentPage: page },
+    props: {
+      posts,
+      pageCount,
+      currentPage: page,
+      tag,
+      tagPosts,
+    },
   };
 };
 
@@ -76,6 +99,29 @@ const Blog = (props: Props) => {
     });
   };
 
+  const pagination = (
+    <Contained>
+      <div className="flex justify-center mb-4">
+        <div className="mt-4 mobile:mt-6">
+          <ReactPaginate
+            previousLabel={'<'}
+            nextLabel={'>'}
+            breakLabel={'...'}
+            breakClassName={'break-me'}
+            activeClassName={'active bg-secondary'}
+            containerClassName={'pagination bg-primary text-white front-prompt'}
+            subContainerClassName={''}
+            initialPage={currentPage - 1}
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={paginationHandler}
+          />
+        </div>
+      </div>
+    </Contained>
+  );
+
   return (
     <div>
       <Head>
@@ -102,52 +148,33 @@ const Blog = (props: Props) => {
 
         {/* Tag has posts */}
         {tag && tagHasPosts && (
-          <CardGrid>
-            {tagPosts?.map(post => (
-              <ArticleCard key={post.id} {...post} />
-            ))}
-          </CardGrid>
+          <>
+            <CardGrid>
+              {tagPosts?.map(post => (
+                <ArticleCard key={post.id} {...post} />
+              ))}
+            </CardGrid>
+
+            {pagination}
+          </>
         )}
 
         <Contained>
           {tag && (
-            <h3 className="mb-1 text-3xl font-prompt text-primary">
+            <h3 className="-mb-2 text-3xl font-prompt text-primary">
               Recent Posts
             </h3>
           )}
         </Contained>
 
         {/* Posts, or recent posts if tag */}
-        <CardGrid>
-          {(tag ? posts : otherPosts).slice(0, tag ? 4 : 100)?.map(post => (
+        <CardGrid rows={2}>
+          {(tag ? posts : otherPosts)?.map(post => (
             <ArticleCard key={post.id} {...post} />
           ))}
         </CardGrid>
 
-        <Contained>
-          <div className="flex justify-center mb-4">
-            {showPagination && (
-              <div className="mt-4 mobile:mt-6">
-                <ReactPaginate
-                  previousLabel={'<'}
-                  nextLabel={'>'}
-                  breakLabel={'...'}
-                  breakClassName={'break-me'}
-                  activeClassName={'active bg-secondary'}
-                  containerClassName={
-                    'pagination bg-primary text-white front-prompt'
-                  }
-                  subContainerClassName={''}
-                  initialPage={currentPage - 1}
-                  pageCount={pageCount}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  onPageChange={paginationHandler}
-                />
-              </div>
-            )}
-          </div>
-        </Contained>
+        {!tagHasPosts && pagination}
       </div>
     </div>
   );

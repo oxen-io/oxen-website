@@ -15,7 +15,6 @@ export function ArticleCard(props: IPost): JSX.Element {
     featureImage,
     publishedDate,
     author,
-    tags,
     slug,
   } = props;
 
@@ -24,6 +23,12 @@ export function ArticleCard(props: IPost): JSX.Element {
   const isSmall = width < 130;
 
   const { href, as } = generateURL(slug);
+
+  // Order tags such that the search tag appears first
+  const searchTag = router.query?.tag;
+  const tags = props.tags.find(t => t === searchTag)
+    ? [searchTag, ...props.tags.filter(t => t !== searchTag)]
+    : props.tags;
 
   return (
     <div

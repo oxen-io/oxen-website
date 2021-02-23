@@ -68,7 +68,7 @@ export class CmsApi {
   public async fetchBlogBySlug(slug: string): Promise<IPost> {
     const entries = await this.client.getEntries({
       content_type: 'post',
-      'fields.slug[in]': slug,
+      'fields.slug': slug,
     });
 
     if (entries?.items?.length > 0) {
@@ -80,18 +80,24 @@ export class CmsApi {
   }
 
   public async fetchBlogEntriesByTag(tag: string): Promise<IPost[]> {
-    return this.client
-      .getEntries({
-        content_type: 'post',
-        'fields.tags[in]': tag,
-      })
-      .then(entries => {
-        if (entries && entries.items && entries.items.length > 0) {
-          const posts = entries.items.map(entry => this.convertPost(entry));
-          return posts;
-        }
-        return [];
-      });
+    const entries = await this.client.getEntries({
+      content_type: 'post',
+      'fields.tags[in]': tag,
+      order: '-fields.date',
+    });
+
+    console.log(
+      'cms ➡️ entries:',
+      Object.values(entries?.items).map(item => (item.fields as any).tags),
+    );
+    console.log('cms ➡️ tag:', tag);
+
+    if (entries?.items?.length > 0) {
+      const posts = entries.items.map(entry => this.convertPost(entry));
+      return posts;
+    }
+
+    return [];
   }
 
   public async fetchPageEntries(): Promise<TPages> {

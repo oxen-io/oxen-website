@@ -86,11 +86,11 @@ const MENU_ITEMS: IMenuItem[] = [
     external: true,
   },
   {
-    label: 'CoinGecko',
-    href: 'https://www.coingecko.com/en/coins/oxen',
-    newTab: true,
+    label: 'Dev Updates',
+    href: '/blog?tag=dev-update',
+    newTab: false,
     subtle: true,
-    external: true,
+    external: false,
   },
   {
     label: 'Downloads',

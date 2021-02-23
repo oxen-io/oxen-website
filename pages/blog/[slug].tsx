@@ -78,7 +78,7 @@ function Post({ post }: { post: IPost }) {
         <title>{pageTitle}</title>
         <meta
           property="og:image"
-          content={post?.featureImage.imageUrl}
+          content={post?.featureImage?.imageUrl}
           key="ogimage"
         />
         <meta property="og:site_name" content="oxen.io" key="ogsitename" />

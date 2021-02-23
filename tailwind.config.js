@@ -14,6 +14,7 @@ module.exports = {
       sans: ['WorkSans'],
     },
     fontSize: {
+      '2xs': ['.50rem'],
       xs: ['.75rem'],
       sm: ['.875rem'],
       tiny: ['.875rem'],

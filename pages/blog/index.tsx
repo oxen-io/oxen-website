@@ -31,8 +31,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const pageCount = Math.floor(total / CMS.BLOG_RESULTS_PER_PAGE);
 
   // Todo, instead of making 2 reqs, filter over 1 req
-  // const tagPosts = tag ? await api.fetchBlogEntriesByTag(tag ?? '') : [];
-  const tagPosts = posts?.filter(post => post.tags.includes(tag)) ?? [];
+  const tagPosts = tag ? await api.fetchBlogEntriesByTag(tag ?? '') : [];
 
   return {
     props: { posts, tagPosts, tag, pageCount, currentPage: page },
@@ -103,25 +102,24 @@ const Blog = (props: Props) => {
 
         {/* Tag has posts */}
         {tag && tagHasPosts && (
-          <>
-            <CardGrid>
-              {(tag ? posts : otherPosts)?.map(post => (
-                <ArticleCard key={post.id} {...post} />
-              ))}
-            </CardGrid>
-          </>
+          <CardGrid>
+            {tagPosts?.map(post => (
+              <ArticleCard key={post.id} {...post} />
+            ))}
+          </CardGrid>
         )}
 
         <Contained>
           {tag && (
-            <h3 className="-mb-6 text-2xl font-prompt text-primary">
+            <h3 className="mb-1 text-3xl font-prompt text-primary">
               Recent Posts
             </h3>
           )}
         </Contained>
 
+        {/* Posts, or recent posts if tag */}
         <CardGrid>
-          {(tag ? posts : otherPosts)?.map(post => (
+          {(tag ? posts : otherPosts).slice(0, tag ? 4 : 100)?.map(post => (
             <ArticleCard key={post.id} {...post} />
           ))}
         </CardGrid>

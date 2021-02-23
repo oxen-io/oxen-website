@@ -79,12 +79,16 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <a
-            href="https://www.coingecko.com/en/coins/oxen"
-            className="font-medium text-secondary"
-          >
-            View Oxen on <span className="font-bold">CoinGecko</span>
-          </a>
+          <div className="flex items-center font-medium text-secondary">
+            View Oxen on{' '}
+            <a
+              href="https://www.coingecko.com/en/coins/oxen"
+              className="flex items-center mx-2 space-x-1 font-bold hover:underline"
+            >
+              <img className="h-5" src="/img/coingecko.png" />
+              <span>CoinGecko</span>
+            </a>
+          </div>
         </div>
       ) : (
         <Contained>

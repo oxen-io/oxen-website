@@ -71,11 +71,11 @@ const MENU_ITEMS: IMenuItem[] = [
     external: true,
   },
   {
-    label: 'Get Involved',
-    href: '/get-involved',
-    newTab: false,
+    label: 'CoinGecko',
+    href: 'https://www.coingecko.com/en/coins/oxen',
+    newTab: true,
     subtle: false,
-    external: false,
+    external: true,
     mobileMenuOnly: true,
   },
   {

@@ -76,8 +76,15 @@ export function SideMenuInner() {
       </Contained>
 
       {isDesktop ? (
-        <div className="px-6">
+        <div className="px-6 pb-3">
           <SocialsRow />
+
+          <a
+            href="https://www.coingecko.com/en/coins/oxen"
+            className="font-medium text-secondary"
+          >
+            View Oxen on <span className="font-bold">CoinGecko</span>
+          </a>
         </div>
       ) : (
         <Contained>
@@ -94,7 +101,7 @@ const SocialsRow = () => {
   return (
     <div
       className={classNames(
-        'flex pt-3 pb-6 space-x-3 justify-between',
+        'flex pt-3 pb-3 space-x-3 justify-between',
         isDesktop && 'justify-between',
       )}
     >

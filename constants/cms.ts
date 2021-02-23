@@ -23,7 +23,7 @@ const CMS = {
   SHORTCODE_REGEX: /\{\{.*\}\}/,
   SHORTCODE_BUTTONS,
   SHORTCODES: {
-    GENERAL_BUTTON: /\{\{[\s]*button[\s]*href="[^"]{1,99}"[\s]*text="[\w\s]{1,33}"[\s]*\}\}/,
+    GENERAL_BUTTON: /\{\{[\s]*button[\s]*href="[^"]{1,333}"[\s]*text="[\w\s]{1,33}"[\s]*\}\}/,
     GITHUB_LINKS: /^\{\{[\s]*github_links[\s]*\}\}$/,
     COMMUNITY_LINKS: /^{{[\s*]community_links[\s*]}}$/,
     CTA_WHO_USES_OXEN: /^\{\{[\s]*who_uses_oxen[\s]*\}\}$/,

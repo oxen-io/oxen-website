@@ -203,7 +203,7 @@ const extractShortcodeGeneralButton = (shortcode: string) => {
     .replace(/"[\s]*text="[^"]{1,99}"[\s]*}}/, '');
 
   const text = shortcode
-    .replace(/^{{[\s]*button[\s]*href="[^"]{1,99}"[\s]*text="/, '')
+    .replace(/^{{[\s]*button[\s]*href="[^"]{1,333}"[\s]*text="/, '')
     .replace(/"[\s]*}}$/, '');
 
   return { href, text };
@@ -214,7 +214,7 @@ export const renderShortcode = (shortcode: string) => {
   if (CMS.SHORTCODES.GENERAL_BUTTON.test(shortcode)) {
     const { href, text } = extractShortcodeGeneralButton(shortcode);
     return (
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mt-2 mb-4">
         <Button onClick={() => open(href, '_blank')}>{text}</Button>
       </div>
     );

@@ -298,6 +298,51 @@ export const renderShortcode = (shortcode: string) => {
     );
   }
 
+  // Call to Action -> Who Uses Oxen
+  if (CMS.SHORTCODES.CTA_WHO_USES_OXEN.test(shortcode)) {
+    return (
+      <div className="flex justify-center mt-6 mb-4 space-x-4">
+        <Button
+          onClick={() => open('https://getsession.org', '_blank')}
+          type="ghost"
+        >
+          Get Session
+        </Button>
+        <Button
+          onClick={() =>
+            open(
+              'https://docs.oxen.io/using-the-oxen-blockchain/overview',
+              '_blank',
+            )
+          }
+          type="ghost"
+        >
+          Use Oxen
+        </Button>
+      </div>
+    );
+  }
+
+  // Call to Action -> Session & Lokinet
+  if (CMS.SHORTCODES.CTA_SESSION_LOKINET.test(shortcode)) {
+    return (
+      <div className="flex justify-center mt-6 mb-4 space-x-4">
+        <Button
+          onClick={() => open('https://getsession.org', '_blank')}
+          type="ghost"
+        >
+          Get Session
+        </Button>
+        <Button
+          onClick={() => open('https://lokinet.org', '_blank')}
+          type="ghost"
+        >
+          Use Lokinet
+        </Button>
+      </div>
+    );
+  }
+
   // All shortcode buttons with simple hrefs
   const shortcodeButton = Object.values(CMS.SHORTCODE_BUTTONS).find(item =>
     item.regex.test(shortcode),

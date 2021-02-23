@@ -23,7 +23,7 @@ export function HomeHeroBubble() {
       <div
         className={classNames(
           'px-4 desktop:px-6 desktop:py-4 py-2 leading-tight text-base desktop:text-xl border rounded-lg bg-opacity-90 border-secondary bg-alt front-prompt text-primary animate-float',
-          //   isMobile ? 'text-base' : 'text-xl',
+          // isMobile ? 'text-base' : 'text-xl',
         )}
       >
         <p className="mb-1 text-xs desktop:text-base text-secondary">OXEN</p>

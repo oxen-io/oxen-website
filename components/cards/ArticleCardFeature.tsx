@@ -33,7 +33,7 @@ export function ArticleCardFeature(props: IPost) {
         <div
           onClick={onClick}
           style={{ minHeight: '100%' }}
-          className="bg-opacity-25 cursor-pointer bg-primary aspect-w-14 aspect-h-8"
+          className="bg-opacity-25 cursor-pointer bg-primary aspect-w-16 aspect-h-8"
         >
           <img
             className="object-cover"

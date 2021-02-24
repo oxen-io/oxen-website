@@ -50,7 +50,7 @@ const SIDE_MENU_ITEMS = {
   },
   [SideMenuItem.ROADMAP]: {
     id: 8,
-    label: "What's the 2021 roadmap?",
+    label: "Oxen's 2021 roadmap",
     href: '/roadmap',
   },
 } as { [name: string]: ISideMenuItem };

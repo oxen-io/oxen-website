@@ -83,6 +83,8 @@ export function SideMenuInner() {
             View Oxen on{' '}
             <a
               href="https://www.coingecko.com/en/coins/oxen"
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center mx-2 space-x-1 font-bold hover:underline"
             >
               <img className="h-5" src="/img/coingecko.png" />

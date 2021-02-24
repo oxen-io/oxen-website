@@ -86,7 +86,7 @@ const options = {
     [BLOCKS.EMBEDDED_ASSET]: (node: AssetLinkBlock) => {
       const link = (node.data.target as any).fields.file.url.replace(
         '//',
-        'http://',
+        'https://',
       );
 
       return (

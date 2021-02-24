@@ -143,7 +143,9 @@ export class CmsApi {
   public convertImage = (rawImage): IFigureImage =>
     rawImage
       ? {
-          imageUrl: rawImage.file.url.replace('//', 'http://'), // may need to put null check as well here
+          imageUrl: rawImage.file.url
+            .replace('//', 'https://')
+            .replace('http', 'https'), // may need to put null check as well here
           description: rawImage.description ?? null,
           title: rawImage.title ?? null,
         }

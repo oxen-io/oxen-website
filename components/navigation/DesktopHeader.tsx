@@ -20,7 +20,7 @@ export function DesktopHeader() {
         zIndex: UI.Z_INDEX_HEADER,
       }}
       className={classNames(
-        'w-full overflow-hidden bg-alt text-primary flex items-center border-b border-primary',
+        'w-full overflow-hidden bg-alt text-primary flex items-center border-b border-primary whitespace-nowrap',
       )}
     >
       <div className="flex items-center w-full h-full px-6">

@@ -64,6 +64,13 @@ const MENU_ITEMS: IMenuItem[] = [
     external: false,
   },
   {
+    label: 'Dev Updates',
+    href: '/blog?tag=dev-update',
+    newTab: false,
+    subtle: true,
+    external: false,
+  },
+  {
     label: 'Docs',
     href: 'https://docs.oxen.io',
     newTab: true,
@@ -84,13 +91,6 @@ const MENU_ITEMS: IMenuItem[] = [
     newTab: true,
     subtle: true,
     external: true,
-  },
-  {
-    label: 'Dev Updates',
-    href: '/blog?tag=dev-update',
-    newTab: false,
-    subtle: true,
-    external: false,
   },
   {
     label: 'Downloads',

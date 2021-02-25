@@ -1,6 +1,8 @@
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
 import React from 'react';
+import BittrexSVG from '../assets/svgs/bittrex-logo.svg';
+import KucoinSVG from '../assets/svgs/kucoin-logo.svg';
 import DiscordSVG from '../assets/svgs/socials/brand-discord.svg';
 import RedditSVG from '../assets/svgs/socials/brand-reddit.svg';
 import TelegramSVG from '../assets/svgs/socials/brand-telegram.svg';
@@ -236,6 +238,40 @@ export const renderShortcode = (shortcode: string) => {
           onClick={() => open('https://discord.com/invite/67GXfD6', '_blank')}
         />
       </div>
+    );
+  }
+
+  // Trade links on "Why buy $OXEN?"
+  if (CMS.SHORTCODES.TRADE_LINKS.test(shortcode)) {
+    return (
+      <>
+        <h4 className="mt-6 mb-2 text-lg font-bold tracking-wide">
+          Find $OXEN on
+        </h4>
+        <div className="flex justify-center mb-4 space-x-4">
+          <Button
+            wide
+            prefix={<KucoinSVG className="h-4" />}
+            onClick={() => open('https://trade.kucoin.com/LOKI-USDT', '_blank')}
+            type="ghost"
+          >
+            Kucoin
+          </Button>
+          <Button
+            wide
+            prefix={<BittrexSVG className="h-4" />}
+            onClick={() =>
+              open(
+                'https://global.bittrex.com/Market/Index?MarketName=USDT-OXEN',
+                '_blank',
+              )
+            }
+            type="ghost"
+          >
+            Bittrex
+          </Button>
+        </div>
+      </>
     );
   }
 

@@ -5,7 +5,6 @@ import {
   AssetLinkBlock,
   BLOCKS,
   Document,
-  Heading1,
   Heading2,
   Heading3,
   Heading4,
@@ -14,7 +13,6 @@ import {
   MARKS,
   OrderedList,
   Text,
-  UnorderedList,
 } from '@contentful/rich-text-types';
 import React, { ReactNode } from 'react';
 import { CMS } from '../constants';
@@ -46,11 +44,10 @@ const options = {
         <Paragraph>{children}</Paragraph>
       );
     },
-    [BLOCKS.HEADING_1]: (node: Heading1) => {
-      const content = (node.content[0] as Text)?.value;
+    [BLOCKS.HEADING_1]: (_, chilren: JSX.Element[]) => {
       return (
         <h1 className="mt-8 mb-4 text-4xl font-semibold font-prompt">
-          {content}
+          {chilren}
         </h1>
       );
     },
@@ -99,7 +96,7 @@ const options = {
         </div>
       );
     },
-    [BLOCKS.UL_LIST]: (node: UnorderedList, children: JSX.Element[]) => {
+    [BLOCKS.UL_LIST]: (_, children: JSX.Element[]) => {
       return (
         <ul className="ml-6 list-disc">
           {children.map(item => (
@@ -118,16 +115,20 @@ const options = {
       );
     },
     [INLINES.HYPERLINK]: (node: Hyperlink) => {
-      const { content } = node;
+      const plaintext = documentToPlainTextString(node);
+
       return (
-        <a
-          className="cursor-pointer text-blue hover:underline"
-          href={node.data.uri}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {content[0].value}
-        </a>
+        <>
+          {' '}
+          <a
+            className="cursor-pointer text-blue hover:underline"
+            href={node.data.uri}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {plaintext.trim()}
+          </a>
+        </>
       );
     },
   },

@@ -33,27 +33,19 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    console.log('cms ➡️ page:', page);
-    console.log('cms ➡️ quantity:', quantity);
-    console.log('cms ➡️ (page - 1) * quantity:', (page - 1) * quantity);
+    const entries = await this.client.getEntries({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      limit: quantity,
+      skip: (page - 1) * quantity,
+    });
 
-    try {
-      const entries = await this.client.getEntries({
-        content_type: 'post', // only fetch blog post entry
-        order: '-fields.date',
-        limit: quantity,
-        skip: (page - 1) * quantity,
-      });
-
-      if (entries && entries.items && entries.items.length > 0) {
-        const blogPosts = entries.items.map(entry => this.convertPost(entry));
-        return { posts: blogPosts, total: entries.total };
-      }
-
-      return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
-    } catch (e) {
-      return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+    if (entries && entries.items && entries.items.length > 0) {
+      const blogPosts = entries.items.map(entry => this.convertPost(entry));
+      return { posts: blogPosts, total: entries.total };
     }
+
+    return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
   }
 
   public async fetchBlogById(id): Promise<IPost> {

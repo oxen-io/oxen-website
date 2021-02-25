@@ -90,7 +90,7 @@ function Page({
           <Roadmap />
         ) : (
           <>
-            <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
+            <div className="relative flex items-center justify-center w-full h-full pt-3 text-justify bg-gradient-to-bl from-hyper to-blush">
               <img
                 style={{ maxHeight: '33vh' }}
                 src={page?.hero?.imageUrl}

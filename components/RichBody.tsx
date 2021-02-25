@@ -24,7 +24,7 @@ const Bold = ({ children }) => (
 );
 
 const Paragraph = ({ children }) => (
-  <p className="mb-3 font-sans tracking-wide">{children}</p>
+  <p className="mb-3 font-sans tracking-wide text-justify">{children}</p>
 );
 
 const options = {

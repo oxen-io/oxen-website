@@ -99,7 +99,7 @@ function Page({
             </div>
 
             <Contained>
-              <h1 className="w-10/12 mt-12 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
+              <h1 className="w-10/12 mt-12 mb-4 text-4xl font-bold leading-none text-justify text-primary font-prompt">
                 {page?.title}
               </h1>
 

@@ -90,7 +90,7 @@ function Page({
           <Roadmap />
         ) : (
           <>
-            <div className="relative flex items-center justify-center w-full h-full pt-3 text-justify bg-gradient-to-bl from-hyper to-blush">
+            <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
               <img
                 style={{ maxHeight: '33vh' }}
                 src={page?.hero?.imageUrl}
@@ -99,7 +99,7 @@ function Page({
             </div>
 
             <Contained>
-              <h1 className="w-10/12 mt-12 mb-4 text-4xl font-bold leading-none text-justify text-primary font-prompt">
+              <h1 className="mt-12 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
                 {page?.title}
               </h1>
 

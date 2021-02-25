@@ -244,7 +244,7 @@ export const renderShortcode = (shortcode: string) => {
   // Trade links on "Why buy $OXEN?"
   if (CMS.SHORTCODES.TRADE_LINKS.test(shortcode)) {
     return (
-      <div className="flex flex-col items-center mt-6 space-y-2">
+      <div className="flex flex-col items-center mt-6 space-y-4">
         <h4 className="text-lg font-bold tracking-wide">Find $OXEN on</h4>
         <div className="flex justify-center mb-4 space-x-4">
           <Button

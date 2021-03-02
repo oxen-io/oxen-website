@@ -4,7 +4,6 @@ import { ArticleContained } from '../ArticleContained';
 import { Contained } from '../Contained';
 import { Spacer } from '../Spacer';
 import { TagRow } from '../TagRow';
-import { ArticleCallout } from './ArticleCallout';
 import { ArticleSectionContent } from './sections/ArticleSectionContent';
 import { ArticleSectionFeatureImage } from './sections/ArticleSectionFeatureImage';
 import { ArticleSectionTitle } from './sections/ArticleSectionTitle';
@@ -41,7 +40,8 @@ export function Article(props: IPost) {
               publishedDate={publishedDate}
             />
 
-            <ArticleCallout>{description}</ArticleCallout>
+            {/* Brendan requested that descriptions are only shown on cards. -t 2nd Mar 2021 */}
+            {/* <ArticleCallout>{description}</ArticleCallout> */}
           </div>
 
           <ArticleSectionContent {...props} />

@@ -74,7 +74,7 @@ function Post({ post }: { post: IPost }) {
 
         <meta name="image_src" content={post?.featureImage?.imageUrl} />
         <meta name="image_url" content={post?.featureImage?.imageUrl} />
-        <meta name="keywords" content={post.tags?.join(' ')} />
+        <meta name="keywords" content={post?.tags?.join(' ')} />
         <meta
           property="og:image"
           content={post?.featureImage?.imageUrl}

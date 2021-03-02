@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import DiscordSVG from '../../assets/svgs/socials/discord.svg';
 import GithubSVG from '../../assets/svgs/socials/github.svg';
 import RedditSVG from '../../assets/svgs/socials/reddit.svg';
 import SessionSVG from '../../assets/svgs/socials/session.svg';
@@ -121,13 +120,13 @@ const SocialsRow = () => {
       <a href="https://github.com/oxen-io" target="_blank" rel="noreferrer">
         <GithubSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
-      <a
+      {/* <a
         href="https://discord.com/invite/67GXfD6"
         target="_blank"
         rel="noreferrer"
       >
         <DiscordSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
-      </a>
+      </a> */}
       <a
         href="https://www.youtube.com/channel/UCN7LL0dEffQ7FSjbY5wwlnw"
         target="_blank"

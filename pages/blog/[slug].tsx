@@ -71,11 +71,16 @@ function Post({ post }: { post: IPost }) {
     <>
       <Head>
         <title>{pageTitle}</title>
+
+        <meta name="image_src" content={post?.featureImage?.imageUrl} />
+        <meta name="image_url" content={post?.featureImage?.imageUrl} />
+        <meta name="keywords" content={post.tags?.join(' ')} />
         <meta
           property="og:image"
           content={post?.featureImage?.imageUrl}
           key="ogimage"
         />
+
         <meta property="og:site_name" content="oxen.io" key="ogsitename" />
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta

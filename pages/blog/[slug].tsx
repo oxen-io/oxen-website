@@ -13,24 +13,19 @@ interface IPath {
 }
 
 export async function getStaticPaths() {
-  const api = new CmsApi();
+  const cms = new CmsApi();
   let posts: IPost[] = [];
   let page = 1;
   let foundAllPosts = false;
 
   // Contentful only allows 100 at a time
   while (!foundAllPosts) {
-    const { posts: _posts } = await api.fetchBlogEntries(100, page);
+    const { posts: _posts } = await cms.fetchBlogEntries(100, page);
 
     if (_posts.length === 0) {
       foundAllPosts = true;
       continue;
     }
-
-    console.log('[slug] ➡️ page:', page);
-    console.log('[slug] ➡️ foundAllPosts:', foundAllPosts);
-    console.log('[slug] ➡️ _posts.length:', _posts.length);
-    console.log('[slug] ➡️ posts.length:', posts.length);
 
     posts = [...posts, ..._posts];
     page++;
@@ -44,10 +39,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(`Building page: ${params.slug}`);
+  console.log(`Building page: %c${params.slug}`, 'color: purple;');
 
-  const api = new CmsApi();
-  const post = await api.fetchBlogBySlug(String(params?.slug) ?? '');
+  const cms = new CmsApi();
+  const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
 
   if (!post) {
     return { notFound: true };

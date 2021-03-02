@@ -16,7 +16,7 @@ import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const api = new CmsApi();
+  const cms = new CmsApi();
 
   // Get tag query
   const tag = String(context.query.tag ?? '') ?? null;
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Fetch posts even when tag, for related etc
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
-  const { posts, total: totalPosts } = await api.fetchBlogEntries(
+  const { posts, total: totalPosts } = await cms.fetchBlogEntries(
     tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE,
     tag ? 1 : page,
   );
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
-    } = await api.fetchBlogEntriesByTag(
+    } = await cms.fetchBlogEntriesByTag(
       tag ?? '',
       CMS.BLOG_RESULTS_PER_PAGE,
       page,

@@ -7,6 +7,7 @@ import { v4 as uuid } from 'uuid';
 import DiscordSVG from '../../assets/svgs/socials/discord.svg';
 import GithubSVG from '../../assets/svgs/socials/github.svg';
 import RedditSVG from '../../assets/svgs/socials/reddit.svg';
+import SessionSVG from '../../assets/svgs/socials/session.svg';
 import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
 import YouTubeSVG from '../../assets/svgs/socials/youtube.svg';
@@ -140,6 +141,13 @@ const SocialsRow = () => {
         rel="noreferrer"
       >
         <RedditSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      <a
+        href="#"
+        // target="_blank"
+        // rel="noreferrer"
+      >
+        <SessionSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
     </div>
   );

@@ -43,8 +43,8 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const api = new CmsApi();
-  const page = await api.fetchPageById(SideMenuItem[id]);
+  const cms = new CmsApi();
+  const page = await cms.fetchPageById(SideMenuItem[id]);
 
   if (!page) {
     return { notFound: true };
@@ -66,8 +66,6 @@ function Page({
   page: ISplitPage | null;
   isRoadmap?: boolean;
 }) {
-  console.log('[page] ➡️ isRoadmap:', isRoadmap);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
@@ -86,73 +84,23 @@ function Page({
       </Head>
 
       <div className="bg-alt">
-        {isRoadmap ? (
-          <Roadmap />
-        ) : (
-          <>
-            <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
-              <img
-                style={{ maxHeight: '33vh' }}
-                src={page?.hero?.imageUrl}
-                className="object-contain w-full"
-              />
-            </div>
-
-            <Contained>
-              <h1 className="mt-12 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
-                {page?.title}
-              </h1>
-
-              <div className="mb-10">
-                <RichBody body={page?.body} />
-              </div>
-            </Contained>
-          </>
-        )}
-      </div>
-    </>
-  );
-}
-
-function Roadmap() {
-  return (
-    <>
-      <h1 className="px-6 mt-12 -mb-3 text-3xl font-medium tablet:text-5xl font-prompt text-primary">
-        Oxen's 2021 Roadmap
-      </h1>
-
-      <div className="aspect-w-16 aspect-h-10">
-        <div className="flex items-center justify-center">
+        <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
           <img
-            style={{ maxHeight: '90%' }}
-            src={'img/roadmap.png'}
-            className="w-full"
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col px-6 pb-6 space-y-10">
-        <div>
-          <h2 className="mt-6 mb-3 text-3xl font-medium tablet:text-4xl font-prompt text-primary">
-            Session in 2021
-          </h2>
-          <img
-            style={{ maxHeight: '90%' }}
-            src={'img/session-roadmap.jpg'}
-            className="w-full rounded-md"
+            style={{ maxHeight: '33vh' }}
+            src={page?.hero?.imageUrl}
+            className="object-contain w-full"
           />
         </div>
 
-        <div>
-          <h2 className="mt-6 mb-3 text-3xl font-medium tablet:text-4xl font-prompt text-primary">
-            Lokinet in 2021
-          </h2>
-          <img
-            style={{ maxHeight: '90%' }}
-            src={'img/lokinet-roadmap.jpg'}
-            className="w-full rounded-md"
-          />
-        </div>
+        <Contained>
+          <h1 className="mt-12 mb-4 text-4xl font-bold leading-none text-primary font-prompt">
+            {page?.title}
+          </h1>
+
+          <div className="mb-10">
+            <RichBody body={page?.body} />
+          </div>
+        </Contained>
       </div>
     </>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import classNames from 'classnames';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
@@ -79,17 +80,28 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center font-medium text-secondary">
+          <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
             View Oxen on{' '}
-            <a
-              href="https://www.coingecko.com/en/coins/oxen"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center mx-2 space-x-1 font-bold hover:underline"
-            >
-              <img className="h-5" src="/img/coingecko.png" />
-              <span>CoinGecko</span>
-            </a>
+            <div className="flex items-center">
+              <a
+                href="https://www.coingecko.com/en/coins/oxen"
+                target="_blank"
+                rel="dofollow"
+                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
+              >
+                <img className="h-5" src="/img/coingecko.png" />
+                <span>CoinGecko</span>
+              </a>
+              <a
+                href="https://coinmarketcap.com/currencies/oxen/"
+                target="_blank"
+                rel="dofollow"
+                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
+              >
+                <img className="h-5" src="/img/coinmarketcap.png" />
+                <span>CMC</span>
+              </a>
+            </div>
           </div>
         </div>
       ) : (

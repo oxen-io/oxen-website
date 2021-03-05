@@ -71,6 +71,13 @@ const MENU_ITEMS: IMenuItem[] = [
     external: false,
   },
   {
+    label: '$WOXEN',
+    href: 'https://ethereum.oxen.io',
+    newTab: false,
+    subtle: false,
+    external: true,
+  },
+  {
     label: 'Docs',
     href: 'https://docs.oxen.io',
     newTab: true,

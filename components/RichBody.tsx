@@ -109,7 +109,7 @@ const options = {
       return (
         <ol className="list-decimal">
           {children.map(item => (
-            <li key={item.key}>{item}</li>
+            <>{item}</>
           ))}
         </ol>
       );

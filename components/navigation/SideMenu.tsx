@@ -10,6 +10,8 @@ export interface ISideMenuItem {
   id: number;
   label: string;
   href: string;
+  isExternal?: boolean;
+  shouldHide?: boolean;
 }
 
 export function SideMenu() {

@@ -56,11 +56,11 @@ export function MobileHeader() {
           </Link>
         </div>
 
-        {isMobile && !isBlog && (
+        {(isMobile || isTablet) && !isBlog && (
           <TriangleSVG
             onClick={() => toggleSideMenu()}
             className={classNames(
-              'h-3 transform outline-none duration-300 cursor-pointer',
+              'h-3 fill-current text-primary transform outline-none duration-300 cursor-pointer',
               sideMenuExpanded ? 'rotate-180' : '-rotate-60',
             )}
           />

@@ -10,9 +10,18 @@ export interface IMenuItem {
   mobileMenuOnly?: boolean;
 }
 
+const airdropFinishedTimestamp = 1624975200000;
+const shouldHideAirdropItem = Date.now() > airdropFinishedTimestamp;
+
 // Hrefs are generated from Keys using slugify.
 // Eg. WHO_ARE_WE -> /who-are-we
 const SIDE_MENU_ITEMS = {
+  [SideMenuItem.AIRDROP]: {
+    id: 1,
+    label: '$FLIP AIRDROP',
+    href: 'https://airdrop.oxen.io',
+    shouldHide: shouldHideAirdropItem,
+  },
   [SideMenuItem.WHO_ARE_WE]: {
     id: 1,
     label: 'What is Oxen?',

@@ -12,7 +12,7 @@ export function HomeHeroBubble() {
     <div
       style={{
         marginTop:
-          isMobile || isTablet ? '0' : isHuge ? '16rem' : 'min(50vh, 20rem)',
+          isMobile || isTablet ? '33px' : isHuge ? '16rem' : 'min(50vh, 20rem)',
       }}
       onClick={() => dispatch(expandSideMenu())}
       className={classNames(

@@ -5,26 +5,77 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Setting up your environment
 
-## Learn More
+- Install NVM following the guide at nvm.sh
+- Navigate to project directory
+- Set your NVM version
 
-To learn more about Next.js, take a look at the following resources:
+  ```bash
+  nvm install 14.15.0
+  nvm use 14.15.0
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Install `yarn`
+  ```bash
+  npm i -g yarn
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+## Steps to Build to Production
 
-## Deploy on ZEIT Now
+- Make your local changes
+- Build locally; ensure everything is working
 
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  ```bash
+  yarn build
+  yarn start
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Commit and push your changes
+
+  ```bash
+      git add .
+      git commit -m 'My changes'
+      git push -u origin
+  ```
+
+- SSH into the box
+  ```bash
+  ssh root@116.203.145.108
+  ```
+- Navigate to the directory of the project
+  ```bash
+  cd /home/ubuntu/oxen.io/
+  ```
+- Pull changes
+
+  ```bash
+  git pull origin
+  ```
+
+- Build on the server
+
+  ```bash
+  yarn build
+  ```
+
+- Restart NGinx and PM2
+
+  ```bash
+  systemctl restart nginx && pm2 restart oxen.io
+  ```
+
+---
+
+## Notes
+
+You can check the status of the server by running
+
+```bash
+pm2 status
+```

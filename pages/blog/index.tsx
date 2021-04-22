@@ -33,6 +33,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Get tags for pagination
   let tagPosts = [];
   let tagTotalPosts;
+  let filteredPosts = posts;
+  let filteredTotalPosts = totalPosts;
   if (tag) {
     const {
       posts: _tagPosts = [],
@@ -45,14 +47,19 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
+  } else {
+    // Filter out all "Developer Update" blog posts.
+    const DEV_UPDATES = 'dev-update';
+    filteredPosts = posts.filter(post => !post.tags.includes(DEV_UPDATES));
+    filteredTotalPosts = filteredPosts.length;
   }
 
-  const total = tagTotalPosts ?? totalPosts;
+  const total = tagTotalPosts ?? filteredTotalPosts;
   const pageCount = Math.floor(total / CMS.BLOG_RESULTS_PER_PAGE);
 
   return {
     props: {
-      posts,
+      posts: filteredPosts,
       pageCount,
       currentPage: page,
       tag,

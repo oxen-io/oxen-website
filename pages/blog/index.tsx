@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   // Get tag query
   const tag = String(context.query.tag ?? '') ?? null;
-  const page = Math.ceil(Number(context.query.page ?? 1));
+  const page = Math.floor(Number(context.query.page ?? 1));
 
   // Fetch posts even when tag, for related etc
   // Pagination only occurs when tag isnt defined.
@@ -29,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE,
     tag ? 1 : page,
   );
+  console.log(posts);
 
   // Get tags for pagination
   let tagPosts = [];
@@ -42,13 +43,13 @@ export const getServerSideProps: GetServerSideProps = async context => {
       CMS.BLOG_RESULTS_PER_PAGE,
       page,
     );
-
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
   }
 
   const total = tagTotalPosts ?? totalPosts;
-  const pageCount = Math.floor(total / CMS.BLOG_RESULTS_PER_PAGE);
+  console.log(total);
+  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
 
   return {
     props: {
@@ -168,7 +169,7 @@ const Blog = (props: Props) => {
         </Contained>
 
         {/* Posts, or recent posts if tag */}
-        <CardGrid rows={2}>
+        <CardGrid rows={tag ? 2 : 5}>
           {(tag ? posts : otherPosts)?.map(post => (
             <ArticleCard key={post.id} {...post} />
           ))}

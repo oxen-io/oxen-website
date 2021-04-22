@@ -30,7 +30,7 @@ const CMS = {
     CTA_WHO_USES_OXEN: /^\{\{[\s]*who_uses_oxen[\s]*\}\}$/,
     CTA_SESSION_LOKINET: /^\{\{[\s]*session_lokinet[\s]*\}\}$/,
   },
-  BLOG_RESULTS_PER_PAGE: 20,
+  BLOG_RESULTS_PER_PAGE: 21,
 };
 
 export default CMS;

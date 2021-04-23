@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;
-  const pageCount = Math.floor(total / CMS.BLOG_RESULTS_PER_PAGE);
+  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
 
   return {
     props: {

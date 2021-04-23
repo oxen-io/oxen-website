@@ -32,7 +32,7 @@ export class CmsApi {
   }
 
   public async fetchBlogEntries(
-    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE_MAIN,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const entries = await this.client.getEntries({
@@ -75,7 +75,7 @@ export class CmsApi {
 
   public async fetchBlogEntriesByTag(
     tag: string,
-    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE_TAG,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const entries = await this.client.getEntries({

@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
   const { posts, total: totalPosts } = await cms.fetchBlogEntries(
-    tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE,
+    tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE_MAIN,
     tag ? 1 : page,
   );
   console.log(posts);
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       total: _tagTotalPosts,
     } = await cms.fetchBlogEntriesByTag(
       tag ?? '',
-      CMS.BLOG_RESULTS_PER_PAGE,
+      CMS.BLOG_RESULTS_PER_PAGE_TAG,
       page,
     );
     tagPosts = _tagPosts;
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const total = tagTotalPosts ?? totalPosts;
   console.log(total);
-  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
+  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE_MAIN);
 
   return {
     props: {

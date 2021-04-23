@@ -48,10 +48,17 @@ export const getServerSideProps: GetServerSideProps = async context => {
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
   } else {
-    // Filter out all "Developer Update" blog posts.
-    const DEV_UPDATES = 'dev-update';
-    filteredPosts = posts.filter(post => !post.tags.includes(DEV_UPDATES));
-    filteredTotalPosts = filteredPosts.length;
+    // Retrieve all blog posts without the `dev-update` tag when not searching by tag
+    const {
+      posts: _tagPosts = [],
+      total: _tagTotalPosts,
+    } = await cms.fetchBlogEntriesWithoutDevUpdates(
+      CMS.BLOG_RESULTS_PER_PAGE,
+      page,
+    );
+
+    filteredPosts = _tagPosts;
+    filteredTotalPosts = _tagTotalPosts;
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;

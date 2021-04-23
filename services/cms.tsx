@@ -95,7 +95,7 @@ export class CmsApi {
   }
 
   public async fetchBlogEntriesWithoutDevUpdates(
-    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE_MAIN,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const DEV_UPDATE_TAG = 'dev-update';

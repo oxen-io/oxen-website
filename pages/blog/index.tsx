@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
   const { posts, total: totalPosts } = await cms.fetchBlogEntries(
-    tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE_MAIN,
+    tag ? 12 : CMS.BLOG_RESULTS_PER_PAGE_MAIN,
     tag ? 1 : page,
   );
 
@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let tagTotalPosts;
   const filteredPosts = posts;
   const filteredTotalPosts = totalPosts;
+  let resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE_MAIN;
   if (tag) {
     const {
       posts: _tagPosts = [],
@@ -46,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     );
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
+    resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE_TAG;
   } else {
     // Retrieve all blog posts without the `dev-update` tag when not searching by tag
     const {
@@ -61,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;
-  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE_MAIN);
+  const pageCount = Math.ceil(total / resultsPerPage);
 
   return {
     props: {
@@ -126,8 +128,8 @@ const Blog = (props: Props) => {
             subContainerClassName={''}
             initialPage={currentPage - 1}
             pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
             onPageChange={paginationHandler}
           />
         </div>
@@ -181,7 +183,7 @@ const Blog = (props: Props) => {
         </Contained>
 
         {/* Posts, or recent posts if tag */}
-        <CardGrid rows={tag ? 2 : 5}>
+        <CardGrid>
           {(tag ? posts : otherPosts)?.map(post => (
             <ArticleCard key={post.id} {...post} />
           ))}

@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   // Get tag query
   const tag = String(context.query.tag ?? '') ?? null;
-  const page = Math.floor(Number(context.query.page ?? 1));
+  const page = Math.ceil(Number(context.query.page ?? 1));
 
   // Fetch posts even when tag, for related etc
   // Pagination only occurs when tag isnt defined.

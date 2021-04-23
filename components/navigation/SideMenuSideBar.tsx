@@ -8,7 +8,7 @@ import { ScreenContext } from '../../contexts/screen';
 import {
   collapseSideMenu,
   expandSideMenu,
-  PageType
+  PageType,
 } from '../../state/navigation';
 import { IState } from '../../state/reducers';
 

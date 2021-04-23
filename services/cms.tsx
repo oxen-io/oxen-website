@@ -94,6 +94,27 @@ export class CmsApi {
     return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
   }
 
+  public async fetchBlogEntriesWithoutDevUpdates(
+    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    page = 1,
+  ): Promise<IFetchBlogEntriesReturn> {
+    const DEV_UPDATE_TAG = 'dev-update';
+    const entries = await this.client.getEntries({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
+      limit: quantity,
+      skip: (page - 1) * quantity,
+    });
+
+    if (entries && entries.items && entries.items.length > 0) {
+      const blogPosts = entries.items.map(entry => this.convertPost(entry));
+      return { posts: blogPosts, total: entries.total };
+    }
+
+    return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+  }
+
   public async fetchPageEntries(): Promise<TPages> {
     try {
       const entries = await this.client.getEntries({

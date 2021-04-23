@@ -32,7 +32,7 @@ export class CmsApi {
   }
 
   public async fetchBlogEntries(
-    quantity = CMS.BLOG_RESULTS_PER_PAGE_MAIN,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const entries = await this.client.getEntries({
@@ -75,7 +75,7 @@ export class CmsApi {
 
   public async fetchBlogEntriesByTag(
     tag: string,
-    quantity = CMS.BLOG_RESULTS_PER_PAGE_TAG,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const entries = await this.client.getEntries({
@@ -95,7 +95,7 @@ export class CmsApi {
   }
 
   public async fetchBlogEntriesWithoutDevUpdates(
-    quantity = CMS.BLOG_RESULTS_PER_PAGE_MAIN,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const DEV_UPDATE_TAG = 'dev-update';

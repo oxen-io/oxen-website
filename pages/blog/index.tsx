@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
   const { posts, total: totalPosts } = await cms.fetchBlogEntries(
-    tag ? 12 : CMS.BLOG_RESULTS_PER_PAGE_MAIN,
+    tag ? 12 : CMS.BLOG_RESULTS_PER_PAGE,
     tag ? 1 : page,
   );
 
@@ -35,26 +35,26 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let tagTotalPosts;
   const filteredPosts = posts;
   const filteredTotalPosts = totalPosts;
-  let resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE_MAIN;
+  let resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE;
   if (tag) {
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
     } = await cms.fetchBlogEntriesByTag(
       tag ?? '',
-      CMS.BLOG_RESULTS_PER_PAGE_TAG,
+      CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
       page,
     );
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
-    resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE_TAG;
+    resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE_TAGGED;
   } else {
     // Retrieve all blog posts without the `dev-update` tag when not searching by tag
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
     } = await cms.fetchBlogEntriesWithoutDevUpdates(
-      CMS.BLOG_RESULTS_PER_PAGE_MAIN,
+      CMS.BLOG_RESULTS_PER_PAGE,
       page,
     );
 

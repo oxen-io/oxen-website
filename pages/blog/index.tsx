@@ -29,7 +29,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE_MAIN,
     tag ? 1 : page,
   );
-  console.log(posts);
 
   // Get tags for pagination
   let tagPosts = [];
@@ -48,7 +47,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 
   const total = tagTotalPosts ?? totalPosts;
-  console.log(total);
   const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE_MAIN);
 
   return {

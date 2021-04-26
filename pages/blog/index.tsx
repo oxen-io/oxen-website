@@ -33,8 +33,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Get tags for pagination
   let tagPosts = [];
   let tagTotalPosts;
-  let filteredPosts = posts;
-  let filteredTotalPosts = totalPosts;
+  const filteredPosts = posts;
+  const filteredTotalPosts = totalPosts;
   if (tag) {
     const {
       posts: _tagPosts = [],
@@ -57,8 +57,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
       page,
     );
 
-    filteredPosts = _tagPosts;
-    filteredTotalPosts = _tagTotalPosts;
+    // filteredPosts = _tagPosts;
+    // filteredTotalPosts = _tagTotalPosts;
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;
@@ -124,7 +124,7 @@ const Blog = (props: Props) => {
             breakClassName={'break-me'}
             activeClassName={'active bg-secondary'}
             containerClassName={'pagination bg-primary text-white front-prompt'}
-            subContainerClassName={''}
+            pageLinkClassName={'apple'}
             initialPage={currentPage - 1}
             pageCount={pageCount}
             marginPagesDisplayed={2}

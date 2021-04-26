@@ -33,8 +33,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Get tags for pagination
   let tagPosts = [];
   let tagTotalPosts;
-  const filteredPosts = posts;
-  const filteredTotalPosts = totalPosts;
+  let filteredPosts = posts;
+  let filteredTotalPosts = totalPosts;
   let resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE;
   if (tag) {
     const {
@@ -58,8 +58,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
       page,
     );
 
-    // filteredPosts = _tagPosts;
-    // filteredTotalPosts = _tagTotalPosts;
+    filteredPosts = _tagPosts;
+    filteredTotalPosts = _tagTotalPosts;
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;

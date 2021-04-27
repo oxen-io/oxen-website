@@ -22,11 +22,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const tag = String(context.query.tag ?? '') ?? null;
   const page = Math.ceil(Number(context.query.page ?? 1));
 
+  const RESULTS_PER_PAGE = tag
+    ? CMS.BLOG_RESULTS_PER_PAGE_TAGGED
+    : CMS.BLOG_RESULTS_PER_PAGE;
+
   // Fetch posts even when tag, for related etc
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
   const { posts, total: totalPosts } = await cms.fetchBlogEntries(
-    tag ? 12 : CMS.BLOG_RESULTS_PER_PAGE,
+    RESULTS_PER_PAGE,
     tag ? 1 : page,
   );
 
@@ -35,35 +39,26 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let tagTotalPosts;
   let filteredPosts = posts;
   let filteredTotalPosts = totalPosts;
-  let resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE;
   if (tag) {
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
-    } = await cms.fetchBlogEntriesByTag(
-      tag ?? '',
-      CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
-      page,
-    );
+    } = await cms.fetchBlogEntriesByTag(tag ?? '', RESULTS_PER_PAGE, page);
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
-    resultsPerPage = CMS.BLOG_RESULTS_PER_PAGE_TAGGED;
   } else {
     // Retrieve all blog posts without the `dev-update` tag when not searching by tag
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
-    } = await cms.fetchBlogEntriesWithoutDevUpdates(
-      CMS.BLOG_RESULTS_PER_PAGE,
-      page,
-    );
+    } = await cms.fetchBlogEntriesWithoutDevUpdates(RESULTS_PER_PAGE, page);
 
     filteredPosts = _tagPosts;
     filteredTotalPosts = _tagTotalPosts;
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;
-  const pageCount = Math.ceil(total / resultsPerPage);
+  const pageCount = Math.ceil(total / RESULTS_PER_PAGE);
 
   return {
     props: {

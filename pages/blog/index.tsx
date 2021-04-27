@@ -124,7 +124,7 @@ const Blog = (props: Props) => {
             breakClassName={'break-me'}
             activeClassName={'active bg-secondary'}
             containerClassName={'pagination bg-primary text-white front-prompt'}
-            pageLinkClassName={'apple'}
+            pageLinkClassName={''}
             initialPage={currentPage - 1}
             pageCount={pageCount}
             marginPagesDisplayed={2}

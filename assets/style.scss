@@ -135,6 +135,10 @@ body {
   border-radius: 4px;
 
   li {
+    & ~ li {
+      border-left: 0.5px solid white;
+    }
+
     &:first-child {
       border-top-left-radius: 0.25rem;
       border-bottom-left-radius: 0.25rem;
@@ -150,13 +154,15 @@ body {
     }
 
     a {
-      padding: 0.5rem 1rem;
+      padding: 0.25rem 0.9rem;
       cursor: pointer;
       width: max-content;
       height: auto;
       font-weight: 500;
     }
 
+    display: flex;
+    align-items: center;
     border-radius: 0;
   }
 }
@@ -165,6 +171,3 @@ ul li > p {
   margin-bottom: 0 !important;
 }
 
-.apple {
-  color: red;
-}

@@ -34,10 +34,22 @@ export async function getStaticProps({ params }) {
 
   // Roadmap page is special 👁️👄👁️
   if (SideMenuItem[id] == [SideMenuItem.ROADMAP]) {
+    // query all FAQ items from contentful
     return {
       props: {
         page: null,
         isRoadmap: true,
+      },
+      revalidate: 60,
+    };
+  }
+
+  // Extra FAQ Page
+  if (SideMenuItem[id] == [SideMenuItem.FAQ]) {
+    return {
+      props: {
+        page: null,
+        isRoadmap: false,
       },
       revalidate: 60,
     };

@@ -151,6 +151,9 @@ body {
 
     &:hover {
       filter: brightness(0.9);
+      &:not(.active) {
+        color: theme('colors.secondary')
+      }
     }
 
     a {
@@ -170,4 +173,3 @@ body {
 ul li > p {
   margin-bottom: 0 !important;
 }
-

@@ -75,7 +75,7 @@ export class CmsApi {
 
   public async fetchBlogEntriesByTag(
     tag: string,
-    quantity = CMS.BLOG_RESULTS_PER_PAGE,
+    quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const entries = await this.client.getEntries({

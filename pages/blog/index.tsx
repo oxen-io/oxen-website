@@ -22,11 +22,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const tag = String(context.query.tag ?? '') ?? null;
   const page = Math.ceil(Number(context.query.page ?? 1));
 
+  const RESULTS_PER_PAGE = tag
+    ? CMS.BLOG_RESULTS_PER_PAGE_TAGGED
+    : CMS.BLOG_RESULTS_PER_PAGE;
+
   // Fetch posts even when tag, for related etc
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
   const { posts, total: totalPosts } = await cms.fetchBlogEntries(
-    tag ? 8 : CMS.BLOG_RESULTS_PER_PAGE,
+    RESULTS_PER_PAGE,
     tag ? 1 : page,
   );
 
@@ -39,12 +43,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
-    } = await cms.fetchBlogEntriesByTag(
-      tag ?? '',
-      CMS.BLOG_RESULTS_PER_PAGE,
-      page,
-    );
-
+    } = await cms.fetchBlogEntriesByTag(tag ?? '', RESULTS_PER_PAGE, page);
     tagPosts = _tagPosts;
     tagTotalPosts = _tagTotalPosts;
   } else {
@@ -52,17 +51,14 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const {
       posts: _tagPosts = [],
       total: _tagTotalPosts,
-    } = await cms.fetchBlogEntriesWithoutDevUpdates(
-      CMS.BLOG_RESULTS_PER_PAGE,
-      page,
-    );
+    } = await cms.fetchBlogEntriesWithoutDevUpdates(RESULTS_PER_PAGE, page);
 
     filteredPosts = _tagPosts;
     filteredTotalPosts = _tagTotalPosts;
   }
 
   const total = tagTotalPosts ?? filteredTotalPosts;
-  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
+  const pageCount = Math.ceil(total / RESULTS_PER_PAGE);
 
   return {
     props: {
@@ -127,8 +123,8 @@ const Blog = (props: Props) => {
             pageLinkClassName={''}
             initialPage={currentPage - 1}
             pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
             onPageChange={paginationHandler}
           />
         </div>
@@ -182,7 +178,7 @@ const Blog = (props: Props) => {
         </Contained>
 
         {/* Posts, or recent posts if tag */}
-        <CardGrid rows={2}>
+        <CardGrid>
           {(tag ? posts : otherPosts)?.map(post => (
             <ArticleCard key={post.id} {...post} />
           ))}

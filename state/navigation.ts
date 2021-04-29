@@ -10,6 +10,7 @@ export enum SideMenuItem {
   GET_INVOLVED = 'GET_INVOLVED',
   ROADMAP = 'ROADMAP',
   AIRDROP = 'AIRDROP',
+  FAQ = 'FAQ',
 }
 
 export type TPages = {

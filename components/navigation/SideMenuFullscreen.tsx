@@ -28,6 +28,8 @@ export function SideMenuFullscreen({ withSideBar }: Props) {
                 : ''
             }`,
       }}
+      //{/* Update padding for navigation  */}
+
       className={classNames('fixed inset-0 flex duration-300 transform bg-alt')}
     >
       <div className="flex flex-col w-full space-y-4">

@@ -80,7 +80,7 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
+          <div className="flex items-center justify-end font-medium text-secondary whitespace-nowrap">
             View Oxen on{' '}
             <div className="flex items-center">
               <a
@@ -92,7 +92,7 @@ export function SideMenuInner() {
                 <img className="h-5" src="/img/coingecko.png" />
                 <span>CoinGecko</span>
               </a>
-              <a
+              {/* <a
                 href="https://coinmarketcap.com/currencies/oxen/"
                 target="_blank"
                 rel="dofollow"
@@ -100,7 +100,7 @@ export function SideMenuInner() {
               >
                 <img className="h-5" src="/img/coinmarketcap.png" />
                 <span>CMC</span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -119,8 +119,8 @@ const SocialsRow = () => {
   return (
     <div
       className={classNames(
-        'flex pt-3 pb-3 space-x-3 justify-between',
-        isDesktop && 'justify-between',
+        'flex pt-3 pb-3 space-x-3',
+        isDesktop ? 'justify-between' : 'justify-start',
       )}
     >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">

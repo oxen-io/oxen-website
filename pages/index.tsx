@@ -15,8 +15,13 @@ const Index = () => {
           key="title"
         />
         <meta property="og:image" content={'site-banner.png'} key="ogimage" />
-        <meta property="og:site_name" content="oxen.io" key="ogsitename" />
-        <meta property="og:title" content={'Oxen'} key="ogtitle" />
+        <meta property="og:site_name" content="Oxen" key="ogsitename" />
+        <meta property="og:type" content="website"></meta>
+        <meta
+          property="og:title"
+          content={'Oxen - Privacy should be simple.'}
+          key="ogtitle"
+        />
         <meta
           name="description"
           content={NAVIGATION.SITE_META_DESCRIPTION}

@@ -105,7 +105,7 @@ export function SideMenuInner() {
 }
 
 const SocialsRow = () => {
-  const { isDesktop, isTablet } = useContext(ScreenContext);
+  const { isTablet } = useContext(ScreenContext);
 
   return (
     <div

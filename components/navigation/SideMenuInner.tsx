@@ -110,8 +110,8 @@ const SocialsRow = () => {
   return (
     <div
       className={classNames(
-        'flex pt-3 pb-3 space-x-3 justify-between',
-        isDesktop && 'justify-between',
+        'flex pt-3 pb-3 space-x-3',
+        isDesktop ? 'justify-between' : 'justify-start pl-6',
       )}
     >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">

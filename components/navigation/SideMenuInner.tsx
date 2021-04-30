@@ -59,7 +59,7 @@ export function SideMenuInner() {
           {!isDesktop && (
             <div
               className={classNames(
-                'flex flex-col pt-8 font-medium uppercase font-prompt text-lg',
+                'flex flex-col pt-8 pl-6 font-medium uppercase font-prompt text-lg',
               )}
             >
               {_.chunk(NAVIGATION.MENU_ITEMS, 2).map(group => (
@@ -80,7 +80,7 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
+          <div className="flex items-center justify-end font-medium text-secondary whitespace-nowrap">
             View Oxen on{' '}
             <div className="flex items-center">
               <a
@@ -91,15 +91,6 @@ export function SideMenuInner() {
               >
                 <img className="h-5" src="/img/coingecko.png" />
                 <span>CoinGecko</span>
-              </a>
-              <a
-                href="https://coinmarketcap.com/currencies/oxen/"
-                target="_blank"
-                rel="dofollow"
-                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
-              >
-                <img className="h-5" src="/img/coinmarketcap.png" />
-                <span>CMC</span>
               </a>
             </div>
           </div>
@@ -114,13 +105,13 @@ export function SideMenuInner() {
 }
 
 const SocialsRow = () => {
-  const { isDesktop } = useContext(ScreenContext);
+  const { isTablet } = useContext(ScreenContext);
 
   return (
     <div
       className={classNames(
-        'flex pt-3 pb-3 space-x-3 justify-between',
-        isDesktop && 'justify-between',
+        'flex pt-3 pb-3',
+        isTablet ? 'justify-start space-x-5 px-6' : 'justify-between',
       )}
     >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">

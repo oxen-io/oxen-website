@@ -92,15 +92,6 @@ export function SideMenuInner() {
                 <img className="h-5" src="/img/coingecko.png" />
                 <span>CoinGecko</span>
               </a>
-              {/* <a
-                href="https://coinmarketcap.com/currencies/oxen/"
-                target="_blank"
-                rel="dofollow"
-                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
-              >
-                <img className="h-5" src="/img/coinmarketcap.png" />
-                <span>CMC</span>
-              </a> */}
             </div>
           </div>
         </div>

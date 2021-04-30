@@ -135,6 +135,7 @@ const Blog = (props: Props) => {
     <div>
       <Head>
         <title>{generateTitle('Blog')}</title>
+        {/* TODO: Update metatags here (name, description, image?) */}
       </Head>
 
       <div className="flex flex-col w-full mt-12 mb-6 space-y-6 bg-alt">

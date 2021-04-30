@@ -111,7 +111,7 @@ const SocialsRow = () => {
     <div
       className={classNames(
         'flex pt-3 pb-3',
-        isTablet ? 'justify-start space-x-3 px-6' : 'justify-between',
+        isTablet ? 'justify-start space-x-5 px-6' : 'justify-between',
       )}
     >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">

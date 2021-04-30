@@ -86,7 +86,7 @@ export function SideMenuInner() {
               <a
                 href="https://www.coingecko.com/en/coins/oxen"
                 target="_blank"
-                rel="dofollow"
+                rel="nofollow"
                 className="flex items-center mx-2 space-x-1 font-bold hover:underline"
               >
                 <img className="h-5" src="/img/coingecko.png" />

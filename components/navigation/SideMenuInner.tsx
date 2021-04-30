@@ -80,7 +80,7 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
+          <div className="flex items-center justify-end font-medium text-secondary whitespace-nowrap">
             View Oxen on{' '}
             <div className="flex items-center">
               <a

@@ -59,7 +59,7 @@ export function SideMenuInner() {
           {!isDesktop && (
             <div
               className={classNames(
-                'flex flex-col pt-8 font-medium uppercase font-prompt text-lg',
+                'flex flex-col pt-8 pl-6 font-medium uppercase font-prompt text-lg',
               )}
             >
               {_.chunk(NAVIGATION.MENU_ITEMS, 2).map(group => (
@@ -105,13 +105,13 @@ export function SideMenuInner() {
 }
 
 const SocialsRow = () => {
-  const { isDesktop } = useContext(ScreenContext);
+  const { isDesktop, isTablet } = useContext(ScreenContext);
 
   return (
     <div
       className={classNames(
-        'flex pt-3 pb-3 space-x-3',
-        isDesktop ? 'justify-between' : 'justify-start pl-6',
+        'flex pt-3 pb-3',
+        isTablet ? 'justify-start space-x-3 px-6' : 'justify-between',
       )}
     >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">

@@ -32,6 +32,7 @@ const Index = () => {
           key="ogdesc"
         />
         <meta name="apple-itunes-app" content="app-id=1547745078" />
+        <link rel="canonical" href="https://oxen.io/"></link>
       </Head>
 
       {/* Only visible when no pages are open */}

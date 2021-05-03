@@ -63,6 +63,7 @@ function App({ Component, pageProps }: AppProps) {
               name="viewport"
               content="width=device-width, initial-scale=1, maximum-scale=1"
             ></meta>
+            <meta name="apple-itunes-app" content="app-id=1547745078" />
           </Head>
 
           <Layout>

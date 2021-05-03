@@ -9,14 +9,10 @@ const Index = () => {
     <>
       <Head>
         <title>{METADATA.TITLE_SUFFIX}</title>
-        <meta
-          property="og:title"
-          content="Oxen - Privacy should be simple."
-          key="title"
-        />
         <meta property="og:image" content={'site-banner.png'} key="ogimage" />
         <meta property="og:site_name" content="Oxen" key="ogsitename" />
         <meta property="og:type" content="website"></meta>
+        <meta property="og:url" content={METADATA.OXEN_HOST_URL}></meta>
         <meta
           property="og:title"
           content={'Oxen - Privacy should be simple.'}
@@ -31,7 +27,6 @@ const Index = () => {
           content={NAVIGATION.SITE_META_DESCRIPTION}
           key="ogdesc"
         />
-        <meta name="apple-itunes-app" content="app-id=1547745078" />
         <link rel="canonical" href="https://oxen.io/"></link>
       </Head>
 

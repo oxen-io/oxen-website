@@ -6,7 +6,7 @@ import { Article } from '../../components/article/Article';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType, setPostTitle } from '../../state/navigation';
 import { IPost } from '../../types/cms';
-import { generateTitle } from '../../utils/metadata';
+import { generateTitle, generateURL } from '../../utils/metadata';
 
 interface IPath {
   params: { slug: string };

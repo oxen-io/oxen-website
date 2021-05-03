@@ -63,6 +63,8 @@ function App({ Component, pageProps }: AppProps) {
               name="viewport"
               content="width=device-width, initial-scale=1, maximum-scale=1"
             ></meta>
+            <meta property="og:site_name" content="Oxen" key="ogsitename" />
+            <meta property="og:locale" content="en_US" />
             <meta name="apple-itunes-app" content="app-id=1547745078" />
           </Head>
 

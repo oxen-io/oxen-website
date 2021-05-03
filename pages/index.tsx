@@ -10,7 +10,6 @@ const Index = () => {
       <Head>
         <title>{METADATA.TITLE_SUFFIX}</title>
         <meta property="og:image" content={'site-banner.png'} key="ogimage" />
-        <meta property="og:site_name" content="Oxen" key="ogsitename" />
         <meta property="og:type" content="website"></meta>
         <meta property="og:url" content={METADATA.OXEN_HOST_URL}></meta>
         <meta

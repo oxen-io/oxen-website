@@ -9,23 +9,24 @@ const Index = () => {
     <>
       <Head>
         <title>{METADATA.TITLE_SUFFIX}</title>
-        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
-        <meta property="og:type" content="website"></meta>
-        <meta property="og:url" content={METADATA.OXEN_HOST_URL}></meta>
-        <meta
-          property="og:title"
-          content={'Oxen - Privacy should be simple.'}
-          key="ogtitle"
-        />
         <meta
           name="description"
           content={NAVIGATION.SITE_META_DESCRIPTION}
         ></meta>
         <meta
+          property="og:title"
+          content={METADATA.TITLE_SUFFIX}
+          key="ogtitle"
+        />
+        <meta
           property="og:description"
           content={NAVIGATION.SITE_META_DESCRIPTION}
           key="ogdesc"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
+        <meta property="og:url" content={METADATA.OXEN_HOST_URL} />
+
         <link rel="canonical" href="https://oxen.io/"></link>
       </Head>
 

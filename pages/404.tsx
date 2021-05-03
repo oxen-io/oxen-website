@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import Head from 'next/head';
 import React, { useContext } from 'react';
 // import _404 from '../assets/svgs/404.svg';
-import { UI } from '../constants';
+import { UI, METADATA } from '../constants';
 import { ScreenContext } from '../contexts/screen';
-import { generateTitle } from '../utils/metadata';
+import { generateTitle, generateURL } from '../utils/metadata';
 
 function oxen404() {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
@@ -47,10 +47,25 @@ function oxen404() {
     width: '9rem',
   };
 
+  const pageTitle = generateTitle('404');
+  const pageURL = generateURL('/404');
+
   return (
     <div className="flex items-center justify-center flex-grow h-full">
       <Head>
-        <title>{generateTitle('404')}</title>
+        <title>{pageTitle}</title>
+        <meta name="description" content={METADATA['404'].DESCRIPTION}></meta>
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={METADATA['404'].DESCRIPTION}
+          key="ogdesc"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
+        <meta property="og:url" content={pageURL} />
+
+        <link rel="canonical" href={pageURL}></link>
       </Head>
 
       <div style={wrapperStyles} className="flex items-center flex-grow">
@@ -65,13 +80,13 @@ function oxen404() {
             <div style={_404SectionStyles} className="absolute left-0 z-50">
               <h1
                 style={_404TitleStyles}
-                className="-mb-4 text-opacity-25 font-sans text-primary text-8xl"
+                className="-mb-4 font-sans text-opacity-25 text-primary text-8xl"
               >
                 404
               </h1>
               <p
                 style={_404TextStyles}
-                className="text-4xl tracking-tight font-sans text-primary"
+                className="font-sans text-4xl tracking-tight text-primary"
               >
                 Nothing found here.
               </p>

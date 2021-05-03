@@ -6,6 +6,9 @@ const METADATA = {
   ROADMAP: {
     DESCRIPTION: "View Oxen's plan for the futere here.",
   },
+  404: {
+    DESCRIPTION: "Oopsy, here's our 404 page.",
+  },
 };
 
 export default METADATA;

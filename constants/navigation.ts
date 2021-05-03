@@ -122,8 +122,6 @@ const NAVIGATION = {
   SIDE_MENU_ITEMS,
   BLOG_REGEX: /^\/(blog)([?tag=[\w-]*)?([?&]page=[0-9]{1,3})?/,
   POST_REGEX: /^\/(blog\/)(([\w-]{1,100})|(\[slug\]))$/,
-  SITE_META_DESCRIPTION:
-    'Oxen is built by the OPTF, a passionate team of advocates, creatives, and engineers building a world where the internet is open, software is free and accessible, and your privacy is protected. The OPTF also builds other platforms using Oxen technology, and supports other developers in building on Oxen.',
 };
 
 export default NAVIGATION;

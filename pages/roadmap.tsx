@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import React from 'react';
 import { useMeasure } from 'react-use';
-import { NAVIGATION } from '../constants';
+import { NAVIGATION, METADATA } from '../constants';
 import { SideMenuItem } from '../state/navigation';
-import { generateTitle } from '../utils/metadata';
+import { generateTitle, generateURL } from '../utils/metadata';
 
 function Roadmap() {
   const [ref, { width, height }] = useMeasure();
@@ -18,14 +18,29 @@ function Roadmap() {
   console.log('roadmap ➡️ width:', width);
   console.log('roadmap ➡️ ratio:', aspectRatio);
 
+  const pageTitle = generateTitle(
+    NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label,
+  );
+  const pageURL = generateURL(
+    NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href,
+  );
+
   return (
     <>
       <Head>
-        <title>
-          {generateTitle(
-            NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label,
-          )}
-        </title>
+        <title>{pageTitle}</title>
+        <meta name="description" content={METADATA.ROADMAP.DESCRIPTION}></meta>
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={METADATA.ROADMAP.DESCRIPTION}
+          key="ogdesc"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
+        <meta property="og:url" content={pageURL} />
+
+        <link rel="canonical" href={pageURL}></link>
       </Head>
 
       <div className="mx-4">

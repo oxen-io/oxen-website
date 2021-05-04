@@ -43,7 +43,7 @@ export async function getStaticProps({ params }) {
 
   const cms = new CmsApi();
   const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
-
+  const url = generateURL(`/blog/${params.slug}`);
   if (!post) {
     return { notFound: true };
   }
@@ -51,13 +51,14 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       post,
+      url,
     },
     revalidate: 60,
   };
 }
 
 // Parallax on bg as mouse moves
-function Post({ post }: { post: IPost }) {
+function Post({ post, url }: { post: IPost; url: string }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -71,7 +72,14 @@ function Post({ post }: { post: IPost }) {
     <>
       <Head>
         <title>{pageTitle}</title>
-
+        <meta name="description" content={post?.description}></meta>
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={post?.description}
+          key="ogdesc"
+        />
+        <meta property="og:type" content="article" />
         <meta name="image_src" content={post?.featureImage?.imageUrl} />
         <meta name="image_url" content={post?.featureImage?.imageUrl} />
         <meta name="keywords" content={post?.tags?.join(' ')} />
@@ -80,14 +88,8 @@ function Post({ post }: { post: IPost }) {
           content={post?.featureImage?.imageUrl}
           key="ogimage"
         />
-
-        <meta property="og:site_name" content="oxen.io" key="ogsitename" />
-        <meta property="og:title" content={pageTitle} key="ogtitle" />
-        <meta
-          property="og:description"
-          content={post?.description}
-          key="ogdesc"
-        />
+        <meta property="og:url" content={url} />
+        <link rel="canonical" href={url}></link>{' '}
       </Head>
 
       <div className="bg-alt">

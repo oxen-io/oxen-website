@@ -110,6 +110,10 @@ function Page({
         <meta property="og:url" content={pageURL} />
 
         <link rel="canonical" href={pageURL}></link>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={page?.hero?.imageUrl} />
       </Head>
 
       <div className="bg-alt">

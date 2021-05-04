@@ -41,6 +41,13 @@ function Roadmap() {
         <meta property="og:url" content={pageURL} />
 
         <link rel="canonical" href={pageURL}></link>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta
+          name="twitter:description"
+          content={METADATA.ROADMAP.DESCRIPTION}
+        />
+        <meta name="twitter:image" content={'site-banner.png'} />
       </Head>
 
       <div className="mx-4">

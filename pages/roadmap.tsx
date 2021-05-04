@@ -24,6 +24,7 @@ function Roadmap() {
   const pageURL = generateURL(
     NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href,
   );
+  const imageURL = `${METADATA.OXEN_HOST_URL}/site-banner.png`;
 
   return (
     <>
@@ -46,6 +47,7 @@ function Roadmap() {
           name="twitter:description"
           content={METADATA.ROADMAP.DESCRIPTION}
         />
+        <meta name="twitter:image" content={imageURL} />
       </Head>
 
       <div className="mx-4">

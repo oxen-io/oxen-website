@@ -37,7 +37,6 @@ function Roadmap() {
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
         <meta property="og:url" content={pageURL} />
 
         <link rel="canonical" href={pageURL}></link>
@@ -47,7 +46,6 @@ function Roadmap() {
           name="twitter:description"
           content={METADATA.ROADMAP.DESCRIPTION}
         />
-        <meta name="twitter:image" content={'site-banner.png'} />
       </Head>
 
       <div className="mx-4">

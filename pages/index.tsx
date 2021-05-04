@@ -5,6 +5,7 @@ import { HomeHeroBubble } from '../components/HomeHeroBubble';
 import { METADATA } from '../constants';
 
 const Index = () => {
+  const imageURL = `${METADATA.OXEN_HOST_URL}/site-banner.png`;
   return (
     <>
       <Head>
@@ -24,7 +25,7 @@ const Index = () => {
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
+        <meta property="og:image" content={imageURL} key="ogimage" />
         <meta property="og:url" content={METADATA.OXEN_HOST_URL} />
 
         <link rel="canonical" href={METADATA.OXEN_HOST_URL}></link>
@@ -34,7 +35,7 @@ const Index = () => {
           name="twitter:description"
           content={METADATA.SITE_META_DESCRIPTION}
         />
-        <meta name="twitter:image" content={'site-banner.png'} />
+        <meta name="twitter:image" content={imageURL} />
       </Head>
 
       {/* Only visible when no pages are open */}

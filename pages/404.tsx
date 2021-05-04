@@ -62,7 +62,6 @@ function oxen404() {
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
         <meta property="og:url" content={pageURL} />
 
         <link rel="canonical" href={pageURL}></link>

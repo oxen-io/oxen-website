@@ -67,6 +67,7 @@ function Post({ post, url }: { post: IPost; url: string }) {
   }, []);
 
   const pageTitle = generateTitle(post?.title);
+  const imageURL = post?.featureImage?.imageUrl;
 
   return (
     <>
@@ -80,16 +81,16 @@ function Post({ post, url }: { post: IPost; url: string }) {
           key="ogdesc"
         />
         <meta property="og:type" content="article" />
-        <meta name="image_src" content={post?.featureImage?.imageUrl} />
-        <meta name="image_url" content={post?.featureImage?.imageUrl} />
+        <meta name="image_src" content={imageURL} />
+        <meta name="image_url" content={imageURL} />
         <meta name="keywords" content={post?.tags?.join(' ')} />
-        <meta
-          property="og:image"
-          content={post?.featureImage?.imageUrl}
-          key="ogimage"
-        />
+        <meta property="og:image" content={imageURL} key="ogimage" />
         <meta property="og:url" content={url} />
         <link rel="canonical" href={url}></link>{' '}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={post?.description} />
+        <meta name="twitter:image" content={imageURL} />
       </Head>
 
       <div className="bg-alt">

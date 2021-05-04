@@ -151,7 +151,7 @@ const Blog = (props: Props) => {
           key="ogimage"
         />
         <meta property="og:url" content={METADATA.BLOG.URL} />
-        <link rel="canonical" href={METADATA.BLOG.URL}></link>{' '}
+        <link rel="canonical" href={METADATA.BLOG.URL}></link>
       </Head>
 
       <div className="flex flex-col w-full mt-12 mb-6 space-y-6 bg-alt">

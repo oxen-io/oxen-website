@@ -28,6 +28,13 @@ const Index = () => {
         <meta property="og:url" content={METADATA.OXEN_HOST_URL} />
 
         <link rel="canonical" href={METADATA.OXEN_HOST_URL}></link>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={METADATA.TITLE_SUFFIX} />
+        <meta
+          name="twitter:description"
+          content={METADATA.SITE_META_DESCRIPTION}
+        />
+        <meta name="twitter:image" content={'site-banner.png'} />
       </Head>
 
       {/* Only visible when no pages are open */}

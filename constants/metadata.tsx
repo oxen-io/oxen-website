@@ -9,6 +9,10 @@ const METADATA = {
   404: {
     DESCRIPTION: "Oopsy, here's our 404 page.",
   },
+  BLOG: {
+    DESCRIPTION: "View Oxen's Blog Updates Here",
+    URL: 'https://oxen.io/blog',
+  },
 };
 
 export default METADATA;

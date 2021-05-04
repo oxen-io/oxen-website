@@ -9,7 +9,7 @@ import { ArticleCardFeature } from '../../components/cards/ArticleCardFeature';
 import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import { TagBlock } from '../../components/TagBlock';
-import { CMS } from '../../constants';
+import { CMS, METADATA } from '../../constants';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
 import { IPost } from '../../types/cms';
@@ -131,11 +131,27 @@ const Blog = (props: Props) => {
     </Contained>
   );
 
+  const pageTitle = generateTitle('Blog');
+
   return (
     <div>
       <Head>
-        <title>{generateTitle('Blog')}</title>
-        {/* TODO: Update metatags here (name, description, image?) */}
+        <title>{pageTitle}</title>
+        <meta name="description" content={METADATA.BLOG.DESCRIPTION}></meta>
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={METADATA.BLOG.DESCRIPTION}
+          key="ogdesc"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content={featuredPost?.featureImage?.imageUrl}
+          key="ogimage"
+        />
+        <meta property="og:url" content={METADATA.BLOG.URL} />
+        <link rel="canonical" href={METADATA.BLOG.URL}></link>{' '}
       </Head>
 
       <div className="flex flex-col w-full mt-12 mb-6 space-y-6 bg-alt">

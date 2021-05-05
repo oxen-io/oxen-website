@@ -24,23 +24,20 @@ export async function getStaticPaths() {
       params: { page: item.href },
     }),
   );
-  console.debug(paths);
 
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
   const href = params?.page ?? '';
-  console.debug(params);
   const id = unslugify(String(href));
-  console.debug(href);
   // Roadmap page is special 👁️👄👁️
   if (SideMenuItem[id] == [SideMenuItem.ROADMAP]) {
     return {
       props: {
         page: null,
         isRoadmap: true,
-        href: `/${href}`,
+        href: `/${href}`, // the '/' is removed from the href from getStaticPaths(), so let's add it back here
       },
       revalidate: 60,
     };
@@ -89,7 +86,6 @@ function Page({
     isRoadmap ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href : href,
   );
 
-  console.debug(href);
   return (
     <>
       <Head>

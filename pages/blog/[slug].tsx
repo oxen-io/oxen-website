@@ -43,7 +43,7 @@ export async function getStaticProps({ params }) {
 
   const cms = new CmsApi();
   const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
-  const url = generateURL(`/blog/${params.slug}`);
+  const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');
   if (!post) {
     return { notFound: true };
   }

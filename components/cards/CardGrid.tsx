@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function CardGrid({ rows, children }: Props) {
-  const { isMobile, isDesktop, isHuge } = useContext(ScreenContext);
+  const { isDesktop, isHuge } = useContext(ScreenContext);
 
   const [ref, { width }] = useMeasure();
   const widthOfCardPx = 200;
@@ -37,25 +37,7 @@ export function CardGrid({ rows, children }: Props) {
 
   return (
     <>
-      {isMobile ? (
-        <div className="">
-          <HorizontalScrollable>
-            {children.map(child => (
-              <div
-                key={uuid()}
-                style={{
-                  width: '80vw',
-                  minWidth: '275px',
-                  maxWidth: '330px',
-                }}
-                className="py-4"
-              >
-                {child}
-              </div>
-            ))}
-          </HorizontalScrollable>
-        </div>
-      ) : (
+      {
         <Contained>
           <div ref={ref} className={classNames('flex flex-col', spacingY)}>
             {_.chunk(cards, grouping).map(group => (
@@ -69,7 +51,7 @@ export function CardGrid({ rows, children }: Props) {
             ))}
           </div>
         </Contained>
-      )}
+      }
     </>
   );
 }

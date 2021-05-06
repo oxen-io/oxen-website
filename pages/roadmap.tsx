@@ -68,7 +68,7 @@ function Roadmap() {
             </h2>
             <img
               style={{ maxHeight: horizontal ? '90%' : 'auto' }}
-              src={`img/session-${horizontal ? 'x' : 'y'}.jpg`}
+              src={`img/session-${horizontal ? 'x' : 'y'}.png`}
               className="w-full rounded-md"
             />
           </div>

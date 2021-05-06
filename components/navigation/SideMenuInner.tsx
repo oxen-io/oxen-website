@@ -79,7 +79,6 @@ export function SideMenuInner() {
       {isDesktop ? (
         <div className="px-6 pb-3">
           <SocialsRow />
-
           <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
             View Oxen on{' '}
             <div className="flex items-center">
@@ -103,6 +102,14 @@ export function SideMenuInner() {
               </a>
             </div>
           </div>
+          Download Our Media Kit{' '}
+          <a
+            href="/oxen-media-kit.zip"
+            target="_blank"
+            className="font-bold hover:underline text-secondary"
+          >
+            here
+          </a>
         </div>
       ) : (
         <Contained>

@@ -80,7 +80,7 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center justify-end font-medium text-secondary whitespace-nowrap">
+          <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
             View Oxen on{' '}
             <div className="flex items-center">
               <a
@@ -91,6 +91,15 @@ export function SideMenuInner() {
               >
                 <img className="h-5" src="/img/coingecko.png" />
                 <span>CoinGecko</span>
+              </a>
+              <a
+                href="https://coinmarketcap.com/currencies/oxen/"
+                target="_blank"
+                rel="nofollow"
+                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
+              >
+                <img className="h-5" src="/img/coinmarketcap.png" />
+                <span>CMC</span>
               </a>
             </div>
           </div>

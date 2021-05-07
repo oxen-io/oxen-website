@@ -4,11 +4,11 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Contained } from '../components/Contained';
 import { RichBody } from '../components/RichBody';
-import { NAVIGATION } from '../constants';
+import { NAVIGATION, METADATA } from '../constants';
 import { CmsApi, unslugify } from '../services/cms';
 import { PageType, setPageType, SideMenuItem } from '../state/navigation';
 import { ISplitPage } from '../types/cms';
-import { generateTitle } from '../utils/metadata';
+import { generateTitle, generateURL } from '../utils/metadata';
 
 interface IPath {
   params: { page: string; isRoadmap?: boolean };
@@ -19,7 +19,6 @@ export async function getStaticPaths() {
   // Hardcoded in navigation constants.
   // Contentful can edit entries but cannot add/remove
   // without touching code.
-
   const paths: IPath[] = Object.values(NAVIGATION.SIDE_MENU_ITEMS).map(
     item => ({
       params: { page: item.href },
@@ -30,8 +29,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const id = unslugify(String(params?.page) ?? '');
-
+  const href = params?.page ?? '';
+  const id = unslugify(String(href));
   // Roadmap page is special 👁️👄👁️
   if (SideMenuItem[id] == [SideMenuItem.ROADMAP]) {
     // query all FAQ items from contentful
@@ -39,6 +38,7 @@ export async function getStaticProps({ params }) {
       props: {
         page: null,
         isRoadmap: true,
+        href: `/${href}`, // the '/' is removed from the href from getStaticPaths(), so let's add it back here
       },
       revalidate: 60,
     };
@@ -57,7 +57,6 @@ export async function getStaticProps({ params }) {
 
   const cms = new CmsApi();
   const page = await cms.fetchPageById(SideMenuItem[id]);
-
   if (!page) {
     return { notFound: true };
   }
@@ -66,6 +65,7 @@ export async function getStaticProps({ params }) {
     props: {
       page,
       isRoadmap: false,
+      href: `/${href}`,
     },
     revalidate: 60,
   };
@@ -74,25 +74,54 @@ export async function getStaticProps({ params }) {
 function Page({
   page,
   isRoadmap,
+  href,
 }: {
   page: ISplitPage | null;
   isRoadmap?: boolean;
+  href: string;
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
   }, []);
+  const pageTitle = generateTitle(
+    isRoadmap
+      ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label
+      : page?.label,
+  );
+
+  const pageDescription = isRoadmap
+    ? METADATA.ROADMAP.DESCRIPTION
+    : page?.title;
+
+  const pageURL = generateURL(
+    isRoadmap ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href : href,
+  );
 
   return (
     <>
       <Head>
-        <title>
-          {generateTitle(
-            isRoadmap
-              ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label
-              : page?.label,
-          )}
-        </title>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription}></meta>
+        <meta property="og:title" content={pageTitle} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={pageDescription}
+          key="ogdesc"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content={page?.hero?.imageUrl}
+          key="ogimage"
+        />
+        <meta property="og:url" content={pageURL} />
+
+        <link rel="canonical" href={pageURL}></link>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={page?.hero?.imageUrl} />
       </Head>
 
       <div className="bg-alt">

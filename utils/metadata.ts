@@ -6,3 +6,7 @@ export function generateTitle(prefix: string) {
     ? `${titleCase(prefix)} - ${METADATA.TITLE_SUFFIX}`
     : METADATA.TITLE_SUFFIX;
 }
+
+export function generateURL(prefix: string) {
+  return prefix ? `${METADATA.OXEN_HOST_URL}${prefix}` : METADATA.OXEN_HOST_URL;
+}

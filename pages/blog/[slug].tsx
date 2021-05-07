@@ -6,7 +6,7 @@ import { Article } from '../../components/article/Article';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType, setPostTitle } from '../../state/navigation';
 import { IPost } from '../../types/cms';
-import { generateTitle } from '../../utils/metadata';
+import { generateTitle, generateURL } from '../../utils/metadata';
 
 interface IPath {
   params: { slug: string };
@@ -43,7 +43,7 @@ export async function getStaticProps({ params }) {
 
   const cms = new CmsApi();
   const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
-
+  const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');
   if (!post) {
     return { notFound: true };
   }
@@ -51,13 +51,14 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       post,
+      url,
     },
     revalidate: 60,
   };
 }
 
 // Parallax on bg as mouse moves
-function Post({ post }: { post: IPost }) {
+function Post({ post, url }: { post: IPost; url: string }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,28 +67,30 @@ function Post({ post }: { post: IPost }) {
   }, []);
 
   const pageTitle = generateTitle(post?.title);
+  const imageURL = post?.featureImage?.imageUrl;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-
-        <meta name="image_src" content={post?.featureImage?.imageUrl} />
-        <meta name="image_url" content={post?.featureImage?.imageUrl} />
-        <meta name="keywords" content={post?.tags?.join(' ')} />
-        <meta
-          property="og:image"
-          content={post?.featureImage?.imageUrl}
-          key="ogimage"
-        />
-
-        <meta property="og:site_name" content="oxen.io" key="ogsitename" />
+        <meta name="description" content={post?.description}></meta>
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta
           property="og:description"
           content={post?.description}
           key="ogdesc"
         />
+        <meta property="og:type" content="article" />
+        <meta name="image_src" content={imageURL} />
+        <meta name="image_url" content={imageURL} />
+        <meta name="keywords" content={post?.tags?.join(' ')} />
+        <meta property="og:image" content={imageURL} key="ogimage" />
+        <meta property="og:url" content={url} />
+        <link rel="canonical" href={url}></link>{' '}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={post?.description} />
+        <meta name="twitter:image" content={imageURL} />
       </Head>
 
       <div className="bg-alt">

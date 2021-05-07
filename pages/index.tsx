@@ -2,26 +2,40 @@ import Head from 'next/head';
 import React from 'react';
 import { HomeHero } from '../components/HomeHero';
 import { HomeHeroBubble } from '../components/HomeHeroBubble';
-import { METADATA, NAVIGATION } from '../constants';
+import { METADATA } from '../constants';
 
 const Index = () => {
+  const imageURL = `${METADATA.OXEN_HOST_URL}/site-banner.png`;
   return (
     <>
       <Head>
         <title>{METADATA.TITLE_SUFFIX}</title>
         <meta
+          name="description"
+          content={METADATA.SITE_META_DESCRIPTION}
+        ></meta>
+        <meta
           property="og:title"
-          content="Oxen - Privacy should be simple."
-          key="title"
+          content={METADATA.TITLE_SUFFIX}
+          key="ogtitle"
         />
-        <meta property="og:image" content={'site-banner.png'} key="ogimage" />
-        <meta property="og:site_name" content="oxen.io" key="ogsitename" />
-        <meta property="og:title" content={'Oxen'} key="ogtitle" />
         <meta
           property="og:description"
-          content={NAVIGATION.SITE_META_DESCRIPTION}
+          content={METADATA.SITE_META_DESCRIPTION}
           key="ogdesc"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={imageURL} key="ogimage" />
+        <meta property="og:url" content={METADATA.OXEN_HOST_URL} />
+
+        <link rel="canonical" href={METADATA.OXEN_HOST_URL}></link>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={METADATA.TITLE_SUFFIX} />
+        <meta
+          name="twitter:description"
+          content={METADATA.SITE_META_DESCRIPTION}
+        />
+        <meta name="twitter:image" content={imageURL} />
       </Head>
 
       {/* Only visible when no pages are open */}

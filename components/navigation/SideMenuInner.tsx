@@ -80,28 +80,32 @@ export function SideMenuInner() {
         <div className="px-6 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center justify-between font-medium text-secondary whitespace-nowrap">
-            View Oxen on{' '}
-            <div className="flex items-center">
-              <a
-                href="https://coinmarketcap.com/currencies/oxen/"
-                target="_blank"
-                rel="nofollow"
-                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
-              >
-                <img className="h-5" src="/img/coinmarketcap.png" />
-                <span>CMC</span>
-              </a>
-              <a
-                href="https://www.coingecko.com/en/coins/oxen"
-                target="_blank"
-                rel="nofollow"
-                className="flex items-center mx-2 space-x-1 font-bold hover:underline"
-              >
-                <img className="h-5" src="/img/coingecko.png" />
-                <span>CoinGecko</span>
-              </a>
-            </div>
+          <div className="flex items-center justify-between font-medium whitespace-nowrap">
+            <a
+              href="/downloads/oxen-media-kit.zip"
+              target="_blank"
+              className="flex items-center space-x-1 hover:underline hover:text-secondary"
+            >
+              <span>Media Kit</span>
+            </a>
+            <a
+              href="https://coinmarketcap.com/currencies/oxen/"
+              target="_blank"
+              rel="nofollow"
+              className="flex items-center space-x-1 hover:underline hover:text-secondary"
+            >
+              <img className="h-5" src="/img/coinmarketcap.png" />
+              <span>CMC</span>
+            </a>
+            <a
+              href="https://www.coingecko.com/en/coins/oxen"
+              target="_blank"
+              rel="nofollow"
+              className="flex items-center space-x-1 hover:underline hover:text-secondary"
+            >
+              <img className="h-5" src="/img/coingecko.png" />
+              <span>CoinGecko</span>
+            </a>
           </div>
         </div>
       ) : (

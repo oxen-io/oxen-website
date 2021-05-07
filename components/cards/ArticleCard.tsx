@@ -47,7 +47,7 @@ export function ArticleCard(props: IPost): JSX.Element {
           <img
             className="object-cover cursor-pointer"
             src={`${featureImage?.imageUrl}?w=300`}
-            alt={featureImage?.description}
+            alt={featureImage?.description ?? title}
           />
         )}
       </div>

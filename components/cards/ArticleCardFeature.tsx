@@ -38,7 +38,7 @@ export function ArticleCardFeature(props: IPost) {
           <img
             className="object-cover"
             src={`${featureImage?.imageUrl}?w=600`}
-            alt={featureImage?.description}
+            alt={featureImage?.description ?? title}
           />
         </div>
       </div>

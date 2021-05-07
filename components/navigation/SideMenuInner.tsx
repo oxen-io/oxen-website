@@ -89,7 +89,11 @@ export function SideMenuInner() {
                 rel="nofollow"
                 className="flex items-center mx-2 space-x-1 font-bold hover:underline"
               >
-                <img className="h-5" src="/img/coinmarketcap.png" />
+                <img
+                  className="h-5"
+                  src="/img/coinmarketcap.png"
+                  alt="CoinMarketCap Logo"
+                />
                 <span>CMC</span>
               </a>
               <a
@@ -98,7 +102,11 @@ export function SideMenuInner() {
                 rel="nofollow"
                 className="flex items-center mx-2 space-x-1 font-bold hover:underline"
               >
-                <img className="h-5" src="/img/coingecko.png" />
+                <img
+                  className="h-5"
+                  src="/img/coingecko.png"
+                  alt="CoinGecko Logo"
+                />
                 <span>CoinGecko</span>
               </a>
             </div>

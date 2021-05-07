@@ -118,6 +118,7 @@ function Page({
             style={{ maxHeight: '33vh' }}
             src={page?.hero?.imageUrl}
             className="object-contain w-full"
+            alt={page?.hero?.description ?? pageTitle}
           />
         </div>
 

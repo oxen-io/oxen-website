@@ -55,6 +55,7 @@ function Roadmap() {
           <img
             style={{ maxHeight: '90%' }}
             src={`img/roadmap-${horizontal ? 'x' : 'y'}.png`}
+            alt="Oxen's Roadmap and Plans for the future."
             className="w-full"
           />
         </div>

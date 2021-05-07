@@ -70,6 +70,7 @@ function Roadmap() {
             <img
               style={{ maxHeight: horizontal ? '90%' : 'auto' }}
               src={`img/session-${horizontal ? 'x' : 'y'}.png`}
+              alt="Session's Roadmap and Plans for the future."
               className="w-full rounded-md"
             />
           </div>
@@ -81,6 +82,7 @@ function Roadmap() {
             <img
               style={{ maxHeight: '90%' }}
               src={`img/lokinet-${horizontal ? 'x' : 'y'}.jpg`}
+              alt="Lokinet's Roadmap and Plans for the future."
               className="w-full rounded-md"
             />
           </div>

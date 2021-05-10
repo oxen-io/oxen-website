@@ -24,7 +24,7 @@ export function Accordion(props) {
         {question}
         <TriangleSVG
           className={classNames(
-            'h-3 fill-current text-primary transform outline-none duration-300 cursor-pointer ',
+            'h-3 fill-current text-primary transform outline-none cursor-pointer',
             isActive ? 'rotate-90' : '',
           )}
         />{' '}
@@ -35,7 +35,7 @@ export function Accordion(props) {
           maxHeight: '100%',
           display: isActive ? '' : 'none',
         }}
-        className={classNames('accordion-content', !isActive && 'invisible')}
+        className={classNames('accordion-content')}
       >
         <div className="w-full px-3 pt-1 text-lg text-left tablet:text-xl">
           <RichBody body={answer} />

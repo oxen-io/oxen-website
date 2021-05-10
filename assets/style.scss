@@ -177,7 +177,6 @@ ul li > p {
   padding: 0.5em;
   width: 100%;
   text-align: left;
-  transition: 0.4s;
 }
 
 .accordion:hover {
@@ -185,6 +184,6 @@ ul li > p {
 }
 
 .accordion-content {
-  transition: max-height 0.2s ease;
+  transition: max-height 0.2s;
   overflow: hidden;
 }

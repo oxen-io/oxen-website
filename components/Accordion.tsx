@@ -12,11 +12,10 @@ export function Accordion(props) {
   function toggleAccordion() {
     setActiveState(!isActive);
     setHeight(isActive ? '0px' : `${content.current.scrollHeight}px`);
-    console.log(content.current.scrollHeight);
   }
 
   return (
-    <div className="mb-1 border border-current">
+    <div className="mb-1 border border-current rounded-sm">
       <button
         className={
           'flex accordion text-xl tablet:text-2xl  w-full text-left	bg-secondary px-3 justify-between items-center'
@@ -38,7 +37,7 @@ export function Accordion(props) {
         }}
         className={classNames('accordion-content')}
       >
-        <div className="w-full px-3 pt-1 text-lg text-left tablet:text-xl">
+        <div className="w-full px-3 pt-1 text-lg text-left ease-in-out tablet:text-xl">
           <RichBody body={answer} />
         </div>
       </div>

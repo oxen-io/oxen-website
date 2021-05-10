@@ -41,7 +41,7 @@ function FAQ(props: Props) {
   const pageURL = generateURL(
     NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.FAQ].href,
   );
-  const imageURL = `${METADATA.OXEN_HOST_URL}/site-banner.png`;
+  const imageURL = `${METADATA.OXEN_HOST_URL}/hero.svg`;
 
   return (
     <>
@@ -65,12 +65,8 @@ function FAQ(props: Props) {
       </Head>
 
       <div>
-        <div className="flex items-center justify-center mt-8">
-          <img
-            style={{ maxHeight: '90%' }}
-            src={`site-banner.png`}
-            className="w-full"
-          />
+        <div className="flex items-center justify-center">
+          <img src={`hero.svg`} className="w-full" />
         </div>
       </div>
 

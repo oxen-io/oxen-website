@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-// import Chevron from './Chevron';
 import { RichBody } from '../components/RichBody';
 import classNames from 'classnames';
 import TriangleSVG from '../assets/svgs/triangle.svg';
@@ -24,7 +23,7 @@ export function Accordion(props) {
         <div style={{ maxWidth: '95%' }}> {question}</div>
         <TriangleSVG
           className={classNames(
-            'h-3 fill-current text-primary transform outline-none cursor-pointer',
+            'h-3 fill-current text-primary transform outline-none cursor-pointer duration-300',
             isActive ? 'rotate-90' : '',
           )}
         />{' '}

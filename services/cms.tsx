@@ -171,12 +171,9 @@ export class CmsApi {
       content_type: 'faq_item', // only fetch faq items
       order: 'fields.id',
     });
-    console.log(entries.items);
 
     if (entries && entries.items && entries.items.length > 0) {
       const faqItems = entries.items.map(entry => this.convertFAQ(entry));
-      console.log(faqItems);
-      faqItems.forEach(item => console.log(item.answer));
       return { faqItems, total: entries.total };
     }
 

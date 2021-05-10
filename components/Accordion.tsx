@@ -14,14 +14,14 @@ export function Accordion(props) {
   }
 
   return (
-    <div>
+    <div className="mb-1 border border-current">
       <button
         className={
           'flex accordion text-xl tablet:text-2xl  w-full text-left	bg-secondary px-3 justify-between items-center'
         }
         onClick={toggleAccordion}
       >
-        {question}
+        <div style={{ maxWidth: '95%' }}> {question}</div>
         <TriangleSVG
           className={classNames(
             'h-3 fill-current text-primary transform outline-none cursor-pointer',

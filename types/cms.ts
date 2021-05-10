@@ -45,4 +45,8 @@ export interface ISplitPage {
   hero?: IFigureImage;
 }
 
-// TODO: Add interface/type for IFAQ / FAQ / FAQItem / IFAQItem
+export interface IFAQItem {
+  id: number;
+  question: string;
+  answer: Document;
+}

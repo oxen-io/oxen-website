@@ -78,7 +78,7 @@ function FAQ(props: Props) {
       </div>
 
       <div className="w-full h-full">
-        <div className="flex flex-col px-6 pb-6 space-y-10">
+        <div className="flex flex-col px-6 pb-6">
           <div>
             <h1 className="mt-6 mb-3 text-3xl font-medium text-center tablet:text-4xl font-prompt text-primary">
               FAQ
@@ -87,12 +87,6 @@ function FAQ(props: Props) {
 
           {faqItems.map(faqItem => (
             <div key={faqItem.id}>
-              {/* <button className={'text-xl tablet:text-2xl accordion'}>
-                {faqItem.question}
-              </button>
-              <div className="text-xl tablet:text-2xl accordion-panel">
-                <RichBody body={faqItem?.answer} />
-              </div> */}
               <Accordion question={faqItem.question} answer={faqItem.answer} />
             </div>
           ))}

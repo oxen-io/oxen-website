@@ -169,3 +169,29 @@ body {
 ul li > p {
   margin-bottom: 0 !important;
 }
+
+.accordion {
+  background-color: theme('colors.secondary');
+  color: theme('colors.primary');
+  cursor: pointer;
+  padding: 0.5em;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+}
+
+.accordion {
+  button:focus {
+    border: none;
+  }
+}
+
+.accordion:hover {
+  filter: brightness(0.9);
+}
+
+.accordion-content {
+  background-color: red;
+  transition: max-height 0.6s ease;
+}

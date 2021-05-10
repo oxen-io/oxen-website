@@ -6,10 +6,13 @@ import TriangleSVG from '../assets/svgs/triangle.svg';
 export function Accordion(props) {
   const { question, answer } = props;
   const [isActive, setActiveState] = useState(false);
+  const [height, setHeight] = useState('0px');
 
   const content = useRef(null);
   function toggleAccordion() {
     setActiveState(!isActive);
+    setHeight(isActive ? '0px' : `${content.current.scrollHeight}px`);
+    console.log(content.current.scrollHeight);
   }
 
   return (
@@ -23,7 +26,7 @@ export function Accordion(props) {
         <div style={{ maxWidth: '95%' }}> {question}</div>
         <TriangleSVG
           className={classNames(
-            'h-3 fill-current text-primary transform outline-none cursor-pointer duration-300',
+            'h-3 fill-current text-primary transform outline-none cursor-pointer duration-200',
             isActive ? 'rotate-90' : '',
           )}
         />{' '}
@@ -31,8 +34,7 @@ export function Accordion(props) {
       <div
         ref={content}
         style={{
-          maxHeight: '100%',
-          display: isActive ? '' : 'none',
+          maxHeight: height,
         }}
         className={classNames('accordion-content')}
       >

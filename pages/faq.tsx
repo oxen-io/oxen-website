@@ -78,7 +78,7 @@ function FAQ(props: Props) {
       </div>
 
       <div className="w-full h-full">
-        <div className="flex flex-col px-6 pb-6">
+        <div className="flex flex-col pb-6 mx-4">
           <div>
             <h1 className="mt-6 mb-3 text-3xl font-medium text-center tablet:text-4xl font-prompt text-primary">
               FAQ

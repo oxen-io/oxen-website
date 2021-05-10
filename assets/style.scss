@@ -177,14 +177,9 @@ ul li > p {
   padding: 0.5em;
   width: 100%;
   text-align: left;
+  border:none;
   outline: none;
   transition: 0.4s;
-}
-
-.accordion {
-  button:focus {
-    border: none;
-  }
 }
 
 .accordion:hover {
@@ -192,6 +187,5 @@ ul li > p {
 }
 
 .accordion-content {
-  background-color: red;
   transition: max-height 0.6s ease;
 }

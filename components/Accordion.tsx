@@ -2,27 +2,32 @@ import React, { useState, useRef } from 'react';
 // import Chevron from './Chevron';
 import { RichBody } from '../components/RichBody';
 import classNames from 'classnames';
+import TriangleSVG from '../assets/svgs/triangle.svg';
 
 export function Accordion(props) {
   const { question, answer } = props;
   const [isActive, setActiveState] = useState(false);
-  // const [setRotate, setRotateState] = useState('accordion__icon');
 
   const content = useRef(null);
   function toggleAccordion() {
     setActiveState(!isActive);
-    console.log(isActive);
   }
 
   return (
     <div>
       <button
         className={
-          'accordion text-xl tablet:text-2xl  w-full text-left	bg-secondary px-3'
+          'flex accordion text-xl tablet:text-2xl  w-full text-left	bg-secondary px-3 justify-between items-center'
         }
         onClick={toggleAccordion}
       >
         {question}
+        <TriangleSVG
+          className={classNames(
+            'h-3 fill-current text-primary transform outline-none duration-300 cursor-pointer ',
+            isActive ? 'rotate-90' : '',
+          )}
+        />{' '}
       </button>
       <div
         ref={content}
@@ -32,7 +37,7 @@ export function Accordion(props) {
         }}
         className={classNames('accordion-content', !isActive && 'invisible')}
       >
-        <div className="w-full px-3 pt-1 text-left">
+        <div className="w-full px-3 pt-1 text-lg text-left tablet:text-xl">
           <RichBody body={answer} />
         </div>
       </div>

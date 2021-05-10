@@ -47,11 +47,11 @@ function FAQ(props: Props) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content={METADATA.ROADMAP.DESCRIPTION}></meta>
+        <meta name="description" content={METADATA.FAQ.DESCRIPTION}></meta>
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta
           property="og:description"
-          content={METADATA.ROADMAP.DESCRIPTION}
+          content={METADATA.FAQ.DESCRIPTION}
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
@@ -60,10 +60,7 @@ function FAQ(props: Props) {
         <link rel="canonical" href={pageURL}></link>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta
-          name="twitter:description"
-          content={METADATA.ROADMAP.DESCRIPTION}
-        />
+        <meta name="twitter:description" content={METADATA.FAQ.DESCRIPTION} />
         <meta name="twitter:image" content={imageURL} />
       </Head>
 

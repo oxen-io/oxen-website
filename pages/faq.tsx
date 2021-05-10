@@ -64,7 +64,7 @@ function FAQ(props: Props) {
         <meta name="twitter:image" content={imageURL} />
       </Head>
 
-      <div className="mx-4">
+      <div>
         <div className="flex items-center justify-center mt-8">
           <img
             style={{ maxHeight: '90%' }}
@@ -77,7 +77,7 @@ function FAQ(props: Props) {
       <div className="w-full h-full">
         <div className="flex flex-col pb-6 mx-4">
           <div>
-            <h1 className="mt-6 mb-3 text-3xl font-medium text-center tablet:text-4xl font-prompt text-primary">
+            <h1 className="mt-6 mb-3 text-3xl font-medium text-left tablet:text-4xl font-prompt text-primary">
               FAQ
             </h1>
           </div>

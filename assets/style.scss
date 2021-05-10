@@ -148,7 +148,7 @@ body {
     &:hover {
       filter: brightness(0.9);
       &:not(.active) {
-        color: theme('colors.secondary')
+        color: theme('colors.secondary');
       }
     }
 

@@ -11,7 +11,7 @@ import { ISplitPage } from '../types/cms';
 import { generateTitle, generateURL } from '../utils/metadata';
 
 interface IPath {
-  params: { page: string; isRoadmap?: boolean };
+  params: { page: string; isRoadmap?: boolean; isFAQ?: boolean };
 }
 
 export async function getStaticPaths() {
@@ -50,6 +50,8 @@ export async function getStaticProps({ params }) {
       props: {
         page: null,
         isRoadmap: false,
+        isFAQ: true,
+        href: `/${href}`, // the '/' is removed from the href from getStaticPaths(), so let's add it back here
       },
       revalidate: 60,
     };
@@ -65,6 +67,7 @@ export async function getStaticProps({ params }) {
     props: {
       page,
       isRoadmap: false,
+      isFAQ: false,
       href: `/${href}`,
     },
     revalidate: 60,

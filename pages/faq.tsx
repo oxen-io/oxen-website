@@ -19,7 +19,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // If tag is defined, pagination is for tag results
   const { faqItems, total } = await cms.fetchFAQItems();
 
-  console.log(await cms.fetchFAQItems());
   return {
     props: {
       faqItems,

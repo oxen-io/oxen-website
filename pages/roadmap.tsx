@@ -79,7 +79,7 @@ function Roadmap() {
             </h2>
             <img
               style={{ maxHeight: '90%' }}
-              src={`img/lokinet-${horizontal ? 'x' : 'y'}.jpg`}
+              src={`img/lokinet-${horizontal ? 'x' : 'y'}.png`}
               className="w-full rounded-md"
             />
           </div>

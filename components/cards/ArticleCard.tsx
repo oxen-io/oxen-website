@@ -57,9 +57,6 @@ export function ArticleCard(props: IPost): JSX.Element {
           <Link href={href} as={as}>
             <a>
               <p
-                style={{
-                  maxHeight: '2em',
-                }}
                 className={classNames(
                   isSmall ? 'text-base' : 'text-lg',
                   'font-sans overflow-hidden cursor-pointer mb-3 hover:underline leading-none text-primary',

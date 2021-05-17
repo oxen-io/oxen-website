@@ -81,7 +81,7 @@ function Roadmap() {
             </h2>
             <img
               style={{ maxHeight: '90%' }}
-              src={`img/lokinet-${horizontal ? 'x' : 'y'}.jpg`}
+              src={`img/lokinet-${horizontal ? 'x' : 'y'}.png`}
               alt="Lokinet's Roadmap and Plans for the future."
               className="w-full rounded-md"
             />

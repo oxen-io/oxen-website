@@ -34,4 +34,3 @@ const nextConfig = {
 };
 
 module.exports = withPlugins([withFonts, withSvgr], nextConfig);
- 

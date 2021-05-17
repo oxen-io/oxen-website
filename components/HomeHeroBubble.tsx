@@ -27,10 +27,12 @@ export function HomeHeroBubble() {
         )}
       >
         <p className="mb-1 text-xs desktop:text-base text-secondary">OXEN</p>
-        Welcome to Oxen.
-        <br />
-        We know you have questions;
-        <br /> here are the answers.
+        <h1>
+          Welcome to Oxen.
+          <br />
+          We know you have questions;
+          <br /> here are the answers.
+        </h1>
       </div>
     </div>
   );

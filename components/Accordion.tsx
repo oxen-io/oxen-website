@@ -37,7 +37,7 @@ export function Accordion(props) {
         }}
         className={classNames('accordion-content')}
       >
-        <div className="w-full px-3 pt-1 text-lg text-left ease-in-out tablet:text-xl">
+        <div className="w-full px-3 pt-3 text-lg text-left ease-in-out tablet:text-xl">
           <RichBody body={answer} />
         </div>
       </div>

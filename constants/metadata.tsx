@@ -14,7 +14,7 @@ const METADATA = {
     URL: 'https://oxen.io/blog',
   },
   FAQ: {
-    DESCRIPTION: 'View Some Frequency Asked Questions here',
+    DESCRIPTION: 'View Some Frequently Asked Questions here',
   },
 };
 

@@ -53,6 +53,7 @@ function FAQ(props: Props) {
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={imageURL} key="ogimage" />
         <meta property="og:url" content={pageURL} />
 
         <link rel="canonical" href={pageURL}></link>

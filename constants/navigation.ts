@@ -64,7 +64,7 @@ const SIDE_MENU_ITEMS = {
   },
   [SideMenuItem.FAQ]: {
     id: 9,
-    label: 'Frequently Asked Questions',
+    label: 'FAQ',
     href: '/faq',
   },
 } as { [name: string]: ISideMenuItem };

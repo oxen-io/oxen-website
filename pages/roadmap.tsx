@@ -39,7 +39,7 @@ function Roadmap() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={pageURL} />
-
+        <meta property="og:image" content={imageURL} key="ogimage" />
         <link rel="canonical" href={pageURL}></link>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />

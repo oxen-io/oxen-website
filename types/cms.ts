@@ -44,3 +44,9 @@ export interface ISplitPage {
   body: Document;
   hero?: IFigureImage;
 }
+
+export interface IFAQItem {
+  id: number;
+  question: string;
+  answer: Document;
+}

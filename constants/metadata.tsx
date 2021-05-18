@@ -13,6 +13,9 @@ const METADATA = {
     DESCRIPTION: "View Oxen's Blog Updates Here",
     URL: 'https://oxen.io/blog',
   },
+  FAQ: {
+    DESCRIPTION: 'View Some Frequently Asked Questions here',
+  },
 };
 
 export default METADATA;

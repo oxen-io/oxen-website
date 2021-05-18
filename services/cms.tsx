@@ -9,10 +9,21 @@ import TelegramSVG from '../assets/svgs/socials/brand-telegram.svg';
 import { Button } from '../components/Button';
 import { CMS } from '../constants';
 import { SideMenuItem, TPages } from '../state/navigation';
-import { IAuthor, IFigureImage, IPost, ISplitPage } from '../types/cms';
+import {
+  IAuthor,
+  IFigureImage,
+  IPost,
+  ISplitPage,
+  IFAQItem,
+} from '../types/cms';
 
 interface IFetchBlogEntriesReturn {
   posts: Array<IPost>;
+  total: number;
+}
+
+interface IFetchFAQItemsReturn {
+  faqItems: Array<IFAQItem>;
   total: number;
 }
 
@@ -155,6 +166,20 @@ export class CmsApi {
       });
   }
 
+  public async fetchFAQItems(): Promise<IFetchFAQItemsReturn> {
+    const entries = await this.client.getEntries({
+      content_type: 'faq_item', // only fetch faq items
+      order: 'fields.id',
+    });
+
+    if (entries && entries.items && entries.items.length > 0) {
+      const faqItems = entries.items.map(entry => this.convertFAQ(entry));
+      return { faqItems, total: entries.total };
+    }
+
+    return { faqItems: [], total: 0 } as IFetchFAQItemsReturn;
+  }
+
   public convertImage = (rawImage): IFigureImage =>
     rawImage
       ? {
@@ -209,6 +234,17 @@ export class CmsApi {
       title: rawPage?.title ?? null,
       body: rawPage?.body ?? null,
       hero: this.convertImage(rawHero),
+    };
+  };
+
+  public convertFAQ = (rawData): IFAQItem => {
+    const rawFAQ = rawData.fields;
+    const { question, answer, id } = rawFAQ;
+
+    return {
+      id: id ?? null,
+      question: question ?? null,
+      answer: answer ?? null,
     };
   };
 }

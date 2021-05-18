@@ -4,14 +4,14 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Contained } from '../components/Contained';
 import { RichBody } from '../components/RichBody';
-import { NAVIGATION, METADATA } from '../constants';
+import { NAVIGATION } from '../constants';
 import { CmsApi, unslugify } from '../services/cms';
 import { PageType, setPageType, SideMenuItem } from '../state/navigation';
 import { ISplitPage } from '../types/cms';
 import { generateTitle, generateURL } from '../utils/metadata';
 
 interface IPath {
-  params: { page: string; isRoadmap?: boolean };
+  params: { page: string };
 }
 
 export async function getStaticPaths() {
@@ -31,17 +31,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const href = params?.page ?? '';
   const id = unslugify(String(href));
-  // Roadmap page is special 👁️👄👁️
-  if (SideMenuItem[id] == [SideMenuItem.ROADMAP]) {
-    return {
-      props: {
-        page: null,
-        isRoadmap: true,
-        href: `/${href}`, // the '/' is removed from the href from getStaticPaths(), so let's add it back here
-      },
-      revalidate: 60,
-    };
-  }
 
   const cms = new CmsApi();
   const page = await cms.fetchPageById(SideMenuItem[id]);
@@ -52,39 +41,20 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       page,
-      isRoadmap: false,
       href: `/${href}`,
     },
     revalidate: 60,
   };
 }
 
-function Page({
-  page,
-  isRoadmap,
-  href,
-}: {
-  page: ISplitPage | null;
-  isRoadmap?: boolean;
-  href: string;
-}) {
+function Page({ page, href }: { page: ISplitPage | null; href: string }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
   }, []);
-  const pageTitle = generateTitle(
-    isRoadmap
-      ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label
-      : page?.label,
-  );
-
-  const pageDescription = isRoadmap
-    ? METADATA.ROADMAP.DESCRIPTION
-    : page?.title;
-
-  const pageURL = generateURL(
-    isRoadmap ? NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href : href,
-  );
+  const pageTitle = generateTitle(page?.label);
+  const pageDescription = page?.title;
+  const pageURL = generateURL(href);
 
   return (
     <>

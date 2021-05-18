@@ -11,7 +11,7 @@ import { ISplitPage } from '../types/cms';
 import { generateTitle, generateURL } from '../utils/metadata';
 
 interface IPath {
-  params: { page: string; isRoadmap?: boolean; isFAQ?: boolean };
+  params: { page: string };
 }
 
 export async function getStaticPaths() {

@@ -157,6 +157,9 @@ const Blog = (props: Props) => {
 
       <div className="flex flex-col w-full mt-12 mb-6 space-y-6 bg-alt">
         <Contained>
+          <h1 className="mb-2 text-4xl font-medium uppercase font-prompt">
+            Oxen Blogs
+          </h1>
           {!tag && posts.length && <ArticleCardFeature {...featuredPost} />}
 
           {tag && (

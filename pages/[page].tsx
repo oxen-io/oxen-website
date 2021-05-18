@@ -11,7 +11,7 @@ import { ISplitPage } from '../types/cms';
 import { generateTitle, generateURL } from '../utils/metadata';
 
 interface IPath {
-  params: { page: string; isRoadmap?: boolean; isFAQ?: boolean };
+  params: { page: string };
 }
 
 export async function getStaticPaths() {
@@ -95,6 +95,7 @@ function Page({ page, href }: { page: ISplitPage | null; href: string }) {
             style={{ maxHeight: '33vh' }}
             src={page?.hero?.imageUrl}
             className="object-contain w-full"
+            alt={page?.hero?.description ?? pageTitle}
           />
         </div>
 

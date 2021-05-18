@@ -32,7 +32,7 @@ export function ArticleCardRow(post: IPost) {
       {post?.featureImage?.imageUrl && (
         <img
           src={post.featureImage?.imageUrl}
-          alt={post.featureImage?.description}
+          alt={post.featureImage?.description ?? post.title}
           className="object-cover w-full h-full rounded-lg"
         />
       )}

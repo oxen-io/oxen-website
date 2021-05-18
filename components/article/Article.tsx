@@ -27,7 +27,10 @@ export function Article(props: IPost) {
     <article>
       <div className="flex flex-col items-center mt-10 mb-16 space-y-4">
         <Contained>
-          <ArticleSectionFeatureImage featureImage={featureImage} />
+          <ArticleSectionFeatureImage
+            featureImage={featureImage}
+            title={title}
+          />
         </Contained>
 
         <ArticleContained>

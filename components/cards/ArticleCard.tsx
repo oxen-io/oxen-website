@@ -47,7 +47,7 @@ export function ArticleCard(props: IPost): JSX.Element {
           <img
             className="object-cover cursor-pointer"
             src={`${featureImage?.imageUrl}?w=300`}
-            alt={featureImage?.description}
+            alt={featureImage?.description ?? title}
           />
         )}
       </div>
@@ -57,9 +57,6 @@ export function ArticleCard(props: IPost): JSX.Element {
           <Link href={href} as={as}>
             <a>
               <p
-                style={{
-                  maxHeight: '2em',
-                }}
                 className={classNames(
                   isSmall ? 'text-base' : 'text-lg',
                   'font-sans overflow-hidden cursor-pointer mb-3 hover:underline leading-none text-primary',

@@ -24,7 +24,7 @@ export function Accordion(props) {
       <button
         ref={button}
         className={classNames(
-          'flex accordion text-xl tablet:text-2xl w-full text-left justify-between items-center hover:bg-secondary duration-300 cursor-pointer py-3 px-6',
+          'flex text-xl tablet:text-2xl w-full text-left justify-between items-center hover:bg-secondary duration-300 cursor-pointer py-3 px-6',
           isActive ? 'bg-secondary' : '',
         )}
         onClick={toggleAccordion}

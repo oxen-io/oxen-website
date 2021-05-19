@@ -17,9 +17,10 @@ export function Accordion(props) {
   return (
     <div className="mb-1 border border-current rounded-sm">
       <button
-        className={
-          'flex accordion text-xl tablet:text-2xl  w-full text-left	bg-secondary px-3 justify-between items-center'
-        }
+        className={classNames(
+          'flex accordion text-xl tablet:text-2xl  w-full text-left px-3 justify-between items-center hover:bg-secondary',
+          isActive ? 'bg-secondary' : '',
+        )}
         onClick={toggleAccordion}
       >
         <div style={{ maxWidth: '95%' }}> {question}</div>

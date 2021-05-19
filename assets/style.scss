@@ -171,17 +171,13 @@ ul li > p {
 }
 
 .accordion {
-  background-color: theme('colors.secondary');
-  color: theme('colors.primary');
+
   cursor: pointer;
   padding: 0.5em;
   width: 100%;
   text-align: left;
 }
 
-.accordion:hover {
-  filter: brightness(0.9);
-}
 
 .accordion-content {
   transition: max-height 0.2s;

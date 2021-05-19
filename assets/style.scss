@@ -170,16 +170,7 @@ ul li > p {
   margin-bottom: 0 !important;
 }
 
-.accordion {
-
-  cursor: pointer;
-  padding: 0.5em;
-  width: 100%;
-  text-align: left;
-}
-
 
 .accordion-content {
   transition: max-height 0.2s;
-  overflow: hidden;
 }

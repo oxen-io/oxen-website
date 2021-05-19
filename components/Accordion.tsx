@@ -18,12 +18,12 @@ export function Accordion(props) {
     <div className="mb-1 border border-current rounded-sm">
       <button
         className={classNames(
-          'flex accordion text-xl tablet:text-2xl  w-full text-left px-3 justify-between items-center hover:bg-secondary',
+          'flex accordion text-xl tablet:text-2xl w-full text-left justify-between items-center hover:bg-secondary cursor-pointer py-3 px-6',
           isActive ? 'bg-secondary' : '',
         )}
         onClick={toggleAccordion}
       >
-        <div style={{ maxWidth: '95%' }}> {question}</div>
+        <div style={{ maxWidth: '90%' }}>{question}</div>
         <TriangleSVG
           className={classNames(
             'h-3 fill-current text-primary transform outline-none cursor-pointer duration-200',
@@ -36,7 +36,7 @@ export function Accordion(props) {
         style={{
           maxHeight: height,
         }}
-        className={classNames('accordion-content')}
+        className={classNames('accordion-content overflow-hidden')}
       >
         <div className="w-full px-4 pt-4 text-lg text-left ease-in-out tablet:text-xl">
           <RichBody body={answer} />

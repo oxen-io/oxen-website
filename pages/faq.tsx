@@ -12,9 +12,6 @@ import { Contained } from '../components/Contained';
 export const getServerSideProps: GetServerSideProps = async context => {
   const cms = new CmsApi();
 
-  // Fetch posts even when tag, for related etc
-  // Pagination only occurs when tag isnt defined.
-  // If tag is defined, pagination is for tag results
   const { faqItems, total } = await cms.fetchFAQItems();
 
   return {

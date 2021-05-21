@@ -41,7 +41,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   console.log(`Building page: %c${params.slug}`, 'color: purple;');
 
-  if (params?.slug) {
+  if (!params?.slug) {
     return {
       redirect: {
         destination: '/404',

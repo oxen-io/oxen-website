@@ -41,15 +41,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   console.log(`Building page: %c${params.slug}`, 'color: purple;');
 
-  if (!params?.slug) {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
-    };
-  }
-
   const cms = new CmsApi();
   const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
   const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');

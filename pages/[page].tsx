@@ -32,15 +32,6 @@ export async function getStaticProps({ params }) {
   const href = params?.page ?? '';
   const id = unslugify(String(href));
 
-  if (!SideMenuItem[id]) {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
-    };
-  }
-
   const cms = new CmsApi();
   const page = await cms.fetchPageById(SideMenuItem[id] ?? '');
 

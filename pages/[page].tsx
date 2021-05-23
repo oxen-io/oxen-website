@@ -33,7 +33,8 @@ export async function getStaticProps({ params }) {
   const id = unslugify(String(href));
 
   const cms = new CmsApi();
-  const page = await cms.fetchPageById(SideMenuItem[id]);
+  const page = await cms.fetchPageById(SideMenuItem[id] ?? '');
+
   if (!page) {
     return { notFound: true };
   }
@@ -52,6 +53,7 @@ function Page({ page, href }: { page: ISplitPage | null; href: string }) {
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
   }, []);
+
   const pageTitle = generateTitle(page?.label);
   const pageDescription = page?.title;
   const pageURL = generateURL(href);

@@ -62,8 +62,10 @@ function Post({ post, url }: { post: IPost; url: string }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setPageType(PageType.POST));
-    dispatch(setPostTitle(post.title));
+    if (post) {
+      dispatch(setPageType(PageType.POST));
+      dispatch(setPostTitle(post.title));
+    }
   }, []);
 
   const pageTitle = generateTitle(post?.title);

@@ -111,6 +111,13 @@ const Blog = (props: Props) => {
     });
   };
 
+  // Mobile Pagination Settings
+  const MAX_PAGINATION_BUTTONS_MOBILE = 5; // On mobile, we want to only have a maximum of 5 pagination buttons
+  const hasTooManyButtons =
+    isMobile && pageCount > MAX_PAGINATION_BUTTONS_MOBILE; // Check if the maximum number of pagination buttons have been reached
+  const EDGE_PAGES = [1, 2, pageCount - 1, pageCount]; // Check if the current page is an edge page, to keep the number of pagination buttons consistent
+  const isEdgePage = isMobile && EDGE_PAGES.includes(currentPage);
+
   const pagination = (
     <Contained>
       <div className="flex justify-center mb-4">
@@ -124,8 +131,8 @@ const Blog = (props: Props) => {
             containerClassName={'pagination bg-primary text-white front-prompt'}
             initialPage={currentPage - 1}
             pageCount={pageCount}
-            marginPagesDisplayed={isMobile ? 1 : 2}
-            pageRangeDisplayed={1}
+            marginPagesDisplayed={hasTooManyButtons && !isEdgePage ? 1 : 2}
+            pageRangeDisplayed={isMobile ? 1 : 2}
             onPageChange={paginationHandler}
           />
         </div>

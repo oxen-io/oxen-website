@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useDispatch } from 'react-redux';
 import { ArticleCard } from '../../components/cards/ArticleCard';
@@ -14,6 +14,7 @@ import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
+import { ScreenContext } from '../../contexts/screen';
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const cms = new CmsApi();
@@ -81,6 +82,7 @@ interface Props {
 
 const Blog = (props: Props) => {
   const { posts, tagPosts, tag, currentPage, pageCount } = props;
+  const { isMobile } = useContext(ScreenContext);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -109,6 +111,13 @@ const Blog = (props: Props) => {
     });
   };
 
+  // Mobile Pagination Settings
+  const MAX_PAGINATION_BUTTONS_MOBILE = 5; // On mobile, we want to only have a maximum of 5 pagination buttons
+  const hasTooManyButtons =
+    isMobile && pageCount > MAX_PAGINATION_BUTTONS_MOBILE; // Check if the maximum number of pagination buttons have been reached
+  const EDGE_PAGES = [1, 2, pageCount - 1, pageCount]; // Check if the current page is an edge page, to keep the number of pagination buttons consistent
+  const isEdgePage = isMobile && EDGE_PAGES.includes(currentPage);
+
   const pagination = (
     <Contained>
       <div className="flex justify-center mb-4">
@@ -122,8 +131,8 @@ const Blog = (props: Props) => {
             containerClassName={'pagination bg-primary text-white front-prompt'}
             initialPage={currentPage - 1}
             pageCount={pageCount}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={2}
+            marginPagesDisplayed={hasTooManyButtons && !isEdgePage ? 1 : 2}
+            pageRangeDisplayed={isMobile ? 1 : 2}
             onPageChange={paginationHandler}
           />
         </div>

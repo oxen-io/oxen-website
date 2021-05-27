@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { NAVIGATION, METADATA, CMS } from '../constants';
+import { NAVIGATION, METADATA } from '../constants';
 import { SideMenuItem } from '../state/navigation';
 import { generateTitle, generateURL } from '../utils/metadata';
 import { CmsApi } from '../services/cms';
@@ -9,7 +9,7 @@ import { IFAQItem } from '../types/cms';
 import { Accordion } from '../components/Accordion';
 import { Contained } from '../components/Contained';
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const cms = new CmsApi();
 
   const { faqItems, total } = await cms.fetchFAQItems();
@@ -35,7 +35,7 @@ function FAQ(props: Props) {
   const pageURL = generateURL(
     NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.FAQ].href,
   );
-  const imagePathLocal = 'img/what_is_oxen.png';
+  const imagePathLocal = 'img/faq.png';
   const imageURL = `${METADATA.OXEN_HOST_URL}/${imagePathLocal}`;
 
   return (

@@ -10,11 +10,10 @@ interface Props {
 export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
   return (
     <div className="w-full pb-4 desktop:pb-0">
-      <div className="relative flex items-center justify-center w-full h-full bg-gradient-to-bl from-hyper to-blush">
+      <div className="relative flex items-center justify-center w-full h-full">
         <img
           src={featureImage?.imageUrl}
           alt={featureImage?.description ?? title}
-          style={{ maxHeight: '65vh', width: '87.5em' }}
           className="object-fill"
         />
       </div>

@@ -26,12 +26,7 @@ export function Article(props: IPost) {
   return (
     <article>
       <div className="flex flex-col items-center mt-10 mb-16 space-y-4">
-        <Contained>
-          <ArticleSectionFeatureImage
-            featureImage={featureImage}
-            title={title}
-          />
-        </Contained>
+        <ArticleSectionFeatureImage featureImage={featureImage} title={title} />
 
         <ArticleContained>
           <div className="flex flex-col mb-6 space-y-6">

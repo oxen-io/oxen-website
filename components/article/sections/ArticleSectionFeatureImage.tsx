@@ -1,4 +1,6 @@
 import { IFigureImage } from '../../../types/cms';
+import { Contained } from '../../Contained';
+import { ArticleContained } from '../../ArticleContained';
 
 interface Props {
   featureImage: IFigureImage;
@@ -8,16 +10,22 @@ interface Props {
 export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
   return (
     <div className="w-full pb-4 desktop:pb-0">
-      <div className="relative w-full mb-4 aspect-w-14 aspect-h-8">
+      <div className="relative flex items-center justify-center w-full h-full">
         <img
           src={featureImage?.imageUrl}
           alt={featureImage?.description ?? title}
-          className="object-cover rounded"
+          className="object-fill"
         />
       </div>
 
       {featureImage?.description && (
-        <div className="w-8/12 text-sm italic">{featureImage?.description}</div>
+        <Contained>
+          <ArticleContained>
+            <div className="pt-2 italic ext-sm">
+              {featureImage?.description}
+            </div>
+          </ArticleContained>
+        </Contained>
       )}
     </div>
   );

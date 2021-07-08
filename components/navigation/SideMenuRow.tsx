@@ -42,6 +42,7 @@ export function SideMenuRow({ item, isActive }: SideMenuRowProps) {
         'flex flex-1 space-x-6 justify-between text-primary items-center cursor-pointer border-b border-black py-4 hover:bg-secondary duration-300 whitespace-nowrap',
         isHuge ? 'text-2xl' : isDesktop ? 'text-xl' : 'text-xl',
         isActive ? 'bg-secondary' : 'bg-transparent',
+        item.shouldHide ? 'hidden' : '',
       )}
     >
       <span className="pl-6 whitespace-no-wrap">{item.label}</span>

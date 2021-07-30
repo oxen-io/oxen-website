@@ -67,7 +67,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Restart NGinx and PM2
 
   ```bash
-  systemctl restart nginx && pm2 restart oxen.io
+  systemctl restart nginx && pm2 restart /home/ubuntu/ecosystem.config.js
   ```
 
 ---

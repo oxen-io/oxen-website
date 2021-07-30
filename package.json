@@ -6,8 +6,8 @@
     "now": "npm run now",
     "dev": "NODE_ENV=development next dev",
     "build": "next build",
-    "start": "next start",
-    "staging": "func() { git add . && git commit -m \"$1\" && git push -u origin staging; }; func",
+    "start": "SITE_ENV=production next start",
+    "start:staging": "SITE_ENV=development next start --port 3001",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:fix": "npm run lint -- --fix"
   },

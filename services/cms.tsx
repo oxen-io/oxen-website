@@ -16,6 +16,7 @@ import {
   ISplitPage,
   IFAQItem,
 } from '../types/cms';
+import isLive from '../utils/environment';
 
 interface IFetchBlogEntriesReturn {
   posts: Array<IPost>;
@@ -25,6 +26,11 @@ interface IFetchBlogEntriesReturn {
 interface IFetchFAQItemsReturn {
   faqItems: Array<IFAQItem>;
   total: number;
+}
+
+function loadOptions(options: any) {
+  if (isLive()) options['fields.live'] = true;
+  return options;
 }
 
 // Turns CMS IDs into slugs
@@ -46,12 +52,14 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const entries = await this.client.getEntries({
-      content_type: 'post', // only fetch blog post entry
-      order: '-fields.date',
-      limit: quantity,
-      skip: (page - 1) * quantity,
-    });
+    const entries = await this.client.getEntries(
+      loadOptions({
+        content_type: 'post', // only fetch blog post entry
+        order: '-fields.date',
+        limit: quantity,
+        skip: (page - 1) * quantity,
+      }),
+    );
 
     if (entries && entries.items && entries.items.length > 0) {
       const blogPosts = entries.items.map(entry => this.convertPost(entry));
@@ -89,13 +97,15 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const entries = await this.client.getEntries({
-      content_type: 'post',
-      order: '-fields.date',
-      'fields.tags[in]': tag,
-      limit: quantity,
-      skip: (page - 1) * quantity,
-    });
+    const entries = await this.client.getEntries(
+      loadOptions({
+        content_type: 'post',
+        order: '-fields.date',
+        'fields.tags[in]': tag,
+        limit: quantity,
+        skip: (page - 1) * quantity,
+      }),
+    );
 
     if (entries?.items?.length > 0) {
       const posts = entries.items.map(entry => this.convertPost(entry));
@@ -110,13 +120,15 @@ export class CmsApi {
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const DEV_UPDATE_TAG = 'dev-update';
-    const entries = await this.client.getEntries({
-      content_type: 'post', // only fetch blog post entry
-      order: '-fields.date',
-      'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
-      limit: quantity,
-      skip: (page - 1) * quantity,
-    });
+    const entries = await this.client.getEntries(
+      loadOptions({
+        content_type: 'post', // only fetch blog post entry
+        order: '-fields.date',
+        'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
+        limit: quantity,
+        skip: (page - 1) * quantity,
+      }),
+    );
 
     if (entries && entries.items && entries.items.length > 0) {
       const blogPosts = entries.items.map(entry => this.convertPost(entry));

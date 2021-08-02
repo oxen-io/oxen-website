@@ -157,7 +157,7 @@ const SocialsRow = () => {
       >
         <RedditSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
-      <a href="https://loki.opensession.id/" target="_blank" rel="noreferrer">
+      <a href="https://sessiongroups.com/" target="_blank" rel="noreferrer">
         <SessionSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
       </a>
     </div>

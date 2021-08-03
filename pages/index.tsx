@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetStaticProps, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import { HomeHero } from '../components/HomeHero';
 import { HomeHeroBubble } from '../components/HomeHeroBubble';
@@ -48,8 +48,8 @@ export default function Index() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext,
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext,
 ) => {
   if (process.env.SITE_ENV === 'production') {
     const cms = new CmsApi();
@@ -75,5 +75,6 @@ export const getServerSideProps: GetServerSideProps = async (
 
   return {
     props: {},
+    revalidate: 3600, // update rss hourly
   };
 };

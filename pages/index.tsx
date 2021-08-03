@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   if (process.env.SITE_ENV === 'production') {
     const cms = new CmsApi();
-    let posts: IPost[] = [];
+    const posts: IPost[] = [];
     let page = 1;
     let foundAllPosts = false;
 
@@ -66,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (
         continue;
       }
 
-      posts = [...posts, ..._posts];
+      posts.push(..._posts);
       page++;
     }
 

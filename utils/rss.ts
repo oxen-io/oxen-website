@@ -49,11 +49,8 @@ export default function generateRSSFeed(posts: IPost[]) {
     });
   });
 
-  // const filePath = process.env.SITE_ENV === 'production' ? baseUrl : './public';
-  const filePath = './public';
-
-  mkdirSync(`${filePath}/rss`, { recursive: true });
-  writeFileSync(`${filePath}/rss/feed.xml`, feed.rss2());
-  writeFileSync(`${filePath}/rss/feed.json`, feed.json1());
-  writeFileSync(`${filePath}/rss/atom.xml`, feed.atom1());
+  mkdirSync(`./public/rss`, { recursive: true });
+  writeFileSync(`./public/rss/feed.xml`, feed.rss2());
+  writeFileSync(`./public/rss/feed.json`, feed.json1());
+  writeFileSync(`./public/rss/atom.xml`, feed.atom1());
 }

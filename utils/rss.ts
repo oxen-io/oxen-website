@@ -5,15 +5,16 @@ import { IPost } from '../types/cms';
 import { METADATA } from '../constants';
 
 const baseUrl = METADATA.OXEN_HOST_URL;
-// TODO decide on categories
 const categories = [
   'Privacy',
-  'co-op',
-  'Community contribution',
   'decentralisation',
   'decentralised',
-  // 'messaging',
-  // 'Private messaging',
+  'Open Source',
+  'Private messaging',
+  'Onion routing',
+  'Cryptocurrency',
+  'Digital finance',
+  'Privacy Tools',
 ];
 const date = new Date();
 const feed = new Feed({

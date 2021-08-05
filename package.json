@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "now": "npm run now",
-    "dev": "NODE_ENV=development next dev",
+    "dev": "SITE_ENV=development NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "SITE_ENV=production next start",
     "start:staging": "SITE_ENV=development next start --port 3001",

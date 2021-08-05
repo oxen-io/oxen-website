@@ -51,7 +51,7 @@ export default function Index() {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
-  if (process.env.SITE_ENV === 'production') {
+  if (process.env.SITE_ENV !== 'development') {
     const cms = new CmsApi();
     const posts: IPost[] = [];
     let page = 1;

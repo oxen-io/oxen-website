@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development next dev",
     "build": "next build",
     "start": "SITE_ENV=production next start",
-    "start:staging": "SITE_ENV=development next start --port 3001",
+    "start:staging": "SITE_ENV=development next start",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:fix": "npm run lint -- --fix"
   },

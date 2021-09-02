@@ -1,6 +1,6 @@
 import { Document, Block, Inline } from '@contentful/rich-text-types';
 import { ContentfulClientApi, createClient } from 'contentful';
-import moment from 'moment';
+import { format, parseISO } from 'date-fns';
 import React from 'react';
 import BittrexSVG from '../assets/svgs/bittrex-logo.svg';
 import KucoinSVG from '../assets/svgs/kucoin-logo.svg';
@@ -230,7 +230,7 @@ export class CmsApi {
       body: rawPost.body ?? null,
       subtitle: rawPost.subtitle ?? null,
       description: rawPost.description ?? null,
-      publishedDate: moment(rawPost.date).format('DD MMMM YYYY'),
+      publishedDate: format(parseISO(rawPost.date), 'dd MMMM yyyy'),
       slug: rawPost.slug,
       tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],
       title: rawPost.title,

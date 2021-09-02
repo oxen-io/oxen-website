@@ -1,3 +1,4 @@
+import { Document, Block, Inline } from '@contentful/rich-text-types';
 import { ContentfulClientApi, createClient } from 'contentful';
 import moment from 'moment';
 import React from 'react';
@@ -17,6 +18,8 @@ import {
   IFAQItem,
 } from '../types/cms';
 import isLive from '../utils/environment';
+import { generateURL } from '../utils/metadata';
+import { fetchContent } from './embed';
 
 interface IFetchBlogEntriesReturn {
   posts: Array<IPost>;
@@ -461,3 +464,39 @@ export const renderShortcode = (shortcode: string) => {
 
   return null;
 };
+
+async function loadMetaData(node: Block | Inline) {
+  // is embedded link not embedded media
+  if (!node.data.target.fields.file) {
+    if (node.data.target.sys.contentType.sys.id === 'post') {
+      node.data.target.fields.url = generateURL(
+        `/blog/${node.data.target.fields.slug}`,
+      );
+    }
+    node.data.target.fields.meta = await fetchContent(
+      node.data.target.fields.url,
+    );
+  }
+  return node;
+}
+
+export async function generateLinkMeta(doc: Document): Promise<Document> {
+  const promises = doc.content.map(async (node: Block | Inline) => {
+    if (node.nodeType === 'embedded-entry-block') {
+      node = await loadMetaData(node);
+    } else {
+      // check for inline embedding
+      const innerPromises = node.content.map(async innerNode => {
+        if (
+          innerNode.nodeType === 'embedded-entry-inline' &&
+          innerNode.data.target.sys.contentType.sys.id !== 'markup'
+        ) {
+          innerNode = await loadMetaData(innerNode);
+        }
+      });
+      await Promise.all(innerPromises);
+    }
+  });
+  await Promise.all(promises);
+  return doc;
+}

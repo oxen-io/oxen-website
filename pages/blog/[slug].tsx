@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Article } from '../../components/article/Article';
-import { CmsApi } from '../../services/cms';
+import { CmsApi, generateLinkMeta } from '../../services/cms';
 import { PageType, setPageType, setPostTitle } from '../../state/navigation';
 import { IPost } from '../../types/cms';
 import { generateTitle, generateURL } from '../../utils/metadata';
@@ -43,6 +43,8 @@ export async function getStaticProps({ params }) {
 
   const cms = new CmsApi();
   const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
+  // embedded links in post body need metadata for preview
+  post.body = await generateLinkMeta(post.body);
   const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');
   if (!post) {
     return { notFound: true };

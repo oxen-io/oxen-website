@@ -173,3 +173,15 @@ ul li > p {
 .accordion-content {
   transition: max-height 0.2s;
 }
+
+.embed-content blockquote {
+  @apply border-primary border-l-2 border-opacity-25 font-semibold pl-4 mb-8 mt-6 ml-6;
+}
+
+.embed-content blockquote > p {
+  @apply mb-3 font-sans tracking-wide text-justify;
+}
+
+.embed-content blockquote > a {
+  @apply cursor-pointer text-blue hover:underline;
+}

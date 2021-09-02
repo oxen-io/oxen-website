@@ -81,7 +81,7 @@
     "postcss": "^8.2.6",
     "prettier": "^2.0.5",
     "tailwindcss": "^2.0.3",
-    "typescript": "^4.1.5",
+    "typescript": "^4.3.5",
     "webpack-cli": "^3.3.11"
   },
   "lint-staged": {

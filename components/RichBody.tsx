@@ -131,10 +131,13 @@ export function RichBody(props: Props): ReactElement {
           {children}
         </h4>
       ),
-      // TODO
-      // [BLOCKS.HR]: (node, children) => (
-      //   <hr className={classNames('border-gray-300 w-24 mx-auto pb-6')} />
-      // ),
+      [BLOCKS.HR]: (node, children) => (
+        <hr
+          className={classNames(
+            'border-primary border-opacity-25 w-full mx-auto my-6',
+          )}
+        />
+      ),
       [BLOCKS.OL_LIST]: (node, children) => {
         return <ol className="list-decimal">{children}</ol>;
       },
@@ -154,19 +157,9 @@ export function RichBody(props: Props): ReactElement {
         return <li>{renderChildren}</li>;
       },
       [BLOCKS.QUOTE]: (node, children) => (
-        // TODO Use proper semantics
-        // Deal with overflow http://localhost:3000/blog/oxen-name-system-ons-the-facts
-        <div className="mt-6">
-          <ArticleCallout bold indent>
-            <p
-              className={classNames(
-                'mb-3 font-sans tracking-wide text-justify',
-              )}
-            >
-              {children}
-            </p>
-          </ArticleCallout>
-        </div>
+        <ArticleCallout bold indent>
+          {children}
+        </ArticleCallout>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
         return renderEmbeddedEntry({ node });

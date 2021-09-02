@@ -23,7 +23,7 @@ const nextConfig = {
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
   },
   images: {
-    domains: ['images.ctfassets.net'],
+    domains: ['downloads.ctfassets.net', 'images.ctfassets.net'],
   },
   async redirects() {
     return [

@@ -47,7 +47,6 @@ export function RichBody(props: Props): ReactElement {
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
-        const plaintext = documentToPlainTextString(node);
         const url =
           node.data.uri.indexOf('://oxen.io') >= 0
             ? node.data.uri.split('://oxen.io')[1]
@@ -64,7 +63,7 @@ export function RichBody(props: Props): ReactElement {
               }
               rel="noreferrer"
             >
-              {plaintext.trim()}
+              {children}
             </a>
           </Link>
         );
@@ -155,6 +154,8 @@ export function RichBody(props: Props): ReactElement {
         return <li>{renderChildren}</li>;
       },
       [BLOCKS.QUOTE]: (node, children) => (
+        // TODO Use proper semantics
+        // Deal with overflow http://localhost:3000/blog/oxen-name-system-ons-the-facts
         <div className="mt-6">
           <ArticleCallout bold indent>
             <p

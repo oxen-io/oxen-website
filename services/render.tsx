@@ -66,7 +66,8 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
   if (
     media.file.contentType === 'image/jpeg' ||
     media.file.contentType === 'image/png' ||
-    media.file.contentType === 'image/gif'
+    media.file.contentType === 'image/gif' ||
+    media.file.contentType === 'image/svg+xml'
   ) {
     const imageWidth = node.width ?? media.file.details.image.width;
     const imageHeight = node.height ?? media.file.details.image.height;
@@ -93,6 +94,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
           alt={node.title}
           width={imageWidth}
           height={imageHeight}
+          priority={true}
         />
         {node.caption && (
           <figcaption className={classNames(captionClasses)}>

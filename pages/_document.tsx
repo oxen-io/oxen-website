@@ -24,6 +24,27 @@ export default class CustomDocument extends Document<any> {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+          <link
+            key="rss-feed"
+            rel="alternative"
+            type="application/rss+xml"
+            title="RSS feed for just-be.dev"
+            href="/feed"
+          />
+          <link
+            key="atom-feed"
+            rel="alternative"
+            type="application/atom+xml"
+            title="Atom feed for just-be.dev"
+            href="/feed/atom"
+          />
+          <link
+            key="json-feed"
+            rel="alternative"
+            type="application/feed+json"
+            title="JSON feed for just-be.dev"
+            href="/feed/json"
+          />
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="theme-color" content="#ffffff" />

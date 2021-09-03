@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import GithubSVG from '../../assets/svgs/socials/github.svg';
 import RedditSVG from '../../assets/svgs/socials/reddit.svg';
+import RssSVG from '../../assets/svgs/socials/rss.svg';
 import SessionSVG from '../../assets/svgs/socials/session.svg';
 import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
@@ -77,10 +78,10 @@ export function SideMenuInner() {
       </Contained>
 
       {isDesktop ? (
-        <div className="px-6 pb-3">
+        <div className="px-3 pb-3">
           <SocialsRow />
 
-          <div className="flex items-center justify-between font-medium whitespace-nowrap">
+          <div className="flex items-center justify-between px-3 font-medium whitespace-nowrap">
             <a
               href="/downloads/oxen-media-kit.zip"
               target="_blank"
@@ -123,42 +124,45 @@ const SocialsRow = () => {
   return (
     <div
       className={classNames(
-        'flex pt-3 pb-3',
+        'flex pt-4 pb-4',
         isTablet ? 'justify-start space-x-5 px-6' : 'justify-between',
       )}
     >
       <a href="https://t.me/Oxen_Community" target="_blank" rel="noreferrer">
-        <TelegramSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <TelegramSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <a href="https://twitter.com/Oxen_io" target="_blank" rel="noreferrer">
-        <TwitterSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <TwitterSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <a href="https://github.com/oxen-io" target="_blank" rel="noreferrer">
-        <GithubSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <GithubSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
       {/* <a
         href="https://discord.com/invite/67GXfD6"
         target="_blank"
         rel="noreferrer"
       >
-        <DiscordSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <DiscordSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a> */}
       <a
         href="https://www.youtube.com/channel/UCN7LL0dEffQ7FSjbY5wwlnw"
         target="_blank"
         rel="noreferrer"
       >
-        <YouTubeSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <YouTubeSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <a
         href="https://www.reddit.com/r/oxen_io/"
         target="_blank"
         rel="noreferrer"
       >
-        <RedditSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <RedditSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <a href="https://sessiongroups.com/" target="_blank" rel="noreferrer">
-        <SessionSVG className="h-12 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current tablet:h-10 hover:bg-primary hover:text-secondary border-primary" />
+        <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+      </a>
+      <a href="/feed" target="_self" rel="noreferrer">
+        <RssSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
     </div>
   );

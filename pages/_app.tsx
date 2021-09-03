@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import { createStore } from 'redux';
-import '../assets/style.scss';
+import '../assets/style.css';
 import Layout from '../components/layout';
 import { METADATA, NAVIGATION } from '../constants';
 import ScreenProvider from '../contexts/screen';

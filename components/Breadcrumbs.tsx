@@ -11,8 +11,8 @@ export function Breadcrumbs() {
 
   return (
     <div className="flex items-center font-sans">
-      {/* <HomeSVG className="h-4 w-4 mr-1 text-primary fill-current" /> */}
-      <span className="children:last:font-medium">
+      {/* <HomeSVG className="w-4 h-4 mr-1 fill-current text-primary" /> */}
+      <span className="last:font-medium">
         {path.map((item, index) => (
           <Link key={item} href={`/${path.slice(0, index + 1)?.join('/')}`}>
             <a>

@@ -33,7 +33,7 @@ export function SideMenuInner() {
 
   return (
     <div className="flex flex-col flex-grow h-full">
-      <div className="flex flex-col flex-grow h-full duration-300 mobile:children:last:border-b-0">
+      <div className="flex flex-col flex-grow h-full duration-300">
         {Object.entries(NAVIGATION.SIDE_MENU_ITEMS).map(([key, item]) => (
           <SideMenuRow
             item={item}

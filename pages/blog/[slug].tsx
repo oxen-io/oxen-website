@@ -3,7 +3,8 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Article } from '../../components/article/Article';
-import { CmsApi } from '../../services/cms';
+import { CMS } from '../../constants';
+import { CmsApi, generateLinkMeta } from '../../services/cms';
 import { PageType, setPageType, setPostTitle } from '../../state/navigation';
 import { IPost } from '../../types/cms';
 import { generateTitle, generateURL } from '../../utils/metadata';
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 
   // Contentful only allows 100 at a time
   while (!foundAllPosts) {
-    const { posts: _posts } = await cms.fetchBlogEntries(100, page);
+    const { entries: _posts } = await cms.fetchBlogEntries(100, page);
 
     if (_posts.length === 0) {
       foundAllPosts = true;
@@ -42,7 +43,9 @@ export async function getStaticProps({ params }) {
   console.log(`Building page: %c${params.slug}`, 'color: purple;');
 
   const cms = new CmsApi();
-  const post = await cms.fetchBlogBySlug(String(params?.slug) ?? '');
+  const post = await cms.fetchEntryBySlug(String(params?.slug) ?? '', 'post');
+  // embedded links in post body need metadata for preview
+  post.body = await generateLinkMeta(post.body);
   const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');
   if (!post) {
     return { notFound: true };
@@ -53,7 +56,7 @@ export async function getStaticProps({ params }) {
       post,
       url,
     },
-    revalidate: 60,
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 }
 

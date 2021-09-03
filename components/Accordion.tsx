@@ -32,9 +32,9 @@ export function Accordion(props) {
         <div style={{ maxWidth: '90%' }}>{question}</div>
         <TriangleOutlinedSVG
           className={classNames(
-            'h-3 fill-current transform outline-none cursor-pointer duration-300 text-transparent',
+            'h-3 fill-current transform outline-none cursor-pointer duration-300',
             isActive ? 'rotate-90' : '',
-            isExcited ? 'text-primary' : '',
+            isExcited ? 'text-primary' : 'text-transparent',
           )}
         />{' '}
       </button>

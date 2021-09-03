@@ -2,21 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ********************* */
-/* ***** CONSTANTS ***** */
-/* ********************* */
-
-/* **************************** */
-/* ******** RESPONSIVE ******** */
-/* **************************** */
-$breakpoint-mobile: 500px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 992px;
-$breakpoint-huge: 1280px;
-
-/* ********************* */
-/* ******* FONTS ******* */
-/* ********************* */
+:root {
+  --breakpoint-mobile: 500px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 992px;
+  --breakpoint-huge: 1280px;
+}
 
 @font-face {
   font-family: WorkSans;
@@ -109,61 +100,62 @@ body {
   min-width: 350px;
   background-color: #dbf7f5;
 
-  // Fix for Safari
-  // https://stackoverflow.com/a/37365794
+  /* Fix for Safari */
+  /* https://stackoverflow.com/a/37365794 */
   font-weight: 400;
   text-rendering: optimizeLegibility;
 }
 
 .hide-scroll {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 
-// Pagination
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
   border-radius: 4px;
+}
 
-  li {
-    & ~ li {
-      border-left: 0.5px solid white;
-    }
+.pagination li {
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+}
 
-    &:first-child {
-      border-top-left-radius: 0.25rem;
-      border-bottom-left-radius: 0.25rem;
-    }
+.pagination li ~ li {
+  border-left: 0.5px solid white;
+}
 
-    &:last-child {
-      border-top-right-radius: 0.25rem;
-      border-bottom-right-radius: 0.25rem;
-    }
+.pagination li:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
 
-    &:hover {
-      filter: brightness(0.9);
-      &:not(.active) {
-        color: theme('colors.secondary');
-      }
-    }
+.pagination li:last-child {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
 
-    a {
-      padding: 0.25rem 0.9rem;
-      cursor: pointer;
-      width: max-content;
-      height: auto;
-      font-weight: 500;
-    }
+.pagination li:hover {
+  filter: brightness(0.9);
+}
 
-    display: flex;
-    align-items: center;
-    border-radius: 0;
-  }
+.pagination li:hover:not(.active) {
+  color: theme('colors.secondary');
+}
+
+.pagination li a {
+  padding: 0.25rem 0.9rem;
+  cursor: pointer;
+  width: max-content;
+  height: auto;
+  font-weight: 500;
 }
 
 ul li > p {
@@ -175,7 +167,7 @@ ul li > p {
 }
 
 .embed-content blockquote {
-  @apply border-primary border-l-2 border-opacity-25 font-semibold pl-4 mb-8 mt-6 ml-6;
+  @apply pl-4 mt-6 mb-8 ml-6 font-semibold border-l-2 border-opacity-25 border-primary;
 }
 
 .embed-content blockquote > p {

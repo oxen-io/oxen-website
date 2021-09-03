@@ -38,9 +38,9 @@ function Markup(node: any): ReactElement {
 
 function EmbeddedLink(node: any, isInline = false): ReactElement {
   const figureClasses = [
-    isInline && node.position === 'left' && 'md:float-left',
-    isInline && node.position === 'right' && 'md:float-right',
-    isInline && node.position && 'md:w-3/5 lg:w-1/2',
+    isInline && node.position === 'left' && 'tablet:float-left',
+    isInline && node.position === 'right' && 'tablet:float-right',
+    isInline && node.position && 'tablet:w-3/5 desktop:w-1/2',
   ];
   const inlineClasses = [
     isInline && !node.position && 'inline-block align-middle mx-1',
@@ -59,7 +59,7 @@ function EmbeddedLink(node: any, isInline = false): ReactElement {
 }
 
 function EmbeddedMedia(node: any, isInline = false): ReactElement {
-  const { isMobile, isTablet } = useContext(ScreenContext);
+  const { isMobile, isTablet, isDesktop } = useContext(ScreenContext);
   // is either an asset or entry
   const media = node.file.fields ?? node;
   const url = media.file.url.replace('//', 'https://');
@@ -74,20 +74,25 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     const figureClasses = [
       isInline && node.position && 'mx-auto mb-5',
       isInline && !node.position && 'inline-block align-middle mx-1',
-      isInline && node.position === 'left' && 'md:float-left',
-      isInline && node.position === 'right' && 'md:float-right',
+      isInline && node.position === 'left' && 'tablet:float-left tablet:mr-4',
+      isInline &&
+        node.position === 'right' &&
+        'tablet:float-right  tablet:ml-4',
       !isInline && 'text-center mb-5',
     ];
     const captionClasses = [
       !node.position && 'mt-1',
       isInline &&
         !node.position &&
-        'text-center md:inline-block md:align-middle md:mx-1',
+        'text-center tablet:inline-block tablet:align-middle tablet:mx-1',
     ];
     return (
       <figure
         className={classNames(figureClasses)}
-        style={{ width: node.position ? imageWidth : '', maxWidth: '800px' }}
+        style={{
+          width: !isMobile && node.position ? imageWidth : '',
+          maxWidth: isDesktop ? '800px' : '',
+        }}
       >
         <Image
           src={`${url}${isMobile ? '?w=300' : isTablet ? '?w=600' : ''}`}

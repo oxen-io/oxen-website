@@ -9,14 +9,14 @@ interface Props {
 
 export function ArticleCallout({ children, bold, indent }: Props) {
   return (
-    <p
+    <div
       className={classNames(
-        'pl-4 mb-8 italic border-l-2 border-opacity-25 border-primary',
+        'border-primary border-l-2 border-opacity-25 pl-4 mb-8 mt-6',
         bold && 'font-semibold',
         indent && 'ml-6',
       )}
     >
-      {children}
-    </p>
+      <blockquote className={classNames('italic')}>{children}</blockquote>
+    </div>
   );
 }

@@ -9,7 +9,7 @@ interface Props {
 
 export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
   return (
-    <div className="w-full pb-4 desktop:pb-0">
+    <div className="w-full pb-4">
       <div className="relative flex items-center justify-center w-full h-full">
         <img
           src={featureImage?.imageUrl}

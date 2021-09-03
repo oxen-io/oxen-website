@@ -1,5 +1,6 @@
-import { ContentfulClientApi, createClient } from 'contentful';
-import moment from 'moment';
+import { Document, Block, Inline } from '@contentful/rich-text-types';
+import { ContentfulClientApi, createClient, EntryCollection } from 'contentful';
+import { format, parseISO } from 'date-fns';
 import React from 'react';
 import BittrexSVG from '../assets/svgs/bittrex-logo.svg';
 import KucoinSVG from '../assets/svgs/kucoin-logo.svg';
@@ -15,18 +16,13 @@ import {
   IPost,
   ISplitPage,
   IFAQItem,
+  IFetchBlogEntriesReturn,
+  IFetchEntriesReturn,
+  IFetchFAQItemsReturn,
 } from '../types/cms';
 import isLive from '../utils/environment';
-
-interface IFetchBlogEntriesReturn {
-  posts: Array<IPost>;
-  total: number;
-}
-
-interface IFetchFAQItemsReturn {
-  faqItems: Array<IFAQItem>;
-  total: number;
-}
+import { generateURL } from '../utils/metadata';
+import { fetchContent } from './embed';
 
 function loadOptions(options: any) {
   if (isLive()) options['fields.live'] = true;
@@ -52,7 +48,7 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const entries = await this.client.getEntries(
+    const _entries = await this.client.getEntries(
       loadOptions({
         content_type: 'post', // only fetch blog post entry
         order: '-fields.date',
@@ -61,35 +57,11 @@ export class CmsApi {
       }),
     );
 
-    if (entries && entries.items && entries.items.length > 0) {
-      const blogPosts = entries.items.map(entry => this.convertPost(entry));
-      return { posts: blogPosts, total: entries.total };
-    }
-
-    return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
-  }
-
-  public async fetchBlogById(id): Promise<IPost> {
-    return this.client.getEntry(id).then(entry => {
-      if (entry) {
-        return this.convertPost(entry);
-      }
-      return null;
-    });
-  }
-
-  public async fetchBlogBySlug(slug: string): Promise<IPost> {
-    const entries = await this.client.getEntries({
-      content_type: 'post',
-      'fields.slug': slug,
-    });
-
-    if (entries?.items?.length > 0) {
-      const post = this.convertPost(entries.items[0]);
-      return post;
-    }
-
-    return null;
+    const results = await this.generateEntries(_entries, 'post');
+    return {
+      entries: results.entries as Array<IPost>,
+      total: results.total,
+    };
   }
 
   public async fetchBlogEntriesByTag(
@@ -97,7 +69,7 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const entries = await this.client.getEntries(
+    const _entries = await this.client.getEntries(
       loadOptions({
         content_type: 'post',
         order: '-fields.date',
@@ -107,12 +79,11 @@ export class CmsApi {
       }),
     );
 
-    if (entries?.items?.length > 0) {
-      const posts = entries.items.map(entry => this.convertPost(entry));
-      return { posts, total: entries.total };
-    }
-
-    return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+    const results = await this.generateEntries(_entries, 'post');
+    return {
+      entries: results.entries as Array<IPost>,
+      total: results.total,
+    };
   }
 
   public async fetchBlogEntriesWithoutDevUpdates(
@@ -120,7 +91,7 @@ export class CmsApi {
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const DEV_UPDATE_TAG = 'dev-update';
-    const entries = await this.client.getEntries(
+    const _entries = await this.client.getEntries(
       loadOptions({
         content_type: 'post', // only fetch blog post entry
         order: '-fields.date',
@@ -130,38 +101,88 @@ export class CmsApi {
       }),
     );
 
-    if (entries && entries.items && entries.items.length > 0) {
-      const blogPosts = entries.items.map(entry => this.convertPost(entry));
-      return { posts: blogPosts, total: entries.total };
-    }
-
-    return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+    const results = await this.generateEntries(_entries, 'post');
+    return {
+      entries: results.entries as Array<IPost>,
+      total: results.total,
+    };
   }
 
   public async fetchPageEntries(): Promise<TPages> {
     try {
-      const entries = await this.client.getEntries({
-        content_type: 'splitPage', // only fetch blog post entry
-        order: 'fields.order',
+      const _entries = await this.client.getEntries(
+        loadOptions({
+          content_type: 'splitPage', // only fetch blog post entry
+          order: 'fields.order',
+        }),
+      );
+
+      const results = await this.generateEntries(_entries, 'splitPage');
+      const pages: TPages = {};
+
+      results.entries.forEach(page => {
+        const pageExists = SideMenuItem[page.id];
+
+        if (pageExists) {
+          pages[page.id] = page;
+        }
       });
 
-      if (entries && entries.items && entries.items.length > 0) {
-        const pagesArray = entries.items.map(entry => this.convertPage(entry));
-
-        const pages: TPages = {};
-        pagesArray.forEach(page => {
-          const pageExists = SideMenuItem[page.id];
-
-          if (pageExists) {
-            pages[page.id] = page;
-          }
-        });
-
-        return pages;
-      }
+      return pages;
     } catch (e) {
       return {};
     }
+  }
+
+  public async fetchFAQItems(): Promise<IFetchFAQItemsReturn> {
+    const _entries = await this.client.getEntries({
+      content_type: 'faq_item', // only fetch faq items
+      order: 'fields.id',
+    });
+
+    const results = await this.generateEntries(_entries, 'faq');
+    return {
+      entries: results.entries as Array<IFAQItem>,
+      total: results.total,
+    };
+  }
+
+  public async fetchEntryById(id): Promise<IPost> {
+    return this.client.getEntry(id).then(entry => {
+      if (entry) {
+        return this.convertPost(entry);
+      }
+      return null;
+    });
+  }
+
+  public async fetchEntryBySlug(
+    slug: string,
+    entryType: 'post' | 'splitPage',
+  ): Promise<any> {
+    const _entries = await this.client.getEntries({
+      content_type: entryType, // only fetch specific type
+      'fields.slug': slug,
+    });
+
+    if (_entries?.items?.length > 0) {
+      let entry;
+      switch (entryType) {
+        case 'post':
+          entry = this.convertPost(_entries.items[0]);
+          break;
+        case 'splitPage':
+          entry = this.convertPage(_entries.items[0]);
+          break;
+        default:
+          break;
+      }
+      return entry;
+    }
+
+    return Promise.reject(
+      new Error(`Failed to fetch ${entryType} for ${slug}`),
+    );
   }
 
   public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
@@ -178,18 +199,29 @@ export class CmsApi {
       });
   }
 
-  public async fetchFAQItems(): Promise<IFetchFAQItemsReturn> {
-    const entries = await this.client.getEntries({
-      content_type: 'faq_item', // only fetch faq items
-      order: 'fields.id',
-    });
-
+  public async generateEntries(
+    entries: EntryCollection<unknown>,
+    entryType: 'post' | 'faq' | 'splitPage',
+  ): Promise<IFetchEntriesReturn> {
+    let _entries: any = [];
     if (entries && entries.items && entries.items.length > 0) {
-      const faqItems = entries.items.map(entry => this.convertFAQ(entry));
-      return { faqItems, total: entries.total };
+      switch (entryType) {
+        case 'post':
+          _entries = entries.items.map(entry => this.convertPost(entry));
+          break;
+        case 'faq':
+          _entries = entries.items.map(entry => this.convertFAQ(entry));
+          break;
+        case 'splitPage':
+          _entries = entries.items.map(entry => this.convertPage(entry));
+          break;
+        default:
+          break;
+      }
+      return { entries: _entries, total: entries.total };
     }
 
-    return { faqItems: [], total: 0 } as IFetchFAQItemsReturn;
+    return { entries: _entries, total: 0 };
   }
 
   public convertImage = (rawImage): IFigureImage =>
@@ -198,6 +230,8 @@ export class CmsApi {
           imageUrl: rawImage.file.url.replace('//', 'https://'), // may need to put null check as well here
           description: rawImage.description ?? null,
           title: rawImage.title ?? null,
+          width: rawImage.file.details.image.width,
+          height: rawImage.file.details.image.height,
         }
       : null;
 
@@ -227,7 +261,7 @@ export class CmsApi {
       body: rawPost.body ?? null,
       subtitle: rawPost.subtitle ?? null,
       description: rawPost.description ?? null,
-      publishedDate: moment(rawPost.date).format('DD MMMM YYYY'),
+      publishedDate: format(parseISO(rawPost.date), 'dd MMMM yyyy'),
       slug: rawPost.slug,
       tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],
       title: rawPost.title,
@@ -461,3 +495,39 @@ export const renderShortcode = (shortcode: string) => {
 
   return null;
 };
+
+async function loadMetaData(node: Block | Inline) {
+  // is embedded link not embedded media
+  if (!node.data.target.fields.file) {
+    if (node.data.target.sys.contentType.sys.id === 'post') {
+      node.data.target.fields.url = generateURL(
+        `/blog/${node.data.target.fields.slug}`,
+      );
+    }
+    node.data.target.fields.meta = await fetchContent(
+      node.data.target.fields.url,
+    );
+  }
+  return node;
+}
+
+export async function generateLinkMeta(doc: Document): Promise<Document> {
+  const promises = doc.content.map(async (node: Block | Inline) => {
+    if (node.nodeType === 'embedded-entry-block') {
+      node = await loadMetaData(node);
+    } else {
+      // check for inline embedding
+      const innerPromises = node.content.map(async innerNode => {
+        if (
+          innerNode.nodeType === 'embedded-entry-inline' &&
+          innerNode.data.target.sys.contentType.sys.id !== 'markup'
+        ) {
+          innerNode = await loadMetaData(innerNode);
+        }
+      });
+      await Promise.all(innerPromises);
+    }
+  });
+  await Promise.all(promises);
+  return doc;
+}

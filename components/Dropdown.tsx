@@ -33,7 +33,7 @@ export function Dropdown(props: Props) {
   useClickAway(ref, onClickAway);
 
   return (
-    <div className="relative w-full h-0 z-50">
+    <div className="relative z-50 w-full h-0">
       <div
         style={{
           width: 'max-content',
@@ -59,7 +59,7 @@ export function Dropdown(props: Props) {
             'transform',
             'shadow-lg',
             'overflow-hidden',
-            'children:last:border-b-0',
+            'last:border-b-0',
             style === 'default' && ['pt-2'],
             style === 'outline' && ['py-2', 'border-2', 'border-secondary'],
           )}

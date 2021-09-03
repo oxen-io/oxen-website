@@ -1,4 +1,13 @@
 module.exports = {
+  purge: [
+    './assets/style.css',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './services/**/*.{js,ts,jsx,tsx}',
+    './utils/**/*.{js,ts,jsx,tsx}',
+  ],
+  darkMode: false, // or 'media' or 'class'
+  mode: 'jit',
   theme: {
     screens: {
       // Constants taken from UI constants.
@@ -56,14 +65,10 @@ module.exports = {
     },
   },
   variants: {
-    borderWidth: ['children', 'children-last'],
-    padding: ['children-odd', 'children-even'],
-    margin: ['children-last'],
-    fontWeight: ['children-last'],
+    extend: {
+      borderWidth: ['last'],
+      fontWeight: ['last'],
+    },
   },
-  plugins: [
-    require('tailwindcss-children'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 };

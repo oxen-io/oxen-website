@@ -17,6 +17,8 @@ export type IFigureImage = {
   title: string | null;
   description: string | null;
   imageUrl: string;
+  width: string | number;
+  height: string | number;
 };
 
 export interface IPost {
@@ -49,4 +51,17 @@ export interface IFAQItem {
   id: number;
   question: string;
   answer: Document;
+}
+
+export interface IFetchEntriesReturn {
+  entries: Array<any>;
+  total: number;
+}
+
+export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {
+  entries: Array<IPost>;
+}
+
+export interface IFetchFAQItemsReturn extends IFetchEntriesReturn {
+  entries: Array<IFAQItem>;
 }

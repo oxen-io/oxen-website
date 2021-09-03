@@ -12,7 +12,7 @@ import { Contained } from '../components/Contained';
 export const getServerSideProps: GetServerSideProps = async () => {
   const cms = new CmsApi();
 
-  const { faqItems, total } = await cms.fetchFAQItems();
+  const { entries: faqItems, total } = await cms.fetchFAQItems();
 
   return {
     props: {

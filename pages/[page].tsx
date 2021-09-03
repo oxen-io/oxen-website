@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Contained } from '../components/Contained';
 import { RichBody } from '../components/RichBody';
-import { NAVIGATION } from '../constants';
+import { CMS, NAVIGATION } from '../constants';
 import { CmsApi, unslugify } from '../services/cms';
 import { PageType, setPageType, SideMenuItem } from '../state/navigation';
 import { ISplitPage } from '../types/cms';
@@ -44,7 +44,7 @@ export async function getStaticProps({ params }) {
       page,
       href: `/${href}`,
     },
-    revalidate: 60,
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 }
 

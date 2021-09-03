@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // Fetch posts even when tag, for related etc
   // Pagination only occurs when tag isnt defined.
   // If tag is defined, pagination is for tag results
-  const { posts, total: totalPosts } = await cms.fetchBlogEntries(
+  const { entries: posts, total: totalPosts } = await cms.fetchBlogEntries(
     RESULTS_PER_PAGE,
     tag ? 1 : page,
   );
@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let filteredTotalPosts = totalPosts;
   if (tag) {
     const {
-      posts: _tagPosts = [],
+      entries: _tagPosts = [],
       total: _tagTotalPosts,
     } = await cms.fetchBlogEntriesByTag(tag ?? '', RESULTS_PER_PAGE, page);
     tagPosts = _tagPosts;
@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   } else {
     // Retrieve all blog posts without the `dev-update` tag when not searching by tag
     const {
-      posts: _tagPosts = [],
+      entries: _tagPosts = [],
       total: _tagTotalPosts,
     } = await cms.fetchBlogEntriesWithoutDevUpdates(RESULTS_PER_PAGE, page);
 
@@ -121,14 +121,14 @@ const Blog = (props: Props) => {
   const pagination = (
     <Contained>
       <div className="flex justify-center mb-4">
-        <div className="mt-4 mobile:mt-6">
+        <div className="mt-6 tablet:mt-4">
           <ReactPaginate
             previousLabel={'<'}
             nextLabel={'>'}
             breakLabel={'...'}
             breakClassName={'break-me'}
             activeClassName={'active bg-secondary'}
-            containerClassName={'pagination bg-primary text-white front-prompt'}
+            containerClassName={'pagination bg-primary text-white'}
             initialPage={currentPage - 1}
             pageCount={pageCount}
             marginPagesDisplayed={hasTooManyButtons && !isEdgePage ? 1 : 2}

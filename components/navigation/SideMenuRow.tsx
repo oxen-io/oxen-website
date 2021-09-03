@@ -50,8 +50,8 @@ export function SideMenuRow({ item, isActive }: SideMenuRowProps) {
       {!isMobile && !isTablet && (
         <TriangleOutlinedSVG
           className={classNames(
-            'h-4 pr-6 duration-300 fill-current transform text-transparent',
-            isExcited && 'text-primary scale-y-75',
+            'h-4 pr-6 duration-300 fill-current transform',
+            isExcited ? 'text-primary scale-y-75' : 'text-transparent',
           )}
         />
       )}

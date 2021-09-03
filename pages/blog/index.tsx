@@ -121,14 +121,14 @@ const Blog = (props: Props) => {
   const pagination = (
     <Contained>
       <div className="flex justify-center mb-4">
-        <div className="mt-4 mobile:mt-6">
+        <div className="mt-6 tablet:mt-4">
           <ReactPaginate
             previousLabel={'<'}
             nextLabel={'>'}
             breakLabel={'...'}
             breakClassName={'break-me'}
             activeClassName={'active bg-secondary'}
-            containerClassName={'pagination bg-primary text-white front-prompt'}
+            containerClassName={'pagination bg-primary text-white'}
             initialPage={currentPage - 1}
             pageCount={pageCount}
             marginPagesDisplayed={hasTooManyButtons && !isEdgePage ? 1 : 2}

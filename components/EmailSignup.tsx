@@ -1,4 +1,5 @@
 import { ReactElement, useState, useRef, FormEventHandler } from 'react';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
 import { Contained } from './Contained';
@@ -6,6 +7,7 @@ import { Input } from './Input';
 import { Button } from './Button';
 
 export default function EmailSignup(): ReactElement {
+  const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
@@ -46,6 +48,7 @@ export default function EmailSignup(): ReactElement {
         'border-2 border-solid border-primary py-6 px-2 mt-6 mb-10',
         'tablet:w-4/5 tablet:mx-auto tablet:py-4 tablet:mt-6 tablet:mb-8',
         'desktop:py-6',
+        router.asPath !== '/get-involved' && 'tablet:w-full',
       )}
     >
       <h3
@@ -85,7 +88,7 @@ export default function EmailSignup(): ReactElement {
         <Button
           color="primary"
           size="medium"
-          className={classNames('tablet:w-40 tablet:mx-auto')}
+          className={classNames('mx-auto', 'tablet:w-40')}
           buttonType={'submit'}
           reference={buttonRef}
         >

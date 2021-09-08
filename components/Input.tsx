@@ -54,8 +54,8 @@ export interface InputProps {
 
   // HTMLInputElement Props
 
-  autofocus?: boolean;
-  // required?: boolean;
+  // autofocus?: boolean;
+  required?: boolean;
   // validity?: ValidityState;
   // validationMessage?: string;
   // willValidate?: boolean;
@@ -83,7 +83,7 @@ export function Input(props: InputProps) {
     prefix,
     duration = true,
     suffix,
-    autofocus,
+    required,
     disabled,
     min,
     max,
@@ -171,8 +171,6 @@ export function Input(props: InputProps) {
         // 'bg-white',
         'text-gray-700',
         'leading-tight',
-        'outline-black',
-        'outline-secondary',
         'focus:outline-black',
         border !== 'none' && 'border-2',
         size === 'small' ? 'px-2' : 'px-4',
@@ -211,6 +209,7 @@ export function Input(props: InputProps) {
         ref={inputRef}
         spellCheck={false}
         disabled={disabled}
+        required={required}
         placeholder={placeholder}
         value={props.value ?? value}
         step={step}

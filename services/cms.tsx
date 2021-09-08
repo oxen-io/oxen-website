@@ -8,6 +8,7 @@ import DiscordSVG from '../assets/svgs/socials/brand-discord.svg';
 import RedditSVG from '../assets/svgs/socials/brand-reddit.svg';
 import TelegramSVG from '../assets/svgs/socials/brand-telegram.svg';
 import { Button } from '../components/Button';
+import EmailSignup from '../components/EmailSignup';
 import { CMS } from '../constants';
 import { SideMenuItem, TPages } from '../state/navigation';
 import {
@@ -187,10 +188,12 @@ export class CmsApi {
 
   public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
     return this.client
-      .getEntries({
-        content_type: 'splitPage',
-        'fields.id[in]': id,
-      })
+      .getEntries(
+        loadOptions({
+          content_type: 'splitPage',
+          'fields.id[in]': id,
+        }),
+      )
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {
           return this.convertPage(entries.items[0]);
@@ -476,6 +479,11 @@ export const renderShortcode = (shortcode: string) => {
         </Button>
       </div>
     );
+  }
+
+  // Call to Action -> Email Signup
+  if (CMS.SHORTCODES.CTA_EMAIL_SIGNUP.test(shortcode)) {
+    return <EmailSignup />;
   }
 
   // All shortcode buttons with simple hrefs

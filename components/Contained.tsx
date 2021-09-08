@@ -3,12 +3,14 @@ import React, { ReactNode } from 'react';
 import { UI } from '../constants';
 
 interface Props {
+  id?: string;
   backgroundColor?: 'primary' | 'secondary' | 'secondary-1';
+  classes?: string;
   children: ReactNode;
 }
 
 export function Contained(props: Props) {
-  const { backgroundColor, children } = props;
+  const { id, backgroundColor, classes, children } = props;
 
   const containerStyle = {
     paddingLeft: `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
@@ -20,9 +22,11 @@ export function Contained(props: Props) {
 
   return (
     <div
+      id={id}
       className={classNames(
         'w-full',
         backgroundColor && `bg-${backgroundColor}`,
+        classes,
       )}
     >
       <div className="relative" style={containerStyle}>

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useContext } from 'react';
+import React, { LegacyRef, useContext } from 'react';
 import { ScreenContext } from '../contexts/screen';
 
 export interface Props {
@@ -9,6 +9,8 @@ export interface Props {
 
   disabled?: boolean;
   selected?: boolean;
+  buttonType?: 'submit';
+  reference?: LegacyRef<HTMLButtonElement>;
   onClick?(): any;
   children?: string;
   className?: string;
@@ -27,6 +29,8 @@ export function Button(props: Props) {
     type = 'solid',
     disabled = false,
     selected = false,
+    buttonType,
+    reference,
     onClick,
     children,
     className,
@@ -90,7 +94,7 @@ export function Button(props: Props) {
     '';
 
   return (
-    <div
+    <button
       className={classNames(
         'flex',
         'justify-center',
@@ -111,8 +115,9 @@ export function Button(props: Props) {
         type !== 'text' && ['border-2', 'border-solid', `border-${color}`],
         className,
       )}
-      role="button"
       tabIndex={-1}
+      type={buttonType}
+      ref={reference}
       onClick={onClickFn}
     >
       {prefix && (
@@ -126,6 +131,6 @@ export function Button(props: Props) {
           {suffix}
         </div>
       )}
-    </div>
+    </button>
   );
 }

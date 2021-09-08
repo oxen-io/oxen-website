@@ -31,6 +31,7 @@ const CMS = {
     TRADE_LINKS: /^{{[\s*]trade_links[\s*]}}$/,
     CTA_WHO_USES_OXEN: /^\{\{[\s]*who_uses_oxen[\s]*\}\}$/,
     CTA_SESSION_LOKINET: /^\{\{[\s]*session_lokinet[\s]*\}\}$/,
+    CTA_EMAIL_SIGNUP: /^\{\{[\s]*email_signup[\s]*\}\}$/,
   },
   BLOG_RESULTS_PER_PAGE: 13,
   BLOG_RESULTS_PER_PAGE_TAGGED: 12,

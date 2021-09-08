@@ -72,12 +72,10 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     const imageWidth = node.width ?? media.file.details.image.width;
     const imageHeight = node.height ?? media.file.details.image.height;
     const figureClasses = [
-      isInline && node.position && 'mx-auto mb-5',
+      isInline && node.position && 'text-center mx-auto mb-5',
       isInline && !node.position && 'inline-block align-middle mx-1',
       isInline && node.position === 'left' && 'tablet:float-left tablet:mr-4',
-      isInline &&
-        node.position === 'right' &&
-        'tablet:float-right  tablet:ml-4',
+      isInline && node.position === 'right' && 'tablet:float-right tablet:ml-4',
       !isInline && 'text-center mb-5',
     ];
     const captionClasses = [

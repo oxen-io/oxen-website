@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
-import { GetServerSideProps } from 'next';
-import { NAVIGATION, METADATA } from '../constants';
+import { GetStaticProps, GetStaticPropsContext } from 'next';
+import { NAVIGATION, METADATA, CMS } from '../constants';
 import { SideMenuItem } from '../state/navigation';
 import { generateTitle, generateURL } from '../utils/metadata';
 import { CmsApi } from '../services/cms';
@@ -9,7 +9,9 @@ import { IFAQItem } from '../types/cms';
 import { Accordion } from '../components/Accordion';
 import { Contained } from '../components/Contained';
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext,
+) => {
   const cms = new CmsApi();
 
   const { entries: faqItems, total } = await cms.fetchFAQItems();
@@ -19,6 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       faqItems,
       total,
     },
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };
 

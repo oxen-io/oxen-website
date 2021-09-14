@@ -76,16 +76,33 @@ export function RichBody(props: Props): ReactElement {
         // const children;
         const plaintext = documentToPlainTextString(node);
         const isShortcode = CMS.SHORTCODE_REGEX.test(plaintext);
-
-        return isShortcode ? (
-          renderShortcode(plaintext)
-        ) : (
-          <p
-            className={classNames('mb-3 font-sans tracking-wide text-justify')}
-          >
-            {children}
-          </p>
-        );
+        if (isShortcode) {
+          return renderShortcode(plaintext);
+        } else {
+          let hasImage = false;
+          Children.map(children, (child: any) => {
+            if (child.type === 'figure') {
+              hasImage = true;
+              return;
+            }
+          });
+          if (hasImage) {
+            return (
+              <span className={classNames('leading-relaxed pb-6')}>
+                {children}
+              </span>
+            );
+          }
+          return (
+            <p
+              className={classNames(
+                'mb-3 font-sans tracking-wide text-justify',
+              )}
+            >
+              {children}
+            </p>
+          );
+        }
       },
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1

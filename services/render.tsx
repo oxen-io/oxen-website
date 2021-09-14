@@ -7,7 +7,7 @@ import sanitize from '../utils/sanitize';
 
 import EmbedContent from '../components/EmbedContent';
 import { ScreenContext } from '../contexts/screen';
-import { ReactElement } from 'react';
+import { ReactElement, CSSProperties } from 'react';
 
 function Markup(node: any): ReactElement {
   const frontTags: string[] = [];
@@ -72,7 +72,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     const imageWidth = node.width ?? media.file.details.image.width;
     const imageHeight = node.height ?? media.file.details.image.height;
     const figureClasses = [
-      isInline && node.position && 'text-center mx-auto mb-5',
+      isInline && node.position && 'text-center mx-auto mt-4 mb-5',
       isInline && !node.position && 'inline-block align-middle mx-1',
       isInline && node.position === 'left' && 'tablet:float-left tablet:mr-4',
       isInline && node.position === 'right' && 'tablet:float-right tablet:ml-4',
@@ -84,14 +84,15 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
         !node.position &&
         'text-center tablet:inline-block tablet:align-middle tablet:mx-1',
     ];
+    const figureStyles: CSSProperties = {};
+    if (!isMobile && node.position) {
+      figureStyles.width = imageWidth;
+    }
+    if (isDesktop) {
+      figureStyles.maxWidth = '800px';
+    }
     return (
-      <figure
-        className={classNames(figureClasses)}
-        style={{
-          width: !isMobile && node.position ? imageWidth : '',
-          maxWidth: isDesktop ? '800px' : '',
-        }}
-      >
+      <figure className={classNames(figureClasses)} style={figureStyles}>
         <Image
           src={`${url}${isMobile ? '?w=300' : isTablet ? '?w=600' : ''}`}
           alt={node.title}

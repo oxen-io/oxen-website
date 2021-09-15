@@ -1,4 +1,5 @@
 // [slug].js
+import { GetStaticPaths } from 'next';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,7 +14,7 @@ interface IPath {
   params: { slug: string };
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const cms = new CmsApi();
   let posts: IPost[] = [];
   let page = 1;
@@ -36,28 +37,33 @@ export async function getStaticPaths() {
     params: { slug: item.slug },
   }));
 
-  return { paths, fallback: true };
-}
+  return { paths, fallback: 'blocking' };
+};
 
 export async function getStaticProps({ params }) {
-  console.log(`Building page: %c${params.slug}`, 'color: purple;');
+  try {
+    console.log(`Building page: %c${params.slug}`, 'color: purple;');
 
-  const cms = new CmsApi();
-  const post = await cms.fetchEntryBySlug(String(params?.slug) ?? '', 'post');
-  // embedded links in post body need metadata for preview
-  post.body = await generateLinkMeta(post.body);
-  const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');
-  if (!post) {
-    return { notFound: true };
+    const cms = new CmsApi();
+    const post = await cms.fetchEntryBySlug(String(params?.slug) ?? '', 'post');
+    // embedded links in post body need metadata for preview
+    post.body = await generateLinkMeta(post.body);
+    const url = generateURL(params?.slug ? `/blog/${params?.slug}` : '/blog');
+
+    return {
+      props: {
+        post,
+        url,
+      },
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
   }
-
-  return {
-    props: {
-      post,
-      url,
-    },
-    revalidate: CMS.CONTENT_REVALIDATE_RATE,
-  };
 }
 
 // Parallax on bg as mouse moves

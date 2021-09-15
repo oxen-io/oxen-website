@@ -1,4 +1,5 @@
 // [slug].js
+import { GetStaticPaths } from 'next';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -14,7 +15,7 @@ interface IPath {
   params: { page: string };
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   // Get paths to all pages
   // Hardcoded in navigation constants.
   // Contentful can edit entries but cannot add/remove
@@ -25,27 +26,31 @@ export async function getStaticPaths() {
     }),
   );
 
-  return { paths, fallback: true };
-}
+  return { paths, fallback: 'blocking' };
+};
 
 export async function getStaticProps({ params }) {
   const href = params?.page ?? '';
   const id = unslugify(String(href));
 
-  const cms = new CmsApi();
-  const page = await cms.fetchPageById(SideMenuItem[id] ?? '');
+  try {
+    const cms = new CmsApi();
+    const page = await cms.fetchPageById(SideMenuItem[id] ?? '');
 
-  if (!page) {
-    return { notFound: true };
+    return {
+      props: {
+        page,
+        href: `/${href}`,
+      },
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
   }
-
-  return {
-    props: {
-      page,
-      href: `/${href}`,
-    },
-    revalidate: CMS.CONTENT_REVALIDATE_RATE,
-  };
 }
 
 function Page({ page, href }: { page: ISplitPage | null; href: string }) {

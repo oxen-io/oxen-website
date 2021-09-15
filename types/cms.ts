@@ -58,6 +58,10 @@ export interface IFetchEntriesReturn {
   total: number;
 }
 
+export type ITagList = {
+  [key: string]: string;
+};
+
 export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {
   entries: Array<IPost>;
 }

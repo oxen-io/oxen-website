@@ -34,6 +34,10 @@ export interface IPost {
   slug: string;
 }
 
+export function isPost(object: unknown): object is IPost {
+  return Object.prototype.hasOwnProperty.call(object, 'publishedDate');
+}
+
 export type BodyDocument = {
   nodeType: 'document';
   content: any;

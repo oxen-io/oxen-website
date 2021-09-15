@@ -41,9 +41,12 @@ const nextConfig = {
         destination: '/api/feed/rss',
       },
       {
-        // The /:slug part is a generic parameter handler to catch all other cases
         source: '/feed/:slug',
         destination: '/api/feed/:slug',
+      },
+      {
+        source: '/blog/:slug',
+        destination: '/:slug',
       },
     ];
   },

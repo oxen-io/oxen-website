@@ -9,7 +9,7 @@ interface Props {
 
 export function TagBlock(props: Props) {
   const { tag, size = 'small', classes } = props;
-  const href = `/blog?tag=${tag.toLowerCase()}`;
+  const href = `/tag/${tag.toLowerCase()}`;
 
   return (
     <a

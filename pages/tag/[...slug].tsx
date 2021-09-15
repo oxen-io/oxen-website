@@ -1,7 +1,7 @@
+import { useEffect, useContext, ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useContext, ReactElement } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';

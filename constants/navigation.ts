@@ -125,7 +125,8 @@ const MENU_ITEMS: IMenuItem[] = [
 const NAVIGATION = {
   MENU_ITEMS,
   SIDE_MENU_ITEMS,
-  BLOG_REGEX: /^\/(blog)?([?&]page=[0-9]{1,3})?/,
+  BLOG_REGEX: /^\/(blog)([?tag=[\w-]*)?([?&]page=[0-9]{1,3})?/,
+  TAG_REGEX: /^\/(tag\/)([\w-]{1,100}\/)|(([\w-]{1,100})|(\[slug\]))$/,
   POST_REGEX: /^\/(blog\/)(([\w-]{1,100})|(\[slug\]))$/,
 };
 

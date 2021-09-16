@@ -155,6 +155,11 @@ export default function Tag(props: Props): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
+  console.log(
+    `Building %c${context.params.slug[0]} tag page ${context.params.slug[1]}`,
+    'color: purple;',
+  );
+
   const cms = new CmsApi();
   // Get tag query
   const tag = String(context.params.slug[0] ?? '') ?? null;

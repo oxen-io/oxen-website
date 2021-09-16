@@ -61,11 +61,13 @@ const SIDE_MENU_ITEMS = {
     id: 8,
     label: "Oxen's 2021 roadmap",
     href: '/roadmap',
+    hasOwnRoute: true,
   },
   [SideMenuItem.FAQ]: {
     id: 9,
     label: 'FAQ',
     href: '/faq',
+    hasOwnRoute: true,
   },
 } as { [name: string]: ISideMenuItem };
 

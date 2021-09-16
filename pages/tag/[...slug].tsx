@@ -18,6 +18,10 @@ import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import { TagBlock } from '../../components/TagBlock';
 
+interface IPath {
+  params: { slug: string[] };
+}
+
 interface Props {
   posts: IPost[];
   tagPosts: IPost[];
@@ -203,15 +207,28 @@ export const getStaticProps: GetStaticProps = async (
 export const getStaticPaths: GetStaticPaths = async () => {
   const cms = new CmsApi();
 
-  const tags: ITagList = await cms.fetchTagList();
-  // We only generate the first page of results for each tag at build time
-  const paths = Object.values(tags).map(tag => {
-    return {
-      params: {
-        slug: [tag, '1'],
-      },
-    };
-  });
+  // TODO could use the PageCount calculation from GetStaticProps
+  const tags = Object.values(await cms.fetchTagList());
+  const paths: IPath[] = [];
+
+  for (let i = 0; i < tags.length; i++) {
+    let page = 1;
+    let foundAllPosts = false;
+    const _paths = [{ params: { slug: [tags[i], String(page)] } }];
+
+    // Contentful only allows 100 at a time
+    while (!foundAllPosts) {
+      const { entries } = await cms.fetchBlogEntriesByTag(tags[i], 100, page);
+
+      if (entries.length === 0) {
+        foundAllPosts = true;
+        continue;
+      }
+      page++;
+      _paths.push({ params: { slug: [tags[i], String(page)] } });
+    }
+    paths.push(..._paths);
+  }
 
   return {
     paths,

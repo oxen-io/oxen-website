@@ -72,7 +72,7 @@ export default function Blog(props: Props): ReactElement {
           <h1 className="mb-2 text-4xl font-medium uppercase font-prompt">
             Oxen Blogs
           </h1>
-          {posts.length && <ArticleCardFeature {...featuredPost} />}
+          {featuredPost && <ArticleCardFeature {...featuredPost} />}
         </Contained>
 
         <CardGrid>
@@ -112,6 +112,10 @@ export const getStaticProps: GetStaticProps = async (
 
     const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
 
+    if (page > pageCount && page > 1) {
+      throw 'Page results exceeded!';
+    }
+
     return {
       props: {
         posts: entries,
@@ -131,22 +135,13 @@ export const getStaticProps: GetStaticProps = async (
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const cms = new CmsApi();
-  // TODO could use the PageCount calculation from GetStaticProps
-  let page = 1;
-  let foundAllPosts = false;
-  const paths: IPath[] = [{ params: { page: [String(page)] } }];
 
-  // Contentful only allows 100 at a time
-  while (!foundAllPosts) {
-    const { entries } = await cms.fetchBlogEntries(100, page);
+  const { entries, total } = await cms.fetchBlogEntriesWithoutDevUpdates();
+  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
+  const paths: IPath[] = [];
 
-    if (entries.length === 0) {
-      foundAllPosts = true;
-      continue;
-    }
-
-    page++;
-    paths.push({ params: { page: [String(page)] } });
+  for (let i = 1; i <= pageCount; i++) {
+    paths.push({ params: { page: [String(i)] } });
   }
 
   return { paths, fallback: 'blocking' };

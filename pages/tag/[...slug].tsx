@@ -150,7 +150,7 @@ export const getStaticProps: GetStaticProps = async (
       entries: tagPosts = [],
       total: tagTotalPosts,
     } = await cms.fetchBlogEntriesByTag(
-      tag ?? '',
+      tag,
       CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
       page,
     );
@@ -162,6 +162,10 @@ export const getStaticProps: GetStaticProps = async (
     const pageCount = Math.ceil(
       tagTotalPosts / CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     );
+
+    if (page > pageCount && page > 1) {
+      throw 'Page results exceeded!';
+    }
 
     return {
       props: {
@@ -185,26 +189,18 @@ export const getStaticProps: GetStaticProps = async (
 export const getStaticPaths: GetStaticPaths = async () => {
   const cms = new CmsApi();
 
-  // TODO could use the PageCount calculation from GetStaticProps
   const tags = Object.values(await cms.fetchTagList());
   const paths: IPath[] = [];
 
   for (let i = 0; i < tags.length; i++) {
-    let page = 1;
-    let foundAllPosts = false;
-    const _paths = [{ params: { slug: [tags[i], String(page)] } }];
+    const { entries, total } = await cms.fetchBlogEntriesByTag(tags[i]);
+    const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
+    const _paths: IPath[] = [];
 
-    // Contentful only allows 100 at a time
-    while (!foundAllPosts) {
-      const { entries } = await cms.fetchBlogEntriesByTag(tags[i], 100, page);
-
-      if (entries.length === 0) {
-        foundAllPosts = true;
-        continue;
-      }
-      page++;
-      _paths.push({ params: { slug: [tags[i], String(page)] } });
+    for (let i = 1; i <= pageCount; i++) {
+      _paths.push({ params: { slug: [tags[i], String(i)] } });
     }
+
     paths.push(..._paths);
   }
 

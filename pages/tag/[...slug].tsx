@@ -128,7 +128,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
   console.log(
-    `Building tag results for %c${context.params.slug[0]} page ${
+    `Building  Results for tag "%c${context.params.slug[0]}" page ${
       context.params.slug && context.params.slug[1]
         ? context.params.slug[1]
         : ''

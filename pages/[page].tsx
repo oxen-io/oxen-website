@@ -47,7 +47,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export async function getStaticProps({ params }) {
-  console.log(`Building page  %c${params.page}`, 'color: purple;');
+  console.log(`Building  Page %c${params.page}`, 'color: purple;');
   const href = params?.page ?? '';
   const id = unslugify(String(href));
 

@@ -92,7 +92,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
   console.log(
-    `Building blog results page %c${
+    `Building  Blog posts page %c${
       context.params.page ? context.params.page[0] : ''
     }`,
     'color: purple;',

@@ -34,6 +34,10 @@ export interface IPost {
   slug: string;
 }
 
+export function isPost(object: unknown): object is IPost {
+  return Object.prototype.hasOwnProperty.call(object, 'publishedDate');
+}
+
 export type BodyDocument = {
   nodeType: 'document';
   content: any;
@@ -57,6 +61,10 @@ export interface IFetchEntriesReturn {
   entries: Array<any>;
   total: number;
 }
+
+export type ITagList = {
+  [key: string]: string;
+};
 
 export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {
   entries: Array<IPost>;

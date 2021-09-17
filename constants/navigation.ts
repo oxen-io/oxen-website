@@ -61,11 +61,13 @@ const SIDE_MENU_ITEMS = {
     id: 8,
     label: "Oxen's 2021 roadmap",
     href: '/roadmap',
+    hasOwnRoute: true,
   },
   [SideMenuItem.FAQ]: {
     id: 9,
     label: 'FAQ',
     href: '/faq',
+    hasOwnRoute: true,
   },
 } as { [name: string]: ISideMenuItem };
 
@@ -79,7 +81,7 @@ const MENU_ITEMS: IMenuItem[] = [
   },
   {
     label: 'Dev Updates',
-    href: '/blog?tag=dev-update',
+    href: '/tag/dev-update',
     newTab: false,
     subtle: true,
     external: false,
@@ -125,7 +127,7 @@ const MENU_ITEMS: IMenuItem[] = [
 const NAVIGATION = {
   MENU_ITEMS,
   SIDE_MENU_ITEMS,
-  BLOG_REGEX: /^\/(blog)([?tag=[\w-]*)?([?&]page=[0-9]{1,3})?/,
+  BLOG_REGEX: /^\/(blog|tag)/,
   POST_REGEX: /^\/(blog\/)(([\w-]{1,100})|(\[slug\]))$/,
 };
 

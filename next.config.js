@@ -41,9 +41,14 @@ const nextConfig = {
         destination: '/api/feed/rss',
       },
       {
-        // The /:slug part is a generic parameter handler to catch all other cases
         source: '/feed/:slug',
         destination: '/api/feed/:slug',
+      },
+      // Redirects blog posts i.e. https://oxen.io/blog/hello or https://oxen.io/blog/hello-world
+      // Ignores page results i.e. https://oxen.io/blog/1
+      {
+        source: '/blog/:slug((?:[\\w]{1,}[\\-]{1,}).*|[\\D]{1,})',
+        destination: '/:slug',
       },
     ];
   },

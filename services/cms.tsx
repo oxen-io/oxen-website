@@ -20,6 +20,7 @@ import {
   IFetchBlogEntriesReturn,
   IFetchEntriesReturn,
   IFetchFAQItemsReturn,
+  ITagList,
 } from '../types/cms';
 import isLive from '../utils/environment';
 import { generateURL } from '../utils/metadata';
@@ -43,6 +44,20 @@ export class CmsApi {
       space: process.env.CONTENTFUL_SPACE_ID,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
     });
+  }
+
+  public async fetchTagList(): Promise<ITagList> {
+    // TODO Migrate to Contentful Tag System
+    const { entries, total } = await this.fetchBlogEntries();
+    const tags: ITagList = {};
+    entries.forEach(entry => {
+      entry.tags.forEach(tag => {
+        if (!tags[tag]) {
+          tags[tag] = tag;
+        }
+      });
+    });
+    return tags;
   }
 
   public async fetchBlogEntries(

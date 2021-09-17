@@ -1414,32 +1414,32 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@contentful/rich-text-html-renderer@^15.0.0":
-  version "15.2.0"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-html-renderer/-/rich-text-html-renderer-15.2.0.tgz#112bb9f748b5bc4df9d2e2065cb9f6d6e9ca085a"
-  integrity sha512-htcPzKiKsfINv6wkHtx38Vw0QLeGwzRTLe8dNHU2lvGZ+tgmqsgmt6C0XcpBbdon98Afl8xdToOpZdfQImI8NA==
+"@contentful/rich-text-html-renderer@^15.3.5":
+  version "15.3.5"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-html-renderer/-/rich-text-html-renderer-15.3.5.tgz#b8e9d5226f9e75f2ac7cf2c5761d2b4ea195b7bd"
+  integrity sha512-xB9mL8Vb1Ebh0To5jxDb1mYuf1fy4j/pfcl8ZxQppB9nIc7jlHfYUePMl3P3t1kPtED7GjHmsV7kLAxEoWqtgg==
   dependencies:
-    "@contentful/rich-text-types" "^15.1.0"
+    "@contentful/rich-text-types" "^15.3.5"
     escape-html "^1.0.3"
 
-"@contentful/rich-text-plain-text-renderer@^15.0.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-plain-text-renderer/-/rich-text-plain-text-renderer-15.1.0.tgz#d6deb9f78de24b606d96dffd00abe8e2f957801e"
-  integrity sha512-aPyDMQpb5rXfTJFRDur10qNZm1roKtXcXi6nIUP582NSLEzkp5GRydJsbp0Zcu+8qLcNMfvc7nwn4725P+Ma8w==
+"@contentful/rich-text-plain-text-renderer@^15.3.5":
+  version "15.3.5"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-plain-text-renderer/-/rich-text-plain-text-renderer-15.3.5.tgz#d92761ca118c5f0b16b2c55c9a190a8c02e75ffd"
+  integrity sha512-AFNP1gAopmFiFK8E4qzMcgemYzSUHfmgVZeZAzypPDKQhhS3x/L4u9kihZcK55YkLpSJgUisc8XcrJlUTYMl4g==
   dependencies:
-    "@contentful/rich-text-types" "^15.1.0"
+    "@contentful/rich-text-types" "^15.3.5"
 
-"@contentful/rich-text-react-renderer@^15.0.0":
-  version "15.2.0"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.2.0.tgz#b5ff25b4746f063f15d83eccaff555597d46683e"
-  integrity sha512-mMvs1tvd8Uab1Rqu1oNNqrVwaiQ3+EiLbjZQkBuQ0vTpVCmFI5w60X/mUg5aLMQzJMyEW/kzzcGEjo5oG7im5Q==
+"@contentful/rich-text-react-renderer@^15.3.5":
+  version "15.3.5"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.3.5.tgz#94a94ea937c7a2f331942307f9998c460a5dd221"
+  integrity sha512-BDZQ0Z1koj5C9VzOt9V5vaEIKRfbakHBqU2DpjmWCx0h+wRdmmVQdTX6VHousH7TOHjWLUi8w7xHH3Kjnzh0EQ==
   dependencies:
-    "@contentful/rich-text-types" "^15.1.0"
+    "@contentful/rich-text-types" "^15.3.5"
 
-"@contentful/rich-text-types@^15.0.0", "@contentful/rich-text-types@^15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-15.1.0.tgz#5637452257e6c7c6fc406ec1ec6ab7fcc1158105"
-  integrity sha512-3PgQi/B5yKC3xXDar1Ry4i4l9jgt56PFZ40cOkE+oCNLmNlFtZolo6cTrf4VunuufSsCfjTs4iWovy7fbM1I8Q==
+"@contentful/rich-text-types@^15.3.5":
+  version "15.3.5"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-15.3.5.tgz#414e7b4e671d9c3a4f75e5c762e4e109ccd4ba20"
+  integrity sha512-NOAdIfWUadOxhnv4IR+vBtgPtAtV0hv1uoZJogm2mniXZHRIpmKNbEBncjfr/SSHhOG98tQgHCUw6b/nvDTVaQ==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"

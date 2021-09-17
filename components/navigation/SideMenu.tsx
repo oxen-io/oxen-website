@@ -11,6 +11,7 @@ export interface ISideMenuItem {
   label: string;
   href: string;
   isExternal?: boolean;
+  hasOwnRoute?: boolean;
   shouldHide?: boolean;
 }
 

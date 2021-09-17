@@ -7,7 +7,7 @@ import { CmsApi } from '../../services/cms';
 import BlogPage, { BlogPageProps } from '../../components/BlogPage';
 
 interface IPath {
-  params: { page: string };
+  params: { page: string[] };
 }
 
 export default function Blog(props: BlogPageProps): ReactElement {
@@ -19,15 +19,13 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   console.log(
     `Building blog results page %c${
-      String(context.params.page).split('?page=')[1]
+      context.params.page ? context.params.page[0] : ''
     }`,
     'color: purple;',
   );
 
   const cms = new CmsApi();
-  const page = context.params.page
-    ? Number(String(context.params.page).split('?page=')[1])
-    : 1;
+  const page = context.params.page ? Number(context.params.page[0]) : 1;
 
   try {
     const { entries, total } = await cms.fetchBlogEntriesWithoutDevUpdates(
@@ -59,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // TODO could use the PageCount calculation from GetStaticProps
   let page = 1;
   let foundAllPosts = false;
-  const paths: IPath[] = [{ params: { page: `?page=${page}` } }];
+  const paths: IPath[] = [{ params: { page: [String(page)] } }];
 
   // Contentful only allows 100 at a time
   while (!foundAllPosts) {
@@ -71,7 +69,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 
     page++;
-    paths.push({ params: { page: `?page=${page}` } });
+    paths.push({ params: { page: [String(page)] } });
   }
 
   return { paths, fallback: 'blocking' };

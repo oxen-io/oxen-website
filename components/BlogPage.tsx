@@ -36,7 +36,7 @@ export default function BlogPage(props: BlogPageProps): ReactElement {
   const [featuredPost, ...otherPosts] = posts;
 
   const paginationHandler = page => {
-    const newRoute = `/blog?page=${page.selected + 1}`;
+    const newRoute = `/blog/${page.selected + 1}`;
     router.push(newRoute);
   };
 

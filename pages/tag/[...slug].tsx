@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import { CMS, METADATA } from '../../constants';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
-import { IPost, ITagList } from '../../types/cms';
+import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 import { ScreenContext } from '../../contexts/screen';
 
@@ -160,30 +160,35 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
   console.log(
-    `Building %c${context.params.slug[0]} tag page ${context.params.slug[1]}`,
+    `Building %c${context.params.slug[0]} tag page ${
+      context.params.slug && context.params.slug[1]
+        ? context.params.slug[1]
+        : ''
+    }`,
     'color: purple;',
   );
 
   const cms = new CmsApi();
-  // Get tag query
   const tag = String(context.params.slug[0] ?? '') ?? null;
   const page = Number(context.params.slug[1] ?? 1);
-
-  const RESULTS_PER_PAGE = tag
-    ? CMS.BLOG_RESULTS_PER_PAGE_TAGGED
-    : CMS.BLOG_RESULTS_PER_PAGE;
 
   try {
     const {
       entries: tagPosts = [],
       total: tagTotalPosts,
-    } = await cms.fetchBlogEntriesByTag(tag ?? '', RESULTS_PER_PAGE, page);
-
-    const { entries: posts, total: totalPosts } = await cms.fetchBlogEntries(
-      RESULTS_PER_PAGE,
+    } = await cms.fetchBlogEntriesByTag(
+      tag ?? '',
+      CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
+      page,
     );
 
-    const pageCount = Math.ceil(tagTotalPosts / RESULTS_PER_PAGE);
+    const { entries: posts, total: totalPosts } = await cms.fetchBlogEntries(
+      CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
+    );
+
+    const pageCount = Math.ceil(
+      tagTotalPosts / CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
+    );
 
     return {
       props: {

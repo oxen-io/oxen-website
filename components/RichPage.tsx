@@ -1,11 +1,13 @@
-import Head from 'next/head';
 import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { useDispatch } from 'react-redux';
-import { Contained } from '../components/Contained';
-import { RichBody } from '../components/RichBody';
+
 import { PageType, setPageType } from '../state/navigation';
 import { ISplitPage } from '../types/cms';
 import { generateTitle, generateURL } from '../utils/metadata';
+
+import { Contained } from '../components/Contained';
+import { RichBody } from '../components/RichBody';
 
 export default function RichPage({
   page,
@@ -15,13 +17,13 @@ export default function RichPage({
   href: string;
 }) {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setPageType(PageType.NORMAL));
-  }, []);
-
   const pageTitle = generateTitle(page?.label);
   const pageDescription = page?.title;
   const pageURL = generateURL(href);
+
+  useEffect(() => {
+    dispatch(setPageType(PageType.NORMAL));
+  }, []);
 
   return (
     <>

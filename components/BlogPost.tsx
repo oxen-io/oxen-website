@@ -1,14 +1,18 @@
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Article } from '../components/article/Article';
+
 import { PageType, setPageType, setPostTitle } from '../state/navigation';
 import { IPost } from '../types/cms';
 import { generateTitle } from '../utils/metadata';
 
+import { Article } from '../components/article/Article';
+
 // Parallax on bg as mouse moves
 export default function BlogPost({ post, url }: { post: IPost; url: string }) {
   const dispatch = useDispatch();
+  const pageTitle = generateTitle(post?.title);
+  const imageURL = post?.featureImage?.imageUrl;
 
   useEffect(() => {
     if (post) {
@@ -16,9 +20,6 @@ export default function BlogPost({ post, url }: { post: IPost; url: string }) {
       dispatch(setPostTitle(post.title));
     }
   }, []);
-
-  const pageTitle = generateTitle(post?.title);
-  const imageURL = post?.featureImage?.imageUrl;
 
   return (
     <>

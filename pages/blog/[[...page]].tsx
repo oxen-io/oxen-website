@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { CMS, METADATA } from '../../constants';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
+import { IPath } from '../../types';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
@@ -16,38 +17,34 @@ import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import Pagination from '../../components/Pagination';
 
-interface IPath {
-  params: { page: string[] };
-}
-
-export interface Props {
+interface Props {
   posts: IPost[];
   currentPage: number;
   pageCount: number;
 }
 
 export default function Blog(props: Props): ReactElement {
-  const { posts, currentPage, pageCount } = props;
-
+  const {
+    posts: [featuredPost, ...otherPosts],
+    currentPage,
+    pageCount,
+  } = props;
   const router = useRouter();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setPageType(PageType.BLOG));
-  }, []);
-
-  const [featuredPost, ...otherPosts] = posts;
+  const pageTitle = generateTitle('Blog');
+  const featuredImageURL = featuredPost?.featureImage?.imageUrl;
 
   const paginationHandler = page => {
     const newRoute = `/blog/${page.selected + 1}`;
     router.push(newRoute);
   };
 
-  const pageTitle = generateTitle('Blog');
-  const featuredImageURL = featuredPost?.featureImage?.imageUrl;
+  useEffect(() => {
+    dispatch(setPageType(PageType.BLOG));
+  }, []);
 
   return (
-    <div>
+    <>
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={METADATA.BLOG.DESCRIPTION}></meta>
@@ -87,7 +84,7 @@ export default function Blog(props: Props): ReactElement {
           paginationHandler={paginationHandler}
         />
       </div>
-    </div>
+    </>
   );
 }
 
@@ -105,7 +102,10 @@ export const getStaticProps: GetStaticProps = async (
   const page = context.params.page ? Number(context.params.page[0]) : 1;
 
   try {
-    const { entries, total } = await cms.fetchBlogEntriesWithoutDevUpdates(
+    const {
+      entries: posts,
+      total,
+    } = await cms.fetchBlogEntriesWithoutDevUpdates(
       CMS.BLOG_RESULTS_PER_PAGE,
       page,
     );
@@ -118,7 +118,7 @@ export const getStaticProps: GetStaticProps = async (
 
     return {
       props: {
-        posts: entries,
+        posts,
         pageCount,
         currentPage: page,
       },

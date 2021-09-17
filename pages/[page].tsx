@@ -3,21 +3,16 @@ import { GetStaticPaths } from 'next';
 import { CMS, NAVIGATION } from '../constants';
 import { CmsApi, generateLinkMeta, unslugify } from '../services/cms';
 import { SideMenuItem } from '../state/navigation';
+import { IPath } from '../types';
 import { IPost, ISplitPage, isPost } from '../types/cms';
 import { isLocal } from '../utils/links';
 
 import BlogPost from '../components/BlogPost';
 import RichPage from '../components/RichPage';
 
-interface IPath {
-  params: { page: string };
-}
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get paths to all pages
-  // Hardcoded in navigation constants.
-  // Contentful can edit entries but cannot add/remove
-  // without touching code.
+  // Get paths to all pages stored in navigation constants.
+  // Contentful can edit entries but cannot add/remove without touching code.
   const navigationPaths: IPath[] = Object.values(NAVIGATION.SIDE_MENU_ITEMS)
     .filter(item => {
       return item.hasOwnRoute === undefined && isLocal(item.href);
@@ -27,7 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }));
 
   const cms = new CmsApi();
-  let posts: IPost[] = [];
+  const posts: IPost[] = [];
   let currentPage = 1;
   let foundAllPosts = false;
 
@@ -40,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       continue;
     }
 
-    posts = [...posts, ..._posts];
+    posts.push(..._posts);
     currentPage++;
   }
 
@@ -52,20 +47,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export async function getStaticProps({ params }) {
-  console.log(`Building %c${params.page} page`, 'color: purple;');
+  console.log(`Building page  %c${params.page}`, 'color: purple;');
   const href = params?.page ?? '';
   const id = unslugify(String(href));
 
   try {
     const cms = new CmsApi();
     let page: ISplitPage | IPost;
+
     if (SideMenuItem[id]) {
       page = await cms.fetchPageById(SideMenuItem[id]);
     } else {
       page = await cms.fetchEntryBySlug(href, 'post');
       // embedded links in post body need metadata for preview
       page.body = await generateLinkMeta(page.body);
-      // TODO might be URL issues
     }
 
     return {
@@ -84,12 +79,16 @@ export async function getStaticProps({ params }) {
   }
 }
 
-function Page({ page, href }: { page: ISplitPage | IPost; href: string }) {
+export default function Page({
+  page,
+  href,
+}: {
+  page: ISplitPage | IPost;
+  href: string;
+}) {
   if (isPost(page)) {
     return <BlogPost post={page} url={href} />;
   } else {
     return <RichPage page={page} href={href} />;
   }
 }
-
-export default Page;

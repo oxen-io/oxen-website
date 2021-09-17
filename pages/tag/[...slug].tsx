@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { CMS, METADATA } from '../../constants';
 import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
+import { IPath } from '../../types';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
 
@@ -16,10 +17,6 @@ import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import { TagBlock } from '../../components/TagBlock';
 import Pagination from '../../components/Pagination';
-
-interface IPath {
-  params: { slug: string[] };
-}
 
 interface Props {
   posts: IPost[];
@@ -31,27 +28,25 @@ interface Props {
 
 export default function Tag(props: Props): ReactElement {
   const { posts, tagPosts, tag, currentPage, pageCount } = props;
-
   const router = useRouter();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(setPageType(PageType.BLOG));
-  }, []);
-
   const tagHasPosts = tagPosts && tagPosts?.length > 0;
+  const pageTitle = generateTitle(`${tag} Archives`);
   const featuredPost = posts[0];
+  const featuredImageURL = featuredPost?.featureImage?.imageUrl;
 
   const paginationHandler = page => {
     const newRoute = `/tag/${tag}/${page.selected + 1}`;
     router.push(newRoute);
   };
 
-  const pageTitle = generateTitle(`${tag} Archives`);
-  const featuredImageURL = featuredPost?.featureImage?.imageUrl;
+  useEffect(() => {
+    dispatch(setPageType(PageType.BLOG));
+  }, []);
 
   return (
-    <div>
+    <>
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={METADATA.BLOG.DESCRIPTION}></meta>
@@ -125,7 +120,7 @@ export default function Tag(props: Props): ReactElement {
           ))}
         </CardGrid>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -133,7 +128,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
   console.log(
-    `Building %c${context.params.slug[0]} tag page ${
+    `Building tag results for %c${context.params.slug[0]} page ${
       context.params.slug && context.params.slug[1]
         ? context.params.slug[1]
         : ''
@@ -195,7 +190,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   for (let i = 0; i < tags.length; i++) {
     const { entries, total } = await cms.fetchBlogEntriesByTag(tags[i]);
     const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
-    const _paths: IPath[] = [];
+    const _paths = [];
 
     for (let i = 1; i <= pageCount; i++) {
       _paths.push({ params: { slug: [tags[i], String(i)] } });

@@ -1,8 +1,7 @@
-import { useEffect, useContext, ReactElement } from 'react';
+import { useEffect, ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import ReactPaginate from 'react-paginate';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
@@ -11,12 +10,12 @@ import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
 import { IPost } from '../../types/cms';
 import { generateTitle } from '../../utils/metadata';
-import { ScreenContext } from '../../contexts/screen';
 
 import { ArticleCard } from '../../components/cards/ArticleCard';
 import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
 import { TagBlock } from '../../components/TagBlock';
+import Pagination from '../../components/Pagination';
 
 interface IPath {
   params: { slug: string[] };
@@ -32,7 +31,6 @@ interface Props {
 
 export default function Tag(props: Props): ReactElement {
   const { posts, tagPosts, tag, currentPage, pageCount } = props;
-  const { isMobile } = useContext(ScreenContext);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -48,35 +46,6 @@ export default function Tag(props: Props): ReactElement {
     const newRoute = `/tag/${tag}/${page.selected + 1}`;
     router.push(newRoute);
   };
-
-  // Mobile Pagination Settings
-  const MAX_PAGINATION_BUTTONS_MOBILE = 5; // On mobile, we want to only have a maximum of 5 pagination buttons
-  const hasTooManyButtons =
-    isMobile && pageCount > MAX_PAGINATION_BUTTONS_MOBILE; // Check if the maximum number of pagination buttons have been reached
-  const EDGE_PAGES = [1, 2, pageCount - 1, pageCount]; // Check if the current page is an edge page, to keep the number of pagination buttons consistent
-  const isEdgePage = isMobile && EDGE_PAGES.includes(currentPage);
-
-  const pagination = (
-    <Contained>
-      <div className="flex justify-center mb-4">
-        <div className="mt-6 tablet:mt-4">
-          <ReactPaginate
-            previousLabel={'<'}
-            nextLabel={'>'}
-            breakLabel={'...'}
-            breakClassName={'break-me'}
-            activeClassName={'active bg-secondary'}
-            containerClassName={'pagination bg-primary text-white'}
-            initialPage={currentPage - 1}
-            pageCount={pageCount}
-            marginPagesDisplayed={hasTooManyButtons && !isEdgePage ? 1 : 2}
-            pageRangeDisplayed={isMobile ? 1 : 2}
-            onPageChange={paginationHandler}
-          />
-        </div>
-      </div>
-    </Contained>
-  );
 
   const pageTitle = generateTitle(`${tag} Archives`);
   const featuredImageURL = featuredPost?.featureImage?.imageUrl;
@@ -136,7 +105,11 @@ export default function Tag(props: Props): ReactElement {
               ))}
             </CardGrid>
 
-            {pagination}
+            <Pagination
+              currentPage={currentPage}
+              pageCount={pageCount}
+              paginationHandler={paginationHandler}
+            />
           </>
         )}
 

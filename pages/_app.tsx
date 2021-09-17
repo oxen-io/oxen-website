@@ -23,8 +23,7 @@ function App({ Component, pageProps }: AppProps) {
 
   const handleLocationChange = url => {
     // Break out of split view
-    const onBlog =
-      NAVIGATION.BLOG_REGEX.test(url) || NAVIGATION.TAG_REGEX.test(url);
+    const onBlog = NAVIGATION.BLOG_REGEX.test(url);
     const onPost = NAVIGATION.POST_REGEX.test(url);
 
     const pageType = onBlog

@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import React from 'react';
 import { IPost } from '../../types/cms';
 import { ArticleContained } from '../ArticleContained';
 import { Contained } from '../Contained';
+import EmailSignup from '../EmailSignup';
 import { Spacer } from '../Spacer';
 import { TagRow } from '../TagRow';
 import { ArticleSectionContent } from './sections/ArticleSectionContent';
@@ -46,6 +48,7 @@ export function Article(props: IPost) {
 
           <Spacer spaceY={4} />
           <TagRow tags={tags} size="medium" />
+          <EmailSignup classes={classNames('mt-12', 'tablet:mt-12')} />
         </ArticleContained>
       </div>
     </article>

@@ -6,7 +6,12 @@ import { Contained } from './Contained';
 import { Input } from './Input';
 import { Button } from './Button';
 
-export default function EmailSignup(): ReactElement {
+interface Props {
+  classes?: string;
+}
+
+export default function EmailSignup(props: Props): ReactElement {
+  const { classes } = props;
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
@@ -49,6 +54,7 @@ export default function EmailSignup(): ReactElement {
         'tablet:w-4/5 tablet:mx-auto tablet:py-4 tablet:mt-6 tablet:mb-8',
         'desktop:py-6',
         router.asPath !== '/get-involved' && 'tablet:w-full',
+        classes,
       )}
     >
       <h3

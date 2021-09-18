@@ -58,7 +58,7 @@ function App({ Component, pageProps }: AppProps) {
       <StoreProvider store={store}>
         <ScreenProvider>
           <Head>
-            <title>{METADATA.TITLE_SUFFIX}</title>
+            <title>{METADATA.TITLE}</title>
             <meta
               name="viewport"
               content="width=device-width, initial-scale=1, maximum-scale=1"

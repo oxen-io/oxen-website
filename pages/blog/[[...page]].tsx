@@ -47,20 +47,26 @@ export default function Blog(props: Props): ReactElement {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content={METADATA.BLOG.DESCRIPTION}></meta>
+        <meta
+          name="description"
+          content={METADATA.BLOG_PAGE.DESCRIPTION}
+        ></meta>
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta
           property="og:description"
-          content={METADATA.BLOG.DESCRIPTION}
+          content={METADATA.BLOG_PAGE.DESCRIPTION}
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={featuredImageURL} key="ogimage" />
-        <meta property="og:url" content={METADATA.BLOG.URL} />
-        <link rel="canonical" href={METADATA.BLOG.URL}></link>
+        <meta property="og:url" content={METADATA.BLOG_PAGE.URL} />
+        <link rel="canonical" href={METADATA.BLOG_PAGE.URL}></link>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={METADATA.BLOG.DESCRIPTION} />
+        <meta
+          name="twitter:description"
+          content={METADATA.BLOG_PAGE.DESCRIPTION}
+        />
         <meta name="twitter:image" content={featuredImageURL} />
       </Head>
 

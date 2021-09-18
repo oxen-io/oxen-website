@@ -10,36 +10,26 @@ import { HomeHero } from '../components/HomeHero';
 import { HomeHeroBubble } from '../components/HomeHeroBubble';
 
 export default function Index() {
-  const imageURL = `${METADATA.OXEN_HOST_URL}/site-banner.png`;
+  const imageURL = `${METADATA.HOST_URL}/site-banner.png`;
   return (
     <>
       <Head>
-        <title>{METADATA.TITLE_SUFFIX}</title>
-        <meta
-          name="description"
-          content={METADATA.SITE_META_DESCRIPTION}
-        ></meta>
-        <meta
-          property="og:title"
-          content={METADATA.TITLE_SUFFIX}
-          key="ogtitle"
-        />
+        <title>{METADATA.TITLE}</title>
+        <meta name="description" content={METADATA.DESCRIPTION}></meta>
+        <meta property="og:title" content={METADATA.TITLE} key="ogtitle" />
         <meta
           property="og:description"
-          content={METADATA.SITE_META_DESCRIPTION}
+          content={METADATA.DESCRIPTION}
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={imageURL} key="ogimage" />
-        <meta property="og:url" content={METADATA.OXEN_HOST_URL} />
+        <meta property="og:url" content={METADATA.HOST_URL} />
 
-        <link rel="canonical" href={METADATA.OXEN_HOST_URL}></link>
+        <link rel="canonical" href={METADATA.HOST_URL}></link>
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={METADATA.TITLE_SUFFIX} />
-        <meta
-          name="twitter:description"
-          content={METADATA.SITE_META_DESCRIPTION}
-        />
+        <meta name="twitter:title" content={METADATA.TITLE} />
+        <meta name="twitter:description" content={METADATA.DESCRIPTION} />
         <meta name="twitter:image" content={imageURL} />
       </Head>
 

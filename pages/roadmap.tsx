@@ -24,17 +24,20 @@ function Roadmap() {
   const pageURL = generateURL(
     NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href,
   );
-  const imageURL = `${METADATA.OXEN_HOST_URL}/site-banner.png`;
+  const imageURL = `${METADATA.HOST_URL}/site-banner.png`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content={METADATA.ROADMAP.DESCRIPTION}></meta>
+        <meta
+          name="description"
+          content={METADATA.ROADMAP_PAGE.DESCRIPTION}
+        ></meta>
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta
           property="og:description"
-          content={METADATA.ROADMAP.DESCRIPTION}
+          content={METADATA.ROADMAP_PAGE.DESCRIPTION}
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
@@ -45,7 +48,7 @@ function Roadmap() {
         <meta name="twitter:title" content={pageTitle} />
         <meta
           name="twitter:description"
-          content={METADATA.ROADMAP.DESCRIPTION}
+          content={METADATA.ROADMAP_PAGE.DESCRIPTION}
         />
         <meta name="twitter:image" content={imageURL} />
       </Head>

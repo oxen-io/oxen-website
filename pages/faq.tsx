@@ -39,17 +39,17 @@ function FAQ(props: Props) {
     NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.FAQ].href,
   );
   const imagePathLocal = 'img/faq.png';
-  const imageURL = `${METADATA.OXEN_HOST_URL}/${imagePathLocal}`;
+  const imageURL = `${METADATA.HOST_URL}/${imagePathLocal}`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content={METADATA.FAQ.DESCRIPTION}></meta>
+        <meta name="description" content={METADATA.FAQ_PAGE.DESCRIPTION}></meta>
         <meta property="og:title" content={pageTitle} key="ogtitle" />
         <meta
           property="og:description"
-          content={METADATA.FAQ.DESCRIPTION}
+          content={METADATA.FAQ_PAGE.DESCRIPTION}
           key="ogdesc"
         />
         <meta property="og:type" content="website" />
@@ -59,7 +59,10 @@ function FAQ(props: Props) {
         <link rel="canonical" href={pageURL}></link>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={METADATA.FAQ.DESCRIPTION} />
+        <meta
+          name="twitter:description"
+          content={METADATA.FAQ_PAGE.DESCRIPTION}
+        />
         <meta name="twitter:image" content={imageURL} />
       </Head>
 

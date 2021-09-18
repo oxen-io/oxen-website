@@ -1,20 +1,70 @@
+export interface IMetadata {
+  DESCRIPTION: string;
+  TYPE?: string;
+  OG_IMAGE?: {
+    URL: string;
+    WIDTH: number;
+    HEIGHT: number;
+    ALT: string;
+  };
+  TAGS?: string[];
+  ARTICLE_SECTION?: string;
+  PUBLISHED_TIME?: string;
+}
+
 const METADATA = {
-  OXEN_HOST_URL: 'https://oxen.io',
-  TITLE_SUFFIX: 'Oxen | Privacy made simple.',
-  SITE_META_DESCRIPTION:
+  HOST_URL: 'https://oxen.io',
+  SITE_NAME: 'Oxen',
+  TITLE: 'Oxen | Privacy made simple.',
+  DESCRIPTION:
     'Oxen is built by the OPTF, a passionate team of advocates, creatives, and engineers building a world where the internet is open, software is free and accessible, and your privacy is protected. The OPTF also builds other platforms using Oxen technology, and supports other developers in building on Oxen.',
-  ROADMAP: {
-    DESCRIPTION: "View Oxen's plan for the future here.",
+  TAGS: [
+    'Privacy',
+    'decentralisation',
+    'decentralised',
+    'Open Source',
+    'Private messaging',
+    'Onion routing',
+    'Cryptocurrency',
+    'Digital finance',
+    'Privacy Tools',
+  ],
+  OG_TYPE: 'website',
+  OG_IMAGE: {
+    URL: '/site-banner.png',
+    WIDTH: 800,
+    HEIGHT: 450,
+    ALT: 'Oxen Logo Blue Background',
   },
+  LOCALE: 'en_US',
+  FAVICON: {
+    MEDIUM: '/favicon-32x32.png',
+    SMALL: '/favicon-16x16.png',
+    APPLE_TOUCH_ICON: '/apple-touch-icon.png',
+  },
+  MANIFEST: '/site.webmanifest',
+  MASK_ICON: { PATH: '/safari-pinned-tab.svg', COLOR: '#5bbad5' },
+  MSAPPLICATION_TILECOLOR: '#343132',
+  THEME_COLOR: '#ffffff',
   404: {
     DESCRIPTION: "Oopsy, here's our 404 page.",
   },
-  BLOG: {
+  BLOG_PAGE: {
+    TYPE: 'article',
     DESCRIPTION: "View Oxen's Blog Updates Here",
-    URL: 'https://oxen.io/blog',
+    URL: 'https://oxen.io/blog', // TODO Remove
   },
-  FAQ: {
+  ROADMAP_PAGE: {
+    DESCRIPTION: "View Oxen's plan for the future here.",
+  },
+  FAQ_PAGE: {
     DESCRIPTION: 'View Some Frequently Asked Questions here',
+    OG_IMAGE: {
+      URL: '/img/faq.png',
+      WIDTH: 1920,
+      HEIGHT: 1080,
+      ALT: 'Question mark with server boxes surrounding it',
+    },
   },
 };
 

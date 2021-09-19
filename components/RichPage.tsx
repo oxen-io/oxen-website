@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 
 import { METADATA } from '../constants';
@@ -37,12 +38,14 @@ export default function RichPage(props: Props) {
       />
       <div className="bg-alt">
         <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
-          <img
-            style={{ maxHeight: '33vh' }}
-            src={page?.hero?.imageUrl}
-            className="object-contain w-full"
-            alt={page?.hero?.description ?? page?.label}
-          />
+          <div className="relative w-full" style={{ height: '33vh' }}>
+            <Image
+              src={page?.hero?.imageUrl}
+              alt={page?.hero?.description ?? page?.label}
+              layout="fill"
+              className="object-contain"
+            />
+          </div>
         </div>
 
         <Contained>

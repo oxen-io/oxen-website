@@ -5,17 +5,6 @@ import { IPost } from '../types/cms';
 import { METADATA } from '../constants';
 
 const baseUrl = METADATA.HOST_URL;
-const categories = [
-  'Privacy',
-  'decentralisation',
-  'decentralised',
-  'Open Source',
-  'Private messaging',
-  'Onion routing',
-  'Cryptocurrency',
-  'Digital finance',
-  'Privacy Tools',
-];
 const date = new Date();
 const feed = new Feed({
   title: METADATA.TITLE,
@@ -34,8 +23,9 @@ const feed = new Feed({
     atom: `${baseUrl}/rss/atom.xml`,
   },
 });
-categories.forEach(category => {
-  feed.addCategory(category);
+
+METADATA.TAGS.forEach(tag => {
+  feed.addCategory(tag);
 });
 
 export default function generateRSSFeed(posts: IPost[]) {

@@ -29,7 +29,9 @@ export default function CustomHead(props: Props): ReactElement {
   })();
   const tags = metadata?.TAGS ? metadata?.TAGS : METADATA.TAGS;
   const renderTags = (() => {
-    const keywords = <meta name="keywords" content={tags.join(' ')} />;
+    const keywords = (
+      <meta key="keywords" name="keywords" content={tags.join(' ')} />
+    );
     if (metadata?.TYPE !== 'article') return keywords;
     return (
       <>
@@ -43,11 +45,13 @@ export default function CustomHead(props: Props): ReactElement {
           );
         })}
         <meta
+          key="article:section"
           property="article:section"
           content={metadata?.ARTICLE_SECTION ?? METADATA.TAGS[0]}
         />
         {metadata?.PUBLISHED_TIME && (
           <meta
+            key="article:published_time"
             property="article:published_time"
             content={metadata?.PUBLISHED_TIME}
           />
@@ -103,96 +107,148 @@ export default function CustomHead(props: Props): ReactElement {
   })();
   return (
     <Head>
-      <title>{pageTitle}</title>
-      <meta charSet="utf-8" />
-      {/* <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      ></meta> */}
+      <title key={pageTitle}>{pageTitle}</title>
+      <meta key="utf-8" charSet="utf-8" />
       <meta
+        key="viewport"
         name="viewport"
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
       />
       <meta
+        key="description"
         name="description"
         content={metadata?.DESCRIPTION ?? METADATA.DESCRIPTION}
       />
       <meta
+        key="robots"
         name="robots"
         content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
       />
       <meta
+        key="googlebot"
         name="googlebot"
         content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
       />
-      <meta name="googlebot" content="index,follow" />
-      <meta property="og:url" content={pageUrl} />
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:type" content={metadata?.TYPE ?? METADATA.OG_TYPE} />
+      <meta key="og:url" property="og:url" content={pageUrl} />
+      <meta key="og:title" property="og:title" content={pageTitle} />
       <meta
+        key="og:type"
+        property="og:type"
+        content={metadata?.TYPE ?? METADATA.OG_TYPE}
+      />
+      <meta
+        key="og:description"
         property="og:description"
         content={metadata?.DESCRIPTION ?? METADATA.DESCRIPTION}
       />
-      <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:secure_url" content={imageUrl}></meta>
+      <meta key="og:image" property="og:image" content={imageUrl} />
       <meta
+        key="og:image:secure_url"
+        property="og:image:secure_url"
+        content={imageUrl}
+      ></meta>
+      <meta
+        key="og:image:alt"
         property="og:image:alt"
         content={metadata?.OG_IMAGE?.ALT ?? METADATA.OG_IMAGE.ALT}
       />
       <meta
+        key="og:image:width"
         property="og:image:width"
         content={String(metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH)}
       />
       <meta
+        key="og:image:height"
         property="og:image:height"
         content={String(metadata?.OG_IMAGE?.HEIGHT ?? METADATA.OG_IMAGE.HEIGHT)}
       />
-      <meta property="og:locale" content={METADATA.LOCALE} />
-      <meta property="og:site_name" content={METADATA.SITE_NAME} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={pageTitle} />
+      <meta key="og:locale" property="og:locale" content={METADATA.LOCALE} />
       <meta
+        key="og:site_name"
+        property="og:site_name"
+        content={METADATA.SITE_NAME}
+      />
+      <meta
+        key="twitter:card"
+        name="twitter:card"
+        content="summary_large_image"
+      />
+      <meta key="twitter:title" name="twitter:title" content={pageTitle} />
+      <meta
+        key="twitter:description"
         name="twitter:description"
         content={metadata?.DESCRIPTION ?? METADATA.DESCRIPTION}
       />
-      <meta name="twitter:image" content={imageUrl} />
-      <meta name="twitter:site" content={METADATA.HOST_URL} />
-      <meta name="twitter:creator" content="Oxen_io" />
-      <meta name="apple-itunes-app" content="app-id=1547745078" />
+      <meta key="twitter:image" name="twitter:image" content={imageUrl} />
       <meta
+        key="twitter:site"
+        name="twitter:site"
+        content={METADATA.HOST_URL}
+      />
+      <meta key="twitter:creator" name="twitter:creator" content="Oxen_io" />
+      <meta
+        key="apple-itunes-app"
+        name="apple-itunes-app"
+        content="app-id=1547745078"
+      />
+      <meta
+        key="msapplication-TileColor"
         name="msapplication-TileColor"
         content={METADATA.MSAPPLICATION_TILECOLOR}
       />
-      <meta name="theme-color" content={METADATA.THEME_COLOR} />
+      <meta
+        key="theme-color"
+        name="theme-color"
+        content={METADATA.THEME_COLOR}
+      />
       {renderTags}
-      <link rel="canonical" href={pageUrl} />
+      <link key="canonical" rel="canonical" href={pageUrl} />
       <link
+        key="image/png32x32"
         rel="icon"
         type="image/png"
         sizes="32x32"
         href={METADATA.FAVICON.MEDIUM}
       />
       <link
+        key="image/png16x16"
         rel="icon"
         type="image/png"
         sizes="16x16"
         href={METADATA.FAVICON.SMALL}
       />
       <link
+        key="apple-touch-icon"
         rel="apple-touch-icon"
         sizes="180x180"
         href={METADATA.FAVICON.APPLE_TOUCH_ICON}
       />
-      <link rel="manifest" href={METADATA.MANIFEST} />
+      <link key="manifest" rel="manifest" href={METADATA.MANIFEST} />
       <link
+        key="mask-icon"
         rel="mask-icon"
         href={METADATA.MASK_ICON.PATH}
         color={METADATA.MASK_ICON.COLOR}
       />
-      <link rel="shortlink" href={METADATA.HOST_URL} />
-      <link rel="alternative" type="application/rss+xml" href="/feed" />
-      <link rel="alternative" type="application/atom+xml" href="/feed/atom" />
-      <link rel="alternative" type="application/feed+json" href="/feed/json" />
+      <link key="shortlink" rel="shortlink" href={METADATA.HOST_URL} />
+      <link
+        key="/feed"
+        rel="alternative"
+        type="application/rss+xml"
+        href="/feed"
+      />
+      <link
+        key="/feed/atom"
+        rel="alternative"
+        type="application/atom+xml"
+        href="/feed/atom"
+      />
+      <link
+        key="/feed/json"
+        rel="alternative"
+        type="application/feed+json"
+        href="/feed/json"
+      />
       {metadata?.TYPE === 'article' && renderLdJSON}
     </Head>
   );

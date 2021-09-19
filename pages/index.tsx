@@ -1,8 +1,7 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next';
-import Head from 'next/head';
 
 import { IPost } from '../types/cms';
-import { CMS, METADATA } from '../constants';
+import { CMS } from '../constants';
 import { CmsApi } from '../services/cms';
 import generateRSSFeed from '../utils/rss';
 
@@ -10,29 +9,8 @@ import { HomeHero } from '../components/HomeHero';
 import { HomeHeroBubble } from '../components/HomeHeroBubble';
 
 export default function Index() {
-  const imageURL = `${METADATA.HOST_URL}/site-banner.png`;
   return (
     <>
-      <Head>
-        <title>{METADATA.TITLE}</title>
-        <meta name="description" content={METADATA.DESCRIPTION}></meta>
-        <meta property="og:title" content={METADATA.TITLE} key="ogtitle" />
-        <meta
-          property="og:description"
-          content={METADATA.DESCRIPTION}
-          key="ogdesc"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={imageURL} key="ogimage" />
-        <meta property="og:url" content={METADATA.HOST_URL} />
-
-        <link rel="canonical" href={METADATA.HOST_URL}></link>
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={METADATA.TITLE} />
-        <meta name="twitter:description" content={METADATA.DESCRIPTION} />
-        <meta name="twitter:image" content={imageURL} />
-      </Head>
-
       {/* Only visible when no pages are open */}
       <HomeHero />
       <HomeHeroBubble />

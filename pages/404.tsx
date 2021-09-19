@@ -1,10 +1,9 @@
 import classNames from 'classnames';
-import Head from 'next/head';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import CustomHead from '../components/CustomHead';
 // import _404 from '../assets/svgs/404.svg';
 import { UI, METADATA } from '../constants';
 import { ScreenContext } from '../contexts/screen';
-import { generateTitle, generateURL } from '../utils/metadata';
 
 function oxen404() {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
@@ -43,29 +42,9 @@ function oxen404() {
     minHeight: isTablet ? '330px' : '450px',
   };
 
-  const goBackHomeStyles = {
-    width: '9rem',
-  };
-
-  const pageTitle = generateTitle('404');
-  const pageURL = generateURL('/404');
-
   return (
     <div className="flex items-center justify-center flex-grow h-full">
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={METADATA['404'].DESCRIPTION}></meta>
-        <meta property="og:title" content={pageTitle} key="ogtitle" />
-        <meta
-          property="og:description"
-          content={METADATA['404'].DESCRIPTION}
-          key="ogdesc"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageURL} />
-
-        <link rel="canonical" href={pageURL}></link>
-      </Head>
+      <CustomHead title={'404'} metadata={METADATA[404]} />
 
       <div style={wrapperStyles} className="flex items-center flex-grow">
         <div

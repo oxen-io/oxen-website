@@ -20,6 +20,10 @@ export function generateTitle(prefix: string) {
     : METADATA.TITLE;
 }
 
+export function generateURL(prefix: string) {
+  return prefix ? `${METADATA.HOST_URL}${prefix}` : METADATA.HOST_URL;
+}
+
 const METADATA = {
   HOST_URL: 'https://oxen.io',
   SITE_NAME: 'Oxen',

@@ -60,7 +60,10 @@ const METADATA = {
   BLOG_PAGE: {
     TYPE: 'article',
     DESCRIPTION: "View Oxen's Blog Updates Here",
-    URL: 'https://oxen.io/blog', // TODO Remove
+  },
+  TAG_PAGE: {
+    TYPE: 'article',
+    DESCRIPTION: "View Oxen's Blog Updates Sorted By Tag Here",
   },
   ROADMAP_PAGE: {
     DESCRIPTION: "View Oxen's plan for the future here.",

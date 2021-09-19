@@ -1,12 +1,12 @@
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import { createStore } from 'redux';
 import '../assets/style.css';
+import CustomHead from '../components/CustomHead';
 import Layout from '../components/layout';
-import { METADATA, NAVIGATION } from '../constants';
+import { NAVIGATION } from '../constants';
 import ScreenProvider from '../contexts/screen';
 import {
   collapseMobileHeader,
@@ -57,17 +57,7 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <StoreProvider store={store}>
         <ScreenProvider>
-          <Head>
-            <title>{METADATA.TITLE}</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, maximum-scale=1"
-            ></meta>
-            <meta property="og:site_name" content="Oxen" key="ogsitename" />
-            <meta property="og:locale" content="en_US" />
-            <meta name="apple-itunes-app" content="app-id=1547745078" />
-          </Head>
-
+          <CustomHead />
           <Layout>
             <Component {...pageProps} />
           </Layout>

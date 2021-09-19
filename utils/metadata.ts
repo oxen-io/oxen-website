@@ -1,6 +1,7 @@
 import { METADATA } from '../constants';
 import { titleCase } from './text';
 
+// TODO Remove since it should be generated in custom head
 export function generateTitle(prefix: string) {
   return prefix ? `${titleCase(prefix)} - ${METADATA.TITLE}` : METADATA.TITLE;
 }

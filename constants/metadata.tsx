@@ -1,3 +1,5 @@
+import { titleCase } from '../utils/text';
+
 export interface IMetadata {
   DESCRIPTION: string;
   TYPE?: string;
@@ -10,6 +12,12 @@ export interface IMetadata {
   TAGS?: string[];
   ARTICLE_SECTION?: string;
   PUBLISHED_TIME?: string;
+}
+
+export function generateTitle(prefix: string) {
+  return prefix && prefix.length > 0
+    ? `${titleCase(prefix)} - ${METADATA.TITLE}`
+    : METADATA.TITLE;
 }
 
 const METADATA = {

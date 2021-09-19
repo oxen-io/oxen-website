@@ -1,9 +1,11 @@
-import classNames from 'classnames';
 import { useContext } from 'react';
-import CustomHead from '../components/CustomHead';
+import classNames from 'classnames';
+
 // import _404 from '../assets/svgs/404.svg';
 import { UI, METADATA } from '../constants';
 import { ScreenContext } from '../contexts/screen';
+
+import CustomHead from '../components/CustomHead';
 
 function oxen404() {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
@@ -45,7 +47,6 @@ function oxen404() {
   return (
     <div className="flex items-center justify-center flex-grow h-full">
       <CustomHead title={'404'} metadata={METADATA[404]} />
-
       <div style={wrapperStyles} className="flex items-center flex-grow">
         <div
           className={classNames(

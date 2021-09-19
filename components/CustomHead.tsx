@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import METADATA, { IMetadata } from '../constants/metadata';
+
+import METADATA, { generateTitle, IMetadata } from '../constants/metadata';
 import { isLocal } from '..//utils/links';
-import { titleCase } from '../utils/text';
 
 interface Props {
   title?: string;
@@ -13,10 +13,7 @@ interface Props {
 export default function CustomHead(props: Props): ReactElement {
   const router = useRouter();
   const { title, metadata } = props;
-  const pageTitle =
-    title && title.length > 0
-      ? `${titleCase(title)} - ${METADATA.TITLE}`
-      : METADATA.TITLE;
+  const pageTitle = generateTitle(title);
   const pageUrl = `${METADATA.HOST_URL}${router.asPath}`;
   const imageUrl = (() => {
     if (!metadata?.OG_IMAGE?.URL)

@@ -89,6 +89,6 @@ export default function Page({
   if (isPost(page)) {
     return <BlogPost post={page} url={href} />;
   } else {
-    return <RichPage page={page} href={href} />;
+    return <RichPage page={page} />;
   }
 }

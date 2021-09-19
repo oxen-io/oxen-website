@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import React from 'react';
 import { useMeasure } from 'react-use';
+
 import { NAVIGATION, METADATA } from '../constants';
 import { SideMenuItem } from '../state/navigation';
-import { generateTitle, generateURL } from '../utils/metadata';
+
+import CustomHead from '../components/CustomHead';
 
 function Roadmap() {
   const [ref, { width, height }] = useMeasure();
@@ -18,41 +18,12 @@ function Roadmap() {
   console.log('roadmap ➡️ width:', width);
   console.log('roadmap ➡️ ratio:', aspectRatio);
 
-  const pageTitle = generateTitle(
-    NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label,
-  );
-  const pageURL = generateURL(
-    NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].href,
-  );
-  const imageURL = `${METADATA.HOST_URL}/site-banner.png`;
-
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta
-          name="description"
-          content={METADATA.ROADMAP_PAGE.DESCRIPTION}
-        ></meta>
-        <meta property="og:title" content={pageTitle} key="ogtitle" />
-        <meta
-          property="og:description"
-          content={METADATA.ROADMAP_PAGE.DESCRIPTION}
-          key="ogdesc"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageURL} />
-        <meta property="og:image" content={imageURL} key="ogimage" />
-        <link rel="canonical" href={pageURL}></link>
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta
-          name="twitter:description"
-          content={METADATA.ROADMAP_PAGE.DESCRIPTION}
-        />
-        <meta name="twitter:image" content={imageURL} />
-      </Head>
-
+      <CustomHead
+        title={NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label}
+        metadata={METADATA.ROADMAP_PAGE}
+      />
       <div className="mx-4">
         <div className="flex items-center justify-center mt-8">
           <img

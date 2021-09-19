@@ -1,13 +1,13 @@
-import Head from 'next/head';
-import React from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
+
 import { NAVIGATION, METADATA, CMS } from '../constants';
 import { SideMenuItem } from '../state/navigation';
-import { generateTitle, generateURL } from '../utils/metadata';
 import { CmsApi } from '../services/cms';
 import { IFAQItem } from '../types/cms';
+
 import { Accordion } from '../components/Accordion';
 import { Contained } from '../components/Contained';
+import CustomHead from '../components/CustomHead';
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
@@ -32,45 +32,17 @@ interface Props {
 function FAQ(props: Props) {
   const { faqItems } = props;
 
-  const pageTitle = generateTitle(
-    NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.FAQ].label,
-  );
-  const pageURL = generateURL(
-    NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.FAQ].href,
-  );
-  const imagePathLocal = 'img/faq.png';
-  const imageURL = `${METADATA.HOST_URL}/${imagePathLocal}`;
-
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={METADATA.FAQ_PAGE.DESCRIPTION}></meta>
-        <meta property="og:title" content={pageTitle} key="ogtitle" />
-        <meta
-          property="og:description"
-          content={METADATA.FAQ_PAGE.DESCRIPTION}
-          key="ogdesc"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={imageURL} key="ogimage" />
-        <meta property="og:url" content={pageURL} />
-
-        <link rel="canonical" href={pageURL}></link>
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta
-          name="twitter:description"
-          content={METADATA.FAQ_PAGE.DESCRIPTION}
-        />
-        <meta name="twitter:image" content={imageURL} />
-      </Head>
-
+      <CustomHead
+        title={NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.FAQ].label}
+        metadata={METADATA.FAQ_PAGE}
+      />
       <div className="bg-alt">
         <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
           <img
             style={{ maxHeight: '33vh' }}
-            src={imagePathLocal}
+            src={METADATA.FAQ_PAGE.OG_IMAGE.URL}
             className="object-contain w-full"
           />
         </div>

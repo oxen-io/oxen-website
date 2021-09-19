@@ -7,7 +7,7 @@ const protocols = ['https://', 'http://', 'ftp://', 'file://', 'mailto:'];
 
 export function isLocal(url: string) {
   let result = true;
-  if (url[0] === '#') {
+  if (url[0] === '#' || url.indexOf('localhost:') > 0) {
     return result;
   }
   protocols.forEach(protocol => {

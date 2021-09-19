@@ -4,22 +4,11 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { IPost } from '../types/cms';
 import { METADATA } from '../constants';
 
-const baseUrl = METADATA.OXEN_HOST_URL;
-const categories = [
-  'Privacy',
-  'decentralisation',
-  'decentralised',
-  'Open Source',
-  'Private messaging',
-  'Onion routing',
-  'Cryptocurrency',
-  'Digital finance',
-  'Privacy Tools',
-];
+const baseUrl = METADATA.HOST_URL;
 const date = new Date();
 const feed = new Feed({
-  title: METADATA.TITLE_SUFFIX,
-  description: METADATA.SITE_META_DESCRIPTION,
+  title: METADATA.TITLE,
+  description: METADATA.DESCRIPTION,
   id: baseUrl,
   link: baseUrl,
   language: 'en', // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
@@ -34,8 +23,9 @@ const feed = new Feed({
     atom: `${baseUrl}/rss/atom.xml`,
   },
 });
-categories.forEach(category => {
-  feed.addCategory(category);
+
+METADATA.TAGS.forEach(tag => {
+  feed.addCategory(tag);
 });
 
 export default function generateRSSFeed(posts: IPost[]) {

@@ -25,14 +25,17 @@ const nextConfig = {
   images: {
     domains: ['downloads.ctfassets.net', 'images.ctfassets.net'],
   },
-  async redirects() {
-    return [
+  serverRuntimeConfig: {
+    redirects: [
       {
         source: '/blog/session-the-road-to-monetisation-and-oxen-value-capture',
         destination: '/blog/session-the-road-to-monetisation',
         permanent: true,
       },
-    ];
+    ],
+  },
+  async redirects() {
+    return this.serverRuntimeConfig.redirects;
   },
   async rewrites() {
     return [
@@ -49,6 +52,10 @@ const nextConfig = {
       {
         source: '/blog/:slug((?:[\\w]{1,}[\\-]{1,}).*|[\\D]{1,})',
         destination: '/:slug',
+      },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
       },
     ];
   },

@@ -48,8 +48,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export async function getStaticProps({ params }) {
   console.log(`Building  Page %c${params.page}`, 'color: purple;');
-  const href = params?.page ?? '';
-  const id = unslugify(String(href));
+  const url = params?.page ?? '';
+  const id = unslugify(String(url));
 
   try {
     const cms = new CmsApi();
@@ -58,7 +58,7 @@ export async function getStaticProps({ params }) {
     if (SideMenuItem[id]) {
       page = await cms.fetchPageById(SideMenuItem[id]);
     } else {
-      page = await cms.fetchEntryBySlug(href, 'post');
+      page = await cms.fetchEntryBySlug(url, 'post');
       // embedded links in post body need metadata for preview
       page.body = await generateLinkMeta(page.body);
     }
@@ -66,7 +66,6 @@ export async function getStaticProps({ params }) {
     return {
       props: {
         page,
-        href: `/${href}`,
       },
       revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
@@ -79,16 +78,10 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default function Page({
-  page,
-  href,
-}: {
-  page: ISplitPage | IPost;
-  href: string;
-}) {
+export default function Page({ page }: { page: ISplitPage | IPost }) {
   if (isPost(page)) {
-    return <BlogPost post={page} url={href} />;
+    return <BlogPost post={page} />;
   } else {
-    return <RichPage page={page} href={href} />;
+    return <RichPage page={page} />;
   }
 }

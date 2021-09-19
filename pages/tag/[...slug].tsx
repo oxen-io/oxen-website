@@ -1,6 +1,5 @@
 import { useEffect, ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
@@ -10,8 +9,8 @@ import { CmsApi } from '../../services/cms';
 import { PageType, setPageType } from '../../state/navigation';
 import { IPath } from '../../types';
 import { IPost } from '../../types/cms';
-import { generateTitle } from '../../utils/metadata';
 
+import CustomHead from '../../components/CustomHead';
 import { ArticleCard } from '../../components/cards/ArticleCard';
 import { CardGrid } from '../../components/cards/CardGrid';
 import { Contained } from '../../components/Contained';
@@ -32,9 +31,6 @@ export default function Tag(props: Props): ReactElement {
   const dispatch = useDispatch();
 
   const tagHasPosts = tagPosts && tagPosts?.length > 0;
-  const pageTitle = generateTitle(`${tag} Archives`);
-  const featuredPost = posts[0];
-  const featuredImageURL = featuredPost?.featureImage?.imageUrl;
 
   const paginationHandler = page => {
     const newRoute = `/tag/${tag}/${page.selected + 1}`;
@@ -47,25 +43,22 @@ export default function Tag(props: Props): ReactElement {
 
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={METADATA.BLOG.DESCRIPTION}></meta>
-        <meta property="og:title" content={pageTitle} key="ogtitle" />
-        <meta
-          property="og:description"
-          content={METADATA.BLOG.DESCRIPTION}
-          key="ogdesc"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={featuredImageURL} key="ogimage" />
-        <meta property="og:url" content={METADATA.BLOG.URL} />
-        <link rel="canonical" href={METADATA.BLOG.URL}></link>
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={METADATA.BLOG.DESCRIPTION} />
-        <meta name="twitter:image" content={featuredImageURL} />
-      </Head>
-
+      <CustomHead
+        title={tag === 'dev-update' ? 'Dev Updates' : `${tag} Archives`}
+        metadata={{
+          TYPE: METADATA.TAG_PAGE.TYPE,
+          DESCRIPTION: METADATA.TAG_PAGE.DESCRIPTION,
+          OG_IMAGE: {
+            URL: posts[0]?.featureImage.imageUrl ?? METADATA.OG_IMAGE.URL,
+            WIDTH:
+              Number(posts[0]?.featureImage?.width) ?? METADATA.OG_IMAGE.WIDTH,
+            HEIGHT:
+              Number(posts[0]?.featureImage?.height) ??
+              METADATA.OG_IMAGE.HEIGHT,
+            ALT: posts[0]?.featureImage?.title ?? METADATA.OG_IMAGE.ALT,
+          },
+        }}
+      />
       <div className="flex flex-col w-full mt-12 mb-6 space-y-6 bg-alt">
         <Contained>
           <h1 className="mb-2 text-4xl font-medium uppercase font-prompt">

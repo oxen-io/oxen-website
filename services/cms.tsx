@@ -23,7 +23,7 @@ import {
   ITagList,
 } from '../types/cms';
 import isLive from '../utils/environment';
-import { generateURL } from '../utils/metadata';
+import { generateURL } from '../constants/metadata';
 import { fetchContent } from './embed';
 
 function loadOptions(options: any) {
@@ -279,6 +279,7 @@ export class CmsApi {
       body: rawPost.body ?? null,
       subtitle: rawPost.subtitle ?? null,
       description: rawPost.description ?? null,
+      publishedDateISO: rawPost.date,
       publishedDate: format(parseISO(rawPost.date), 'dd MMMM yyyy'),
       slug: rawPost.slug,
       tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],

@@ -23,6 +23,8 @@ export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
           layout="responsive"
           priority={true}
           loading="eager"
+          placeholder="blur"
+          blurDataURL={`${featureImage?.imageUrl}?w=${UI.MAX_CONTENT_WIDTH}&q=10`}
         />
       </div>
 

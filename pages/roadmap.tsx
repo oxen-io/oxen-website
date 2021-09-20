@@ -35,6 +35,7 @@ function Roadmap() {
               height={horizontal ? '1009' : '1615'}
               layout="responsive"
               priority={true}
+              loading="eager"
             />
           </div>
         </div>
@@ -56,6 +57,8 @@ function Roadmap() {
                 width={horizontal ? '17138' : '4688'}
                 height={horizontal ? '9992' : '12009'}
                 layout="responsive"
+                priority={true}
+                loading="eager"
                 className="rounded-md"
               />
             </div>
@@ -72,6 +75,8 @@ function Roadmap() {
                 width={horizontal ? '8003' : '4688'}
                 height={horizontal ? '3808' : '10150'}
                 layout="responsive"
+                priority={true}
+                loading="eager"
                 className="rounded-md"
               />
             </div>

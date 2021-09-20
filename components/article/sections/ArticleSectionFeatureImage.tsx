@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
 import { IFigureImage } from '../../../types/cms';
+import { UI } from '../../../constants';
+
 import { Contained } from '../../Contained';
 import { ArticleContained } from '../../ArticleContained';
 
@@ -14,12 +16,13 @@ export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
     <div className="w-full pb-4">
       <div className="relative w-full h-full">
         <Image
-          src={featureImage?.imageUrl}
+          src={`${featureImage?.imageUrl}?w=${UI.MAX_CONTENT_WIDTH}`}
           alt={featureImage?.description ?? title}
           width={featureImage?.width}
           height={featureImage?.height}
-          priority={true}
           layout="responsive"
+          priority={true}
+          loading="eager"
         />
       </div>
 

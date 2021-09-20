@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useMeasure } from 'react-use';
 
 import { NAVIGATION, METADATA } from '../constants';
@@ -26,12 +27,16 @@ function Roadmap() {
       />
       <div className="mx-4">
         <div className="flex items-center justify-center mt-8">
-          <img
-            style={{ maxHeight: '90%' }}
-            src={`img/roadmap-${horizontal ? 'x' : 'y'}.png`}
-            alt="Oxen's Roadmap and Plans for the future."
-            className="w-full"
-          />
+          <div className="relative w-full" style={{ height: '90%' }}>
+            <Image
+              src={`/img/roadmap-${horizontal ? 'x' : 'y'}.png`}
+              alt="Oxen's Roadmap and Plans for the future."
+              width={horizontal ? '1920' : '700'}
+              height={horizontal ? '1009' : '1615'}
+              layout="responsive"
+              priority={true}
+            />
+          </div>
         </div>
       </div>
 
@@ -41,24 +46,35 @@ function Roadmap() {
             <h2 className="mt-6 mb-3 text-3xl font-medium text-center tablet:text-4xl font-prompt text-primary">
               Session in 2021
             </h2>
-            <img
-              style={{ maxHeight: horizontal ? '90%' : 'auto' }}
-              src={`img/session-${horizontal ? 'x' : 'y'}.png`}
-              alt="Session's Roadmap and Plans for the future."
-              className="w-full rounded-md"
-            />
+            <div
+              className="relative w-full"
+              style={{ height: horizontal ? '90%' : 'auto' }}
+            >
+              <Image
+                src={`/img/session-${horizontal ? 'x' : 'y'}.png`}
+                alt="Session's Roadmap and Plans for the future."
+                width={horizontal ? '17138' : '4688'}
+                height={horizontal ? '9992' : '12009'}
+                layout="responsive"
+                className="rounded-md"
+              />
+            </div>
           </div>
 
           <div>
             <h2 className="mt-6 mb-3 text-3xl font-medium text-center tablet:text-4xl font-prompt text-primary">
               Lokinet in 2021
             </h2>
-            <img
-              style={{ maxHeight: '90%' }}
-              src={`img/lokinet-${horizontal ? 'x' : 'y'}.png`}
-              alt="Lokinet's Roadmap and Plans for the future."
-              className="w-full rounded-md"
-            />
+            <div className="relative w-full" style={{ height: '90%' }}>
+              <Image
+                src={`/img/lokinet-${horizontal ? 'x' : 'y'}.png`}
+                alt="Lokinet's Roadmap and Plans for the future."
+                width={horizontal ? '8003' : '4688'}
+                height={horizontal ? '3808' : '10150'}
+                layout="responsive"
+                className="rounded-md"
+              />
+            </div>
           </div>
         </div>
       </div>

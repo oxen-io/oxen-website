@@ -1,10 +1,19 @@
 /* eslint-disable react/jsx-no-target-blank */
-import classNames from 'classnames';
-import _ from 'lodash';
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import classNames from 'classnames';
+import _ from 'lodash';
+
+import { NAVIGATION } from '../../constants';
+import { ScreenContext } from '../../contexts/screen';
+import { IState } from '../../state/reducers';
+
+import { Contained } from '../Contained';
+import { SideMenuRow } from './SideMenuRow';
+
 import GithubSVG from '../../assets/svgs/socials/github.svg';
 import RedditSVG from '../../assets/svgs/socials/reddit.svg';
 import RssSVG from '../../assets/svgs/socials/rss.svg';
@@ -12,11 +21,6 @@ import SessionSVG from '../../assets/svgs/socials/session.svg';
 import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
 import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
 import YouTubeSVG from '../../assets/svgs/socials/youtube.svg';
-import { NAVIGATION } from '../../constants';
-import { ScreenContext } from '../../contexts/screen';
-import { IState } from '../../state/reducers';
-import { Contained } from '../Contained';
-import { SideMenuRow } from './SideMenuRow';
 
 export function SideMenuInner() {
   const { isHuge, isDesktop } = useContext(ScreenContext);
@@ -95,7 +99,13 @@ export function SideMenuInner() {
               rel="nofollow"
               className="flex items-center space-x-1 hover:underline hover:text-secondary"
             >
-              <img className="h-5" src="/img/coinmarketcap.png" />
+              <div className="relative w-5 h-5">
+                <Image
+                  src="/img/coinmarketcap.png"
+                  alt="CMC logo"
+                  layout="fill"
+                />
+              </div>
               <span>CMC</span>
             </a>
             <a
@@ -104,7 +114,13 @@ export function SideMenuInner() {
               rel="nofollow"
               className="flex items-center space-x-1 hover:underline hover:text-secondary"
             >
-              <img className="h-5" src="/img/coingecko.png" />
+              <div className="relative w-5 h-5">
+                <Image
+                  src="/img/coingecko.png"
+                  alt="CoinGecko logo"
+                  layout="fill"
+                />
+              </div>
               <span>CoinGecko</span>
             </a>
           </div>

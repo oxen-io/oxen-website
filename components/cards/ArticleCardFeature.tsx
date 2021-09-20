@@ -1,9 +1,13 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import classNames from 'classnames';
+
 import { ScreenContext } from '../../contexts/screen';
 import { IPost } from '../../types/cms';
 import { generateURL } from '../../utils/routing';
+
 import { TagRow } from '../TagRow';
 
 export function ArticleCardFeature(props: IPost) {
@@ -29,16 +33,19 @@ export function ArticleCardFeature(props: IPost) {
 
   return (
     <div className="flex flex-col w-full space-x-0 tablet:space-x-6 tablet:flex-row">
-      <div className="w-full tablet:w-7/12 relatvie">
+      <div className="w-full tablet:w-7/12">
         <div
           onClick={onClick}
-          style={{ minHeight: '100%' }}
-          className="bg-opacity-25 cursor-pointer bg-primary aspect-w-16 aspect-h-8"
+          className={classNames(
+            'relative bg-opacity-25 cursor-pointer bg-primary min-h-full aspect-w-16 aspect-h-8',
+          )}
         >
-          <img
-            className="object-cover"
+          <Image
             src={`${featureImage?.imageUrl}?w=600`}
             alt={featureImage?.description ?? title}
+            layout="fill"
+            priority={true}
+            className="object-cover"
           />
         </div>
       </div>

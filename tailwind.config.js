@@ -54,12 +54,18 @@ module.exports = {
         10: '0.1',
       },
       animation: {
-        float: 'float 6s ease-in-out infinite',
+        float: 'float 3s infinite',
       },
       keyframes: {
         float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(0.33rem)' },
+          '0%, 100%': {
+            transform: 'translateY(33.3333%)',
+            animationTimingFunction: 'linear',
+          },
+          '50%': {
+            transform: 'translateY(0)',
+            animationTimingFunction: 'linear',
+          },
         },
       },
     },

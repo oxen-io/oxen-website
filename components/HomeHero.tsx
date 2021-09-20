@@ -15,6 +15,7 @@ export function HomeHero() {
         alt="Hero Landing Page, depicting the integration of privacy and technology"
         layout="fill"
         priority={true}
+        loading="eager"
       />
     </div>
   );

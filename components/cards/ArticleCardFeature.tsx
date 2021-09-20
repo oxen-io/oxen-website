@@ -45,6 +45,7 @@ export function ArticleCardFeature(props: IPost) {
             alt={featureImage?.description ?? title}
             layout="fill"
             priority={true}
+            loading="eager"
             className="object-cover"
           />
         </div>

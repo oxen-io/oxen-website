@@ -44,6 +44,7 @@ export default function RichPage(props: Props) {
               alt={page?.hero?.description ?? page?.label}
               layout="fill"
               priority={true}
+              loading="eager"
               className="object-contain"
             />
           </div>

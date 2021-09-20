@@ -45,7 +45,8 @@ export function ArticleCardFeature(props: IPost) {
             alt={featureImage?.description ?? title}
             layout="fill"
             priority={true}
-            loading="eager"
+            placeholder="blur"
+            blurDataURL={`${featureImage?.imageUrl}?w=600&q=5`}
             className="object-cover"
           />
         </div>

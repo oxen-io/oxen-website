@@ -10,6 +10,8 @@ import { Accordion } from '../components/Accordion';
 import { Contained } from '../components/Contained';
 import CustomHead from '../components/CustomHead';
 
+import FAQImage from '../public/img/faq.png';
+
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
@@ -43,11 +45,11 @@ function FAQ(props: Props) {
         <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
           <div className="relative w-full" style={{ height: '33vh' }}>
             <Image
-              src={METADATA.FAQ_PAGE.OG_IMAGE.URL}
+              src={FAQImage}
               alt={METADATA.FAQ_PAGE.OG_IMAGE.ALT}
               layout="fill"
               priority={true}
-              loading="eager"
+              placeholder="blur"
               className="object-contain"
             />
           </div>

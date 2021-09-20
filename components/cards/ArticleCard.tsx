@@ -50,6 +50,8 @@ export function ArticleCard(props: IPost): JSX.Element {
             src={`${featureImage?.imageUrl}?w=300`}
             alt={featureImage?.description ?? title}
             layout="fill"
+            placeholder="blur"
+            blurDataURL={`${featureImage?.imageUrl}?w=300&q=5`}
             className="object-cover"
           />
         )}

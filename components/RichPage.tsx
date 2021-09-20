@@ -44,7 +44,8 @@ export default function RichPage(props: Props) {
               alt={page?.hero?.description ?? page?.label}
               layout="fill"
               priority={true}
-              loading="eager"
+              placeholder="blur"
+              blurDataURL={`${page?.hero?.imageUrl}?q=5`}
               className="object-contain"
             />
           </div>

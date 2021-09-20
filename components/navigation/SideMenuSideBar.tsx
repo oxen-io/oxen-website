@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TriangleSVG from '../../assets/svgs/triangle.svg';
+import { ReactComponent as TriangleSVG } from '../../assets/svgs/triangle.svg';
 import { NAVIGATION, UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import {

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import heroUrl from '../public/hero.svg';
 
 export function HomeHero() {
   return (
@@ -12,7 +11,7 @@ export function HomeHero() {
     >
       <Image
         className="absolute bottom-0 left-0 object-cover h-full min-w-full transform"
-        src={heroUrl}
+        src="/hero.svg"
         alt="Hero Landing Page, depicting the integration of privacy and technology"
         layout="fill"
         priority={true}

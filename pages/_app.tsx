@@ -18,6 +18,13 @@ import { rootReducer } from '../state/reducers';
 import CustomHead from '../components/CustomHead';
 import Layout from '../components/layout';
 
+if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+  const React = require('react');
+  const ReactDOM = require('react-dom');
+  const axe = require('@axe-core/react');
+  axe(React, ReactDOM, 1000, {});
+}
+
 const store = createStore(rootReducer);
 
 function App({ Component, pageProps }: AppProps) {

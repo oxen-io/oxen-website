@@ -79,3 +79,5 @@ You can check the status of the server by running
 ```bash
 pm2 status
 ```
+
+For accessbility testing we use the [axe-react](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/react/README.md) plugin.

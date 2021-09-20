@@ -1,6 +1,6 @@
 const withPlugins = require('next-compose-plugins');
 const withFonts = require('next-fonts');
-const withSvgr = require('next-svgr');
+const withSvgr = require('@newhighsco/next-plugin-svgr');
 
 const nextConfig = {
   env: {

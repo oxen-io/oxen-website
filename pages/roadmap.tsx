@@ -35,7 +35,6 @@ function Roadmap() {
               height={horizontal ? '1009' : '1615'}
               layout="responsive"
               priority={true}
-              loading="eager"
             />
           </div>
         </div>
@@ -76,7 +75,6 @@ function Roadmap() {
                 height={horizontal ? '3808' : '10150'}
                 layout="responsive"
                 priority={true}
-                loading="eager"
                 className="rounded-md"
               />
             </div>

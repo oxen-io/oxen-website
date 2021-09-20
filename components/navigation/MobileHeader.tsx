@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import OxenLogoSVG from '../../assets/svgs/brand.svg';
-import TriangleSVG from '../../assets/svgs/triangle.svg';
+import { ReactComponent as OxenLogoSVG } from '../../assets/svgs/brand.svg';
+import { ReactComponent as TriangleSVG } from '../../assets/svgs/triangle.svg';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import {

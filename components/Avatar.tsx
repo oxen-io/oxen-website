@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import LogoSVG from '../assets/svgs/logo.svg';
+import { ReactComponent as LogoSVG } from '../assets/svgs/logo.svg';
 
 export interface AvatarProps {
   // Size is in the same units as Tailwind units

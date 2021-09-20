@@ -15,13 +15,16 @@ import { IState } from '../../state/reducers';
 import { Contained } from '../Contained';
 import { SideMenuRow } from './SideMenuRow';
 
-import GithubSVG from '../../assets/svgs/socials/github.svg';
-import RedditSVG from '../../assets/svgs/socials/reddit.svg';
-import RssSVG from '../../assets/svgs/socials/rss.svg';
-import SessionSVG from '../../assets/svgs/socials/session.svg';
-import TelegramSVG from '../../assets/svgs/socials/telegram.svg';
-import TwitterSVG from '../../assets/svgs/socials/twitter.svg';
-import YouTubeSVG from '../../assets/svgs/socials/youtube.svg';
+import CoinMarketCapImage from '../../public/img/coinmarketcap.png';
+import CoinGeckoImage from '../../public/img/coingecko.png';
+
+import { ReactComponent as GithubSVG } from '../../assets/svgs/socials/github.svg';
+import { ReactComponent as RedditSVG } from '../../assets/svgs/socials/reddit.svg';
+import { ReactComponent as RssSVG } from '../../assets/svgs/socials/rss.svg';
+import { ReactComponent as SessionSVG } from '../../assets/svgs/socials/session.svg';
+import { ReactComponent as TelegramSVG } from '../../assets/svgs/socials/telegram.svg';
+import { ReactComponent as TwitterSVG } from '../../assets/svgs/socials/twitter.svg';
+import { ReactComponent as YouTubeSVG } from '../../assets/svgs/socials/youtube.svg';
 
 export function SideMenuInner() {
   const { isHuge, isDesktop } = useContext(ScreenContext);
@@ -103,9 +106,10 @@ export function SideMenuInner() {
             >
               <div className="relative w-5 h-5">
                 <Image
-                  src="/img/coinmarketcap.png"
+                  src={CoinMarketCapImage}
                   alt="CMC logo"
                   layout="fill"
+                  placeholder="blur"
                 />
               </div>
               <span>CMC</span>
@@ -118,9 +122,10 @@ export function SideMenuInner() {
             >
               <div className="relative w-5 h-5">
                 <Image
-                  src="/img/coingecko.png"
+                  src={CoinGeckoImage}
                   alt="CoinGecko logo"
                   layout="fill"
+                  placeholder="blur"
                 />
               </div>
               <span>CoinGecko</span>

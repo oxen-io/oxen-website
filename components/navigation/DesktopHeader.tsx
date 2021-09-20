@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import React, { useContext, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
-import OxenLogoSVG from '../../assets/svgs/brand.svg';
+import { ReactComponent as OxenLogoSVG } from '../../assets/svgs/brand.svg';
 import { NAVIGATION, UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 

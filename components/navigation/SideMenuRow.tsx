@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useContext, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHoverDirty } from 'react-use';
-import TriangleOutlinedSVG from '../../assets/svgs/triangle-outlined.svg';
+import { ReactComponent as TriangleOutlinedSVG } from '../../assets/svgs/triangle-outlined.svg';
 import { UI } from '../../constants';
 import { ScreenContext } from '../../contexts/screen';
 import { collapseSideMenu } from '../../state/navigation';

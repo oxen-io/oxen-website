@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { IFigureImage } from '../../../types/cms';
 import { Contained } from '../../Contained';
 import { ArticleContained } from '../../ArticleContained';
@@ -10,11 +12,13 @@ interface Props {
 export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
   return (
     <div className="w-full pb-4">
-      <div className="relative flex items-center justify-center w-full h-full">
-        <img
+      <div className="relative w-full h-full">
+        <Image
           src={featureImage?.imageUrl}
           alt={featureImage?.description ?? title}
-          className="object-fill"
+          width={featureImage?.width}
+          height={featureImage?.height}
+          layout="responsive"
         />
       </div>
 

@@ -1,10 +1,12 @@
-import classNames from 'classnames';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import classNames from 'classnames';
 import { useMeasure } from 'react-use';
+
 import { IPost } from '../../types/cms';
 import { generateURL } from '../../utils/routing';
+
 import { TagRow } from '../TagRow';
 
 export function ArticleCard(props: IPost): JSX.Element {
@@ -41,13 +43,14 @@ export function ArticleCard(props: IPost): JSX.Element {
     >
       <div
         onClick={() => router.push(href, as)}
-        className="relative aspect-w-16 aspect-h-9"
+        className={classNames('relative cursor-pointer aspect-w-16 aspect-h-9')}
       >
         {featureImage?.imageUrl && (
-          <img
-            className="object-cover cursor-pointer"
+          <Image
             src={`${featureImage?.imageUrl}?w=300`}
             alt={featureImage?.description ?? title}
+            layout="fill"
+            className="object-cover"
           />
         )}
       </div>

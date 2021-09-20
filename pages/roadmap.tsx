@@ -34,6 +34,7 @@ function Roadmap() {
               width={horizontal ? '1920' : '700'}
               height={horizontal ? '1009' : '1615'}
               layout="responsive"
+              priority={true}
             />
           </div>
         </div>

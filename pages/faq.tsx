@@ -46,6 +46,7 @@ function FAQ(props: Props) {
               src={METADATA.FAQ_PAGE.OG_IMAGE.URL}
               alt={METADATA.FAQ_PAGE.OG_IMAGE.ALT}
               layout="fill"
+              priority={true}
               className="object-contain"
             />
           </div>

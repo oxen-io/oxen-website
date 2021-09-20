@@ -43,6 +43,7 @@ export default function RichPage(props: Props) {
               src={page?.hero?.imageUrl}
               alt={page?.hero?.description ?? page?.label}
               layout="fill"
+              priority={true}
               className="object-contain"
             />
           </div>

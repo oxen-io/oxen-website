@@ -18,6 +18,7 @@ export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
           alt={featureImage?.description ?? title}
           width={featureImage?.width}
           height={featureImage?.height}
+          priority={true}
           layout="responsive"
         />
       </div>

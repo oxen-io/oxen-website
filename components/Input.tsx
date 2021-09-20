@@ -96,7 +96,7 @@ export function Input(props: InputProps) {
   } = props;
 
   // Focus
-  const inputRef = props.ref ?? useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const setInputFocus = () => {
     if (typeof inputRef !== 'string') {
       inputRef?.current?.focus();

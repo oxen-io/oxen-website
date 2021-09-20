@@ -64,7 +64,7 @@ export default function EmailSignup(props: Props): ReactElement {
           'desktop:text-4xl desktop:mb-3',
         )}
       >
-        You've got mail!
+        You&apos;ve got mail!
       </h3>
       <p
         className={classNames(

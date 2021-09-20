@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import classNames from 'classnames';
@@ -86,13 +87,14 @@ export function SideMenuInner() {
           <SocialsRow />
 
           <div className="flex items-center justify-between px-3 font-medium whitespace-nowrap">
-            <a
-              href="/downloads/oxen-media-kit.zip"
-              target="_blank"
-              className="flex items-center space-x-1 hover:underline hover:text-secondary"
-            >
-              <span>Media Kit</span>
-            </a>
+            <Link href="/downloads/oxen-media-kit.zip">
+              <a
+                target="_blank"
+                className="flex items-center space-x-1 hover:underline hover:text-secondary"
+              >
+                <span>Media Kit</span>
+              </a>
+            </Link>
             <a
               href="https://coinmarketcap.com/currencies/oxen/"
               target="_blank"
@@ -177,9 +179,11 @@ const SocialsRow = () => {
       <a href="https://sessiongroups.com/" target="_blank" rel="noreferrer">
         <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
-      <a href="/feed" target="_self" rel="noreferrer">
-        <RssSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
-      </a>
+      <Link href="/feed">
+        <a target="_self" rel="noreferrer">
+          <RssSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
+        </a>
+      </Link>
     </div>
   );
 };

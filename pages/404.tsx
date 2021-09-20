@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, ReactElement } from 'react';
 import classNames from 'classnames';
 
 // import _404 from '../assets/svgs/404.svg';
@@ -7,7 +7,7 @@ import { ScreenContext } from '../contexts/screen';
 
 import CustomHead from '../components/CustomHead';
 
-function oxen404() {
+export default function Custom404(): ReactElement {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
 
   const wrapperStyles = {
@@ -115,5 +115,3 @@ function oxen404() {
     </div>
   );
 }
-
-export default oxen404;

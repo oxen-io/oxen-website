@@ -26,8 +26,9 @@ import isLive from '../utils/environment';
 import { generateURL } from '../constants/metadata';
 import { fetchContent } from './embed';
 
-function loadOptions(options: any) {
-  if (isLive()) options['fields.live'] = true;
+function loadOptions(options: any, isPreview?: boolean) {
+  if (!isPreview && isLive()) options['fields.live'] = true;
+  if (isPreview) options['fields.preview'] = true;
   return options;
 }
 
@@ -175,11 +176,17 @@ export class CmsApi {
   public async fetchEntryBySlug(
     slug: string,
     entryType: 'post' | 'splitPage',
+    isPreview?: boolean,
   ): Promise<any> {
-    const _entries = await this.client.getEntries({
-      content_type: entryType, // only fetch specific type
-      'fields.slug': slug,
-    });
+    const _entries = await this.client.getEntries(
+      loadOptions(
+        {
+          content_type: entryType, // only fetch specific type
+          'fields.slug': slug,
+        },
+        isPreview,
+      ),
+    );
 
     if (_entries?.items?.length > 0) {
       let entry;
@@ -201,13 +208,19 @@ export class CmsApi {
     );
   }
 
-  public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
+  public async fetchPageById(
+    id: SideMenuItem,
+    isPreview?: boolean,
+  ): Promise<ISplitPage> {
     return this.client
       .getEntries(
-        loadOptions({
-          content_type: 'splitPage',
-          'fields.id[in]': id,
-        }),
+        loadOptions(
+          {
+            content_type: 'splitPage',
+            'fields.id[in]': id,
+          },
+          isPreview,
+        ),
       )
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {

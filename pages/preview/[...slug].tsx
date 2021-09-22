@@ -1,0 +1,68 @@
+import { ReactElement } from 'react';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
+
+import { CmsApi, generateLinkMeta, unslugify } from '../../services/cms';
+import { SideMenuItem } from '../../state/navigation';
+import { IPost, ISplitPage, isPost } from '../../types/cms';
+
+import BlogPost from '../../components/BlogPost';
+import RichPage from '../../components/RichPage';
+
+export interface Props {
+  page: ISplitPage | IPost;
+  slug: string;
+}
+
+export default function Preview(props: Props): ReactElement {
+  const { page, slug } = props;
+  return (
+    <>
+      <div
+        className={
+          'bg-primary text-white font-semibold w-full py-4 px-8 flex justify-between'
+        }
+      >
+        <span>Preview Mode</span>
+        <Link href={`/${slug}`}>
+          <a>Exit</a>
+        </Link>
+      </div>
+      {isPost(page) ? <BlogPost post={page} /> : <RichPage page={page} />}
+    </>
+  );
+}
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
+  let slug = context.params?.slug.toString() ?? '';
+  const id = unslugify(slug);
+  console.log(`Loading Preview %c${slug}`, 'color: purple;');
+  try {
+    const cms = new CmsApi();
+    let page: ISplitPage | IPost;
+
+    if (SideMenuItem[id]) {
+      page = await cms.fetchPageById(SideMenuItem[id], true);
+    } else {
+      if (slug.indexOf('blog,') >= 0) slug = slug.split('blog,')[1];
+      page = await cms.fetchEntryBySlug(slug, 'post', true);
+      // embedded links in post body need metadata for preview
+      page.body = await generateLinkMeta(page.body);
+    }
+
+    console.log(`Built Preview %c${slug}`, 'color: purple;');
+    return {
+      props: {
+        page,
+        slug,
+      },
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+    };
+  }
+};

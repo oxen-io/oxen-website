@@ -36,7 +36,7 @@ export default function Preview(props: Props): ReactElement {
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
-  let slug = context.params?.slug.toString() ?? '';
+  const slug = context.params?.slug.toString().split(',').join('/') ?? '';
   const id = unslugify(slug);
   console.log(`Loading Preview %c${slug}`, 'color: purple;');
   try {
@@ -44,10 +44,11 @@ export const getServerSideProps: GetServerSideProps = async (
     let page: ISplitPage | IPost;
 
     if (SideMenuItem[id]) {
-      page = await cms.fetchPageById(SideMenuItem[id], true);
+      page = await cms.fetchEntryPreview(SideMenuItem[id], 'splitPage');
     } else {
-      if (slug.indexOf('blog,') >= 0) slug = slug.split('blog,')[1];
-      page = await cms.fetchEntryBySlug(slug, 'post', true);
+      let query = slug;
+      if (slug.indexOf('blog/') >= 0) query = slug.split('blog/')[1];
+      page = await cms.fetchEntryPreview(query, 'post');
       // embedded links in post body need metadata for preview
       page.body = await generateLinkMeta(page.body);
     }

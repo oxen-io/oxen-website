@@ -26,9 +26,8 @@ import isLive from '../utils/environment';
 import { generateURL } from '../constants/metadata';
 import { fetchContent } from './embed';
 
-function loadOptions(options: any, isPreview?: boolean) {
-  if (!isPreview && isLive()) options['fields.live'] = true;
-  if (isPreview) options['fields.preview'] = true;
+function loadOptions(options: any) {
+  if (isLive()) options['fields.live'] = true;
   return options;
 }
 
@@ -44,6 +43,7 @@ export class CmsApi {
     this.client = createClient({
       space: process.env.CONTENTFUL_SPACE_ID,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      host: 'cdn.contentful.com',
     });
   }
 
@@ -173,19 +173,53 @@ export class CmsApi {
     });
   }
 
+  public async fetchEntryPreview(
+    query: string,
+    entryType: 'post' | 'splitPage',
+  ): Promise<ISplitPage | IPost> {
+    const client = createClient({
+      space: process.env.CONTENTFUL_SPACE_ID,
+      accessToken: String(process.env.CONTENTFUL_PREVIEW_TOKEN),
+      host: 'preview.contentful.com',
+    });
+
+    const options = { content_type: entryType, 'fields.preview': true }; // only fetch specific type
+    if (entryType === 'post') {
+      options['fields.slug'] = query;
+    } else {
+      options['fields.id[in]'] = query;
+    }
+
+    const _entries = await client.getEntries(options);
+    if (_entries?.items?.length > 0) {
+      let entry;
+      switch (entryType) {
+        case 'post':
+          entry = this.convertPost(_entries.items[0]);
+          break;
+        case 'splitPage':
+          entry = this.convertPage(_entries.items[0]);
+          break;
+        default:
+          break;
+      }
+      return entry;
+    }
+
+    return Promise.reject(
+      new Error(`Failed to fetch preview ${entryType} for ${query}`),
+    );
+  }
+
   public async fetchEntryBySlug(
     slug: string,
     entryType: 'post' | 'splitPage',
-    isPreview?: boolean,
   ): Promise<any> {
     const _entries = await this.client.getEntries(
-      loadOptions(
-        {
-          content_type: entryType, // only fetch specific type
-          'fields.slug': slug,
-        },
-        isPreview,
-      ),
+      loadOptions({
+        content_type: entryType, // only fetch specific type
+        'fields.slug': slug,
+      }),
     );
 
     if (_entries?.items?.length > 0) {
@@ -208,19 +242,13 @@ export class CmsApi {
     );
   }
 
-  public async fetchPageById(
-    id: SideMenuItem,
-    isPreview?: boolean,
-  ): Promise<ISplitPage> {
+  public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
     return this.client
       .getEntries(
-        loadOptions(
-          {
-            content_type: 'splitPage',
-            'fields.id[in]': id,
-          },
-          isPreview,
-        ),
+        loadOptions({
+          content_type: 'splitPage',
+          'fields.id[in]': id,
+        }),
       )
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {

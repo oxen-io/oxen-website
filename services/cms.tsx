@@ -43,6 +43,7 @@ export class CmsApi {
     this.client = createClient({
       space: process.env.CONTENTFUL_SPACE_ID,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      host: 'cdn.contentful.com',
     });
   }
 
@@ -172,14 +173,54 @@ export class CmsApi {
     });
   }
 
+  public async fetchEntryPreview(
+    query: string,
+    entryType: 'post' | 'splitPage',
+  ): Promise<ISplitPage | IPost> {
+    const client = createClient({
+      space: process.env.CONTENTFUL_SPACE_ID,
+      accessToken: String(process.env.CONTENTFUL_PREVIEW_TOKEN),
+      host: 'preview.contentful.com',
+    });
+
+    const options = { content_type: entryType, 'fields.preview': true }; // only fetch specific type
+    if (entryType === 'post') {
+      options['fields.slug'] = query;
+    } else {
+      options['fields.id[in]'] = query;
+    }
+
+    const _entries = await client.getEntries(options);
+    if (_entries?.items?.length > 0) {
+      let entry;
+      switch (entryType) {
+        case 'post':
+          entry = this.convertPost(_entries.items[0]);
+          break;
+        case 'splitPage':
+          entry = this.convertPage(_entries.items[0]);
+          break;
+        default:
+          break;
+      }
+      return entry;
+    }
+
+    return Promise.reject(
+      new Error(`Failed to fetch preview ${entryType} for ${query}`),
+    );
+  }
+
   public async fetchEntryBySlug(
     slug: string,
     entryType: 'post' | 'splitPage',
   ): Promise<any> {
-    const _entries = await this.client.getEntries({
-      content_type: entryType, // only fetch specific type
-      'fields.slug': slug,
-    });
+    const _entries = await this.client.getEntries(
+      loadOptions({
+        content_type: entryType, // only fetch specific type
+        'fields.slug': slug,
+      }),
+    );
 
     if (_entries?.items?.length > 0) {
       let entry;

@@ -43,6 +43,7 @@ export default function RichPage(props: Props) {
               src={page?.hero?.imageUrl}
               alt={page?.hero?.description ?? page?.label}
               layout="fill"
+              quality={100}
               priority={true}
               placeholder="blur"
               blurDataURL={`${page?.hero?.imageUrl}?q=5`}

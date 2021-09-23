@@ -42,6 +42,7 @@ export default function EmbedContent(props: Props): ReactElement {
                   alt="link thumbnail image"
                   layout="fill"
                   className={classNames('object-cover')}
+                  quality={100}
                   priority={true}
                 />
               </div>

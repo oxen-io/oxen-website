@@ -98,6 +98,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
           alt={node.title}
           width={imageWidth}
           height={imageHeight}
+          quality={100}
           priority={true}
         />
         {node.caption && (

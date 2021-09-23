@@ -44,6 +44,7 @@ export default function EmbedContent(props: Props): ReactElement {
                   className={classNames('object-cover')}
                   quality={100}
                   priority={true}
+                  lazyBoundary={`500px 200px`}
                 />
               </div>
             )}

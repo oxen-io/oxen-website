@@ -15,7 +15,11 @@ export default function CustomHead(props: Props): ReactElement {
   const { title, metadata } = props;
   const pageTitle = generateTitle(title);
   const pageUrl = `${METADATA.HOST_URL}${router.asPath}`;
-  const imageUrl = (() => {
+
+  const imageALT = metadata?.OG_IMAGE?.ALT ?? METADATA.OG_IMAGE.ALT;
+  let imageWidth = metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH;
+  let imageHeight = metadata?.OG_IMAGE?.HEIGHT ?? METADATA.OG_IMAGE.HEIGHT;
+  let imageUrl = (() => {
     if (!metadata?.OG_IMAGE?.URL)
       return `${METADATA.HOST_URL}${METADATA.OG_IMAGE.URL}`;
     if (metadata?.OG_IMAGE?.URL && isLocal(metadata.OG_IMAGE.URL)) {
@@ -24,6 +28,14 @@ export default function CustomHead(props: Props): ReactElement {
       return `${metadata?.OG_IMAGE?.URL}`;
     }
   })();
+
+  // Decrease image dimensions so link previews work on Telegram
+  if (imageWidth > 3000) {
+    imageHeight = Math.floor(imageHeight / 2);
+    imageWidth = Math.floor(imageWidth / 2);
+    imageUrl = `${imageUrl}?w=${imageWidth}`;
+  }
+
   const tags = metadata?.TAGS ? metadata?.TAGS : METADATA.TAGS;
   const renderTags = (() => {
     const keywords = (
@@ -72,12 +84,8 @@ export default function CustomHead(props: Props): ReactElement {
         "@type": "ImageObject",
         "@id": "${pageUrl}#primaryimage",
         "url": "${imageUrl}",
-        "width": "${String(
-          metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH,
-        )}",
-        "height": "${String(
-          metadata?.OG_IMAGE?.HEIGHT ?? METADATA.OG_IMAGE.HEIGHT,
-        )}"
+        "width": "${imageWidth}",
+        "height": "${imageHeight}",
       },
       {
         "@type": "WebPage",
@@ -144,20 +152,16 @@ export default function CustomHead(props: Props): ReactElement {
         property="og:image:secure_url"
         content={imageUrl}
       ></meta>
-      <meta
-        key="og:image:alt"
-        property="og:image:alt"
-        content={metadata?.OG_IMAGE?.ALT ?? METADATA.OG_IMAGE.ALT}
-      />
+      <meta key="og:image:alt" property="og:image:alt" content={imageALT} />
       <meta
         key="og:image:width"
         property="og:image:width"
-        content={String(metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH)}
+        content={String(imageWidth)}
       />
       <meta
         key="og:image:height"
         property="og:image:height"
-        content={String(metadata?.OG_IMAGE?.HEIGHT ?? METADATA.OG_IMAGE.HEIGHT)}
+        content={String(imageHeight)}
       />
       <meta key="og:locale" property="og:locale" content={METADATA.LOCALE} />
       <meta

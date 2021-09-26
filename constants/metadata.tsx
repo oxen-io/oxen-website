@@ -25,7 +25,10 @@ export function generateURL(prefix: string) {
 }
 
 const METADATA = {
-  HOST_URL: 'https://oxen.io',
+  HOST_URL:
+    process.env.NEXT_PUBLIC_SITE_ENV === 'production'
+      ? 'https://oxen.io'
+      : 'https://staging.oxen.io',
   SITE_NAME: 'Oxen',
   TITLE: 'Oxen | Privacy made simple.',
   DESCRIPTION:

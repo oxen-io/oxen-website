@@ -16,7 +16,7 @@ export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
     <div className="w-full pb-4">
       <div className="relative w-full h-full">
         <Image
-          src={`${featureImage?.imageUrl}?fm=jpg&fl=progressive`}
+          src={`${featureImage?.imageUrl}`}
           alt={featureImage?.description ?? title}
           width={featureImage?.width}
           height={featureImage?.height}

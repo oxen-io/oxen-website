@@ -95,7 +95,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     return (
       <figure className={classNames(figureClasses)} style={figureStyles}>
         <Image
-          src={`${url}?fm=jpg&fl=progressive`}
+          src={`${url}`}
           alt={node.title}
           width={imageWidth}
           height={imageHeight}

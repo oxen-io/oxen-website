@@ -40,7 +40,7 @@ export default function RichPage(props: Props) {
         <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
           <div className="relative w-full" style={{ height: '33vh' }}>
             <Image
-              src={`${page?.hero?.imageUrl}?fm=jpg&fl=progressive`}
+              src={`${page?.hero?.imageUrl}`}
               alt={page?.hero?.description ?? page?.label}
               layout="fill"
               quality={100}

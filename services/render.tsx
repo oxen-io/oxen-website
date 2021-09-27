@@ -1,13 +1,14 @@
-import { useContext } from 'react';
+import { ReactElement, CSSProperties, useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { Block, Inline } from '@contentful/rich-text-types';
+
+import { UI } from '../constants';
 import sanitize from '../utils/sanitize';
+import { ScreenContext } from '../contexts/screen';
 
 import EmbedContent from '../components/EmbedContent';
-import { ScreenContext } from '../contexts/screen';
-import { ReactElement, CSSProperties } from 'react';
 
 function Markup(node: any): ReactElement {
   const frontTags: string[] = [];
@@ -94,11 +95,15 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     return (
       <figure className={classNames(figureClasses)} style={figureStyles}>
         <Image
-          src={`${url}${isMobile ? '?w=300' : isTablet ? '?w=600' : ''}`}
+          src={`${url}`}
           alt={node.title}
           width={imageWidth}
           height={imageHeight}
+          quality={100}
           priority={true}
+          lazyBoundary={`500px 200px`}
+          placeholder="blur"
+          blurDataURL={`${url}?w=${UI.MAX_CONTENT_WIDTH}&q=5`}
         />
         {node.caption && (
           <figcaption className={classNames(captionClasses)}>

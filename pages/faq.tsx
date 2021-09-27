@@ -45,9 +45,10 @@ function FAQ(props: Props) {
         <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
           <div className="relative w-full" style={{ height: '33vh' }}>
             <Image
-              src={FAQImage}
+              src={`${FAQImage}`}
               alt={METADATA.FAQ_PAGE.OG_IMAGE.ALT}
               layout="fill"
+              quality={100}
               priority={true}
               placeholder="blur"
               className="object-contain"

@@ -41,9 +41,10 @@ export function ArticleCardFeature(props: IPost) {
           )}
         >
           <Image
-            src={`${featureImage?.imageUrl}?w=600`}
+            src={`${featureImage?.imageUrl}?w=1200`}
             alt={featureImage?.description ?? title}
             layout="fill"
+            quality={100}
             priority={true}
             className="object-cover"
           />

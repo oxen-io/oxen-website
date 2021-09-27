@@ -38,11 +38,13 @@ export default function EmbedContent(props: Props): ReactElement {
                 className={classNames('relative w-full h-36', 'tablet:h-48')}
               >
                 <Image
-                  src={content.image}
+                  src={`${content.image}`}
                   alt="link thumbnail image"
                   layout="fill"
                   className={classNames('object-cover')}
+                  quality={100}
                   priority={true}
+                  lazyBoundary={`500px 200px`}
                 />
               </div>
             )}

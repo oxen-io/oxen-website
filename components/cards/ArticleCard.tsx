@@ -47,9 +47,11 @@ export function ArticleCard(props: IPost): JSX.Element {
       >
         {featureImage?.imageUrl && (
           <Image
-            src={`${featureImage?.imageUrl}?w=300`}
+            src={`${featureImage?.imageUrl}?w=600`}
             alt={featureImage?.description ?? title}
             layout="fill"
+            quality={100}
+            lazyBoundary={`500px 200px`}
             className="object-cover"
           />
         )}

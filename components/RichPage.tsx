@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 
 import { METADATA } from '../constants';
 import { PageType, setPageType } from '../state/navigation';
@@ -16,6 +17,7 @@ interface Props {
 
 export default function RichPage(props: Props) {
   const { page } = props;
+  const [loaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +40,13 @@ export default function RichPage(props: Props) {
       />
       <div className="bg-alt">
         <div className="relative flex items-center justify-center w-full h-full pt-3 bg-gradient-to-bl from-hyper to-blush">
-          <div className="relative w-full" style={{ height: '33vh' }}>
+          <div
+            className={classNames(
+              'relative w-full',
+              loaded ? 'block' : 'hidden',
+            )}
+            style={{ height: '33vh' }}
+          >
             <Image
               src={`${page?.hero?.imageUrl}`}
               alt={page?.hero?.description ?? page?.label}
@@ -47,6 +55,7 @@ export default function RichPage(props: Props) {
               priority={true}
               placeholder="blur"
               blurDataURL={`${page?.hero?.imageUrl}?q=5`}
+              onLoadingComplete={() => setIsLoaded(true)}
               className="object-contain"
             />
           </div>

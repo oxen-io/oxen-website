@@ -95,11 +95,11 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     return (
       <figure className={classNames(figureClasses)} style={figureStyles}>
         <Image
-          src={`${url}`}
+          src={`${url}?fm=jpg&fl=progressive`}
           alt={node.title}
           width={imageWidth}
           height={imageHeight}
-          quality={85}
+          quality={100}
           priority={true}
           lazyBoundary={`500px 200px`}
           placeholder="blur"

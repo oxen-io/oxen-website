@@ -16,12 +16,12 @@ export function ArticleSectionFeatureImage({ featureImage, title }: Props) {
     <div className="w-full pb-4">
       <div className="relative w-full h-full">
         <Image
-          src={`${featureImage?.imageUrl}`}
+          src={`${featureImage?.imageUrl}?fm=jpg&fl=progressive`}
           alt={featureImage?.description ?? title}
           width={featureImage?.width}
           height={featureImage?.height}
           layout="responsive"
-          quality={85}
+          quality={100}
           priority={true}
           placeholder="blur"
           blurDataURL={`${featureImage?.imageUrl}?w=${UI.MAX_CONTENT_WIDTH}&q=5`}

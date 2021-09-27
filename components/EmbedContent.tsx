@@ -38,7 +38,7 @@ export default function EmbedContent(props: Props): ReactElement {
                 className={classNames('relative w-full h-36', 'tablet:h-48')}
               >
                 <Image
-                  src={content.image}
+                  src={`${content.image}?fm=jpg&fl=progressive`}
                   alt="link thumbnail image"
                   layout="fill"
                   className={classNames('object-cover')}

@@ -50,7 +50,6 @@ function FAQ(props: Props) {
               layout="fill"
               quality={100}
               priority={true}
-              placeholder="blur"
               className="object-contain"
             />
           </div>

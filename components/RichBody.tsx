@@ -51,6 +51,16 @@ export function RichBody(props: Props): ReactElement {
           node.data.uri.indexOf('://oxen.io') >= 0
             ? node.data.uri.split('://oxen.io')[1]
             : node.data.uri;
+        // Remove Google Docs styling
+        const renderChildren = Children.map(children, (child: any) => {
+          if (child.type === 'span' && child.props.className === 'underline') {
+            const newProps = {
+              ...child.props,
+              className: undefined,
+            };
+            return cloneElement(child, newProps);
+          }
+        });
         return (
           <Link href={url} scroll={!isLocal(node.data.uri)}>
             <a
@@ -63,7 +73,7 @@ export function RichBody(props: Props): ReactElement {
               }
               rel="noreferrer"
             >
-              {children}
+              {renderChildren}
             </a>
           </Link>
         );

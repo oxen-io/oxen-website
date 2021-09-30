@@ -166,7 +166,7 @@ export function RichBody(props: Props): ReactElement {
           if (child.type === 'p') {
             const newProps = {
               ...child.props,
-              className: 'mb-3 font-sans tracking-wide text-justify',
+              className: 'mb-3 font-sans tracking-wide',
             };
             return cloneElement(child, newProps);
           }

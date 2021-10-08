@@ -17,6 +17,8 @@ module.exports = {
       mobile: '500px',
       tablet: '715px',
       desktop: '1100px',
+      xl: '1280px',
+      huge: '1920px',
     },
     fontFamily: {
       prompt: ['Prompt'],
@@ -40,6 +42,9 @@ module.exports = {
       '9xl': ['7rem'],
     },
     extend: {
+      backgroundImage: {
+        hero: "url('/hero.svg')",
+      },
       colors: {
         primary: '#1F1C47',
         secondary: '#12C7BA',
@@ -71,6 +76,9 @@ module.exports = {
             animationTimingFunction: 'linear',
           },
         },
+      },
+      width: {
+        68: '17rem',
       },
     },
   },

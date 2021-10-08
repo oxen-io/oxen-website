@@ -7,7 +7,7 @@ export function HomeHero() {
   return (
     <div
       className={classNames(
-        'relative w-full flex justify-center items-center overflow-hidden',
+        'relative w-full flex justify-center items-center overflow-x-hidden',
         'before:bg-hero before:bg-right before:bg-no-repeat before:bg-cover before:absolute before:inset-0 before:opacity-10',
         'tablet:before:opacity-100',
         'xl:before:bg-center',
@@ -23,15 +23,15 @@ export function HomeHero() {
       >
         <h1
           className={classNames(
-            'text-4xl font-bold leading-snug mt-8 mb-4',
-            'tablet:text-5xl tablet:-mx-3',
+            'text-4xl font-bold leading-snug mt-16 mb-4',
+            'tablet:text-5xl tablet:mt-8 tablet:-mx-3',
           )}
         >
           Fast, powerful, and private.
         </h1>
         <h2
           className={classNames(
-            'text-xl leading-snug mb-8',
+            'text-xl leading-snug mb-4',
             'tablet:text-2xl tablet:mb-12 tablet:max-w-lg',
           )}
         >

@@ -11,9 +11,7 @@ import { HomeHeroBubble } from '../components/HomeHeroBubble';
 export default function Index() {
   return (
     <>
-      {/* Only visible when no pages are open */}
       <HomeHero />
-      <HomeHeroBubble />
     </>
   );
 }

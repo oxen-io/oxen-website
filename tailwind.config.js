@@ -77,6 +77,9 @@ module.exports = {
           },
         },
       },
+      width: {
+        68: '17rem',
+      },
     },
   },
   variants: {

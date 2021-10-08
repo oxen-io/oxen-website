@@ -16,97 +16,85 @@ export function HomeHero() {
     >
       <div
         className={classNames(
-          'relative flex flex-col justify-center items-center text-center',
-          'tablet:-mt-8 tablet:mx-7 tablet:py-4 tablet:px-8 tablet:bg-alt tablet:bg-opacity-95 tablet:border tablet:border-primary',
-          'desktop:mt-0 desktop:mx-8 desktop:px-16',
+          'font-prompt relative flex flex-col justify-center items-center text-center',
+          'tablet:text-left tablet:items-start tablet:-mt-8 tablet:mx-7 tablet:py-2 tablet:px-20 tablet:bg-alt tablet:bg-opacity-95 tablet:border-2 tablet:border-secondary tablet:rounded-2xl',
+          'desktop:mt-0 desktop:mx-8',
         )}
       >
         <h1
           className={classNames(
-            'text-4xl font-bold leading-snug mt-16 mb-4',
-            'tablet:text-5xl tablet:mt-8 tablet:-mx-3',
+            'text-4xl font-bold leading-snug mt-8 mb-4',
+            'tablet:text-5xl tablet:mt-8',
           )}
         >
-          Fast, powerful, and private.
+          Privacy is possible
         </h1>
         <h2
           className={classNames(
-            'text-xl leading-snug mb-4',
-            'tablet:text-2xl tablet:mb-12 tablet:max-w-lg',
+            'text-xl leading-snug mb-4 mx-4',
+            'tablet:text-2xl tablet:mx-0 tablet:mb-12 tablet:max-w-xl',
+            'desktop:mb-8',
           )}
         >
-          The only crypto in the world with instant confidential transactions.
+          Oxen is a cryptocurrency powering a new class of interconnected
+          privacy apps.
         </h2>
         <h3
           className={classNames(
-            'font-prompt text-5xl font-semibold leading-tight mb-4',
-            'tablet:mb-2',
+            'text-3xl font-semibold leading-tight mb-4',
+            'tablet:text-4xl tablet:mb-2',
             'desktop:mb-4',
           )}
         >
-          Buy Oxen
+          Buy now
         </h3>
         <div
           className={classNames(
             'flex flex-col justify-center items-center w-full',
-            'tablet:flex-row',
+            'tablet:flex-row tablet:justify-between',
           )}
         >
-          <a
-            href="https://global.bittrex.com/Market/Index?MarketName=USDT-OXEN"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Link to Bittrex website"
-            className={classNames(
-              'block p-4 cursor-pointer border border-transparent',
-              'duration-300',
-              'tablet:p-6',
-              'hover:bg-secondary hover:bg-opacity-30 hover:border-primary',
-            )}
-          >
-            <Image
-              src={'/svgs/bittrex-logo.svg'}
-              alt="Bittrex Logo"
-              width={96}
-              height={96}
-              quality={100}
-              priority={true}
-            />
-            <span
-              className={classNames(
-                'font-prompt text-5xl ml-4 font-medium align-top',
-              )}
-            >
-              Bittrex
-            </span>
-          </a>
           <a
             href="https://trade.kucoin.com/LOKI-USDT"
             target="_blank"
             rel="noreferrer"
             aria-label="Link to Kucoin website"
             className={classNames(
-              'block p-4 cursor-pointer border border-transparent',
-              'tablet:p-6',
+              'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 border-secondary rounded-2xl w-60',
+              'xl:w-68',
               'duration-300',
-              'hover:bg-secondary hover:bg-opacity-30 hover:border-primary',
+              'hover:bg-secondary hover:bg-opacity-30',
             )}
           >
             <Image
-              src={'/svgs/kucoin-logo.svg'}
+              src={'/svgs/kucoin-logo-full.svg'}
               alt="Bittrex Logo"
-              width={96}
-              height={96}
+              width={700}
+              height={161.7}
               quality={100}
               priority={true}
             />
-            <span
-              className={classNames(
-                'font-prompt text-5xl ml-4 font-medium align-top',
-              )}
-            >
-              Kucoin
-            </span>
+          </a>
+          <a
+            href="https://global.bittrex.com/Market/Index?MarketName=USDT-OXEN"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Bittrex website"
+            className={classNames(
+              'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
+              'xl:w-68',
+              'duration-300',
+              'hover:bg-secondary hover:bg-opacity-30',
+            )}
+          >
+            <Image
+              src={'/svgs/bittrex-logo-full.svg'}
+              alt="Bittrex Logo"
+              width={600.1}
+              height={143.8}
+              quality={100}
+              priority={true}
+            />
           </a>
         </div>
       </div>

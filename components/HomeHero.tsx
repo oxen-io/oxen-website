@@ -46,7 +46,7 @@ export function HomeHero() {
             'desktop:mb-4',
           )}
         >
-          Buy now
+          Available on
         </h3>
         <div
           className={classNames(

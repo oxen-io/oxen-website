@@ -60,6 +60,7 @@ export function RichBody(props: Props): ReactElement {
             };
             return cloneElement(child, newProps);
           }
+          return child;
         });
         return (
           <Link href={url} scroll={!isLocal(node.data.uri)}>

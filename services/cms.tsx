@@ -22,14 +22,8 @@ import {
   IFetchFAQItemsReturn,
   ITagList,
 } from '../types/cms';
-import isLive from '../utils/environment';
 import { generateURL } from '../constants/metadata';
 import { fetchContent } from './embed';
-
-function loadOptions(options: any) {
-  if (isLive()) options['fields.live'] = true;
-  return options;
-}
 
 // Turns CMS IDs into slugs
 export const slugify = (id: string) => id?.replace(/_/g, '-').toLowerCase();
@@ -65,14 +59,12 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const _entries = await this.client.getEntries(
-      loadOptions({
-        content_type: 'post', // only fetch blog post entry
-        order: '-fields.date',
-        limit: quantity,
-        skip: (page - 1) * quantity,
-      }),
-    );
+    const _entries = await this.client.getEntries({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      limit: quantity,
+      skip: (page - 1) * quantity,
+    });
 
     const results = await this.generateEntries(_entries, 'post');
     return {
@@ -86,15 +78,13 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const _entries = await this.client.getEntries(
-      loadOptions({
-        content_type: 'post',
-        order: '-fields.date',
-        'fields.tags[in]': tag,
-        limit: quantity,
-        skip: (page - 1) * quantity,
-      }),
-    );
+    const _entries = await this.client.getEntries({
+      content_type: 'post',
+      order: '-fields.date',
+      'fields.tags[in]': tag,
+      limit: quantity,
+      skip: (page - 1) * quantity,
+    });
 
     const results = await this.generateEntries(_entries, 'post');
     return {
@@ -108,15 +98,13 @@ export class CmsApi {
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
     const DEV_UPDATE_TAG = 'dev-update';
-    const _entries = await this.client.getEntries(
-      loadOptions({
-        content_type: 'post', // only fetch blog post entry
-        order: '-fields.date',
-        'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
-        limit: quantity,
-        skip: (page - 1) * quantity,
-      }),
-    );
+    const _entries = await this.client.getEntries({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
+      limit: quantity,
+      skip: (page - 1) * quantity,
+    });
 
     const results = await this.generateEntries(_entries, 'post');
     return {
@@ -127,12 +115,10 @@ export class CmsApi {
 
   public async fetchPageEntries(): Promise<TPages> {
     try {
-      const _entries = await this.client.getEntries(
-        loadOptions({
-          content_type: 'splitPage', // only fetch blog post entry
-          order: 'fields.order',
-        }),
-      );
+      const _entries = await this.client.getEntries({
+        content_type: 'splitPage', // only fetch blog post entry
+        order: 'fields.order',
+      });
 
       const results = await this.generateEntries(_entries, 'splitPage');
       const pages: TPages = {};
@@ -215,12 +201,10 @@ export class CmsApi {
     slug: string,
     entryType: 'post' | 'splitPage',
   ): Promise<any> {
-    const _entries = await this.client.getEntries(
-      loadOptions({
-        content_type: entryType, // only fetch specific type
-        'fields.slug': slug,
-      }),
-    );
+    const _entries = await this.client.getEntries({
+      content_type: entryType, // only fetch specific type
+      'fields.slug': slug,
+    });
 
     if (_entries?.items?.length > 0) {
       let entry;
@@ -244,12 +228,10 @@ export class CmsApi {
 
   public async fetchPageById(id: SideMenuItem): Promise<ISplitPage> {
     return this.client
-      .getEntries(
-        loadOptions({
-          content_type: 'splitPage',
-          'fields.id[in]': id,
-        }),
-      )
+      .getEntries({
+        content_type: 'splitPage',
+        'fields.id[in]': id,
+      })
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {
           return this.convertPage(entries.items[0]);

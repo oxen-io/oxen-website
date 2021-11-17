@@ -3,6 +3,7 @@ import { titleCase } from '../utils/text';
 export interface IMetadata {
   DESCRIPTION: string;
   TYPE?: string;
+  CANONICAL_URL?: string;
   OG_IMAGE?: {
     URL: string;
     WIDTH: number;

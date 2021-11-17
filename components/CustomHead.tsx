@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import METADATA, { IMetadata, generateTitle } from '../constants/metadata';
 
-import METADATA, { generateTitle, IMetadata } from '../constants/metadata';
+import Head from 'next/head';
+import { ReactElement } from 'react';
 import { isLocal } from '..//utils/links';
+import { useRouter } from 'next/router';
 
 interface Props {
   title?: string;
@@ -15,6 +15,7 @@ export default function CustomHead(props: Props): ReactElement {
   const { title, metadata } = props;
   const pageTitle = generateTitle(title);
   const pageUrl = `${METADATA.HOST_URL}${router.asPath}`;
+  const canonicalUrl = metadata?.CANONICAL_URL ?? pageUrl;
 
   const imageALT = metadata?.OG_IMAGE?.ALT ?? METADATA.OG_IMAGE.ALT;
   let imageWidth = metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH;
@@ -203,7 +204,7 @@ export default function CustomHead(props: Props): ReactElement {
         content={METADATA.THEME_COLOR}
       />
       {renderTags}
-      <link key="canonical" rel="canonical" href={pageUrl} />
+      <link key="canonical" rel="canonical" href={canonicalUrl} />
       <link
         key="image/png32x32"
         rel="icon"

@@ -1,11 +1,12 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import getConfig from 'next/config';
-import { readdirSync } from 'fs';
-
 import { CMS, METADATA, NAVIGATION } from '../../constants';
+import { NextApiRequest, NextApiResponse } from 'next';
+
 import { CmsApi } from '../../services/cms';
-import { isLocal } from '../../utils/links';
+import { IPost } from '../../types/cms';
 import { SideMenuItem } from '../../state/navigation';
+import getConfig from 'next/config';
+import { isLocal } from '../../utils/links';
+import { readdirSync } from 'fs';
 
 interface IRedirection {
   source: string;
@@ -39,6 +40,7 @@ export default async function handler(
         'faq.tsx',
         'api',
         'tag',
+        'preview',
       ].includes(page);
     })
     .map(pagePath => {
@@ -68,10 +70,23 @@ export default async function handler(
     },
   );
 
-  const {
-    entries: _blogPages,
-    total: totalBlogPages,
-  } = await cms.fetchBlogEntries();
+  const _blogPages: IPost[] = [];
+  let currentPage = 1;
+  let foundAllPosts = false;
+
+  // Contentful only allows 100 at a time
+  while (!foundAllPosts) {
+    const { entries: _posts } = await cms.fetchBlogEntries(100, currentPage);
+
+    if (_posts.length === 0) {
+      foundAllPosts = true;
+      continue;
+    }
+
+    _blogPages.push(..._posts);
+    currentPage++;
+  }
+
   const blogPages = _blogPages.map(page => {
     return {
       url: `${baseUrl}/blog/${page.slug}`,
@@ -80,22 +95,19 @@ export default async function handler(
   });
 
   const bloglistPages = [];
+  const totalBlogPages = currentPage + 1;
+
   for (let i = 1; i <= totalBlogPages; i++) {
     bloglistPages.push(`${baseUrl}/blog/${i}`);
   }
 
-  const tags = await cms.fetchTagList();
-  const taglistPages = [];
-  for (const tag of Object.keys(tags)) {
-    const { entries, total } = await cms.fetchBlogEntriesByTag(tag);
-    const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
-    const _pages = [];
+  const devUpdateUrl = `${baseUrl}/tag/dev-update`;
+  const { entries, total } = await cms.fetchBlogEntriesByTag('dev-update');
+  const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
+  const devUpdatePages = [devUpdateUrl];
 
-    for (let i = 1; i <= pageCount; i++) {
-      _pages.push(`${baseUrl}/tag/${tag}/${i}`);
-    }
-
-    taglistPages.push(..._pages);
+  for (let i = 1; i <= pageCount; i++) {
+    devUpdatePages.push(`${devUpdateUrl}/${i}`);
   }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -105,7 +117,7 @@ export default async function handler(
         ...navigationPages,
         ...redirectPages,
         ...bloglistPages,
-        ...taglistPages,
+        ...devUpdatePages,
       ]
         .map(url => {
           return `

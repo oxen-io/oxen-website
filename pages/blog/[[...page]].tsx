@@ -47,6 +47,7 @@ export default function Blog(props: Props): ReactElement {
         metadata={{
           TYPE: METADATA.BLOG_PAGE.TYPE,
           DESCRIPTION: METADATA.BLOG_PAGE.DESCRIPTION,
+          CANONICAL_URL: `${METADATA.HOST_URL}/blog`,
           OG_IMAGE: {
             URL: featuredPost?.featureImage.imageUrl ?? METADATA.OG_IMAGE.URL,
             WIDTH:

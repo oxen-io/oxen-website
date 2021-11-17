@@ -1,12 +1,10 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 
-import { IPost } from '../types/cms';
 import { CMS } from '../constants';
 import { CmsApi } from '../services/cms';
-import generateRSSFeed from '../utils/rss';
-
 import { HomeHero } from '../components/HomeHero';
-import { HomeHeroBubble } from '../components/HomeHeroBubble';
+import { IPost } from '../types/cms';
+import generateRSSFeed from '../utils/rss';
 
 export default function Index() {
   return (

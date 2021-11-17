@@ -48,6 +48,7 @@ export default function Tag(props: Props): ReactElement {
         metadata={{
           TYPE: METADATA.TAG_PAGE.TYPE,
           DESCRIPTION: METADATA.TAG_PAGE.DESCRIPTION,
+          CANONICAL_URL: `${METADATA.HOST_URL}/tag`,
           OG_IMAGE: {
             URL: posts[0]?.featureImage.imageUrl ?? METADATA.OG_IMAGE.URL,
             WIDTH:

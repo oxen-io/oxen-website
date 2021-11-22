@@ -1,10 +1,9 @@
-import Image from 'next/image';
-import { useMeasure } from 'react-use';
-
-import { NAVIGATION, METADATA } from '../constants';
-import { SideMenuItem } from '../state/navigation';
+import { METADATA, NAVIGATION } from '../constants';
 
 import CustomHead from '../components/CustomHead';
+import Image from 'next/image';
+import { SideMenuItem } from '../state/navigation';
+import { useMeasure } from 'react-use';
 
 function Roadmap() {
   const [ref, { width, height }] = useMeasure();

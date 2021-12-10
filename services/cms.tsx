@@ -86,11 +86,15 @@ export class CmsApi {
       skip: (page - 1) * quantity,
     });
 
-    const results = await this.generateEntries(_entries, 'post');
-    return {
-      entries: results.entries as Array<IPost>,
-      total: results.total,
-    };
+    if (_entries.items.length > 0) {
+      const results = await this.generateEntries(_entries, 'post');
+      return {
+        entries: results.entries as Array<IPost>,
+        total: results.total,
+      };
+    }
+
+    return Promise.reject(new Error(`Failed to fetch entries for ${tag}`));
   }
 
   public async fetchBlogEntriesWithoutDevUpdates(

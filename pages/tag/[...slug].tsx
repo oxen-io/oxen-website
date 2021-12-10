@@ -186,8 +186,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
     const _paths = [];
 
-    for (let i = 1; i <= pageCount; i++) {
-      _paths.push({ params: { slug: [tags[i], String(i)] } });
+    for (let j = 1; j <= pageCount; j++) {
+      _paths.push({ params: { slug: [tags[i], String(j)] } });
     }
 
     paths.push(..._paths);

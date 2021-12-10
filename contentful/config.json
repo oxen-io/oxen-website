@@ -1,0 +1,8 @@
+{
+  "spaceId": "************",
+  "managementToken": "CFPAT_*******************************************",
+  "content-file": "contentful/export.json",
+  "skip-content": false,
+  "skip-content-model": false,
+  "skip-roles": false
+}

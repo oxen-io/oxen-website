@@ -1,5 +1,5 @@
 import React from 'react';
-import { TagBlock } from './TagBlock';
+import { TagBlock } from '@/components/TagBlock';
 
 interface Props {
   limit?: number;

@@ -1,11 +1,11 @@
-import { CMS, METADATA, NAVIGATION } from '../../constants';
+import { CMS, METADATA, NAVIGATION } from '@/constants';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { CmsApi } from '../../services/cms';
-import { IPost } from '../../types/cms';
-import { SideMenuItem } from '../../state/navigation';
+import { CmsApi } from '@/services/cms';
+import { IPost } from '@/types/cms';
+import { SideMenuItem } from '@/state/navigation';
 import getConfig from 'next/config';
-import { isLocal } from '../../utils/links';
+import { isLocal } from '@/utils/links';
 import { readdirSync } from 'fs';
 
 interface IRedirection {

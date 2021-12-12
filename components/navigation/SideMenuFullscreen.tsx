@@ -1,10 +1,14 @@
-import classNames from 'classnames';
+import {
+  SideBarMode,
+  SideMenuSideBar,
+} from '@/components/navigation/SideMenuSideBar';
+
+import { IState } from '@/state/reducers';
 import React from 'react';
+import { SideMenuInner } from '@/components/navigation/SideMenuInner';
+import { UI } from '@/constants';
+import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { UI } from '../../constants';
-import { IState } from '../../state/reducers';
-import { SideMenuInner } from './SideMenuInner';
-import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
 
 interface Props {
   withSideBar?: boolean;

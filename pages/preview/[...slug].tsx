@@ -1,13 +1,12 @@
-import { ReactElement } from 'react';
+import { CmsApi, generateLinkMeta, unslugify } from '@/services/cms';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { IPost, ISplitPage, isPost } from '@/types/cms';
+
+import BlogPost from '@/components/BlogPost';
 import Link from 'next/link';
-
-import { CmsApi, generateLinkMeta, unslugify } from '../../services/cms';
-import { SideMenuItem } from '../../state/navigation';
-import { IPost, ISplitPage, isPost } from '../../types/cms';
-
-import BlogPost from '../../components/BlogPost';
-import RichPage from '../../components/RichPage';
+import { ReactElement } from 'react';
+import RichPage from '@/components/RichPage';
+import { SideMenuItem } from '@/state/navigation';
 
 export interface Props {
   page: ISplitPage | IPost;

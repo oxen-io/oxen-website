@@ -1,4 +1,4 @@
-import { initialSearchState, ISearch, SearchActions } from '../search';
+import { ISearch, SearchActions, initialSearchState } from '@/state/search';
 
 export interface SearchAction {
   type: SearchActions;

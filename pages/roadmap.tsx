@@ -1,8 +1,8 @@
-import { METADATA, NAVIGATION } from '../constants';
+import { METADATA, NAVIGATION } from '@/constants';
 
-import CustomHead from '../components/CustomHead';
+import CustomHead from '@/components/CustomHead';
 import Image from 'next/image';
-import { SideMenuItem } from '../state/navigation';
+import { SideMenuItem } from '@/state/navigation';
 import { useMeasure } from 'react-use';
 
 function Roadmap() {

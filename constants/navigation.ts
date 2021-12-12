@@ -1,5 +1,5 @@
-import { ISideMenuItem } from '../components/navigation/SideMenu';
-import { SideMenuItem } from '../state/navigation';
+import { ISideMenuItem } from '@/components/navigation/SideMenu';
+import { SideMenuItem } from '@/state/navigation';
 
 export interface IMenuItem {
   label: string;

@@ -1,4 +1,4 @@
-import { IPost } from '../../types/cms';
+import { IPost } from '@/types/cms';
 
 export const initialArticleState: IPost | Record<string, unknown> = {};
 

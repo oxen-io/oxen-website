@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { ScreenContext } from '../../contexts/screen';
-import { DesktopHeader } from './DesktopHeader';
-import { MobileHeader } from './MobileHeader';
+
+import { DesktopHeader } from '@/components/navigation/DesktopHeader';
+import { MobileHeader } from '@/components/navigation/MobileHeader';
+import { ScreenContext } from '@/contexts/screen';
 
 export function Header() {
   const { isDesktop } = useContext(ScreenContext);

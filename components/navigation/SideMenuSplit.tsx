@@ -1,12 +1,16 @@
-import classNames from 'classnames';
+import { PageType, collapseSideMenu } from '@/state/navigation';
 import React, { useRef } from 'react';
+import {
+  SideBarMode,
+  SideMenuSideBar,
+} from '@/components/navigation/SideMenuSideBar';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { IState } from '@/state/reducers';
+import { SideMenuInner } from '@/components/navigation/SideMenuInner';
+import { UI } from '@/constants';
+import classNames from 'classnames';
 import { useClickAway } from 'react-use';
-import { UI } from '../../constants';
-import { collapseSideMenu, PageType } from '../../state/navigation';
-import { IState } from '../../state/reducers';
-import { SideMenuInner } from './SideMenuInner';
-import { SideBarMode, SideMenuSideBar } from './SideMenuSideBar';
 
 export function SideMenuSplit() {
   const { pageType, sideMenuExpanded } = useSelector(

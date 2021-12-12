@@ -1,10 +1,8 @@
+import { ArticleContained } from '@/components/ArticleContained';
+import { Contained } from '@/components/Contained';
+import { IFigureImage } from '@/types/cms';
 import Image from 'next/image';
-
-import { IFigureImage } from '../../../types/cms';
-import { UI } from '../../../constants';
-
-import { Contained } from '../../Contained';
-import { ArticleContained } from '../../ArticleContained';
+import { UI } from '@/constants';
 
 interface Props {
   featureImage: IFigureImage;

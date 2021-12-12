@@ -1,5 +1,4 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import classNames from 'classnames';
 import React, {
   ReactNode,
   useContext,
@@ -8,9 +7,11 @@ import React, {
   useState,
 } from 'react';
 import { useScroll, useWindowSize } from 'react-use';
-import { UI } from '../constants';
-import { ScreenContext } from '../contexts/screen';
-import { Contained } from './Contained';
+
+import { Contained } from '@/components/Contained';
+import { ScreenContext } from '@/contexts/screen';
+import { UI } from '@/constants';
+import classNames from 'classnames';
 
 interface Props {
   onScroll?: (x: number) => void;

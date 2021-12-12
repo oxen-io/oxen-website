@@ -1,6 +1,6 @@
+import { Contained } from '@/components/Contained';
+import { ScreenContext } from '@/contexts/screen';
 import { useContext } from 'react';
-import { ScreenContext } from '../../../contexts/screen';
-import { Contained } from '../../Contained';
 
 interface Props {
   subtitle: string;

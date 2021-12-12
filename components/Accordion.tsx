@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { RichBody } from '../components/RichBody';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { RichBody } from '@/components/RichBody';
+import { ReactComponent as TriangleOutlinedSVG } from '@/assets/svgs/triangle-outlined.svg';
 import classNames from 'classnames';
-import { ReactComponent as TriangleOutlinedSVG } from '../assets/svgs/triangle-outlined.svg';
 import { useHoverDirty } from 'react-use';
 
 export function Accordion(props) {

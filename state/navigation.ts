@@ -1,4 +1,4 @@
-import { ISplitPage } from '../types/cms';
+import { ISplitPage } from '@/types/cms';
 
 export enum SideMenuItem {
   BUILD = 'BUILD',

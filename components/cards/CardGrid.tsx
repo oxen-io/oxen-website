@@ -1,11 +1,12 @@
-import classNames from 'classnames';
-import _ from 'lodash';
 import React, { useContext } from 'react';
+
+import { Contained } from '@/components/Contained';
+import { HorizontalScrollable } from '@/components/HorizontalScrollable';
+import { ScreenContext } from '@/contexts/screen';
+import _ from 'lodash';
+import classNames from 'classnames';
 import { useMeasure } from 'react-use';
 import { v4 as uuid } from 'uuid';
-import { ScreenContext } from '../../contexts/screen';
-import { Contained } from '../Contained';
-import { HorizontalScrollable } from '../HorizontalScrollable';
 
 interface Props {
   rows?: number;

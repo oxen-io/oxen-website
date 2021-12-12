@@ -1,16 +1,14 @@
+import { CMS, METADATA, NAVIGATION } from '@/constants';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
+
+import { Accordion } from '@/components/Accordion';
+import { CmsApi } from '@/services/cms';
+import { Contained } from '@/components/Contained';
+import CustomHead from '@/components/CustomHead';
+import FAQImage from '@/public/img/faq.png';
+import { IFAQItem } from '@/types/cms';
 import Image from 'next/image';
-
-import { NAVIGATION, METADATA, CMS } from '../constants';
-import { SideMenuItem } from '../state/navigation';
-import { CmsApi } from '../services/cms';
-import { IFAQItem } from '../types/cms';
-
-import { Accordion } from '../components/Accordion';
-import { Contained } from '../components/Contained';
-import CustomHead from '../components/CustomHead';
-
-import FAQImage from '../public/img/faq.png';
+import { SideMenuItem } from '@/state/navigation';
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,

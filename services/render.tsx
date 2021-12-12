@@ -1,14 +1,13 @@
-import { ReactElement, CSSProperties, useContext } from 'react';
+import { Block, Inline } from '@contentful/rich-text-types';
+import { CSSProperties, ReactElement, useContext } from 'react';
+
+import EmbedContent from '@/components/EmbedContent';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ScreenContext } from '@/contexts/screen';
+import { UI } from '@/constants';
 import classNames from 'classnames';
-import { Block, Inline } from '@contentful/rich-text-types';
-
-import { UI } from '../constants';
-import sanitize from '../utils/sanitize';
-import { ScreenContext } from '../contexts/screen';
-
-import EmbedContent from '../components/EmbedContent';
+import sanitize from '@/utils/sanitize';
 
 function Markup(node: any): ReactElement {
   const frontTags: string[] = [];

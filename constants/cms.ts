@@ -1,4 +1,4 @@
-import isLive from '../utils/environment';
+import isLive from '@/utils/environment';
 
 interface IShortcodeButton {
   regex: RegExp;

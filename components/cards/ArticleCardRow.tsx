@@ -1,8 +1,9 @@
-import Link from 'next/link';
 import React, { useContext } from 'react';
-import { ScreenContext } from '../../contexts/screen';
-import { IPost } from '../../types/cms';
-import { generateURL } from '../../utils/routing';
+
+import { IPost } from '@/types/cms';
+import Link from 'next/link';
+import { ScreenContext } from '@/contexts/screen';
+import { generateURL } from '@/utils/routing';
 
 export function ArticleCardRow(post: IPost) {
   const { isMobile } = useContext(ScreenContext);

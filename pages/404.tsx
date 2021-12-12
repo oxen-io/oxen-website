@@ -1,11 +1,10 @@
-import { useContext, ReactElement } from 'react';
+// import _404 from '@/assets/svgs/404.svg';
+import { METADATA, UI } from '@/constants';
+import { ReactElement, useContext } from 'react';
+
+import CustomHead from '@/components/CustomHead';
+import { ScreenContext } from '@/contexts/screen';
 import classNames from 'classnames';
-
-// import _404 from '../assets/svgs/404.svg';
-import { UI, METADATA } from '../constants';
-import { ScreenContext } from '../contexts/screen';
-
-import CustomHead from '../components/CustomHead';
 
 export default function Custom404(): ReactElement {
   const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { UI } from '../../../constants';
+import { UI } from '@/constants';
 
 interface Props {
   title: string;

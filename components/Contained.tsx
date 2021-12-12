@@ -1,6 +1,7 @@
-import classNames from 'classnames';
 import React, { ReactNode } from 'react';
-import { UI } from '../constants';
+
+import { UI } from '@/constants';
+import classNames from 'classnames';
 
 interface Props {
   id?: string;

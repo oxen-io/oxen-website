@@ -1,7 +1,6 @@
 import Image from 'next/image';
+import { UI } from '@/constants';
 import classNames from 'classnames';
-
-import { UI } from '../constants';
 
 export function HomeHero() {
   return (

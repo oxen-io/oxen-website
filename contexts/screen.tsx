@@ -1,5 +1,5 @@
 import React from 'react';
-import { useScreenSize } from '../hooks/screen';
+import { useScreenSize } from '@/hooks/screen';
 
 interface IScreen {
   isMobile: boolean;

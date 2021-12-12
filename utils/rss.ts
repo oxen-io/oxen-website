@@ -1,8 +1,8 @@
 import { mkdirSync, writeFileSync } from 'fs';
 
 import { Feed } from 'feed';
-import { IPost } from '../types/cms';
-import { METADATA } from '../constants';
+import { IPost } from '@/types/cms';
+import { METADATA } from '@/constants';
 
 const baseUrl = METADATA.HOST_URL;
 const date = new Date();

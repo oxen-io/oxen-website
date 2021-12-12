@@ -1,10 +1,11 @@
+import { NAVIGATION, UI } from '@/constants';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { IState } from '@/state/reducers';
 import Link from 'next/link';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { collapseMobileHeader } from '@/state/navigation';
 import { v4 as uuid } from 'uuid';
-import { NAVIGATION, UI } from '../../constants';
-import { collapseMobileHeader } from '../../state/navigation';
-import { IState } from '../../state/reducers';
 
 export function MobileMenu() {
   const { headerMobileMenuExpanded: expanded } = useSelector(

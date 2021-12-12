@@ -1,15 +1,14 @@
+import { PageType, setPageType } from '@/state/navigation';
 import { useEffect, useState } from 'react';
+
+import { Contained } from '@/components/Contained';
+import CustomHead from '@/components/CustomHead';
+import { ISplitPage } from '@/types/cms';
 import Image from 'next/image';
-import { useDispatch } from 'react-redux';
+import { METADATA } from '@/constants';
+import { RichBody } from '@/components/RichBody';
 import classNames from 'classnames';
-
-import { METADATA } from '../constants';
-import { PageType, setPageType } from '../state/navigation';
-import { ISplitPage } from '../types/cms';
-
-import { Contained } from '../components/Contained';
-import { RichBody } from '../components/RichBody';
-import CustomHead from './CustomHead';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   page: ISplitPage;

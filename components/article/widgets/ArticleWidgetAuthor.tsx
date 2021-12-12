@@ -1,5 +1,5 @@
+import { IAuthor } from '@/types/cms';
 import React from 'react';
-import { IAuthor } from '../../../types/cms';
 
 interface Props {
   author: IAuthor;

@@ -1,4 +1,4 @@
-import { titleCase } from '../utils/text';
+import { titleCase } from '@/utils/text';
 
 export interface IMetadata {
   DESCRIPTION: string;

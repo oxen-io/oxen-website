@@ -1,8 +1,8 @@
 import {
   INavigation,
-  initialNavigationState,
   NavigationActions,
-} from '../navigation';
+  initialNavigationState,
+} from '@/state/navigation';
 
 export interface NavigationAction {
   type: NavigationActions;

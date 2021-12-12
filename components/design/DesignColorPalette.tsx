@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionTitle } from '../SectionTitle';
+import { SectionTitle } from '@/components/SectionTitle';
 
 export function ColorPalette() {
   return (
@@ -9,13 +9,13 @@ export function ColorPalette() {
       </div>
       <div className="flex pb-10 space-x-4">
         <div className="flex flex-col space-y-3 font-sans">
-          <div className="flex justify-center items-center w-8 h-8 text-3xl">
+          <div className="flex items-center justify-center w-8 h-8 text-3xl">
             0
           </div>
-          <div className="flex justify-center items-center w-8 h-8 text-3xl">
+          <div className="flex items-center justify-center w-8 h-8 text-3xl">
             1
           </div>
-          <div className="flex justify-center items-center w-8 h-8 text-3xl">
+          <div className="flex items-center justify-center w-8 h-8 text-3xl">
             2
           </div>
         </div>
@@ -44,23 +44,23 @@ export function ColorPalette() {
           <div className="w-8 h-8 rounded-lg bg-subtle-2"></div>
         </div>
 
-        <div className="flex flex-col space-y-3 justify-end">
+        <div className="flex flex-col justify-end space-y-3">
           <div className="w-8 h-8 rounded-lg bg-soft"></div>
           <div className="w-8 h-8 rounded-lg bg-soft-1"></div>
         </div>
 
         <div className="flex flex-col w-8"></div>
 
-        <div className="flex flex-col space-y-3 justify-end">
+        <div className="flex flex-col justify-end space-y-3">
           <div className="w-8 h-8 rounded-lg bg-aux-orange"></div>
         </div>
 
-        <div className="flex flex-col space-y-3 justify-end">
+        <div className="flex flex-col justify-end space-y-3">
           <div className="w-8 h-8 rounded-lg bg-aux-brown"></div>
           <div className="w-8 h-8 rounded-lg bg-aux-green"></div>
         </div>
 
-        <div className="flex flex-col space-y-3 justify-end">
+        <div className="flex flex-col justify-end space-y-3">
           <div className="w-8 h-8 rounded-lg bg-aux-beige"></div>
           <div className="w-8 h-8 rounded-lg bg-aux-blue"></div>
         </div>

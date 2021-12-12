@@ -1,30 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import CoinGeckoImage from '@/public/img/coingecko.png';
+import CoinMarketCapImage from '@/public/img/coinmarketcap.png';
+import { Contained } from '@/components/Contained';
+import { ReactComponent as GithubSVG } from '@/assets/svgs/socials/github.svg';
+import { IState } from '@/state/reducers';
+import Image from 'next/image';
+import Link from 'next/link';
+import { NAVIGATION } from '@/constants';
+import { ReactComponent as RedditSVG } from '@/assets/svgs/socials/reddit.svg';
+import { ReactComponent as RssSVG } from '@/assets/svgs/socials/rss.svg';
+import { ScreenContext } from '@/contexts/screen';
+import { ReactComponent as SessionSVG } from '@/assets/svgs/socials/session.svg';
+import { SideMenuRow } from '@/components/navigation/SideMenuRow';
+import { ReactComponent as TelegramSVG } from '@/assets/svgs/socials/telegram.svg';
+import { ReactComponent as TwitterSVG } from '@/assets/svgs/socials/twitter.svg';
+import { ReactComponent as YouTubeSVG } from '@/assets/svgs/socials/youtube.svg';
+import _ from 'lodash';
+import classNames from 'classnames';
 /* eslint-disable react/jsx-no-target-blank */
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import classNames from 'classnames';
-import _ from 'lodash';
-
-import { NAVIGATION } from '../../constants';
-import { ScreenContext } from '../../contexts/screen';
-import { IState } from '../../state/reducers';
-
-import { Contained } from '../Contained';
-import { SideMenuRow } from './SideMenuRow';
-
-import CoinMarketCapImage from '../../public/img/coinmarketcap.png';
-import CoinGeckoImage from '../../public/img/coingecko.png';
-
-import { ReactComponent as GithubSVG } from '../../assets/svgs/socials/github.svg';
-import { ReactComponent as RedditSVG } from '../../assets/svgs/socials/reddit.svg';
-import { ReactComponent as RssSVG } from '../../assets/svgs/socials/rss.svg';
-import { ReactComponent as SessionSVG } from '../../assets/svgs/socials/session.svg';
-import { ReactComponent as TelegramSVG } from '../../assets/svgs/socials/telegram.svg';
-import { ReactComponent as TwitterSVG } from '../../assets/svgs/socials/twitter.svg';
-import { ReactComponent as YouTubeSVG } from '../../assets/svgs/socials/youtube.svg';
 
 export function SideMenuInner() {
   const { isHuge, isDesktop } = useContext(ScreenContext);

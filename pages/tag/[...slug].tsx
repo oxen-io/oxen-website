@@ -1,21 +1,20 @@
-import { useEffect, ReactElement } from 'react';
+import { CMS, METADATA } from '@/constants';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { PageType, setPageType } from '@/state/navigation';
+import { ReactElement, useEffect } from 'react';
+
+import { ArticleCard } from '@/components/cards/ArticleCard';
+import { CardGrid } from '@/components/cards/CardGrid';
+import { CmsApi } from '@/services/cms';
+import { Contained } from '@/components/Contained';
+import CustomHead from '@/components/CustomHead';
+import { IPath } from '@/types';
+import { IPost } from '@/types/cms';
+import Pagination from '@/components/Pagination';
+import { TagBlock } from '@/components/TagBlock';
 import classNames from 'classnames';
-
-import { CMS, METADATA } from '../../constants';
-import { CmsApi } from '../../services/cms';
-import { PageType, setPageType } from '../../state/navigation';
-import { IPath } from '../../types';
-import { IPost } from '../../types/cms';
-
-import CustomHead from '../../components/CustomHead';
-import { ArticleCard } from '../../components/cards/ArticleCard';
-import { CardGrid } from '../../components/cards/CardGrid';
-import { Contained } from '../../components/Contained';
-import { TagBlock } from '../../components/TagBlock';
-import Pagination from '../../components/Pagination';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 interface Props {
   posts: IPost[];

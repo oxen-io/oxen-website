@@ -1,22 +1,22 @@
-import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-import { Provider as StoreProvider } from 'react-redux';
-import { createStore } from 'redux';
+import '@/assets/style.css';
 
-import '../assets/style.css';
-import { NAVIGATION } from '../constants';
-import ScreenProvider from '../contexts/screen';
 import {
+  PageType,
   collapseMobileHeader,
   collapseSideMenu,
-  PageType,
   setPageType,
-} from '../state/navigation';
-import { rootReducer } from '../state/reducers';
+} from '@/state/navigation';
+import React, { useEffect } from 'react';
 
-import CustomHead from '../components/CustomHead';
-import Layout from '../components/layout';
+import type { AppProps } from 'next/app';
+import CustomHead from '@/components/CustomHead';
+import Layout from '@/components/layout';
+import { NAVIGATION } from '@/constants';
+import ScreenProvider from '@/contexts/screen';
+import { Provider as StoreProvider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootReducer } from '@/state/reducers';
+import { useRouter } from 'next/router';
 
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   const React = require('react');

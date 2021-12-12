@@ -1,5 +1,5 @@
-import sanitize from '../utils/sanitize';
-import { Element } from '../types/himalaya';
+import { Element } from '@/types/himalaya';
+import sanitize from '@/utils/sanitize';
 
 export interface IEmbed {
   title: string;

@@ -1,16 +1,16 @@
-import classNames from 'classnames';
+import { ArticleContained } from '@/components/ArticleContained';
+import { ArticleSectionContent } from '@/components/article/sections/ArticleSectionContent';
+import { ArticleSectionFeatureImage } from '@/components/article/sections/ArticleSectionFeatureImage';
+import { ArticleSectionTitle } from '@/components/article/sections/ArticleSectionTitle';
+import { ArticleSubtitleSection } from '@/components/article/sections/ArticleSubtitleSection';
+import { ArticleWidgetAuthor } from '@/components/article/widgets/ArticleWidgetAuthor';
+import { Contained } from '@/components/Contained';
+import EmailSignup from '@/components/EmailSignup';
+import { IPost } from '@/types/cms';
 import React from 'react';
-import { IPost } from '../../types/cms';
-import { ArticleContained } from '../ArticleContained';
-import { Contained } from '../Contained';
-import EmailSignup from '../EmailSignup';
-import { Spacer } from '../Spacer';
-import { TagRow } from '../TagRow';
-import { ArticleSectionContent } from './sections/ArticleSectionContent';
-import { ArticleSectionFeatureImage } from './sections/ArticleSectionFeatureImage';
-import { ArticleSectionTitle } from './sections/ArticleSectionTitle';
-import { ArticleSubtitleSection } from './sections/ArticleSubtitleSection';
-import { ArticleWidgetAuthor } from './widgets/ArticleWidgetAuthor';
+import { Spacer } from '@/components/Spacer';
+import { TagRow } from '@/components/TagRow';
+import classNames from 'classnames';
 
 export function Article(props: IPost) {
   const {

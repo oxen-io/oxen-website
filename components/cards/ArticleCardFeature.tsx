@@ -1,14 +1,12 @@
+import { IPost } from '@/types/cms';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { ScreenContext } from '@/contexts/screen';
+import { TagRow } from '@/components/TagRow';
 import classNames from 'classnames';
-
-import { ScreenContext } from '../../contexts/screen';
-import { IPost } from '../../types/cms';
-import { generateURL } from '../../utils/routing';
-
-import { TagRow } from '../TagRow';
+import { generateURL } from '@/utils/routing';
+import { useContext } from 'react';
+import { useRouter } from 'next/router';
 
 export function ArticleCardFeature(props: IPost) {
   const {

@@ -1,20 +1,19 @@
+import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 /* eslint-disable react/display-name */
-import { cloneElement, Children, ReactElement } from 'react';
+import { Children, ReactElement, cloneElement } from 'react';
+import {
+  Options,
+  documentToReactComponents,
+} from '@contentful/rich-text-react-renderer';
+import { hasLocalID, isLocal } from '@/utils/links';
+
+import { ArticleCallout } from '@/components/article/ArticleCallout';
+import { CMS } from '@/constants';
 import Link from 'next/link';
 import classNames from 'classnames';
-
-import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
-import {
-  documentToReactComponents,
-  Options,
-} from '@contentful/rich-text-react-renderer';
-import { isLocal, hasLocalID } from '../utils/links';
-import { renderEmbeddedEntry } from '../services/render';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-
-import { CMS } from '../constants';
-import { renderShortcode } from '../services/cms';
-import { ArticleCallout } from './article/ArticleCallout';
+import { renderEmbeddedEntry } from '@/services/render';
+import { renderShortcode } from '@/services/cms';
 
 interface Props {
   body: Document;

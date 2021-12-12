@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router';
 import React, { ReactNode, useContext, useEffect, useRef } from 'react';
+
+import { Header } from '@/components/navigation/Header';
+import { IState } from '@/state/reducers';
+import { PageType } from '@/state/navigation';
+import { ScreenContext } from '@/contexts/screen';
+import { SideMenu } from '@/components/navigation/SideMenu';
+import { UI } from '@/constants';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { UI } from '../../constants';
-import { ScreenContext } from '../../contexts/screen';
-import { PageType } from '../../state/navigation';
-import { IState } from '../../state/reducers';
-import { Header } from '../navigation/Header';
-import { SideMenu } from '../navigation/SideMenu';
 
 interface Props {
   children: ReactNode;

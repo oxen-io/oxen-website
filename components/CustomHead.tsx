@@ -1,8 +1,8 @@
-import METADATA, { IMetadata, generateTitle } from '../constants/metadata';
+import METADATA, { IMetadata, generateTitle } from '@/constants/metadata';
 
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { isLocal } from '..//utils/links';
+import { isLocal } from '@/utils/links';
 import { useRouter } from 'next/router';
 
 interface Props {

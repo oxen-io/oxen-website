@@ -1,5 +1,5 @@
 import { Document } from '@contentful/rich-text-types';
-import { SideMenuItem } from '../state/navigation';
+import { SideMenuItem } from '@/state/navigation';
 
 export type IAuthor = {
   name: string;

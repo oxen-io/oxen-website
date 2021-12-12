@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { ScreenContext } from '../../../contexts/screen';
-import { IPost } from '../../../types/cms';
-import { RichBody } from '../../RichBody';
+
+import { IPost } from '@/types/cms';
+import { RichBody } from '@/components/RichBody';
+import { ScreenContext } from '@/contexts/screen';
 
 export function ArticleSectionContent(post: IPost) {
   const { isDesktop } = useContext(ScreenContext);

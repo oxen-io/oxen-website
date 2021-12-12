@@ -1,9 +1,9 @@
+import { IEmbed, INoembed, isNoembed } from '@/services/embed';
 import { ReactElement, useEffect, useRef } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
-
-import { IEmbed, INoembed, isNoembed } from '../services/embed';
 
 interface Props {
   content: IEmbed | INoembed; // is sanitized in embed service

@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
+import { PageType, setPageType, setPostTitle } from '@/state/navigation';
+
+import { Article } from '@/components/article/Article';
+import CustomHead from '@/components/CustomHead';
+import { IPost } from '@/types/cms';
+import { METADATA } from '@/constants';
 import { useDispatch } from 'react-redux';
-
-import { METADATA } from '../constants';
-import { PageType, setPageType, setPostTitle } from '../state/navigation';
-import { IPost } from '../types/cms';
-
-import { Article } from '../components/article/Article';
-import CustomHead from './CustomHead';
+import { useEffect } from 'react';
 
 interface Props {
   post: IPost;

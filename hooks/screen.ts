@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+
+import { UI } from '@/constants';
 import { useWindowSize } from 'react-use';
-import { UI } from '../constants';
 
 export function useScreenSize() {
   // Default to mobile view

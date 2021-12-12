@@ -1,8 +1,8 @@
+import { INavigation } from '@/state/navigation';
+import { IPost } from '@/types/cms';
+import { articleReducer } from '@/state/reducers/article';
 import { combineReducers } from 'redux';
-import { IPost } from '../../types/cms';
-import { INavigation } from '../navigation';
-import { articleReducer } from './article';
-import { navigationReducer } from './navigation';
+import { navigationReducer } from '@/state/reducers/navigation';
 
 export interface IState {
   navigation: INavigation;

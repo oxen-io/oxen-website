@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { UI } from '../constants';
+
+import { UI } from '@/constants';
 
 interface Props {
   children: ReactNode;

@@ -1,8 +1,8 @@
-import { useContext, ReactElement } from 'react';
-import ReactPaginate from 'react-paginate';
+import { ReactElement, useContext } from 'react';
 
-import { ScreenContext } from '../contexts/screen';
-import { Contained } from '../components/Contained';
+import { Contained } from '@/components/Contained';
+import ReactPaginate from 'react-paginate';
+import { ScreenContext } from '@/contexts/screen';
 
 interface Props {
   currentPage: number;

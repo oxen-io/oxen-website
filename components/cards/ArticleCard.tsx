@@ -1,13 +1,11 @@
+import { IPost } from '@/types/cms';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { TagRow } from '@/components/TagRow';
 import classNames from 'classnames';
+import { generateURL } from '@/utils/routing';
 import { useMeasure } from 'react-use';
-
-import { IPost } from '../../types/cms';
-import { generateURL } from '../../utils/routing';
-
-import { TagRow } from '../TagRow';
+import { useRouter } from 'next/router';
 
 export function ArticleCard(props: IPost): JSX.Element {
   const {

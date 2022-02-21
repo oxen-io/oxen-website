@@ -23,7 +23,7 @@
     "date-fns": "^2.23.0",
     "feed": "^4.2.2",
     "himalaya": "^1.1.0",
-    "next": "^11.1.2",
+    "next": "11.1.4",
     "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",
     "react": "^17.0.1",
@@ -33,7 +33,7 @@
     "react-scripts": "^4.0.2",
     "react-use": "^17.1.1",
     "redux": "^4.0.5",
-    "sharp": "^0.29.1",
+    "sharp": "^0.30.1",
     "uuid": "^8.3.2",
     "xss": "^1.0.9"
   },

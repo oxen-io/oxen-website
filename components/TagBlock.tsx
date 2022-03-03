@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import React from 'react';
+import classNames from 'classnames';
 
 interface Props {
   tag: string;
@@ -9,7 +9,7 @@ interface Props {
 
 export function TagBlock(props: Props) {
   const { tag, size = 'small', classes } = props;
-  const href = `/tag/${tag.toLowerCase()}`;
+  const href = `/tag/${tag}`;
 
   return (
     <a
@@ -23,7 +23,7 @@ export function TagBlock(props: Props) {
         classes,
       )}
     >
-      <span className="px-2">{tag.toLowerCase()}</span>
+      <span className="px-2">{tag}</span>
     </a>
   );
 }

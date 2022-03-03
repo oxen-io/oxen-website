@@ -43,15 +43,10 @@ export class CmsApi {
   }
 
   public async fetchTagList(): Promise<ITagList> {
-    // TODO Migrate to Contentful Tag System
-    const { entries, total } = await this.fetchBlogEntries();
+    const _tags = await this.client.getTags();
     const tags: ITagList = {};
-    entries.forEach(entry => {
-      entry.tags.forEach(tag => {
-        if (!tags[tag]) {
-          tags[tag] = tag;
-        }
-      });
+    _tags.items.forEach(tag => {
+      tags[tag.sys.id] = tag.name;
     });
     return tags;
   }
@@ -79,10 +74,15 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
+    const taglist = await this.fetchTagList();
+    const id = Object.entries(taglist).filter(([_, value]) => {
+      return tag === value;
+    })[0][0];
+
     const _entries = await this.client.getEntries({
       content_type: 'post',
       order: '-fields.date',
-      'fields.tags[in]': tag,
+      'metadata.tags.sys.id[in]': id,
       limit: quantity,
       skip: (page - 1) * quantity,
     });
@@ -102,11 +102,11 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const DEV_UPDATE_TAG = 'dev-update';
+    const DEV_UPDATE_TAG = 'devUpdate';
     const _entries = await this.client.getEntries({
       content_type: 'post', // only fetch blog post entry
       order: '-fields.date',
-      'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
+      'metadata.tags.sys.id[nin]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
       limit: quantity,
       skip: (page - 1) * quantity,
     });

@@ -21,7 +21,7 @@ export default function RichPage(props: Props) {
 
   useEffect(() => {
     dispatch(setPageType(PageType.NORMAL));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function RichPage(props: Props) {
           <div
             className={classNames(
               'relative w-full',
-              loaded ? 'block' : 'hidden',
+              loaded ? 'opacity-100' : 'opacity-0',
             )}
             style={{ height: '33vh' }}
           >

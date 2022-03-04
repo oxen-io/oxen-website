@@ -1,5 +1,6 @@
 import { CMS, METADATA } from '@/constants';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { IPost, ITagList } from '@/types/cms';
 import { PageType, setPageType } from '@/state/navigation';
 import { ReactElement, useEffect } from 'react';
 
@@ -9,7 +10,6 @@ import { CmsApi } from '@/services/cms';
 import { Contained } from '@/components/Contained';
 import CustomHead from '@/components/CustomHead';
 import { IPath } from '@/types';
-import { IPost } from '@/types/cms';
 import Pagination from '@/components/Pagination';
 import { TagBlock } from '@/components/TagBlock';
 import classNames from 'classnames';
@@ -38,7 +38,7 @@ export default function Tag(props: Props): ReactElement {
 
   useEffect(() => {
     dispatch(setPageType(PageType.BLOG));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -177,16 +177,16 @@ export const getStaticProps: GetStaticProps = async (
 export const getStaticPaths: GetStaticPaths = async () => {
   const cms = new CmsApi();
 
-  const tags = Object.values(await cms.fetchTagList());
+  const tags: ITagList = await cms.fetchTagList();
   const paths: IPath[] = [];
 
-  for (let i = 0; i < tags.length; i++) {
-    const { entries, total } = await cms.fetchBlogEntriesByTag(tags[i]);
+  for (let tag of Object.values(tags)) {
+    const { entries, total } = await cms.fetchBlogEntriesByTag(tag);
     const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
     const _paths = [];
 
     for (let j = 1; j <= pageCount; j++) {
-      _paths.push({ params: { slug: [tags[i], String(j)] } });
+      _paths.push({ params: { slug: [tag, String(j)] } });
     }
 
     paths.push(..._paths);

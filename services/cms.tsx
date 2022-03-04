@@ -1,5 +1,10 @@
 import { Block, Document, Inline } from '@contentful/rich-text-types';
-import { ContentfulClientApi, EntryCollection, createClient } from 'contentful';
+import {
+  ContentfulClientApi,
+  EntryCollection,
+  createClient,
+  Tag,
+} from 'contentful';
 import {
   IAuthor,
   IFAQItem,
@@ -37,21 +42,17 @@ export class CmsApi {
   constructor() {
     this.client = createClient({
       space: process.env.CONTENTFUL_SPACE_ID,
+      environment: process.env.CONTENTFUL_ENVIRONMENT_ID,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       host: 'cdn.contentful.com',
     });
   }
 
   public async fetchTagList(): Promise<ITagList> {
-    // TODO Migrate to Contentful Tag System
-    const { entries, total } = await this.fetchBlogEntries();
+    const _tags = await this.client.getTags();
     const tags: ITagList = {};
-    entries.forEach(entry => {
-      entry.tags.forEach(tag => {
-        if (!tags[tag]) {
-          tags[tag] = tag;
-        }
-      });
+    _tags.items.forEach(tag => {
+      tags[tag.sys.id] = tag.name;
     });
     return tags;
   }
@@ -79,10 +80,15 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE_TAGGED,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
+    const taglist = await this.fetchTagList();
+    const id = Object.entries(taglist).filter(([_, value]) => {
+      return tag === value;
+    })[0][0];
+
     const _entries = await this.client.getEntries({
       content_type: 'post',
       order: '-fields.date',
-      'fields.tags[in]': tag,
+      'metadata.tags.sys.id[in]': id,
       limit: quantity,
       skip: (page - 1) * quantity,
     });
@@ -102,11 +108,11 @@ export class CmsApi {
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const DEV_UPDATE_TAG = 'dev-update';
+    const DEV_UPDATE_TAG = 'devUpdate';
     const _entries = await this.client.getEntries({
       content_type: 'post', // only fetch blog post entry
       order: '-fields.date',
-      'fields.tags[ne]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
+      'metadata.tags.sys.id[nin]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
       limit: quantity,
       skip: (page - 1) * quantity,
     });
@@ -155,10 +161,11 @@ export class CmsApi {
     };
   }
 
-  public async fetchEntryById(id): Promise<IPost> {
-    return this.client.getEntry(id).then(entry => {
+  public async fetchEntryById(id: any): Promise<IPost> {
+    return this.client.getEntry(id).then(async entry => {
       if (entry) {
-        return this.convertPost(entry);
+        const taglist = await this.fetchTagList();
+        return this.convertPost(entry, taglist);
       }
       return null;
     });
@@ -186,7 +193,8 @@ export class CmsApi {
       let entry;
       switch (entryType) {
         case 'post':
-          entry = this.convertPost(_entries.items[0]);
+          const taglist = await this.fetchTagList();
+          entry = this.convertPost(_entries.items[0], taglist);
           break;
         case 'splitPage':
           entry = this.convertPage(_entries.items[0]);
@@ -215,7 +223,8 @@ export class CmsApi {
       let entry;
       switch (entryType) {
         case 'post':
-          entry = this.convertPost(_entries.items[0]);
+          const taglist = await this.fetchTagList();
+          entry = this.convertPost(_entries.items[0], taglist);
           break;
         case 'splitPage':
           entry = this.convertPage(_entries.items[0]);
@@ -253,7 +262,10 @@ export class CmsApi {
     if (entries && entries.items && entries.items.length > 0) {
       switch (entryType) {
         case 'post':
-          _entries = entries.items.map(entry => this.convertPost(entry));
+          const taglist = await this.fetchTagList();
+          _entries = entries.items.map(entry =>
+            this.convertPost(entry, taglist),
+          );
           break;
         case 'faq':
           _entries = entries.items.map(entry => this.convertFAQ(entry));
@@ -295,7 +307,14 @@ export class CmsApi {
         }
       : null;
 
-  public convertPost = (rawData): IPost => {
+  public convertTags = (rawTags: any, taglist: ITagList): string[] => {
+    const tags = rawTags.map((tag: Tag) => {
+      return taglist[tag.sys.id];
+    });
+    return tags;
+  };
+
+  public convertPost = (rawData: any, taglist: ITagList): IPost => {
     const rawPost = rawData.fields;
     const rawFeatureImage = rawPost?.featureImage
       ? rawPost?.featureImage.fields
@@ -310,7 +329,7 @@ export class CmsApi {
       publishedDateISO: rawPost.date,
       publishedDate: format(parseISO(rawPost.date), 'dd MMMM yyyy'),
       slug: rawPost.slug,
-      tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],
+      tags: this.convertTags(rawData.metadata.tags, taglist),
       title: rawPost.title,
       featureImage: this.convertImage(rawFeatureImage),
       author: this.convertAuthor(rawAuthor),

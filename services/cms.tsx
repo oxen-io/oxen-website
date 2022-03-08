@@ -104,15 +104,14 @@ export class CmsApi {
     return Promise.reject(new Error(`Failed to fetch entries for ${tag}`));
   }
 
-  public async fetchBlogEntriesWithoutDevUpdates(
+  public async fetchBlogEntriesWithoutUpdates(
     quantity = CMS.BLOG_RESULTS_PER_PAGE,
     page = 1,
   ): Promise<IFetchBlogEntriesReturn> {
-    const DEV_UPDATE_TAG = 'devUpdate';
     const _entries = await this.client.getEntries({
       content_type: 'post', // only fetch blog post entry
       order: '-fields.date',
-      'metadata.tags.sys.id[nin]': DEV_UPDATE_TAG, // Exclude blog posts with the "dev-update" tag
+      'metadata.tags.sys.id[nin]': 'updates', // Exclude blog posts with the "updates" tag
       limit: quantity,
       skip: (page - 1) * quantity,
     });

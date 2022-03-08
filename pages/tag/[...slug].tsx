@@ -43,7 +43,7 @@ export default function Tag(props: Props): ReactElement {
   return (
     <>
       <CustomHead
-        title={tag === 'dev-update' ? 'Dev Updates' : `${tag} Archives`}
+        title={tag === 'update' ? 'Updates' : `${tag} Archives`}
         metadata={{
           TYPE: METADATA.TAG_PAGE.TYPE,
           DESCRIPTION: METADATA.TAG_PAGE.DESCRIPTION,

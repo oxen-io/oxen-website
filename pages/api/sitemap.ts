@@ -101,13 +101,13 @@ export default async function handler(
     bloglistPages.push(`${baseUrl}/blog/${i}`);
   }
 
-  const devUpdateUrl = `${baseUrl}/tag/dev-update`;
-  const { entries, total } = await cms.fetchBlogEntriesByTag('dev-update');
+  const updatesUrl = `${baseUrl}/tag/updates`;
+  const { entries, total } = await cms.fetchBlogEntriesByTag('updates');
   const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
-  const devUpdatePages = [devUpdateUrl];
+  const updatesPages = [updatesUrl];
 
   for (let i = 1; i <= pageCount; i++) {
-    devUpdatePages.push(`${devUpdateUrl}/${i}`);
+    updatesPages.push(`${updatesUrl}/${i}`);
   }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -117,7 +117,7 @@ export default async function handler(
         ...navigationPages,
         ...redirectPages,
         ...bloglistPages,
-        ...devUpdatePages,
+        ...updatesPages,
       ]
         .map(url => {
           return `

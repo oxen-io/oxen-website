@@ -80,8 +80,8 @@ const MENU_ITEMS: IMenuItem[] = [
     external: false,
   },
   {
-    label: 'Dev Updates',
-    href: '/tag/dev-update',
+    label: 'Updates',
+    href: '/tag/updates',
     newTab: false,
     subtle: true,
     external: false,

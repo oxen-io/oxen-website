@@ -97,10 +97,7 @@ export const getStaticProps: GetStaticProps = async (
   const page = context.params.page ? Number(context.params.page[0]) : 1;
 
   try {
-    const {
-      entries: posts,
-      total,
-    } = await cms.fetchBlogEntriesWithoutDevUpdates(
+    const { entries: posts, total } = await cms.fetchBlogEntriesWithoutUpdates(
       CMS.BLOG_RESULTS_PER_PAGE,
       page,
     );
@@ -131,7 +128,7 @@ export const getStaticProps: GetStaticProps = async (
 export const getStaticPaths: GetStaticPaths = async () => {
   const cms = new CmsApi();
 
-  const { entries, total } = await cms.fetchBlogEntriesWithoutDevUpdates();
+  const { entries, total } = await cms.fetchBlogEntriesWithoutUpdates();
   const pageCount = Math.ceil(total / CMS.BLOG_RESULTS_PER_PAGE);
   const paths: IPath[] = [];
 

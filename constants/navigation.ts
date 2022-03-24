@@ -59,7 +59,7 @@ const SIDE_MENU_ITEMS = {
   },
   [SideMenuItem.ROADMAP]: {
     id: 8,
-    label: "Oxen's 2022 roadmap",
+    label: 'Roadmap',
     href: '/roadmap',
     hasOwnRoute: true,
   },

@@ -59,7 +59,7 @@ const SIDE_MENU_ITEMS = {
   },
   [SideMenuItem.ROADMAP]: {
     id: 8,
-    label: 'Oxen roadmap',
+    label: 'Roadmap',
     href: '/roadmap',
     hasOwnRoute: true,
   },

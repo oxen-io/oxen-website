@@ -6,7 +6,6 @@ import { TagRow } from '@/components/TagRow';
 import classNames from 'classnames';
 import { generateURL } from '@/utils/routing';
 import { useContext } from 'react';
-import { useRouter } from 'next/router';
 
 export function ArticleCardFeature(props: IPost) {
   const {
@@ -26,27 +25,27 @@ export function ArticleCardFeature(props: IPost) {
   const { href, as } = generateURL(slug);
   const { isMobile, isTablet } = useContext(ScreenContext);
 
-  const router = useRouter();
-  const onClick = () => router.push(href, as);
-
   return (
     <div className="flex flex-col w-full space-x-0 tablet:space-x-6 tablet:flex-row">
       <div className="w-full tablet:w-7/12">
-        <div
-          onClick={onClick}
-          className={classNames(
-            'relative bg-opacity-25 cursor-pointer bg-primary min-h-full aspect-w-16 aspect-h-8',
-          )}
-        >
-          <Image
-            src={`${featureImage?.imageUrl}?w=1200`}
-            alt={featureImage?.description ?? title}
-            layout="fill"
-            quality={100}
-            priority={true}
-            className="object-cover"
-          />
-        </div>
+        <Link href={href} as={as}>
+          <a>
+            <div
+              className={classNames(
+                'relative bg-opacity-25 cursor-pointer bg-primary min-h-full aspect-w-16 aspect-h-8',
+              )}
+            >
+              <Image
+                src={`${featureImage?.imageUrl}?w=1200`}
+                alt={featureImage?.description ?? title}
+                layout="fill"
+                quality={100}
+                priority={true}
+                className="object-cover"
+              />
+            </div>
+          </a>
+        </Link>
       </div>
 
       <div

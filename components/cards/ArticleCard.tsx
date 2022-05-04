@@ -39,21 +39,26 @@ export function ArticleCard(props: IPost): JSX.Element {
         isSmall ? 'pb-3' : 'pb-1',
       )}
     >
-      <div
-        onClick={() => router.push(href, as)}
-        className={classNames('relative cursor-pointer aspect-w-16 aspect-h-9')}
-      >
-        {featureImage?.imageUrl && (
-          <Image
-            src={`${featureImage?.imageUrl}?w=600`}
-            alt={featureImage?.description ?? title}
-            layout="fill"
-            quality={100}
-            lazyBoundary={`500px 200px`}
-            className="object-cover"
-          />
-        )}
-      </div>
+      <Link href={href} as={as}>
+        <a>
+          <div
+            className={classNames(
+              'relative cursor-pointer aspect-w-16 aspect-h-9',
+            )}
+          >
+            {featureImage?.imageUrl && (
+              <Image
+                src={`${featureImage?.imageUrl}?w=600`}
+                alt={featureImage?.description ?? title}
+                layout="fill"
+                quality={100}
+                lazyBoundary={`500px 200px`}
+                className="object-cover"
+              />
+            )}
+          </div>
+        </a>
+      </Link>
 
       <div>
         <div className={isSmall ? 'py-1' : 'py-3'}>

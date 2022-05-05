@@ -7,10 +7,10 @@ export interface IEmbed {
   description?: string;
   site_name?: string;
   image?: string;
+  isExternalVideo?: boolean;
 }
 
 function extractMetadata(html: string): IEmbed {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const himalaya = require('himalaya');
   html = html.trim();
   const nodes = himalaya.parse(html);
@@ -95,7 +95,9 @@ export function isNoembed(object: unknown): object is INoembed {
 export async function fetchContent(
   targetUrl: string,
 ): Promise<IEmbed | INoembed> {
-  const fetchUrl = `https://noembed.com/embed?url=${targetUrl}`;
+  const fetchUrl = `https://noembed.com/embed?url=${encodeURIComponent(
+    targetUrl,
+  )}`;
   const response = await fetch(fetchUrl);
   let data = await response.json();
 
@@ -118,10 +120,43 @@ export async function fetchContent(
 }
 
 function convertToNoembed(rawData: any): INoembed {
-  return {
+  const noembed: INoembed = {
     title: sanitize(rawData.title),
     url: sanitize(rawData.url),
     site_name: sanitize(rawData.provider_name),
-    html: sanitize(rawData.html),
+    html: '',
   };
+
+  switch (noembed.site_name) {
+    case 'Vimeo':
+    case 'YouTube':
+      const himalaya = require('himalaya');
+
+      let nodes = himalaya.parse(rawData.html);
+      nodes[0].attributes = nodes[0].attributes.map((attr: any) => {
+        switch (attr.key) {
+          case 'width':
+            attr.value = '100%';
+            break;
+          case 'height':
+            // Vimeo player has a fixed height
+            if (noembed.site_name !== 'Vimeo') {
+              attr.value = '500px';
+            }
+            break;
+          default:
+            break;
+        }
+        return attr;
+      });
+
+      noembed.html = himalaya.stringify(nodes);
+      noembed.isExternalVideo = true;
+      break;
+    default:
+      noembed.html = sanitize(rawData.html);
+      break;
+  }
+
+  return noembed;
 }

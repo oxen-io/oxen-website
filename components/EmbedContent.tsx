@@ -1,8 +1,10 @@
 import { IEmbed, INoembed, isNoembed } from '@/services/embed';
-import { ReactElement, useEffect, useRef } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
+import { Button } from './Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { TOS } from '@/constants';
 import classNames from 'classnames';
 
 interface Props {
@@ -13,15 +15,80 @@ interface Props {
 export default function EmbedContent(props: Props): ReactElement {
   const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
+  const [allowExternalContent, setAllowExternalContent] = useState(false);
+
   useEffect(() => {
     if (isNoembed(content) && null !== htmlRef.current) {
       htmlRef.current.innerHTML = content.html;
     }
-  }, [content]);
+    if (allowExternalContent) {
+      if (isNoembed(content) && null !== htmlRef.current) {
+        htmlRef.current.innerHTML = content.html;
+      }
+    }
+  }, [allowExternalContent, content]);
+
   if (isNoembed(content)) {
-    return (
-      <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
-    );
+    if (content.isExternalVideo) {
+      return allowExternalContent ? (
+        <div
+          className={classNames('embed-content', classes)}
+          ref={htmlRef}
+        ></div>
+      ) : (
+        <div
+          className={classNames(
+            'embed-content w-full border border-primary my-6 mx-auto max-w-sm p-6',
+          )}
+        >
+          <p
+            className={classNames(
+              'text-sm font-semibold mb-2 leading-relaxed',
+              'tablet:text-base',
+            )}
+          >
+            This content is hosted by {content.site_name}.
+          </p>
+          <p
+            className={classNames(
+              'text-xs font-normal leading-relaxed mb-4',
+              'tablet:text-sm',
+            )}
+          >
+            By showing the external content you accept their{' '}
+            {TOS[content.site_name] && TOS[content.site_name].length > 0 ? (
+              <a
+                href={TOS[content.site_name]}
+                target="_blank"
+                rel="noreferrer"
+                className={classNames('text-primary font-semibold')}
+              >
+                Terms and Conditions
+              </a>
+            ) : (
+              'Terms and Conditions'
+            )}
+            .
+          </p>
+          <Button
+            size="large"
+            onClick={() => {
+              setAllowExternalContent(true);
+            }}
+            className={'block ml-auto'}
+          >
+            Show
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={classNames('embed-content', classes)}
+          ref={htmlRef}
+        ></div>
+      );
+    }
   } else {
     return (
       <Link href={content.url}>

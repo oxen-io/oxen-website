@@ -141,7 +141,7 @@ function convertToNoembed(rawData: any): INoembed {
           case 'height':
             // Vimeo player has a fixed height
             if (noembed.site_name !== 'Vimeo') {
-              attr.value = '500px';
+              attr.value = '350px';
             }
             break;
           default:

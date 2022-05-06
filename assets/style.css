@@ -177,3 +177,7 @@ ul li > p {
 .embed-content blockquote > a {
   @apply cursor-pointer text-blue hover:underline;
 }
+
+.embed-content iframe {
+  @apply mb-6;
+}

@@ -116,7 +116,7 @@ const MENU_ITEMS: IMenuItem[] = [
     external: true,
   },
   {
-    label: 'Downloads',
+    label: 'Wallets',
     href: 'https://docs.oxen.io/downloads',
     newTab: true,
     subtle: true,

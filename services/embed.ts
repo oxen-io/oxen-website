@@ -95,7 +95,7 @@ export function isNoembed(object: unknown): object is INoembed {
 export async function fetchContent(
   targetUrl: string,
 ): Promise<IEmbed | INoembed> {
-  const fetchUrl = `https://noembed.com/embed?url=${encodeURIComponent(
+  const fetchUrl = `https://www.noembed.com/embed?url=${encodeURIComponent(
     targetUrl,
   )}`;
   const response = await fetch(fetchUrl);

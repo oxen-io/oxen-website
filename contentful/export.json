@@ -71,8 +71,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -96,8 +95,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -108,8 +106,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -119,8 +116,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -130,8 +126,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -141,8 +136,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         }
@@ -285,8 +279,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -296,8 +289,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -350,9 +342,7 @@
           "required": true,
           "validations": [
             {
-              "linkContentType": [
-                "author"
-              ]
+              "linkContentType": ["author"]
             }
           ],
           "disabled": false,
@@ -365,8 +355,7 @@
           "type": "Date",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -378,8 +367,7 @@
           "required": true,
           "validations": [
             {
-              "nodes": {
-              }
+              "nodes": {}
             },
             {
               "enabledNodeTypes": [
@@ -403,12 +391,7 @@
               "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, link to entry, link to asset, and inline entry nodes are allowed"
             },
             {
-              "enabledMarks": [
-                "bold",
-                "italic",
-                "underline",
-                "code"
-              ],
+              "enabledMarks": ["bold", "italic", "underline", "code"],
               "message": "Only bold, italic, underline, and code marks are allowed"
             }
           ],
@@ -447,8 +430,7 @@
           "omitted": false,
           "items": {
             "type": "Symbol",
-            "validations": [
-            ]
+            "validations": []
           }
         },
         {
@@ -457,8 +439,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "defaultValue": {
             "en-US": false
           },
@@ -516,7 +497,7 @@
       },
       "displayField": "title",
       "name": "Link Preview",
-      "description": "Embed a link which will then show a preview. i.e. Quoting a social media post like a tweet in a blog post. This relies on https://noembed.com/",
+      "description": "Embed a link which will then show a preview. i.e. Quoting a social media post like a tweet in a blog post. This relies on https://www.noembed.com/",
       "fields": [
         {
           "id": "title",
@@ -524,8 +505,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -552,8 +532,7 @@
           "type": "Text",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -565,10 +544,7 @@
           "required": false,
           "validations": [
             {
-              "in": [
-                "left",
-                "right"
-              ]
+              "in": ["left", "right"]
             }
           ],
           "disabled": false,
@@ -633,8 +609,7 @@
           "type": "Integer",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -644,8 +619,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -657,8 +631,7 @@
           "required": true,
           "validations": [
             {
-              "nodes": {
-              }
+              "nodes": {}
             }
           ],
           "disabled": false,
@@ -760,20 +733,7 @@
               }
             },
             {
-              "in": [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11,
-                12
-              ]
+              "in": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             }
           ],
           "disabled": false,
@@ -804,8 +764,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -851,16 +810,10 @@
               "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, asset, link to Url, link to entry, and link to asset nodes are allowed"
             },
             {
-              "nodes": {
-              }
+              "nodes": {}
             },
             {
-              "enabledMarks": [
-                "bold",
-                "italic",
-                "underline",
-                "code"
-              ],
+              "enabledMarks": ["bold", "italic", "underline", "code"],
               "message": "Only bold, italic, underline, and code marks are allowed"
             }
           ],
@@ -873,8 +826,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "defaultValue": {
             "en-US": false
           },
@@ -940,8 +892,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -951,8 +902,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         }
@@ -1029,8 +979,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -1058,8 +1007,7 @@
           "type": "Text",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1069,8 +1017,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1080,8 +1027,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1093,10 +1039,7 @@
           "required": false,
           "validations": [
             {
-              "in": [
-                "left",
-                "right"
-              ]
+              "in": ["left", "right"]
             }
           ],
           "disabled": false,
@@ -1175,8 +1118,7 @@
           "type": "Text",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1186,8 +1128,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1197,8 +1138,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1208,8 +1148,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1219,8 +1158,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         }
@@ -2343,8 +2281,7 @@
   "entries": [
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2422,8 +2359,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2488,8 +2424,7 @@
         "answer": {
           "en-US": {
             "nodeType": "document",
-            "data": {
-            },
+            "data": {},
             "content": [
               {
                 "nodeType": "paragraph",
@@ -2497,14 +2432,11 @@
                   {
                     "nodeType": "text",
                     "value": "42.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               }
             ]
           }
@@ -2513,8 +2445,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2602,18 +2533,14 @@
         },
         "body": {
           "en-US": {
-            "data": {
-            },
+            "data": {},
             "content": [
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "This is a blog post.",
                     "nodeType": "text"
                   }
@@ -2621,14 +2548,11 @@
                 "nodeType": "heading-1"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Amet velit veniam et occaecat excepteur dolor tempor pariatur excepteur voluptate nulla. Fugiat do aliqua dolor aliquip fugiat irure aliquip officia tempor. Ipsum minim commodo eiusmod voluptate ea aliquip sunt deserunt quis ad duis occaecat. Occaecat adipisicing reprehenderit ea culpa minim labore aute. Reprehenderit ea culpa id elit sunt fugiat.\\nExercitation ad dolor sint elit qui eu amet eiusmod sint irure eu. Dolore id tempor minim Lorem esse consequat et. Reprehenderit culpa nisi laboris ad occaecat incididunt commodo officia qui. Sunt labore do est cillum sunt. Velit minim ea excepteur laborum. Voluptate consequat dolore nulla sint dolor irure fugiat eu deserunt aute reprehenderit ipsum culpa quis.",
                     "nodeType": "text"
                   }
@@ -2636,14 +2560,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Amet veniam occaecat qui eiusmod elit aute ad ad anim. Eu culpa Lorem consectetur adipisicing amet ipsum reprehenderit excepteur. Ad occaecat consequat elit ullamco quis dolor. Ut ad anim aliquip aliquip ipsum nisi cillum fugiat eu. Esse dolore elit sunt consectetur pariatur excepteur irure esse quis officia est. Quis proident amet ea pariatur sunt non culpa minim velit pariatur deserunt ad aliquip non. Voluptate consequat aliqua anim qui aliqua commodo nostrud ad aliqua laboris ipsum dolor exercitation.\\nNulla qui cupidatat commodo est consequat cillum amet irure eu dolor do incididunt cillum cupidatat. Lorem eiusmod veniam Lorem ut non velit eu aliquip do nisi excepteur pariatur nulla. Irure proident eu et aute laborum ullamco adipisicing duis irure anim deserunt ea. Minim fugiat aliquip Lorem mollit sint dolor dolore tempor minim ad cillum laborum adipisicing qui.",
                     "nodeType": "text"
                   }
@@ -2651,14 +2572,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Voluptate reprehenderit et sint amet adipisicing non ea dolore consequat anim. Enim aute laboris laboris sunt enim et. Nostrud ullamco amet pariatur labore deserunt reprehenderit dolore excepteur Lorem irure amet. Mollit ex magna do eu elit et sunt eiusmod pariatur velit ut officia fugiat aliqua. Exercitation anim incididunt nisi anim proident. Nisi nisi nulla labore qui cupidatat magna ipsum ipsum dolor reprehenderit adipisicing sint. Sit aliquip enim dolore sunt commodo ea ex duis cillum amet qui officia.",
                     "nodeType": "text"
                   }
@@ -2673,9 +2591,7 @@
           "en-US": "this-is-a-post"
         },
         "tags": {
-          "en-US": [
-            "test"
-          ]
+          "en-US": ["test"]
         },
         "preview": {
           "en-US": false
@@ -2684,8 +2600,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2765,8 +2680,7 @@
         "body": {
           "en-US": {
             "nodeType": "document",
-            "data": {
-            },
+            "data": {},
             "content": [
               {
                 "nodeType": "paragraph",
@@ -2779,20 +2693,16 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": " is many things. A private cryptocurrency. A secure messaging platform. A network anonymity layer. Tools to build a more private future for the Internet. ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2800,14 +2710,11 @@
                   {
                     "nodeType": "text",
                     "value": "Our vision is to provide a range of tools and services powered by the $OXEN cryptocurrency, enabling users and developers all over the world to leverage the power of decentralised blockchain networks to achieve unparalleled privacy and security as they work, play, and live their day-to-day lives on the internet. And this isn’t just a vision or empty conjecture — we've put in the hard yards and spent years building these technologies to make our vision a reality.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2820,16 +2727,13 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": ", Oxen’s Proof of Stake implementation, makes $OXEN stakeable. This is the foundation of the Oxen network — a huge, global network of staked ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "hyperlink",
@@ -2837,10 +2741,8 @@
                       {
                         "nodeType": "text",
                         "value": "Oxen Service Nodes",
-                        "marks": [
-                        ],
-                        "data": {
-                        }
+                        "marks": [],
+                        "data": {}
                       }
                     ],
                     "data": {
@@ -2850,10 +2752,8 @@
                   {
                     "nodeType": "text",
                     "value": " that power Oxen’s second-layer privacy tools and services, including ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "hyperlink",
@@ -2861,10 +2761,8 @@
                       {
                         "nodeType": "text",
                         "value": "Session",
-                        "marks": [
-                        ],
-                        "data": {
-                        }
+                        "marks": [],
+                        "data": {}
                       }
                     ],
                     "data": {
@@ -2874,10 +2772,8 @@
                   {
                     "nodeType": "text",
                     "value": ", our end-to-end ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
@@ -2887,16 +2783,13 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": ", and ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "hyperlink",
@@ -2904,10 +2797,8 @@
                       {
                         "nodeType": "text",
                         "value": "Lokinet",
-                        "marks": [
-                        ],
-                        "data": {
-                        }
+                        "marks": [],
+                        "data": {}
                       }
                     ],
                     "data": {
@@ -2917,10 +2808,8 @@
                   {
                     "nodeType": "text",
                     "value": ", a low-latency ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
@@ -2930,20 +2819,16 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": " for private browsing, voice and video calls, and more. ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2956,16 +2841,13 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": " is Oxen’s revolutionary ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
@@ -2975,20 +2857,16 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": " mechanism, powering instant transactions with absolutely no privacy or security compromises — making $OXEN the world’s first privacy coin with no-compromise instant transactions.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2996,14 +2874,11 @@
                   {
                     "nodeType": "text",
                     "value": "And through its network, blockchain, and tech stack, Oxen provides a variety of open-source tools and libraries to empower the development of third-party decentralised privacy technologies.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3011,14 +2886,11 @@
                   {
                     "nodeType": "text",
                     "value": "",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3026,14 +2898,11 @@
                   {
                     "nodeType": "text",
                     "value": "{{ button href=\"https://docs.oxen.io\" text=\"Learn more\" }}",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               }
             ]
           }
@@ -3045,8 +2914,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -3109,8 +2977,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -3198,18 +3065,14 @@
         },
         "body": {
           "en-US": {
-            "data": {
-            },
+            "data": {},
             "content": [
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "This is a dev update post.",
                     "nodeType": "text"
                   }
@@ -3217,14 +3080,11 @@
                 "nodeType": "heading-1"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "This is slightly different to a blog post.",
                     "nodeType": "text"
                   }
@@ -3232,14 +3092,11 @@
                 "nodeType": "heading-2"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Amet velit veniam et occaecat excepteur dolor tempor pariatur excepteur voluptate nulla. Fugiat do aliqua dolor aliquip fugiat irure aliquip officia tempor. Ipsum minim commodo eiusmod voluptate ea aliquip sunt deserunt quis ad duis occaecat. Occaecat adipisicing reprehenderit ea culpa minim labore aute. Reprehenderit ea culpa id elit sunt fugiat.\\nExercitation ad dolor sint elit qui eu amet eiusmod sint irure eu. Dolore id tempor minim Lorem esse consequat et. Reprehenderit culpa nisi laboris ad occaecat incididunt commodo officia qui. Sunt labore do est cillum sunt. Velit minim ea excepteur laborum. Voluptate consequat dolore nulla sint dolor irure fugiat eu deserunt aute reprehenderit ipsum culpa quis.",
                     "nodeType": "text"
                   }
@@ -3247,14 +3104,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Amet veniam occaecat qui eiusmod elit aute ad ad anim. Eu culpa Lorem consectetur adipisicing amet ipsum reprehenderit excepteur. Ad occaecat consequat elit ullamco quis dolor. Ut ad anim aliquip aliquip ipsum nisi cillum fugiat eu. Esse dolore elit sunt consectetur pariatur excepteur irure esse quis officia est. Quis proident amet ea pariatur sunt non culpa minim velit pariatur deserunt ad aliquip non. Voluptate consequat aliqua anim qui aliqua commodo nostrud ad aliqua laboris ipsum dolor exercitation.\\nNulla qui cupidatat commodo est consequat cillum amet irure eu dolor do incididunt cillum cupidatat. Lorem eiusmod veniam Lorem ut non velit eu aliquip do nisi excepteur pariatur nulla. Irure proident eu et aute laborum ullamco adipisicing duis irure anim deserunt ea. Minim fugiat aliquip Lorem mollit sint dolor dolore tempor minim ad cillum laborum adipisicing qui.",
                     "nodeType": "text"
                   }
@@ -3262,14 +3116,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Voluptate reprehenderit et sint amet adipisicing non ea dolore consequat anim. Enim aute laboris laboris sunt enim et. Nostrud ullamco amet pariatur labore deserunt reprehenderit dolore excepteur Lorem irure amet. Mollit ex magna do eu elit et sunt eiusmod pariatur velit ut officia fugiat aliqua. Exercitation anim incididunt nisi anim proident. Nisi nisi nulla labore qui cupidatat magna ipsum ipsum dolor reprehenderit adipisicing sint. Sit aliquip enim dolore sunt commodo ea ex duis cillum amet qui officia.",
                     "nodeType": "text"
                   }
@@ -3284,10 +3135,7 @@
           "en-US": "this-is-a-dev-update"
         },
         "tags": {
-          "en-US": [
-            "dev-update",
-            "test"
-          ]
+          "en-US": ["dev-update", "test"]
         },
         "preview": {
           "en-US": false
@@ -3298,8 +3146,7 @@
   "assets": [
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -3369,8 +3216,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -3443,8 +3289,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -3517,8 +3362,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -3637,8 +3481,7 @@
       }
     }
   ],
-  "webhooks": [
-  ],
+  "webhooks": [],
   "roles": [
     {
       "name": "Editor",
@@ -3678,19 +3521,12 @@
         }
       ],
       "permissions": {
-        "ContentModel": [
-          "read"
-        ],
-        "Settings": [
-        ],
-        "ContentDelivery": [
-        ],
-        "Environments": [
-        ],
-        "EnvironmentAliases": [
-        ],
-        "Tags": [
-        ]
+        "ContentModel": ["read"],
+        "Settings": [],
+        "ContentDelivery": [],
+        "Environments": [],
+        "EnvironmentAliases": [],
+        "Tags": []
       },
       "sys": {
         "type": "Role",

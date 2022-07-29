@@ -3,6 +3,7 @@ import { mkdirSync, writeFileSync } from 'fs';
 import { Feed } from 'feed';
 import { IPost } from '@/types/cms';
 import { METADATA } from '@/constants';
+import rimraf from 'rimraf';
 
 const baseUrl = METADATA.HOST_URL;
 const date = new Date();
@@ -42,6 +43,7 @@ export default function generateRSSFeed(posts: IPost[]) {
     });
   });
 
+  rimraf.sync(`./public/rss`);
   mkdirSync(`./public/rss`, { recursive: true });
   writeFileSync(`./public/rss/feed.xml`, feed.rss2(), {
     encoding: 'utf-8',

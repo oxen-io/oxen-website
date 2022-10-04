@@ -30,8 +30,10 @@ npm install yarn -g
 
 4. Install dependencies
 
+Using `--frozen-lockfile` makes sure that the environment is consistent on any machine by installing the exact package versions listed in the [yarn.lock](yarn.lock).
+
 ```
-yarn install
+yarn install --frozen-lockfile
 ```
 
 5. Signup for a free [Contentful](https://www.contentful.com/) account and create an organisation and within that create a space.

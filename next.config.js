@@ -83,6 +83,16 @@ const nextConfig = {
         destination: '/blog/session-the-road-to-monetisation',
         permanent: true,
       },
+      {
+        source: '/new-ceo',
+        destination: '/new-leadership-new-possibilities',
+        permanent: true,
+      },
+      {
+        source: '/blog/new-ceo',
+        destination: '/blog/new-leadership-new-possibilities',
+        permanent: true,
+      },
     ],
   },
   async redirects() {

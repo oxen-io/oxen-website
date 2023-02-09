@@ -1,37 +1,66 @@
 import { METADATA, NAVIGATION } from '@/constants';
-
 import CustomHead from '@/components/CustomHead';
-import Image from 'next/image';
 import { SideMenuItem } from '@/state/navigation';
-import classNames from 'classnames';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import Image from 'next/image';
+import React from 'react';
+import { useScreenSize } from '@/hooks/screen';
 
 function Roadmap() {
+  const { isMobile, isTablet, isDesktop } = useScreenSize();
+
+  const renderTransformComp = () => {
+    return (
+      <TransformComponent wrapperStyle={{ height: '100vh' }}>
+        <Image
+          src={'/svgs/roadmap.svg'}
+          alt="roadmap"
+          height={6478}
+          width={11519}
+        />
+      </TransformComponent>
+    );
+  };
+
   return (
     <>
       <CustomHead
         title={NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label}
         metadata={METADATA.ROADMAP_PAGE}
       />
-      <div className="w-full h-full">
-        <div className="flex flex-col px-6 py-6 space-y-10">
-          <div
-            className={classNames(
-              'relative w-full mx-auto',
-              'desktop:max-w-3xl',
-            )}
-          >
-            <Image
-              src={`/img/roadmap.webp`}
-              alt="Oxen's Roadmap and Plans for the future."
-              width={1920}
-              height={3528}
-              layout="responsive"
-              quality={100}
-              priority={true}
-            />
-          </div>
-        </div>
-      </div>
+      {isDesktop && (
+        <TransformWrapper
+          /* className="relative w-full" */
+          initialScale={2.5}
+          initialPositionX={-1000}
+          initialPositionY={-200}
+        >
+          {renderTransformComp()}
+        </TransformWrapper>
+      )}
+      {isTablet && (
+        <TransformWrapper initialScale={2.5} initialPositionX={-550}>
+          {renderTransformComp()}
+        </TransformWrapper>
+      )}
+      {isMobile && (
+        <TransformWrapper
+          initialScale={4.5}
+          initialPositionX={-650}
+          initialPositionY={null}
+        >
+          {renderTransformComp()}
+        </TransformWrapper>
+      )}
+
+      {/*       <div className="absolute right-5 bottom-8">
+          <Image
+            src={'/svgs/roadmap-key.svg'}
+            alt="roadmap"
+            height={200}
+            width={125}
+          />
+        </div> */}
     </>
   );
 }

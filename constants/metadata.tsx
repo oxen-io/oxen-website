@@ -75,6 +75,12 @@ const METADATA = {
   },
   ROADMAP_PAGE: {
     DESCRIPTION: "View Oxen's plan for the future here.",
+    OG_IMAGE: {
+      URL: '/img/roadmap-preview.png',
+      WIDTH: 1503,
+      HEIGHT: 755,
+      ALT: 'Progress tree preview',
+    },
   },
   FAQ_PAGE: {
     DESCRIPTION: 'View Some Frequently Asked Questions here',

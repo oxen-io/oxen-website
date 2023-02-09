@@ -70,10 +70,10 @@ export default function Roadmap() {
     if (loaded) {
       const roadmapEl = document.getElementById('#roadmap-image');
       pz = panzoom(roadmapEl, {
-        initialZoom: isMobile ? 0.2 : isTablet ? 0 : 0.3333,
-        autocenter: isMobile ? false : isTablet ? false : true,
-        initialX: 0,
-        initialY: 0,
+        initialZoom: isMobile ? 0.3 : isTablet ? 0.4 : 0.3333,
+        autocenter: isMobile ? false : isTablet ? false : false,
+        initialX: isMobile ? -900 : isTablet ? -1200 : -800,
+        initialY: isMobile ? -100 : isTablet ? -200 : -100,
         bounds: true,
         boundsPadding: isMobile ? 0 : isTablet ? 0 : -0.1,
       });
@@ -109,16 +109,14 @@ export default function Roadmap() {
         </div>
       )}
       <RoadmapCanvas loaded={loaded} canScaleMore={!isMobile && !isTablet} />
-      {/* <div className="absolute right-5 bottom-8">
-        <Image
+      <div className="absolute right-5 bottom-8">
+        <img
           src={'/svgs/roadmap-key.svg'}
           alt="Oxen Roadmap Legend"
-          height={200}
-          width={125}
-          quality={100}
-          priority={true}
+          height={isMobile ? 180 : 242}
+          width={isMobile ? 150 : 200}
         />
-      </div> */}
+      </div>
     </>
   );
 }

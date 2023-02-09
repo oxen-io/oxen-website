@@ -24,7 +24,7 @@ export function useScreenSize() {
     if (isTablet !== _isTablet) setIsTablet(_isTablet);
     if (isDesktop !== _isDesktop) setIsDesktop(_isDesktop);
     if (isHuge !== _isHuge) setIsHuge(_isHuge);
-  }, [width]);
+  }, [isMobile, isTablet, isDesktop, isHuge, width]);
 
   return { isMobile, isTablet, isDesktop, isHuge, width };
 }

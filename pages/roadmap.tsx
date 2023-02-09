@@ -1,26 +1,90 @@
-import { METADATA, NAVIGATION } from '@/constants';
+import { METADATA, NAVIGATION, UI } from '@/constants';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
+
 import CustomHead from '@/components/CustomHead';
+import { ReactComponent as LoadingSVG } from '@/assets/svgs/loader.svg';
+import { ScreenContext } from '@/contexts/screen';
 import { SideMenuItem } from '@/state/navigation';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import Image from 'next/image';
-import React from 'react';
-import { useScreenSize } from '@/hooks/screen';
+import classNames from 'classnames';
+import panzoom from 'panzoom';
 
-function Roadmap() {
-  const { isMobile, isTablet, isDesktop } = useScreenSize();
+let pz = null; // global panzoom instance
 
-  const renderTransformComp = () => {
-    return (
-      <TransformComponent wrapperStyle={{ height: '100vh' }}>
-        <Image
-          src={'/svgs/roadmap.svg'}
-          alt="roadmap"
-          height={6478}
-          width={11519}
-        />
-      </TransformComponent>
-    );
+type RoadmapCanvasProps = {
+  loaded: boolean;
+  canScaleMore: boolean;
+};
+
+const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
+  const { loaded, canScaleMore } = props;
+
+  return (
+    <div
+      className={classNames(loaded ? 'visibility' : 'invisible')}
+      style={{
+        height: loaded ? `calc(100vh - ${UI.HEADER_HEIGHT_PX}px)` : '0vh',
+      }}
+    >
+      <canvas
+        id={'#roadmap-image'}
+        className={classNames('cursor-move')}
+        // upscaled for better text rendering
+        // mobile and tablets have smaller upscale limit
+        width={3686 * (canScaleMore ? 1.75 : 1.45)}
+        height={2073 * (canScaleMore ? 1.75 : 1.45)}
+      />
+    </div>
+  );
+};
+
+export default function Roadmap() {
+  const { isMobile, isTablet } = useContext(ScreenContext);
+  const [loaded, setLoaded] = useState(false);
+
+  const startup = () => {
+    const canvasHolder = document.getElementById(
+      '#roadmap-image',
+    ) as HTMLCanvasElement;
+    const context = canvasHolder.getContext('2d');
+    const backgroundImage = new Image();
+    backgroundImage.src = '/svgs/roadmap.svg';
+
+    backgroundImage.onload = function () {
+      context.drawImage(
+        backgroundImage,
+        0,
+        0,
+        canvasHolder.width,
+        canvasHolder.height,
+      );
+      context.save();
+
+      console.log('roadmap loaded');
+      setLoaded(true);
+    };
   };
+
+  useEffect(() => {
+    startup();
+
+    if (loaded) {
+      const roadmapEl = document.getElementById('#roadmap-image');
+      pz = panzoom(roadmapEl, {
+        initialZoom: isMobile ? 0.2 : isTablet ? 0 : 0.3333,
+        autocenter: isMobile ? false : isTablet ? false : true,
+        initialX: 0,
+        initialY: 0,
+        bounds: true,
+        boundsPadding: isMobile ? 0 : isTablet ? 0 : -0.1,
+      });
+    }
+
+    () => {
+      if (loaded && pz) {
+        pz.dispose();
+      }
+    };
+  }, [isMobile, isTablet, loaded]);
 
   return (
     <>
@@ -28,41 +92,33 @@ function Roadmap() {
         title={NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem.ROADMAP].label}
         metadata={METADATA.ROADMAP_PAGE}
       />
-      {isDesktop && (
-        <TransformWrapper
-          /* className="relative w-full" */
-          initialScale={2.5}
-          initialPositionX={-1000}
-          initialPositionY={-200}
+      {!loaded && (
+        <div
+          className={classNames('flex justify-center items-center w-100')}
+          title="loading"
+          style={{
+            height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px)`,
+          }}
         >
-          {renderTransformComp()}
-        </TransformWrapper>
-      )}
-      {isTablet && (
-        <TransformWrapper initialScale={2.5} initialPositionX={-550}>
-          {renderTransformComp()}
-        </TransformWrapper>
-      )}
-      {isMobile && (
-        <TransformWrapper
-          initialScale={4.5}
-          initialPositionX={-650}
-          initialPositionY={null}
-        >
-          {renderTransformComp()}
-        </TransformWrapper>
-      )}
-
-      {/*       <div className="absolute right-5 bottom-8">
-          <Image
-            src={'/svgs/roadmap-key.svg'}
-            alt="roadmap"
-            height={200}
-            width={125}
+          <LoadingSVG
+            className={classNames(
+              'w-48 h-48 mx-auto text-primary fill-current -mt-8',
+              'tablet:-mt-32',
+            )}
           />
-        </div> */}
+        </div>
+      )}
+      <RoadmapCanvas loaded={loaded} canScaleMore={!isMobile && !isTablet} />
+      {/* <div className="absolute right-5 bottom-8">
+        <Image
+          src={'/svgs/roadmap-key.svg'}
+          alt="Oxen Roadmap Legend"
+          height={200}
+          width={125}
+          quality={100}
+          priority={true}
+        />
+      </div> */}
     </>
   );
 }
-
-export default Roadmap;

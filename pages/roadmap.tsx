@@ -109,14 +109,22 @@ export default function Roadmap() {
         </div>
       )}
       <RoadmapCanvas loaded={loaded} canScaleMore={!isMobile && !isTablet} />
-      <div className="absolute right-5 bottom-8">
-        <img
-          src={'/svgs/roadmap-key.svg'}
-          alt="Oxen Roadmap Legend"
-          height={isMobile ? 180 : 242}
-          width={isMobile ? 150 : 200}
-        />
-      </div>
+      {loaded && (
+        <div
+          className={classNames(
+            'absolute right-4 bottom-4',
+            'desktop:right-6 desktop:bottom-6',
+          )}
+        >
+          {/* eslint-disable @next/next/no-img-element */}
+          <img
+            src={'/svgs/roadmap-key.svg'}
+            alt="Oxen Roadmap Legend"
+            height={isMobile ? 180 : 242}
+            width={isMobile ? 150 : 200}
+          />
+        </div>
+      )}
     </>
   );
 }

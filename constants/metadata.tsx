@@ -79,7 +79,8 @@ const METADATA = {
       URL: '/img/roadmap-preview.png',
       WIDTH: 1503,
       HEIGHT: 755,
-      ALT: 'Progress tree preview',
+      ALT:
+        'Blurred background of the Oxen roadmap with the words progress tree',
     },
   },
   FAQ_PAGE: {

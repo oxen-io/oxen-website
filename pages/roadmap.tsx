@@ -27,6 +27,7 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
     >
       <canvas
         id={'#roadmap-image'}
+        aria-label={"Oxen's roadmap for the future shown as a progress tree"}
         className={classNames('cursor-move')}
         // upscaled for better text rendering
         // mobile and tablets have smaller upscale limit

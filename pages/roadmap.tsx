@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import { ReactComponent as CrossSVG } from '@/assets/svgs/cross.svg';
 import CustomHead from '@/components/CustomHead';
 import { ReactComponent as LoadingSVG } from '@/assets/svgs/loader.svg';
 import { ScreenContext } from '@/contexts/screen';
@@ -59,7 +58,7 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
       {loaded && showExplanation && (
         <div
           className={classNames(
-            'relative flex justify-center items-center',
+            'relative flex justify-center items-center cursor-pointer',
             'tablet:absolute tablet:block tablet:left-6 tablet:bottom-6',
           )}
           style={{
@@ -67,20 +66,9 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
             width: isMobileDisplay ? '100%' : 313.6,
           }}
           onClick={() => {
-            if (isMobileDisplay) {
-              setShowExplanation(false);
-            }
+            setShowExplanation(false);
           }}
         >
-          <CrossSVG
-            className={classNames(
-              'cursor-pointer absolute z-10 inline w-4 h-4 text-white fill-current top-6 right-6',
-              'tablet:top-10 tablet:right-10 ',
-            )}
-            onClick={() => {
-              setShowExplanation(false);
-            }}
-          />
           {/* eslint-disable @next/next/no-img-element */}
           <img
             src={'/svgs/roadmap-explanation.svg'}

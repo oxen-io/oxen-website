@@ -2,3 +2,5 @@
 .next
 .git
 node_modules
+assets/svgs
+public/svgs

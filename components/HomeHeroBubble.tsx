@@ -5,14 +5,14 @@ import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
 export function HomeHeroBubble() {
-  const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
+  const { isMobile, isTablet, isDesktop, isHuge, isEnormous } = useContext(ScreenContext);
   const dispatch = useDispatch();
 
   return (
     <div
       style={{
         marginTop:
-          isMobile || isTablet ? '33px' : isHuge ? '16rem' : 'min(50vh, 20rem)',
+          (isMobile || isTablet) ? '33px' : (isHuge || isEnormous) ? '16rem' : 'min(50vh, 20rem)',
       }}
       onClick={() => dispatch(expandSideMenu())}
       className={classNames(

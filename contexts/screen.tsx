@@ -6,6 +6,7 @@ interface IScreen {
   isTablet: boolean;
   isDesktop: boolean;
   isHuge: boolean;
+  isEnormous: boolean;
   width: number;
 }
 
@@ -14,6 +15,7 @@ export const ScreenContext = React.createContext({
   isTablet: false,
   isDesktop: false,
   isHuge: false,
+  isEnormous: false,
   width: 0,
 });
 

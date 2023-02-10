@@ -12,19 +12,23 @@ export function useScreenSize() {
   const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isHuge, setIsHuge] = useState(false);
+  const [isEnormous, setIsEnormous] = useState(false);
 
   useEffect(() => {
     const _isMobile = width <= UI.MOBILE_BREAKPOINT;
     const _isTablet =
       width > UI.MOBILE_BREAKPOINT && width <= UI.TABLET_BREAKPOINT;
     const _isDesktop = width > UI.TABLET_BREAKPOINT;
-    const _isHuge = width > UI.DESKTOP_BREAKPOINT;
+    const _isHuge =
+      width >= UI.DESKTOP_BREAKPOINT && width < UI.MONITOR_BREAKPOINT;
+    const _isEnormous = width >= UI.MONITOR_BREAKPOINT;
 
     if (isMobile !== _isMobile) setIsMobile(_isMobile);
     if (isTablet !== _isTablet) setIsTablet(_isTablet);
     if (isDesktop !== _isDesktop) setIsDesktop(_isDesktop);
     if (isHuge !== _isHuge) setIsHuge(_isHuge);
-  }, [width]);
+    if (isEnormous !== _isEnormous) setIsEnormous(_isEnormous);
+  }, [isMobile, isTablet, isDesktop, isHuge, isEnormous, width]);
 
-  return { isMobile, isTablet, isDesktop, isHuge, width };
+  return { isMobile, isTablet, isDesktop, isHuge, isEnormous, width };
 }

@@ -7,14 +7,17 @@ import { ScreenContext } from '@/contexts/screen';
 import classNames from 'classnames';
 
 export default function Custom404(): ReactElement {
-  const { isMobile, isTablet, isDesktop, isHuge } = useContext(ScreenContext);
+  const { isMobile, isTablet, isDesktop, isHuge, isEnormous } = useContext(
+    ScreenContext,
+  );
 
   const wrapperStyles = {
     width: '100%',
     maxWidth: '760px',
     margin: isDesktop ? '50px auto 100px' : '-10px auto',
-    paddingLeft: isHuge ? '0' : `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
-    paddingRight: isHuge ? '0' : `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
+    paddingLeft:
+      (isHuge || isEnormous) ? '0' : `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
+    paddingRight: (isHuge || isEnormous) ? '0' : `${UI.PAGE_CONTAINED_PADDING_VW}vw`,
     paddingBottom: !isDesktop ? '33px' : '0px',
   };
 

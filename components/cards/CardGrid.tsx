@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function CardGrid({ rows, children }: Props) {
-  const { isDesktop, isHuge } = useContext(ScreenContext);
+  const { isDesktop, isHuge, isEnormous } = useContext(ScreenContext);
 
   const [ref, { width }] = useMeasure();
   const widthOfCardPx = 200;
@@ -22,7 +22,7 @@ export function CardGrid({ rows, children }: Props) {
   const numPaddingCards =
     Math.ceil(children.length / grouping) * grouping - children.length;
 
-  const spacing = isHuge ? 3 : isDesktop ? 6 : 4;
+  const spacing = (isHuge || isEnormous) ? 3 : isDesktop ? 6 : 4;
   const spacingY = `space-y-${spacing}`;
   const spacingX = `space-x-${spacing}`;
 

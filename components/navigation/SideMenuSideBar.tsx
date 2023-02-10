@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function SideMenuSideBar({ mode }: Props) {
-  const { isMobile, isTablet, isHuge } = useContext(ScreenContext);
+  const { isMobile, isTablet, isHuge, isEnormous } = useContext(ScreenContext);
   const { sideMenuExpanded: expanded, pageType, postTitle } = useSelector(
     (state: IState) => state.navigation,
   );

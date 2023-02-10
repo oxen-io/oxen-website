@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 import { v4 as uuid } from 'uuid';
 
 export function SideMenuInner() {
-  const { isHuge, isDesktop } = useContext(ScreenContext);
+  const { isDesktop } = useContext(ScreenContext);
   const { pages } = useSelector((state: IState) => state.navigation);
   const dispatch = useDispatch();
   const router = useRouter();

@@ -143,6 +143,15 @@ export default function Roadmap() {
           : isEnormous
           ? 0.6
           : 0.25,
+        minZoom: isMobile
+          ? 0.07
+          : isTablet
+          ? 0.125
+          : isHuge
+          ? 0.12
+          : isEnormous
+          ? 0.2
+          : 0.1,
         autocenter: false,
         initialX: isMobile
           ? -900
@@ -172,7 +181,15 @@ export default function Roadmap() {
         pz.dispose();
       }
     };
-  }, [isMobile, isTablet, isHuge, isEnormous, loaded, startup, showExplanation]);
+  }, [
+    isMobile,
+    isTablet,
+    isHuge,
+    isEnormous,
+    loaded,
+    startup,
+    showExplanation,
+  ]);
 
   return (
     <>
@@ -205,12 +222,7 @@ export default function Roadmap() {
       />
       {!(isMobile && showExplanation) && loaded && (
         <>
-          <div
-            className={classNames(
-              'z-10 absolute right-4 bottom-4',
-              'desktop:right-6 desktop:bottom-6',
-            )}
-          >
+          <div className={classNames('z-10 absolute right-6 bottom-6')}>
             {/* eslint-disable @next/next/no-img-element */}
             <img
               src={'/svgs/roadmap-key.svg'}

@@ -39,7 +39,7 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
 };
 
 export default function Roadmap() {
-  const { isMobile, isTablet } = useContext(ScreenContext);
+  const { isMobile, isTablet, isHuge, isEnormous } = useContext(ScreenContext);
   const [loaded, setLoaded] = useState(false);
 
   const startup = () => {
@@ -71,10 +71,34 @@ export default function Roadmap() {
     if (loaded) {
       const roadmapEl = document.getElementById('#roadmap-image');
       pz = panzoom(roadmapEl, {
-        initialZoom: isMobile ? 0.3 : isTablet ? 0.4 : 0.3333,
-        autocenter: isMobile ? false : isTablet ? false : false,
-        initialX: isMobile ? -900 : isTablet ? -1200 : -800,
-        initialY: isMobile ? -100 : isTablet ? -200 : -100,
+        initialZoom: isMobile
+          ? 0.3
+          : isTablet
+          ? 0.4
+          : isHuge
+          ? 0.3333
+          : isEnormous
+          ? 0.6
+          : 0.25,
+        autocenter: false,
+        initialX: isMobile
+          ? -900
+          : isTablet
+          ? -1200
+          : isHuge
+          ? -800
+          : isEnormous
+          ? -2200
+          : -600,
+        initialY: isMobile
+          ? -100
+          : isTablet
+          ? -200
+          : isHuge
+          ? -100
+          : isEnormous
+          ? -300
+          : -100,
         bounds: true,
         boundsPadding: isMobile ? 0 : isTablet ? 0 : -0.1,
       });

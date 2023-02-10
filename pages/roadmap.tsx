@@ -21,7 +21,7 @@ type RoadmapCanvasProps = {
   canScaleMore: boolean;
   showExplanation: boolean;
   setShowExplanation: any;
-  isMobileDisplay: boolean;
+  isMobile: boolean;
 };
 
 const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
@@ -30,7 +30,7 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
     canScaleMore,
     showExplanation,
     setShowExplanation,
-    isMobileDisplay,
+    isMobile,
   } = props;
 
   return (
@@ -38,13 +38,13 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
       className={classNames(
         'relative',
         loaded ? 'visibility' : 'invisible',
-        isMobileDisplay && 'bg-tertiary',
+        isMobile && showExplanation && 'bg-tertiary',
       )}
       style={{
         height: loaded ? `calc(100vh - ${UI.HEADER_HEIGHT_PX}px)` : '0vh',
       }}
     >
-      {!isMobileDisplay && (
+      {!(isMobile && showExplanation) && (
         <canvas
           id={'#roadmap-image'}
           aria-label={"Oxen's roadmap for the future shown as a progress tree"}
@@ -62,8 +62,8 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
             'tablet:absolute tablet:block tablet:left-6 tablet:bottom-6',
           )}
           style={{
-            height: isMobileDisplay ? '100%' : 304.8,
-            width: isMobileDisplay ? '100%' : 313.6,
+            height: isMobile && showExplanation ? '100%' : 304.8,
+            width: isMobile && showExplanation ? '100%' : 313.6,
           }}
           onClick={() => {
             setShowExplanation(false);
@@ -73,10 +73,23 @@ const RoadmapCanvas = (props: RoadmapCanvasProps): ReactElement => {
           <img
             src={'/svgs/roadmap-explanation.svg'}
             alt="Oxen Roadmap Explanation"
-            height={isMobileDisplay ? '100%' : 762 / 2.5}
-            width={isMobileDisplay ? '100%' : 784 / 2.5}
+            height={isMobile && showExplanation ? '100%' : 762 / 2.5}
+            width={isMobile && showExplanation ? '100%' : 784 / 2.5}
           />
         </div>
+      )}
+      {loaded && !(isMobile && showExplanation) && (
+        <>
+          <div className={classNames('z-10 absolute right-6 bottom-6')}>
+            {/* eslint-disable @next/next/no-img-element */}
+            <img
+              src={'/svgs/roadmap-key.svg'}
+              alt="Oxen Roadmap Legend"
+              height={isMobile ? 180 : 242}
+              width={isMobile ? 150 : 200}
+            />
+          </div>
+        </>
       )}
     </div>
   );
@@ -119,7 +132,11 @@ export default function Roadmap() {
   useEffect(() => {
     startup();
 
-    if (loaded && !(isMobile && showExplanation)) {
+    if (loaded) {
+      if (isMobile && showExplanation || (!isMobile && !showExplanation)) {
+        return;
+      }
+      
       const roadmapEl = document.getElementById('#roadmap-image');
       pz = panzoom(roadmapEl, {
         initialZoom: isMobile
@@ -206,21 +223,8 @@ export default function Roadmap() {
         canScaleMore={!isMobile && !isTablet}
         showExplanation={showExplanation}
         setShowExplanation={setShowExplanation}
-        isMobileDisplay={isMobile && showExplanation}
+        isMobile={isMobile}
       />
-      {!(isMobile && showExplanation) && loaded && (
-        <>
-          <div className={classNames('z-10 absolute right-6 bottom-6')}>
-            {/* eslint-disable @next/next/no-img-element */}
-            <img
-              src={'/svgs/roadmap-key.svg'}
-              alt="Oxen Roadmap Legend"
-              height={isMobile ? 180 : 242}
-              width={isMobile ? 150 : 200}
-            />
-          </div>
-        </>
-      )}
     </>
   );
 }

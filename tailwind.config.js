@@ -48,6 +48,7 @@ module.exports = {
       colors: {
         primary: '#1F1C47',
         secondary: '#12C7BA',
+        tertiary: '#181436',
         alt: '#DBF7F5',
         hyper: '#E5FF85',
         blush: '#FF7A87',

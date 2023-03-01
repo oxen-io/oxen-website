@@ -1,7 +1,7 @@
 {
   "name": "oxen.io",
   "version": "0.1.0",
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-only",
   "scripts": {
     "dev": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
     "build": "NEXT_PUBLIC_SITE_ENV=production NODE_ENV=production next build",

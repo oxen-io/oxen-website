@@ -8,7 +8,7 @@ const ContentSecurityPolicy = `
     process.env.NODE_ENV == 'development' ? "'unsafe-eval' " : ''
   }'unsafe-inline' *.ctfassets.net *.youtube.com *.twitter.com;
   child-src 'self' *.ctfassets.net *.youtube.com player.vimeo.com *.twitter.com;
-  frame-src 'self' https://getsession.org https://lokinet.org https://optf.ngo https://staging.getsession.org;
+  frame-src 'self' https://getsession.org https://lokinet.org https://optf.ngo https://staging.getsession.org *.youtube.com player.vimeo.com *.twitter.com;
   frame-ancestors 'self' https://getsession.org https://lokinet.org https://optf.ngo https://staging.getsession.org;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src 'self' blob: data: *.ctfassets.net *.youtube.com *.twitter.com;

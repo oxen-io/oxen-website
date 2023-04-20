@@ -21,7 +21,7 @@ export default function BlogPost(props: Props) {
       dispatch(setPageType(PageType.POST));
       dispatch(setPostTitle(post.title));
     }
-  }, []);
+  }, [dispatch, post]);
 
   return (
     <>

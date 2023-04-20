@@ -2,8 +2,8 @@ import { Block, Document, Inline } from '@contentful/rich-text-types';
 import {
   ContentfulClientApi,
   EntryCollection,
-  createClient,
   Tag,
+  createClient,
 } from 'contentful';
 import {
   IAuthor,
@@ -335,7 +335,7 @@ export class CmsApi {
     };
   };
 
-  public convertPage = (rawData): ISplitPage => {
+  public convertPage = (rawData: any): ISplitPage => {
     const rawPage = rawData.fields;
     const rawHero = rawPage?.hero ? rawPage?.hero?.fields : null;
 

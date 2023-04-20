@@ -48,9 +48,10 @@ export const getServerSideProps: GetServerSideProps = async (
       let query = slug;
       if (slug.indexOf('blog/') >= 0) query = slug.split('blog/')[1];
       page = await cms.fetchEntryPreview(query, 'post');
-      // embedded links in post body need metadata for preview
-      page.body = await generateLinkMeta(page.body);
     }
+
+    // embedded links in post body need metadata for preview
+    page.body = await generateLinkMeta(page.body);
 
     console.log(`Built Preview %c${slug}`, 'color: purple;');
     return {

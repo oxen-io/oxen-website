@@ -58,9 +58,10 @@ export async function getStaticProps({ params }) {
       page = await cms.fetchPageById(SideMenuItem[id]);
     } else {
       page = await cms.fetchEntryBySlug(url, 'post');
-      // embedded links in post body need metadata for preview
-      page.body = await generateLinkMeta(page.body);
     }
+
+    // embedded links in post body need metadata for preview
+    page.body = await generateLinkMeta(page.body);
 
     return {
       props: {

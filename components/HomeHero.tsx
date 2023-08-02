@@ -22,7 +22,7 @@ export function HomeHero() {
       >
         <h1
           className={classNames(
-            'text-4xl font-bold leading-snug mt-8 mb-4',
+            'text-4xl font-bold leading-snug mt-16 mb-4',
             'tablet:text-5xl tablet:mt-8',
           )}
         >
@@ -50,47 +50,72 @@ export function HomeHero() {
         <div
           className={classNames(
             'flex flex-col justify-center items-center w-full',
-            'tablet:flex-row tablet:justify-between',
+            'tablet:items-start',
+            'desktop:flex-row desktop:justify-between desktop:items-center',
           )}
         >
           <a
-            href="https://trade.kucoin.com/LOKI-USDT"
+            href="https://v2.info.uniswap.org/pair/0xbaeca7c35346a8d31811ef971f38603012a12c1e"
             target="_blank"
             rel="noreferrer"
-            aria-label="Link to Kucoin website"
+            aria-label="Link to Uniswap website"
             className={classNames(
               'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 border-secondary rounded-2xl w-60',
-              'xl:w-68',
+              'tablet:w-40 tablet:py-4 tablet:px-6',
+              'xl:w-44',
               'duration-300',
               'hover:bg-secondary hover:bg-opacity-30',
             )}
           >
             <Image
-              src={'/svgs/kucoin-logo-full.svg'}
-              alt="Bittrex Logo"
-              width={700}
-              height={161.7}
+              src={'/svgs/uniswap.svg'}
+              alt="Uniswap Logo"
+              width={961}
+              height={240}
               quality={100}
               priority={true}
             />
           </a>
           <a
-            href="https://global.bittrex.com/Market/Index?MarketName=USDT-OXEN"
+            href="https://www.coinex.com/exchange/oxen-usdt"
             target="_blank"
             rel="noreferrer"
-            aria-label="Link to Bittrex website"
+            aria-label="Link to Coinex website"
             className={classNames(
               'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
-              'xl:w-68',
+              'tablet:w-40 tablet:py-4 tablet:px-6',
+              'xl:w-44',
               'duration-300',
               'hover:bg-secondary hover:bg-opacity-30',
             )}
           >
             <Image
-              src={'/svgs/bittrex-logo-full.svg'}
-              alt="Bittrex Logo"
-              width={600.1}
-              height={143.8}
+              src={'/svgs/coinex.svg'}
+              alt="Coinex Logo"
+              width={961}
+              height={240}
+              quality={100}
+              priority={true}
+            />
+          </a>
+          <a
+            href="https://tradeogre.com/exchange/OXEN-BTC"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Tradeogre website"
+            className={classNames(
+              'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
+              'tablet:w-40 tablet:py-4 tablet:px-6',
+              'xl:w-44',
+              'duration-300',
+              'hover:bg-secondary hover:bg-opacity-30',
+            )}
+          >
+            <Image
+              src={'/svgs/tradeogre.svg'}
+              alt="Tradeogre Logo"
+              width={961}
+              height={240}
               quality={100}
               priority={true}
             />

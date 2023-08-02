@@ -19,17 +19,17 @@ import {
 import { SideMenuItem, TPages } from '@/state/navigation';
 import { format, parseISO } from 'date-fns';
 
-import { ReactComponent as BittrexSVG } from '@/assets/svgs/bittrex-logo.svg';
 import { Button } from '@/components/Button';
 import { CMS } from '@/constants';
 import { ReactComponent as DiscordSVG } from '@/assets/svgs/socials/brand-discord.svg';
 import EmailSignup from '@/components/EmailSignup';
-import { ReactComponent as KucoinSVG } from '@/assets/svgs/kucoin-logo.svg';
 import React from 'react';
 import { ReactComponent as RedditSVG } from '@/assets/svgs/socials/brand-reddit.svg';
 import { ReactComponent as TelegramSVG } from '@/assets/svgs/socials/brand-telegram.svg';
 import { fetchContent } from '@/services/embed';
 import { generateURL } from '@/constants/metadata';
+import classNames from 'classnames';
+import Image from 'next/image';
 
 // Turns CMS IDs into slugs
 export const slugify = (id: string) => id?.replace(/_/g, '-').toLowerCase();
@@ -412,30 +412,80 @@ export const renderShortcode = (shortcode: string) => {
   // Trade links on "Why buy $OXEN?"
   if (CMS.SHORTCODES.TRADE_LINKS.test(shortcode)) {
     return (
-      <div className="flex flex-col items-center mt-6 space-y-4">
-        <h4 className="text-lg font-bold tracking-wide">Find $OXEN on</h4>
-        <div className="flex justify-center mb-4 space-x-4">
-          <Button
-            wide
-            prefix={<KucoinSVG className="h-4" />}
-            onClick={() => open('https://trade.kucoin.com/LOKI-USDT', '_blank')}
-            type="ghost"
+      <div className="flex flex-col items-start mt-6 space-y-4">
+        <h4 className="mb-2 font-sans text-xl font-semibold">Find $OXEN on</h4>
+        <div
+          className={classNames(
+            'flex flex-col justify-center items-center mb-4',
+            'tablet:flex-row tablet:space-x-4',
+          )}
+        >
+          <a
+            href="https://v2.info.uniswap.org/pair/0xbaeca7c35346a8d31811ef971f38603012a12c1e"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Uniswap website"
+            className={classNames(
+              'block py-6 px-8 mb-8 cursor-pointer border-2 border-secondary rounded-2xl w-60',
+              'tablet:w-40 tablet:py-4 tablet:px-6',
+              'xl:w-44',
+              'duration-300',
+              'hover:bg-secondary hover:bg-opacity-30',
+            )}
           >
-            Kucoin
-          </Button>
-          <Button
-            wide
-            prefix={<BittrexSVG className="h-4" />}
-            onClick={() =>
-              open(
-                'https://global.bittrex.com/Market/Index?MarketName=USDT-OXEN',
-                '_blank',
-              )
-            }
-            type="ghost"
+            <Image
+              src={'/svgs/uniswap.svg'}
+              alt="Uniswap Logo"
+              width={961}
+              height={240}
+              quality={100}
+              priority={true}
+            />
+          </a>
+          <a
+            href="https://www.coinex.com/exchange/oxen-usdt"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Coinex website"
+            className={classNames(
+              'block py-6 px-8 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
+              'tablet:w-40 tablet:py-4 tablet:px-6',
+              'xl:w-44',
+              'duration-300',
+              'hover:bg-secondary hover:bg-opacity-30',
+            )}
           >
-            Bittrex
-          </Button>
+            <Image
+              src={'/svgs/coinex.svg'}
+              alt="Coinex Logo"
+              width={961}
+              height={240}
+              quality={100}
+              priority={true}
+            />
+          </a>
+          <a
+            href="https://tradeogre.com/exchange/OXEN-BTC"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Tradeogre website"
+            className={classNames(
+              'block py-6 px-8 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
+              'tablet:w-40 tablet:py-4 tablet:px-6',
+              'xl:w-44',
+              'duration-300',
+              'hover:bg-secondary hover:bg-opacity-30',
+            )}
+          >
+            <Image
+              src={'/svgs/tradeogre.svg'}
+              alt="Tradeogre Logo"
+              width={961}
+              height={240}
+              quality={100}
+              priority={true}
+            />
+          </a>
         </div>
       </div>
     );

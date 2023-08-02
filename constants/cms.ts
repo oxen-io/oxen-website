@@ -28,7 +28,7 @@ const CMS = {
     GENERAL_BUTTON: /\{\{[\s]*button[\s]*href="[^"]{1,333}"[\s]*text="[\w\s]{1,33}"[\s]*\}\}/,
     GITHUB_LINKS: /^\{\{[\s]*github_links[\s]*\}\}$/,
     COMMUNITY_LINKS: /^{{[\s*]community_links[\s*]}}$/,
-    TRADE_LINKS: /^{{[\s*]trade_links[\s*]}}$/,
+    TRADE_LINKS: /^{{\s*trade_links\s*}}$/,
     CTA_WHO_USES_OXEN: /^\{\{[\s]*who_uses_oxen[\s]*\}\}$/,
     CTA_SESSION_LOKINET: /^\{\{[\s]*session_lokinet[\s]*\}\}$/,
     CTA_EMAIL_SIGNUP: /^\{\{[\s]*email_signup[\s]*\}\}$/,

@@ -172,7 +172,7 @@ const SocialsRow = () => {
       >
         <RedditSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
-      <a href="https://sessiongroups.com/" target="_blank" rel="noreferrer">
+      <a href="https://getsession.org/" target="_blank" rel="noreferrer">
         <SessionSVG className="h-10 placeholder-current duration-300 border rounded-full cursor-pointer fill-current stroke-current hover:bg-primary hover:text-secondary border-primary" />
       </a>
       <Link href="/feed">

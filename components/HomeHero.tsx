@@ -39,6 +39,9 @@ export function HomeHero() {
           <a
             className="cursor-pointer text-blue hover:underline"
             href="https://token.getsession.org/"
+            rel='noreferrer'
+            target="_blank"
+            aria-label="Link to Session Token website"
           >
             their website
           </a>

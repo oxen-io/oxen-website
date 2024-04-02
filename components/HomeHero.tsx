@@ -1,26 +1,7 @@
 import Image from 'next/image';
-import { UI } from '@/constants';
+import { EXCHANGES, UI } from '@/constants';
 import classNames from 'classnames';
 import { Button } from './Button';
-
-const exchanges = [
-  {
-    name: 'Uniswap',
-    url:
-      'https://v2.info.uniswap.org/pair/0xbaeca7c35346a8d31811ef971f38603012a12c1e',
-    logo: '/svgs/uniswap.svg',
-  },
-  {
-    name: 'Coinex',
-    url: 'https://www.coinex.com/exchange/oxen-usdt',
-    logo: '/svgs/coinex.svg',
-  },
-  {
-    name: 'Tradeogre',
-    url: 'https://tradeogre.com/exchange/OXEN-BTC',
-    logo: '/svgs/tradeogre.svg',
-  },
-];
 
 export function HomeHero() {
   return (
@@ -90,7 +71,7 @@ export function HomeHero() {
             'desktop:flex-row desktop:justify-between desktop:items-center desktop:gap-8',
           )}
         >
-          {exchanges.map(({ url, name, logo }) => (
+          {EXCHANGES.map(({ url, name, logo }) => (
             <a
               key={name}
               href={url}

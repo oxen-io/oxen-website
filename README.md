@@ -7,7 +7,7 @@ This project is built with [Contentful](https://www.contentful.com), [Next.js](h
 
 ### System Requirements
 
-- [Node.js 14.15.0](https://nodejs.org/) or later
+- [Node.js 16.13.0](https://nodejs.org/) or later
 
 ### Setup
 
@@ -18,8 +18,8 @@ Follow nvm setup instructions [here](https://github.com/nvm-sh/nvm/blob/master/R
 2. Install Node.js locally
 
 ```
-nvm install 14.15.0
-nvm use 14.15.0
+nvm install 16.13.0
+nvm use 16.13.0
 ```
 
 3. Install `yarn`

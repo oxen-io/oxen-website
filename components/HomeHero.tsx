@@ -42,7 +42,7 @@ export function HomeHero() {
       >
         <h1
           className={classNames(
-            'text-4xl font-bold leading-snug mt-16 mb-4',
+            'text-4xl font-bold leading-snug mb-4',
             'tablet:text-5xl tablet:mt-8',
           )}
         >
@@ -50,7 +50,7 @@ export function HomeHero() {
         </h1>
         <h2
           className={classNames(
-            'text-xl leading-snugmx-4',
+            'text-xl leading-snug mx-4',
             'tablet:text-2xl tablet:mx-0',
           )}
         >

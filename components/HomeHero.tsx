@@ -70,7 +70,7 @@ export function HomeHero() {
           aria-label="Link to Session Token Swap Program"
           className={classNames('mt-4', 'tablet:mt-12', 'desktop:mt-8')}
         >
-          <Button size="large">
+          <Button size="large" className='font-sans'>
             Participate in the Session Token Swap Program
           </Button>
         </a>

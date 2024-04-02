@@ -1,6 +1,26 @@
 import Image from 'next/image';
 import { UI } from '@/constants';
 import classNames from 'classnames';
+import { Button } from './Button';
+
+const exchanges = [
+  {
+    name: 'Uniswap',
+    url:
+      'https://v2.info.uniswap.org/pair/0xbaeca7c35346a8d31811ef971f38603012a12c1e',
+    logo: '/svgs/uniswap.svg',
+  },
+  {
+    name: 'Coinex',
+    url: 'https://www.coinex.com/exchange/oxen-usdt',
+    logo: '/svgs/coinex.svg',
+  },
+  {
+    name: 'Tradeogre',
+    url: 'https://tradeogre.com/exchange/OXEN-BTC',
+    logo: '/svgs/tradeogre.svg',
+  },
+];
 
 export function HomeHero() {
   return (
@@ -15,8 +35,8 @@ export function HomeHero() {
     >
       <div
         className={classNames(
-          'font-prompt relative flex flex-col justify-center items-center text-center',
-          'tablet:text-left tablet:items-start tablet:-mt-8 tablet:mx-7 tablet:py-2 tablet:px-20 tablet:bg-alt tablet:bg-opacity-95 tablet:border-2 tablet:border-secondary tablet:rounded-2xl',
+          'font-prompt relative flex flex-col justify-center items-center text-center max-w-5xl',
+          'tablet:text-left tablet:items-start tablet:-mt-8 tablet:mx-7 tablet:py-2 tablet:px-20 tablet:bg-alt tablet:bg-opacity-95 tablet:border-2 tablet:border-secondary tablet:rounded-2xl p-8 pt-24',
           'desktop:mt-0 desktop:mx-8',
         )}
       >
@@ -26,100 +46,74 @@ export function HomeHero() {
             'tablet:text-5xl tablet:mt-8',
           )}
         >
-          Privacy is possible
+          Oxen is migrating to Session Token
         </h1>
         <h2
           className={classNames(
-            'text-xl leading-snug mb-4 mx-4',
-            'tablet:text-2xl tablet:mx-0 tablet:mb-12 tablet:max-w-xl',
-            'desktop:mb-8',
+            'text-xl leading-snugmx-4',
+            'tablet:text-2xl tablet:mx-0',
           )}
         >
-          Oxen is a cryptocurrency powering a new class of interconnected
-          privacy apps.
+          Find out more about Session Token on{' '}
+          <a
+            className="cursor-pointer text-blue hover:underline"
+            href="https://token.getsession.org/"
+          >
+            their website
+          </a>
+          .
         </h2>
+        <a
+          href="https://swap.oxen.io/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Link to Session Token Swap Program"
+          className={classNames('mt-4', 'tablet:mt-12', 'desktop:mt-8')}
+        >
+          <Button size="large">
+            Participate in the Session Token Swap Program
+          </Button>
+        </a>
         <h3
           className={classNames(
-            'text-3xl font-semibold leading-tight mb-4',
-            'tablet:text-4xl tablet:mb-2',
-            'desktop:mb-4',
+            'text-3xl font-semibold leading-tight mb-4 mt-4',
+            'tablet:text-4xl tablet:mb-2 tablet:mt-12',
+            'desktop:mb-4 desktop:mt-8',
           )}
         >
-          Available on
+          Oxen available on
         </h3>
         <div
           className={classNames(
-            'flex flex-col justify-center items-center w-full',
+            'flex flex-col justify-center items-center',
             'tablet:items-start',
-            'desktop:flex-row desktop:justify-between desktop:items-center',
+            'desktop:flex-row desktop:justify-between desktop:items-center desktop:gap-8',
           )}
         >
-          <a
-            href="https://v2.info.uniswap.org/pair/0xbaeca7c35346a8d31811ef971f38603012a12c1e"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Link to Uniswap website"
-            className={classNames(
-              'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 border-secondary rounded-2xl w-60',
-              'tablet:w-40 tablet:py-4 tablet:px-6',
-              'xl:w-44',
-              'duration-300',
-              'hover:bg-secondary hover:bg-opacity-30',
-            )}
-          >
-            <Image
-              src={'/svgs/uniswap.svg'}
-              alt="Uniswap Logo"
-              width={961}
-              height={240}
-              quality={100}
-              priority={true}
-            />
-          </a>
-          <a
-            href="https://www.coinex.com/exchange/oxen-usdt"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Link to Coinex website"
-            className={classNames(
-              'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
-              'tablet:w-40 tablet:py-4 tablet:px-6',
-              'xl:w-44',
-              'duration-300',
-              'hover:bg-secondary hover:bg-opacity-30',
-            )}
-          >
-            <Image
-              src={'/svgs/coinex.svg'}
-              alt="Coinex Logo"
-              width={961}
-              height={240}
-              quality={100}
-              priority={true}
-            />
-          </a>
-          <a
-            href="https://tradeogre.com/exchange/OXEN-BTC"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Link to Tradeogre website"
-            className={classNames(
-              'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 w- border-secondary rounded-2xl w-60',
-              'tablet:w-40 tablet:py-4 tablet:px-6',
-              'xl:w-44',
-              'duration-300',
-              'hover:bg-secondary hover:bg-opacity-30',
-            )}
-          >
-            <Image
-              src={'/svgs/tradeogre.svg'}
-              alt="Tradeogre Logo"
-              width={961}
-              height={240}
-              quality={100}
-              priority={true}
-            />
-          </a>
+          {exchanges.map(({ url, name, logo }) => (
+            <a
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Link to ${name} website`}
+              className={classNames(
+                'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 border-secondary rounded-2xl w-full',
+                'tablet:py-4 tablet:px-6',
+                'duration-300',
+                'hover:bg-secondary hover:bg-opacity-30',
+              )}
+            >
+              <Image
+                src={logo}
+                alt={`${name} Logo`}
+                width={961}
+                height={240}
+                quality={100}
+                priority={true}
+              />
+            </a>
+          ))}
         </div>
       </div>
     </div>

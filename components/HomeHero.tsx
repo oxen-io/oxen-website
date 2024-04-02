@@ -35,8 +35,8 @@ export function HomeHero() {
     >
       <div
         className={classNames(
-          'font-prompt relative flex flex-col justify-center items-center text-center max-w-5xl',
-          'tablet:text-left tablet:items-start tablet:-mt-8 tablet:mx-7 tablet:py-2 tablet:px-20 tablet:bg-alt tablet:bg-opacity-95 tablet:border-2 tablet:border-secondary tablet:rounded-2xl p-8 pt-24',
+          'font-prompt relative flex flex-col justify-center items-center text-center max-w-5xl p-8 pt-24',
+          'tablet:text-left tablet:items-start tablet:-mt-8 tablet:mx-7 tablet:py-2 tablet:px-20 tablet:bg-alt tablet:bg-opacity-95 tablet:border-2 tablet:border-secondary tablet:rounded-2xl',
           'desktop:mt-0 desktop:mx-8',
         )}
       >

@@ -93,6 +93,18 @@ const nextConfig = {
         destination: '/blog/new-leadership-new-possibilities',
         permanent: true,
       },
+      {
+        source: '/blog/session-token-utility',
+        destination:
+          'https://token.getsession.org/blog/say-hello-to-session-token',
+        permanent: true,
+      },
+      {
+        source: '/blog/genesis-distribution',
+        destination:
+          'https://token.getsession.org/blog/session-token-genesis-distribution',
+        permanent: true,
+      },
     ],
   },
   async redirects() {

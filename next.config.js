@@ -93,18 +93,22 @@ const nextConfig = {
         destination: '/blog/new-leadership-new-possibilities',
         permanent: true,
       },
-      {
-        source: '/blog/session-token-utility',
-        destination:
-          'https://token.getsession.org/blog/say-hello-to-session-token',
-        permanent: true,
-      },
-      {
-        source: '/blog/genesis-distribution',
-        destination:
-          'https://token.getsession.org/blog/session-token-genesis-distribution',
-        permanent: true,
-      },
+      ...[
+        {
+          source: '/session-token-utility',
+          destination: '/say-hello-to-session-token',
+        },
+        {
+          source: '/genesis-distribution',
+          destination: '/session-token-genesis-distribution',
+        },
+      ].flatMap(({ source, destination }) => {
+        return ['', '/blog'].map(prefix => ({
+          source: `${prefix}${source}`,
+          destination: `https://token.getsession.org/blog${destination}`,
+          permanent: true,
+        }));
+      }),
     ],
   },
   async redirects() {

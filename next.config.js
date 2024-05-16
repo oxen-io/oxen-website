@@ -16,6 +16,16 @@ const ContentSecurityPolicy = `
   worker-src 'self' blob:;
 `;
 
+function redirectSessionTokenPosts(postNameMap) {
+  return postNameMap.flatMap(({ source, destination }) => {
+    return ['', '/blog'].map(prefix => ({
+      source: `${prefix}${source}`,
+      destination: `https://token.getsession.org/blog${destination}`,
+      permanent: true,
+    }));
+  });
+}
+
 const securityHeaders = () => {
   const headers = [
     {
@@ -93,18 +103,16 @@ const nextConfig = {
         destination: '/blog/new-leadership-new-possibilities',
         permanent: true,
       },
-      {
-        source: '/blog/session-token-utility',
-        destination:
-          'https://token.getsession.org/blog/say-hello-to-session-token',
-        permanent: true,
-      },
-      {
-        source: '/blog/genesis-distribution',
-        destination:
-          'https://token.getsession.org/blog/session-token-genesis-distribution',
-        permanent: true,
-      },
+      ...redirectSessionTokenPosts([
+        {
+          source: '/session-token-utility',
+          destination: '/say-hello-to-session-token',
+        },
+        {
+          source: '/genesis-distribution',
+          destination: '/session-token-genesis-distribution',
+        },
+      ]),
     ],
   },
   async redirects() {

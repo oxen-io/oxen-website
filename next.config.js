@@ -16,7 +16,7 @@ const ContentSecurityPolicy = `
   worker-src 'self' blob:;
 `;
 
-function redirectPosts(postNameMap) {
+function redirectSessionTokenPosts(postNameMap) {
   return postNameMap.flatMap(({ source, destination }) => {
     return ['', '/blog'].map(prefix => ({
       source: `${prefix}${source}`,
@@ -103,7 +103,7 @@ const nextConfig = {
         destination: '/blog/new-leadership-new-possibilities',
         permanent: true,
       },
-      ...redirectPosts([
+      ...redirectSessionTokenPosts([
         {
           source: '/session-token-utility',
           destination: '/say-hello-to-session-token',

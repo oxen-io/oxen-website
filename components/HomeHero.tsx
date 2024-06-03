@@ -3,13 +3,57 @@ import { EXCHANGES, UI } from '@/constants';
 import classNames from 'classnames';
 import { Button } from './Button';
 
+type HeroButtonProps = {
+  href: string,
+  ariaLabel: string,
+  label: string,
+}
+
+function HeroButton({
+  href,
+  ariaLabel,
+  label,
+}:HeroButtonProps) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={ariaLabel}
+      className={classNames('mt-4', 'tablet:mt-12', 'desktop:mt-8')}
+    >
+      <Button size="large" className="font-sans">
+        {label}
+      </Button>
+    </a>
+  );
+}
+
+const heroButtons: Array<HeroButtonProps> = [
+  {
+    href: 'https://oxen.io/blog/development-is-transitioning-to-session-token/',
+    ariaLabel: 'Link to Oxen blog post about the migration',
+    label: 'Learn more about the migration',
+  },
+  {
+    href: 'https://swap.oxen.io/',
+    ariaLabel: 'Link to Session Token Swap Program',
+    label: 'Participate in the Session Token Swap Program',
+  },
+  {
+    href: 'https://token.getsession.org/oxen-coin-claims',
+    label: 'Learn more about the Oxen Coin Claims Program',
+    ariaLabel: 'Link to Oxen Coin Claims Program',
+  },
+] as const;
+
 export function HomeHero() {
   return (
     <div
       className={classNames(
-        'relative w-full flex justify-center items-center overflow-x-hidden',
+        'relative w-full flex justify-center items-center overflow-x-hidden pt-96',
         'before:bg-hero before:bg-right before:bg-no-repeat before:bg-cover before:absolute before:inset-0 before:opacity-10',
-        'tablet:before:opacity-100',
+        'tablet:before:opacity-100 tablet:pt-0',
         'xl:before:bg-center',
       )}
       style={{ height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px` }}
@@ -39,7 +83,7 @@ export function HomeHero() {
           <a
             className="cursor-pointer text-blue hover:underline"
             href="https://token.getsession.org/"
-            rel='noreferrer'
+            rel="noreferrer"
             target="_blank"
             aria-label="Link to Session Token website"
           >
@@ -47,17 +91,14 @@ export function HomeHero() {
           </a>
           .
         </h2>
-        <a
-          href="https://swap.oxen.io/"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Link to Session Token Swap Program"
-          className={classNames('mt-4', 'tablet:mt-12', 'desktop:mt-8')}
-        >
-          <Button size="large" className='font-sans'>
-            Participate in the Session Token Swap Program
-          </Button>
-        </a>
+        {heroButtons.map((button) => (
+          <HeroButton
+            key={button.href}
+            href={button.href}
+            ariaLabel={button.ariaLabel}
+            label={button.label}
+          />
+        ))}
         <h3
           className={classNames(
             'text-3xl font-semibold leading-tight mb-4 mt-4',

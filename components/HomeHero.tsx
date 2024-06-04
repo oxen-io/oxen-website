@@ -43,7 +43,7 @@ const heroButtons: Array<HeroButtonProps> = [
     label: 'Learn more about the Oxen Coin Claims Program',
     ariaLabel: 'Link to Oxen Coin Claims Program',
   },
-] as const;
+];
 
 export function HomeHero() {
   return (

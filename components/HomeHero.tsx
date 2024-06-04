@@ -4,20 +4,17 @@ import classNames from 'classnames';
 import { Button } from './Button';
 
 type HeroButtonProps = {
-  href: string,
-  ariaLabel: string,
-  label: string,
-}
+  href: string;
+  ariaLabel: string;
+  label: string;
+  internal?: boolean;
+};
 
-function HeroButton({
-  href,
-  ariaLabel,
-  label,
-}:HeroButtonProps) {
+function HeroButton({ href, ariaLabel, label, internal }: HeroButtonProps) {
   return (
     <a
       href={href}
-      target="_blank"
+      target={internal ? '_self' : '_blank'}
       rel="noreferrer"
       aria-label={ariaLabel}
       className={classNames('mt-4', 'tablet:mt-12', 'desktop:mt-8')}
@@ -31,9 +28,10 @@ function HeroButton({
 
 const heroButtons: Array<HeroButtonProps> = [
   {
-    href: 'https://oxen.io/blog/development-is-transitioning-to-session-token/',
+    href: '/blog/development-is-transitioning-to-session-token/',
     ariaLabel: 'Link to Oxen blog post about the migration',
     label: 'Learn more about the migration',
+    internal: true,
   },
   {
     href: 'https://swap.oxen.io/',
@@ -51,18 +49,17 @@ export function HomeHero() {
   return (
     <div
       className={classNames(
-        'relative w-full flex justify-center items-center overflow-x-hidden pt-96',
+        'relative w-full flex justify-center items-center overflow-x-hidden',
         'before:bg-hero before:bg-right before:bg-no-repeat before:bg-cover before:absolute before:inset-0 before:opacity-10',
-        'tablet:before:opacity-100 tablet:pt-0',
+        'desktop:before:opacity-100 desktop:min-h-screen',
         'xl:before:bg-center',
       )}
-      style={{ height: `calc(100vh - ${UI.HEADER_HEIGHT_PX}px` }}
     >
       <div
         className={classNames(
           'font-prompt relative flex flex-col justify-center items-center text-center max-w-5xl p-8 pt-24',
-          'tablet:text-left tablet:items-start tablet:-mt-8 tablet:mx-7 tablet:py-2 tablet:px-20 tablet:bg-alt tablet:bg-opacity-95 tablet:border-2 tablet:border-secondary tablet:rounded-2xl',
-          'desktop:mt-0 desktop:mx-8',
+          'desktop:text-left desktop:items-start desktop:-mt-8 desktop:mx-7 desktop:py-2 desktop:px-20 desktop:bg-alt desktop:bg-opacity-95 desktop:border-2 desktop:border-secondary desktop:rounded-2xl',
+          'xl:mt-0 xl:mx-8',
         )}
       >
         <h1
@@ -91,13 +88,8 @@ export function HomeHero() {
           </a>
           .
         </h2>
-        {heroButtons.map((button) => (
-          <HeroButton
-            key={button.href}
-            href={button.href}
-            ariaLabel={button.ariaLabel}
-            label={button.label}
-          />
+        {heroButtons.map(props => (
+          <HeroButton key={props.href} {...props} />
         ))}
         <h3
           className={classNames(

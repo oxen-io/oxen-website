@@ -2,7 +2,7 @@ const exchanges = [
   {
     name: 'Uniswap',
     url:
-      'https://v2.info.uniswap.org/pair/0xbaeca7c35346a8d31811ef971f38603012a12c1e',
+      'https://app.uniswap.org/explore/tokens/ethereum/0xd1e2d5085b39b80c9948aeb1b9aa83af6756bcc5',
     logo: '/svgs/uniswap.svg',
   },
   {

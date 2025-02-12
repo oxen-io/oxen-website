@@ -13,6 +13,8 @@ interface Props {
 export default function EmailSignup(props: Props): ReactElement {
   const { classes } = props;
   const router = useRouter();
+
+  const [submitted, setSubmitted] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
@@ -32,20 +34,29 @@ export default function EmailSignup(props: Props): ReactElement {
         },
         body: JSON.stringify({ email }),
       });
+      switch (response.status) {
+        case 201:
+          setEmail('');
+          setButtonText('Signed up ✓');
+          setSubmitted(true);
+          break;
+        case 405:
+        default:
+          setButtonText('Signup failed ✗');
+          console.error(
+            'Email API Code',
+            response.status,
+            await response.json(),
+          );
+          setSubmitted(false);
+          break;
+      }
     } catch (error) {
       response = error;
-    }
-    switch (response?.status) {
-      case 201:
-        setEmail('');
-        setButtonText('Signed up ✓');
-        break;
-      case 400:
-      default:
-        setButtonText('Signup failed ✗');
-        break;
+      setSubmitted(false);
     }
   };
+
   return (
     <Contained
       id="signup"
@@ -100,6 +111,17 @@ export default function EmailSignup(props: Props): ReactElement {
         >
           Sign up
         </Button>
+        {submitted && (
+          <span
+            className={classNames(
+              'block mt-6',
+              'md:inline md:mt-0 md:ml-2',
+              'lg:ml-4',
+            )}
+          >
+            Thanks! Check your inbox to confirm your subscription.
+          </span>
+        )}
       </form>
     </Contained>
   );

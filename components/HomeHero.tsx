@@ -1,7 +1,8 @@
-import Image from 'next/image';
-import { EXCHANGES, UI } from '@/constants';
 import classNames from 'classnames';
 import { Button } from './Button';
+import { Spacer } from './Spacer';
+import { useContext } from 'react';
+import { ScreenContext } from '@/contexts/screen';
 
 type HeroButtonProps = {
   href: string;
@@ -28,24 +29,22 @@ function HeroButton({ href, ariaLabel, label, internal }: HeroButtonProps) {
 
 const heroButtons: Array<HeroButtonProps> = [
   {
-    href: '/blog/development-is-transitioning-to-session-token/',
+    href: '/blog/oxen-landing-hardfork-11-3-0',
     ariaLabel: 'Link to Oxen blog post about the migration',
     label: 'Learn more about the migration',
     internal: true,
   },
   {
-    href: 'https://swap.oxen.io/',
-    ariaLabel: 'Link to Session Token Swap Program',
-    label: 'Participate in the Session Token Swap Program',
-  },
-  {
-    href: 'https://token.getsession.org/oxen-coin-claims',
-    label: 'Learn more about the Oxen Coin Claims Program',
-    ariaLabel: 'Link to Oxen Coin Claims Program',
+    href: 'https://claim.oxen.io',
+    ariaLabel: 'Link to SESH Coin Claims Portal.',
+    label: 'Swap your OXEN for SESH',
   },
 ];
 
 export function HomeHero() {
+  const { isMobile, isTablet, isDesktop, isHuge, isEnormous } = useContext(
+    ScreenContext,
+  );
   return (
     <div
       className={classNames(
@@ -57,8 +56,8 @@ export function HomeHero() {
     >
       <div
         className={classNames(
-          'font-prompt relative flex flex-col justify-center items-center text-center max-w-5xl p-8 pt-24',
-          'desktop:text-left desktop:items-start desktop:-mt-8 desktop:mx-7 desktop:py-2 desktop:px-20 desktop:bg-alt desktop:bg-opacity-95 desktop:border-2 desktop:border-secondary desktop:rounded-2xl',
+          'font-prompt relative flex flex-col justify-center items-center text-center max-w-5xl py-8 pt-24',
+          'desktop:text-left desktop:items-start desktop:-mt-8 desktop:mx-7 desktop:py-2 desktop:px-16 desktop:bg-alt desktop:bg-opacity-95 desktop:border-2 desktop:border-secondary desktop:rounded-2xl',
           'xl:mt-0 xl:mx-8',
         )}
       >
@@ -68,7 +67,7 @@ export function HomeHero() {
             'tablet:text-5xl tablet:mt-8',
           )}
         >
-          Oxen is migrating to Session Token
+          Oxen has migrated to Session Token
         </h1>
         <h2
           className={classNames(
@@ -91,47 +90,14 @@ export function HomeHero() {
         {heroButtons.map(props => (
           <HeroButton key={props.href} {...props} />
         ))}
-        <h3
-          className={classNames(
-            'text-3xl font-semibold leading-tight mb-4 mt-4',
-            'tablet:text-4xl tablet:mb-2 tablet:mt-12',
-            'desktop:mb-4 desktop:mt-8',
-          )}
-        >
-          Oxen available on
-        </h3>
-        <div
-          className={classNames(
-            'flex flex-col justify-center items-center',
-            'tablet:items-start',
-            'desktop:flex-row desktop:justify-between desktop:items-center desktop:gap-8',
-          )}
-        >
-          {EXCHANGES.map(({ url, name, logo }) => (
-            <a
-              key={name}
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Link to ${name} website`}
-              className={classNames(
-                'block py-6 px-8 mt-4 mb-8 cursor-pointer border-2 border-secondary rounded-2xl w-full',
-                'tablet:py-4 tablet:px-6',
-                'duration-300',
-                'hover:bg-secondary hover:bg-opacity-30',
-              )}
-            >
-              <Image
-                src={logo}
-                alt={`${name} Logo`}
-                width={961}
-                height={240}
-                quality={100}
-                priority={true}
-              />
-            </a>
-          ))}
-        </div>
+        {isMobile ? (
+          <>
+            <Spacer spaceX={24} spaceY={24} />
+            <Spacer spaceX={24} spaceY={24} />
+          </>
+        ) : !isTablet ? (
+          <Spacer spaceX={10} spaceY={10} />
+        ) : null}
       </div>
     </div>
   );

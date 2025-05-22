@@ -37,7 +37,7 @@ const heroButtons: Array<HeroButtonProps> = [
   {
     href: 'https://claim.oxen.io',
     ariaLabel: 'Link to SESH Coin Claims Portal.',
-    label: 'Swap your OXEN for SESH',
+    label: 'Migrate your OXEN to SESH',
   },
 ];
 

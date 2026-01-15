@@ -6,7 +6,6 @@ import { IPost } from '@/types/cms';
 import { SideMenuItem } from '@/state/navigation';
 import getConfig from 'next/config';
 import { isLocal } from '@/utils/links';
-import rimraf from 'rimraf';
 
 interface IRedirection {
   source: string;
@@ -37,7 +36,7 @@ export default async function generateSitemap() {
       ].includes(page);
     })
     .map(pagePath => {
-      if (pagePath.includes('index')) {
+      if (pagePath === 'index.tsx') {
         pagePath = '';
       } else {
         pagePath = pagePath.split('.tsx')[0];
@@ -88,7 +87,7 @@ export default async function generateSitemap() {
   });
 
   const bloglistPages = [];
-  const totalBlogPages = currentPage + 1;
+  const totalBlogPages = currentPage - 1;
 
   for (let i = 1; i <= totalBlogPages; i++) {
     bloglistPages.push(`${baseUrl}/blog/${i}`);
@@ -138,7 +137,6 @@ export default async function generateSitemap() {
     </urlset>
   `;
 
-  rimraf.sync(`./public/sitemap`);
   mkdirSync(`./public/sitemap`, { recursive: true });
   writeFileSync(`./public/sitemap/sitemap.xml`, sitemap, {
     encoding: 'utf-8',

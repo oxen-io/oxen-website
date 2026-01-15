@@ -114,13 +114,11 @@ export const getStaticProps: GetStaticProps = async (
         pageCount,
         currentPage: page,
       },
-      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
   } catch (err) {
     console.error(err);
     return {
       notFound: true,
-      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
   }
 };
@@ -136,5 +134,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths.push({ params: { page: [String(i)] } });
   }
 
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: false };
 };

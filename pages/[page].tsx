@@ -42,7 +42,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     params: { page: post.slug },
   }));
 
-  return { paths: [...navigationPaths, ...postPaths], fallback: 'blocking' };
+  return { paths: [...navigationPaths, ...postPaths], fallback: false };
 };
 
 export async function getStaticProps({ params }) {
@@ -67,13 +67,11 @@ export async function getStaticProps({ params }) {
       props: {
         page,
       },
-      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
   } catch (err) {
     console.error(err);
     return {
       notFound: true,
-      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
   }
 }

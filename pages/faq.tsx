@@ -22,7 +22,6 @@ export const getStaticProps: GetStaticProps = async (
       faqItems,
       total,
     },
-    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };
 

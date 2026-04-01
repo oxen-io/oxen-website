@@ -163,13 +163,11 @@ export const getStaticProps: GetStaticProps = async (
         tag,
         tagPosts,
       },
-      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
   } catch (err) {
     console.error(err);
     return {
       notFound: true,
-      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
   }
 };
@@ -194,6 +192,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 };

@@ -115,7 +115,19 @@ const nextConfig = {
     ],
   },
   async redirects() {
-    return this.serverRuntimeConfig.redirects;
+    return [
+      ...this.serverRuntimeConfig.redirects,
+      {
+        source: '/blog',
+        destination: '/blog/1',
+        permanent: true,
+      },
+      {
+        source: '/tag/:tag',
+        destination: '/tag/:tag/1',
+        permanent: true,
+      },
+    ];
   },
   async rewrites() {
     return [

@@ -5,6 +5,7 @@ import { CmsApi } from '@/services/cms';
 import { HomeHero } from '@/components/HomeHero';
 import { IPost } from '@/types/cms';
 import generateRSSFeed from '@/utils/rss';
+import generateSitemap from '@/utils/sitemap';
 
 export default function Index() {
   return (
@@ -37,10 +38,10 @@ export const getStaticProps: GetStaticProps = async (
     }
 
     generateRSSFeed(posts);
+    await generateSitemap();
   }
 
   return {
     props: {},
-    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };

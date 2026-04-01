@@ -16,11 +16,13 @@
 # production
 /build
 /public/rss
+/public/sitemap
 
 # misc
 .DS_Store
 *.pem
 .vscode
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*

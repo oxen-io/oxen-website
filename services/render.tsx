@@ -94,6 +94,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
     return (
       <figure className={classNames(figureClasses)} style={figureStyles}>
         <Image
+          unoptimized
           src={`${url}`}
           alt={node.title}
           width={imageWidth}

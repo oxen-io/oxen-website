@@ -7,7 +7,7 @@ This project is built with [Contentful](https://www.contentful.com), [Next.js](h
 
 ### System Requirements
 
-- [Node.js 16.13.0](https://nodejs.org/) or later
+- [Node.js 16.13.0](https://nodejs.org/). Next.js 11 does not build on Node.js 17 or later.
 
 ### Setup
 
@@ -134,33 +134,27 @@ We can't use template literals with classes if we want to purge (shrink) the CSS
 
 ## Deploying to Production
 
-You can run the project in a production environment by running:
-
 ```
-yarn run build && yarn run start
+yarn build
 ```
 
-**Make sure to do this locally and check for errors before pushing any code changes to your hosted repository**
+This runs `next build` then `next export`, which writes a fully static site to `out/`. Serve that directory with any web server; no Node.js process runs in production. Content changes on Contentful need a rebuild.
 
-Any changes made on Contentful will be reflected on the production server **hourly**.
+`next export` does not apply headers, redirects or rewrites, so the web server must:
 
-If you want to see your Contentful changes faster while using a production server you can use the Staging Environement.
+- serve clean URLs: `/faq` from `faq.html`, `/` from `index.html`, and redirect `/path/` to `/path`
+- serve blog posts at `/blog/:slug` from `:slug.html` (`/:slug` also works), and blog list pages at `/blog/:number` from `blog/:number.html`
+- redirect (308) `/blog` to `/blog/1` and `/tag/:tag` to `/tag/:tag/1`
+- redirect (308) the renamed posts:
+  - `/blog/session-the-road-to-monetisation-and-oxen-value-capture` to `/blog/session-the-road-to-monetisation`
+  - `/new-ceo` to `/new-leadership-new-possibilities`, and `/blog/new-ceo` to `/blog/new-leadership-new-possibilities`
+  - `/session-token-utility` and `/blog/session-token-utility` to `https://token.getsession.org/blog/say-hello-to-session-token`
+  - `/genesis-distribution` and `/blog/genesis-distribution` to `https://token.getsession.org/blog/session-token-genesis-distribution`
+- serve the feeds: `/feed` and `/feed/rss` from `rss/feed.xml`, `/feed/atom` from `rss/atom.xml`, `/feed/json` from `rss/feed.json`
+- serve `404.html` for unknown paths
+- send the security headers, including the Content Security Policy
 
-### Staging Environment
-
-You can test the project in a staging environment by running:
-
-```
-yarn run build:staging && yarn run start:staging
-```
-
-Staging environments are password protected using the password you assign to `STAGING_SECRET` in `.env.local`.
-
-To unlock the staging environment go to [http://localhost:3000/login?secret=YOUR_PASSWORD_HERE](http://localhost:3000/login?secret=YOUR_PASSWORD_HERE)
-
-System environment variables and page metadata will also be updated to show it's a staging website.
-
-Any changes made on Contentful will be reflected on the staging server **every 30 seconds**.
+`yarn build:staging` builds the same export with staging metadata. It skips the RSS feeds and sitemap, and has no access control of its own; protect it at the web server if needed.
 
 ## License
 

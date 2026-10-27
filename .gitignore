@@ -16,7 +16,7 @@
 # production
 /build
 /public/rss
-/public/sitemap
+/public/sitemap.xml
 
 # misc
 .DS_Store

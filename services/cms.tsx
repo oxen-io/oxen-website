@@ -170,45 +170,6 @@ export class CmsApi {
     });
   }
 
-  public async fetchEntryPreview(
-    query: string,
-    entryType: 'post' | 'splitPage',
-  ): Promise<ISplitPage | IPost> {
-    const client = createClient({
-      space: process.env.CONTENTFUL_SPACE_ID,
-      accessToken: String(process.env.CONTENTFUL_PREVIEW_TOKEN),
-      host: 'preview.contentful.com',
-    });
-
-    const options = { content_type: entryType, 'fields.preview': true }; // only fetch specific type
-    if (entryType === 'post') {
-      options['fields.slug'] = query;
-    } else {
-      options['fields.id[in]'] = query;
-    }
-
-    const _entries = await client.getEntries(options);
-    if (_entries?.items?.length > 0) {
-      let entry;
-      switch (entryType) {
-        case 'post':
-          const taglist = await this.fetchTagList();
-          entry = this.convertPost(_entries.items[0], taglist);
-          break;
-        case 'splitPage':
-          entry = this.convertPage(_entries.items[0]);
-          break;
-        default:
-          break;
-      }
-      return entry;
-    }
-
-    return Promise.reject(
-      new Error(`Failed to fetch preview ${entryType} for ${query}`),
-    );
-  }
-
   public async fetchEntryBySlug(
     slug: string,
     entryType: 'post' | 'splitPage',
@@ -434,6 +395,7 @@ export const renderShortcode = (shortcode: string) => {
             )}
           >
             <Image
+              unoptimized
               src={'/svgs/uniswap.svg'}
               alt="Uniswap Logo"
               width={961}
@@ -456,6 +418,7 @@ export const renderShortcode = (shortcode: string) => {
             )}
           >
             <Image
+              unoptimized
               src={'/svgs/coinex.svg'}
               alt="Coinex Logo"
               width={961}
@@ -478,6 +441,7 @@ export const renderShortcode = (shortcode: string) => {
             )}
           >
             <Image
+              unoptimized
               src={'/svgs/tradeogre.svg'}
               alt="Tradeogre Logo"
               width={961}

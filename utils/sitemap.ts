@@ -4,14 +4,7 @@ import { mkdirSync, writeFileSync, readdirSync } from 'fs';
 import { CmsApi } from '@/services/cms';
 import { IPost } from '@/types/cms';
 import { SideMenuItem } from '@/state/navigation';
-import getConfig from 'next/config';
 import { isLocal } from '@/utils/links';
-
-interface IRedirection {
-  source: string;
-  destination: string;
-  permanent: boolean;
-}
 
 export default async function generateSitemap() {
   const cms = new CmsApi();
@@ -30,9 +23,7 @@ export default async function generateSitemap() {
         'sitemap.xml.tsx',
         'roadmap.tsx',
         'faq.tsx',
-        'api',
         'tag',
-        'preview',
       ].includes(page);
     })
     .map(pagePath => {
@@ -51,16 +42,6 @@ export default async function generateSitemap() {
     .map(key => {
       return `${baseUrl}${NAVIGATION.SIDE_MENU_ITEMS[SideMenuItem[key]].href}`;
     });
-
-  const redirectPages = getConfig().serverRuntimeConfig.redirects.map(
-    (redirect: IRedirection) => {
-      if (redirect.source.includes(':slug')) {
-        return '';
-      } else {
-        return `${baseUrl}${redirect.source}`;
-      }
-    },
-  );
 
   const _blogPages: IPost[] = [];
   let currentPage = 1;
@@ -104,13 +85,7 @@ export default async function generateSitemap() {
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      ${[
-        ...staticPages,
-        ...navigationPages,
-        ...redirectPages,
-        ...bloglistPages,
-        ...updatesPages,
-      ]
+      ${[...staticPages, ...navigationPages, ...bloglistPages, ...updatesPages]
         .map(url => {
           return `
           <url>
@@ -137,8 +112,8 @@ export default async function generateSitemap() {
     </urlset>
   `;
 
-  mkdirSync(`./public/sitemap`, { recursive: true });
-  writeFileSync(`./public/sitemap/sitemap.xml`, sitemap, {
+  mkdirSync(`./public`, { recursive: true });
+  writeFileSync(`./public/sitemap.xml`, sitemap, {
     encoding: 'utf-8',
     flag: 'w',
   });

@@ -36,6 +36,7 @@ export function ArticleCardFeature(props: IPost) {
               )}
             >
               <Image
+                unoptimized
                 src={`${featureImage?.imageUrl}?w=1200`}
                 alt={featureImage?.description ?? title}
                 layout="fill"

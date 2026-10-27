@@ -105,6 +105,7 @@ export default function EmbedContent(props: Props): ReactElement {
                 className={classNames('relative w-full h-36', 'tablet:h-48')}
               >
                 <Image
+                  unoptimized
                   src={`${content.image}`}
                   alt="link thumbnail image"
                   layout="fill"

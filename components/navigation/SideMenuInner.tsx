@@ -102,7 +102,12 @@ export function SideMenuInner() {
               className="flex items-center space-x-1 hover:underline hover:text-secondary"
             >
               <div className="relative w-5 h-5">
-                <Image src={CoinMarketCapImage} alt="CMC logo" layout="fill" />
+                <Image
+                  unoptimized
+                  src={CoinMarketCapImage}
+                  alt="CMC logo"
+                  layout="fill"
+                />
               </div>
               <span>CMC</span>
             </a>
@@ -114,6 +119,7 @@ export function SideMenuInner() {
             >
               <div className="relative w-5 h-5">
                 <Image
+                  unoptimized
                   src={CoinGeckoImage}
                   alt="CoinGecko logo"
                   layout="fill"

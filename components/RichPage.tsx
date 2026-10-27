@@ -47,6 +47,7 @@ export default function RichPage(props: Props) {
             style={{ height: '33vh' }}
           >
             <Image
+              unoptimized
               src={`${page?.hero?.imageUrl}`}
               alt={page?.hero?.description ?? page?.label}
               layout="fill"

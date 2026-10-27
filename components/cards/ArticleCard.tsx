@@ -48,6 +48,7 @@ export function ArticleCard(props: IPost): JSX.Element {
           >
             {featureImage?.imageUrl && (
               <Image
+                unoptimized
                 src={`${featureImage?.imageUrl}?w=600`}
                 alt={featureImage?.description ?? title}
                 layout="fill"

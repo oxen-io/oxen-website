@@ -4,10 +4,8 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "dev": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
-    "build": "NEXT_PUBLIC_SITE_ENV=production NODE_ENV=production next build",
-    "build:staging": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=production next build",
-    "start": "NEXT_PUBLIC_SITE_ENV=production NODE_ENV=production next start --hostname 127.0.0.1",
-    "start:staging": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=production next start --hostname 127.0.0.1",
+    "build": "NEXT_PUBLIC_SITE_ENV=production NODE_ENV=production next build && next export",
+    "build:staging": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=production next build && next export",
     "lint": "next lint",
     "lint:fix": "eslint --fix"
   },

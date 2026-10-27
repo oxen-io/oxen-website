@@ -1,10 +1,9 @@
-import { FormEventHandler, ReactElement, useRef, useState } from 'react';
-
-import { Button } from '@/components/Button';
 import { Contained } from '@/components/Contained';
-import { Input } from '@/components/Input';
+import { ReactElement } from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+
+const SIGNUP_URL = 'https://getsession.org/#signup';
 
 interface Props {
   classes?: string;
@@ -13,49 +12,6 @@ interface Props {
 export default function EmailSignup(props: Props): ReactElement {
   const { classes } = props;
   const router = useRouter();
-
-  const [submitted, setSubmitted] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const setButtonText = (value: string) => {
-    if (null !== buttonRef.current) {
-      buttonRef.current.innerText = value;
-    }
-  };
-  const [email, setEmail] = useState('');
-  const handleSubscription: FormEventHandler = async event => {
-    event.preventDefault();
-    setButtonText('Subscribing...');
-    let response;
-    try {
-      response = await fetch('/api/email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-      switch (response.status) {
-        case 201:
-          setEmail('');
-          setButtonText('Signed up ✓');
-          setSubmitted(true);
-          break;
-        case 405:
-        default:
-          setButtonText('Signup failed ✗');
-          console.error(
-            'Email API Code',
-            response.status,
-            await response.json(),
-          );
-          setSubmitted(false);
-          break;
-      }
-    } catch (error) {
-      response = error;
-      setSubmitted(false);
-    }
-  };
 
   return (
     <Contained
@@ -84,45 +40,22 @@ export default function EmailSignup(props: Props): ReactElement {
           'desktop:mb-6 desktop:text-xl',
         )}
       >
-        Sign up to our newsletter to keep up to date with everything Oxen.
+        Sign up to the Session newsletter on getsession.org to keep up to date.
       </p>
-      <form onSubmit={handleSubscription}>
-        <Input
-          type="email"
-          placeholder="Your Email"
-          value={email}
-          onValueChange={value => setEmail(value)}
-          size={'large'}
-          border={'primary'}
-          inputMode={'text'}
-          className={classNames(
-            'mb-6 rounded-sm',
-            'tablet:mb-4',
-            'desktop:mb-6',
-          )}
-          required
-        />
-        <Button
-          color="primary"
-          size="medium"
-          className={classNames('mx-auto', 'tablet:w-40')}
-          buttonType={'submit'}
-          reference={buttonRef}
-        >
-          Sign up
-        </Button>
-        {submitted && (
-          <span
-            className={classNames(
-              'block mt-6',
-              'md:inline md:mt-0 md:ml-2',
-              'lg:ml-4',
-            )}
-          >
-            Thanks! Check your inbox to confirm your subscription.
-          </span>
+      <a
+        href={SIGNUP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classNames(
+          'flex justify-center items-center mx-auto px-4 py-1',
+          'text-base text-white text-center font-raleway font-semibold',
+          'bg-primary border-2 border-solid border-primary rounded-none',
+          'duration-300 ease-in-out hover:opacity-75',
+          'tablet:w-40',
         )}
-      </form>
+      >
+        Sign up
+      </a>
     </Contained>
   );
 }
